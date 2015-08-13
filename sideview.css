@@ -1,0 +1,128 @@
+
+#mw_basic .mw_basic_list_name {
+    overflow:visible;
+}
+
+#mw_basic .mw_basic_list_name .sv_wrap .sv {
+    white-space:normal;
+    position:absolute;
+    margin:0;
+}
+
+#mw_basic .mw_basic_list_name .sv_member,
+#mw_basic .mw_basic_list_name .sv_guest {
+    display:block;
+    width:90px;
+    font-size:12px;
+    line-height:15px;
+    color:#3d5b7a;
+    color:#000;
+    text-align:left;
+    overflow:hidden;
+}
+
+.sv_wrap .sv {
+    box-shadow:2px 2px 5px #999;
+}
+
+.sv_wrap .sv,
+.sv_wrap .sv a {
+    background-color:#7f8c8d;
+    border:0;
+    width:120px;
+    line-height:20px;
+    margin:0;
+    padding:0;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.sv_wrap .sv a {
+    padding:3px 0 0 5px;
+    font-weight:normal;
+    font-size:12px;
+}
+
+.sv_wrap .sv a.sideview_memo:before {
+    content:"\f1d9";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
+.sv_wrap .sv a.sideview_mail:before {
+    content:"\f003";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
+.sv_wrap .sv a.sideview_homepage:before {
+    content:"\f015";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
+.sv_wrap .sv a.sideview_profile:before {
+    content:"\f007";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
+.sv_wrap .sv a.sideview_search:before {
+    content:"\f002";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
+.sv_wrap .sv a.sideview_all:before {
+    content:"\f1c0";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
+.sv_wrap .sv a.sideview_member:before {
+    content:"\f013";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
+.sv_wrap .sv a.sideview_point:before {
+    content:"\f06b";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
+.sv_wrap .sv a.sideview_cash:before {
+    content:"\f219";
+    font-family:FontAwesome;
+    font-weight:normal;
+    float:left;
+    width:20px;
+    text-align:center;
+}
+
