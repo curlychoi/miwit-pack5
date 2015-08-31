@@ -1,10 +1,12 @@
 ver 2.9.6 (15.09.01)
     : 그누보드5 - 이미지 새창 (엑노님 제안)
     : 카테고리탭에서 div 태그 제거 (신비님 제안)
-
+    : 크롬 css 돋움폰트적용 오류 수정 (gino님 제안)
 
     mw.basic/HISTORY
+    mw.basic/mw.adm/mw.config.update.php
     mw.basic/mw.proc/mw.file.viewer.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
     mw.basic/list.skin.php
     mw.basic/write.skin.php
 

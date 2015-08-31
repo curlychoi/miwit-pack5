@@ -25,6 +25,9 @@ include_once("$board_skin_path/mw.lib/mw.skin.basic.lib.php");
 if ($is_admin != "super")
     alert_close("접근 권한이 없습니다.");
 
+$cf_css = str_replace($chrome_css, "", $_POST['cf_css']);
+$cf_css = trim($cf_css);
+
 if ($cf_time_list == 'manual')
     $cf_time_list = $cf_time_list_manual;
 

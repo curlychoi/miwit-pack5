@@ -534,8 +534,9 @@ if (is_g5()) {
 }
 
 $cf_css = $mw_basic['cf_css'];
+$chrome_css = "div,table,td,span,li,a,h1,h2,h3,h4,h5,input,button {font-family:돋움;}";
 if (strstr($_SERVER['HTTP_USER_AGENT'], "Chrome")) {
-    $cf_css .= "\ndiv,table,td,span,li,a,h1,h2,h3,h4,h5,input,button {font-family:돋움;}".PHP_EOL;
+    $cf_css .= "\n".$chrome_css.PHP_EOL;
 }
 
 if ($mw_basic['cf_thumb_round']) {
