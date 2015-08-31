@@ -6,6 +6,7 @@ ver 2.9.6 (15.09.01)
     : 서명 게시판 관리자에서 사용안할시 안보이기 (재아님 제안)
     : 모바일 체크 함수 처리 (엑노님 제안)
     : 본문 버튼 위치 번경
+    : 분류 라인 오류 수정
 
     mw.basic/HISTORY
     mw.basic/mw.adm/mw.config.update.php
