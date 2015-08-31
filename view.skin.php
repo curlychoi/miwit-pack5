@@ -641,7 +641,7 @@ if ($bomb) {
 
 <?php
 //if ($is_signature && $signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymous") // 서명출력
-if (!$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymous") // 서명출력
+if ($is_signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymous") // 서명출력
 { 
     $tmpsize = array(0, 0);
     $is_comment_image = false;
