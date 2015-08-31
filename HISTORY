@@ -1,4 +1,5 @@
 ver 2.9.6 (15.09.01)
+    : 폴더명 mw.basic 에서 miwit 로 변경
     : 그누보드5 - 이미지 새창 (엑노님 제안)
     : 카테고리탭에서 div 태그 제거 (신비님 제안)
     : 크롬 css 돋움폰트적용 오류 수정 (gino님 제안)
@@ -9,21 +10,21 @@ ver 2.9.6 (15.09.01)
     : 분류 라인 오류 수정
     : win_open -> window.open 으로 변경
 
-    mw.basic/HISTORY
-    mw.basic/mw.adm/mw.config.update.php
-    mw.basic/mw.proc/mw.file.viewer.php
-    mw.basic/mw.proc/mw.one.talk.php
-    mw.basic/mw.proc/mw.top.button.php
-    mw.basic/mw.proc/mw.vote.php
-    mw.basic/mw.lib/mw.skin.basic.lib.php
-    mw.basic/mw.lib/mw.function.lib.php
-    mw.basic/list.skin.php
-    mw.basic/write.skin.php
-    mw.basic/write_update.skin.php
-    mw.basic/view.skin.php
-    mw.basic/view_head.skin.php
-    mw.basic/view_comment.skin.php
-    mw.basic/write_comment_update.skin.php
+    miwit/HISTORY
+    miwit/mw.adm/mw.config.update.php
+    miwit/mw.proc/mw.file.viewer.php
+    miwit/mw.proc/mw.one.talk.php
+    miwit/mw.proc/mw.top.button.php
+    miwit/mw.proc/mw.vote.php
+    miwit/mw.lib/mw.skin.basic.lib.php
+    miwit/mw.lib/mw.function.lib.php
+    miwit/list.skin.php
+    miwit/write.skin.php
+    miwit/write_update.skin.php
+    miwit/view.skin.php
+    miwit/view_head.skin.php
+    miwit/view_comment.skin.php
+    miwit/write_comment_update.skin.php
 
 ver 2.9.5 (15.07.01)
     : 디자인 개선
