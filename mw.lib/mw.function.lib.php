@@ -3364,7 +3364,8 @@ function mw_list_link($row)
     $sign = '&';
     if ($mw['config']['cf_seo_url']) {
         $row['href'] = mw_seo_url($bo_table, $row['wr_id'], $qstr);
-        $sign = '?';
+        if (!$qstr)
+            $sign = '?';
     }
 
     // 링크로그
