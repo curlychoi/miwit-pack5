@@ -330,7 +330,7 @@ if ($is_category && $mw_basic[cf_category_tab]) {
     if (!$mw_basic['cf_default_category']) {
         echo "<li";
         if (!$sca) echo " class='selected'";
-        echo "><div><a href=\"".mw_seo_url($bo_table)."\">전체</a></div></li>";
+        echo "><a href=\"".mw_seo_url($bo_table)."\">전체</a></li>";
         ++$i;
         ++$m;
     }
@@ -338,8 +338,8 @@ if ($is_category && $mw_basic[cf_category_tab]) {
     foreach ($category_list as $cate) {
         echo "<li";
         if (urldecode($sca) == $cate) echo " class='selected'";
-        echo "><div><a href=\"". mw_seo_url($bo_table, 0, "&sca=".urlencode($cate))."\">";
-        echo $cate."</a></div></li>";
+        echo "><a href=\"". mw_seo_url($bo_table, 0, "&sca=".urlencode($cate))."\">";
+        echo $cate."</a></li>";
 
         if ($m>=10 && $i++%$l==0 && $i<=$m) echo "</ul><ul>";
     }

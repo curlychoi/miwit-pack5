@@ -1,8 +1,12 @@
 ver 2.9.6 (15.09.01)
     : 그누보드5 - 이미지 새창 (엑노님 제안)
+    : 카테고리탭에서 div 태그 제거 (신비님 제안)
+
 
     mw.basic/HISTORY
     mw.basic/mw.proc/mw.file.viewer.php
+    mw.basic/list.skin.php
+    mw.basic/write.skin.php
 
 ver 2.9.5 (15.07.01)
     : 디자인 개선
