@@ -442,7 +442,7 @@ for ($i=0; $i<$to_record; $i++) {
 
         <script>
         function mw_member_photo(mb_id) {
-            win_open('<?=$board_skin_path?>/mw.proc/mw.comment.image.php?bo_table=<?=$bo_table?>&mb_id='+mb_id,'comment_image','width=500,height=350');
+            window.open('<?=$board_skin_path?>/mw.proc/mw.comment.image.php?bo_table=<?=$bo_table?>&mb_id='+mb_id,'comment_image','width=500,height=350');
         }
         </script>
 
@@ -599,7 +599,7 @@ for ($i=0; $i<$to_record; $i++) {
 <? if ($mw_basic[cf_kcb_comment] && !is_okname()) { ?>
 <div style="text-align:center; padding:20px 0 20px 0; margin:10px 0 10px 0; border:1px solid #eaeaea; color:#777;">
     <?=$mw_basic[cf_kcb_type]=='okname'?'실명인증':'성인인증'?> 후 댓글을 입력하실 수 있습니다.
-    <a style="cursor:pointer; color:#777;" onclick="win_open('<?=$board_skin_path?>/mw.okname/?bo_table=<?=$bo_table?>', 'okname', 'width=600,height=500')">[인증하기]</a>
+    <a style="cursor:pointer; color:#777;" onclick="window.open('<?=$board_skin_path?>/mw.okname/?bo_table=<?=$bo_table?>', 'okname', 'width=600,height=500')">[인증하기]</a>
 </div>
 <? } ?>
 
@@ -934,7 +934,7 @@ $(document).ready(function () {
 
     <div class="comment_function">
     <?php if ($mw_basic[cf_comment_emoticon] && !$is_comment_editor && !$write_error) {?>
-    <button type="button" class="fa-button" onclick="win_open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo','width=600,height=400,scrollbars=yes')" style="*margin-right:10px;"><i class="fa fa-smile-o"></i> <span class="media-comment-button">이모티콘</span></button>
+    <button type="button" class="fa-button" onclick="window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo','width=600,height=400,scrollbars=yes')" style="*margin-right:10px;"><i class="fa fa-smile-o"></i> <span class="media-comment-button">이모티콘</span></button>
     <?php } //comment_emoticon ?>
 
     <?php if ($mw_basic[cf_comment_specialchars]) {?>
@@ -1430,13 +1430,13 @@ $(document).ready(function () {
 <script type="text/javascript"> document.title = "<?=mw_reg_str(addslashes($write[wr_subject]))?>"; </script>
 <script type="text/javascript">
 function btn_ip_search(ip) {
-    win_open("<?=$g4[admin_path]?>/member_list.php?sfl=mb_ip&stx=" + ip);
+    window.open("<?=$g4[admin_path]?>/member_list.php?sfl=mb_ip&stx=" + ip);
 }
 </script>
 <? if ($mw_basic[cf_post_history]) { ?>
 <script type="text/javascript">
 function btn_history(wr_id) {
-    win_open("<?=$board_skin_path?>/mw.proc/mw.history.list.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id, "mw_history", "width=500, height=300, scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.history.list.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id, "mw_history", "width=500, height=300, scrollbars=yes");
 }
 </script>
 <? } ?>
@@ -1445,7 +1445,7 @@ function btn_history(wr_id) {
 function btn_singo(wr_id, parent_id) {
     //if (confirm("이 게시물을 정말 신고하시겠습니까?")) {
     //hiddenframe.location.href = "<?=$board_skin_path?>/mw.proc/mw.btn.singo.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id + "&parent_id=" + parent_id;
-    win_open("<?=$board_skin_path?>/mw.proc/mw.btn.singo.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id + "&parent_id=" + parent_id, "win_singo", "width=500,height=300,scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.btn.singo.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id + "&parent_id=" + parent_id, "win_singo", "width=500,height=300,scrollbars=yes");
     //}
 }
 function btn_singo_view(wr_id) {
@@ -1475,7 +1475,7 @@ function btn_intercept(mb_id, wr_ip) {
     if (mb_id == undefined || mb_id == '') {
         mb_id = wr_ip;
     }
-    win_open("<?=$board_skin_path?>/mw.proc/mw.intercept.php?bo_table=<?=$bo_table?>&mb_id=" + mb_id, "intercept", "width=500,height=300,scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.intercept.php?bo_table=<?=$bo_table?>&mb_id=" + mb_id, "intercept", "width=500,height=300,scrollbars=yes");
 }
 </script>
 <? } ?>

@@ -675,7 +675,7 @@ if ($is_signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymo
             <? } ?>
             <script>
             function mw_member_photo(mb_id) {
-                win_open('<?=$board_skin_path?>/mw.proc/mw.comment.image.php?bo_table=<?=$bo_table?>&mb_id='+mb_id,'comment_image','width=500,height=350');
+                window.open('<?=$board_skin_path?>/mw.proc/mw.comment.image.php?bo_table=<?=$bo_table?>&mb_id='+mb_id,'comment_image','width=500,height=350');
             }
             </script>
             <?
@@ -842,7 +842,7 @@ or $scrap_href) {
         and $mw_basic[cf_view_good]
         and $member[mb_level] >= $mw_basic[cf_view_good]) { ?>
             <div class="view_good">
-                <button type="button" class="fa-button" onclick="win_open(
+                <button type="button" class="fa-button" onclick="window.open(
                     '<?=$board_skin_path?>/mw.proc/mw.good.list.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>',
                     'good_list',
                         'width=600,height=500,scrollbars=1');"/>
@@ -983,7 +983,7 @@ $(document).ready(function () {
 <?php if ($download_log_href) { ?>
 <script>
 function btn_download_log() {
-    win_open("<?=$board_skin_path?>/mw.proc/mw.download.log.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>", "mw_download_log", "width=500, height=300, scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.download.log.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>", "mw_download_log", "width=500, height=300, scrollbars=yes");
 }
 </script>
 <? } ?>
@@ -991,7 +991,7 @@ function btn_download_log() {
 <? if ($link_log_href) { ?>
 <script>
 function btn_link_log() {
-    win_open("<?=$board_skin_path?>/mw.proc/mw.link.log.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>", "mw_link_log", "width=500, height=300, scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.link.log.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>", "mw_link_log", "width=500, height=300, scrollbars=yes");
 }
 </script>
 <? } ?>
@@ -999,7 +999,7 @@ function btn_link_log() {
 <? if ($history_href) { ?>
 <script>
 function btn_history(wr_id) {
-    win_open("<?=$board_skin_path?>/mw.proc/mw.history.list.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id, "mw_history", "width=500, height=300, scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.history.list.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id, "mw_history", "width=500, height=300, scrollbars=yes");
 }
 </script>
 <? } ?>
@@ -1009,7 +1009,7 @@ function btn_history(wr_id) {
 function btn_singo(wr_id, parent_id) {
     //if (confirm("이 게시물을 정말 신고하시겠습니까?")) {
     //hiddenframe.location.href = "<?=$board_skin_path?>/mw.proc/mw.btn.singo.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id + "&parent_id=" + parent_id;
-    win_open("<?=$board_skin_path?>/mw.proc/mw.btn.singo.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id + "&parent_id=" + parent_id, "win_singo", "width=500,height=300,scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.btn.singo.php?bo_table=<?=$bo_table?>&wr_id=" + wr_id + "&parent_id=" + parent_id, "win_singo", "width=500,height=300,scrollbars=yes");
     //}
 }
 function btn_singo_view(wr_id) {
@@ -1034,7 +1034,7 @@ function btn_singo_clear(wr_id) {
 <? if ($print_href) { ?>
 <script>
 function btn_print() {
-    win_open("<?=$board_skin_path?>/mw.proc/mw.print.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>", "print", "width=800,height=600,scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.print.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>", "print", "width=800,height=600,scrollbars=yes");
 }
 </script>
 <? } ?>
@@ -1065,7 +1065,7 @@ function btn_intercept(mb_id, wr_ip) {
     if (mb_id == undefined || mb_id == '') {
         mb_id = wr_ip;
     }
-    win_open("<?=$board_skin_path?>/mw.proc/mw.intercept.php?bo_table=<?=$bo_table?>&mb_id=" + mb_id, "intercept", "width=500,height=300,scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.intercept.php?bo_table=<?=$bo_table?>&mb_id=" + mb_id, "intercept", "width=500,height=300,scrollbars=yes");
 }
 </script>
 <? } ?>
@@ -1107,10 +1107,10 @@ function btn_view_block() {
     });
 }
 function btn_ip(ip) {
-    win_open("<?=$board_skin_path?>/mw.proc/mw.whois.php?ip=" + ip, "whois", "width=700,height=600,scrollbars=yes");
+    window.open("<?=$board_skin_path?>/mw.proc/mw.whois.php?ip=" + ip, "whois", "width=700,height=600,scrollbars=yes");
 }
 function btn_ip_search(ip) {
-    win_open("<?=$g4[admin_path]?>/member_list.php?sfl=mb_ip&stx=" + ip);
+    window.open("<?=$g4[admin_path]?>/member_list.php?sfl=mb_ip&stx=" + ip);
 }
 function btn_notice() {
     var is_off = 0;
@@ -1233,7 +1233,7 @@ function file_download(link, no) {
     <? } ?>
 
     if (<?=$mw_basic[cf_download_popup]?>)
-        win_open("<?=$board_skin_path?>/mw.proc/download.popup.skin.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>&no="+no, "download_popup", "width=<?=$mw_basic[cf_download_popup_w]?>,height=<?=$mw_basic[cf_download_popup_h]?>,scrollbars=yes");
+        window.open("<?=$board_skin_path?>/mw.proc/download.popup.skin.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>&no="+no, "download_popup", "width=<?=$mw_basic[cf_download_popup_w]?>,height=<?=$mw_basic[cf_download_popup_h]?>,scrollbars=yes");
     else {
         if (typeof comment_rate_run == 'function') {
             comment_rate_run();

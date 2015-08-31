@@ -741,7 +741,7 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
             <? */ ?>
             <? if ($mw_basic[cf_post_emoticon]) {?>
                 <span class=mw_basic_comment_emoticon><a 
-                    href="#;" onclick="win_open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo'
+                    href="#;" onclick="window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo'
                     ,'width=600,height=400,scrollbars=yes')">☞ 이모티콘</a></span>
             <? } ?>
             <? if ($mw_basic[cf_post_specialchars]) {?>
@@ -805,7 +805,7 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
         <span style="cursor: pointer;" onclick="textarea_increase('wr_contents_preview', 10);"><img src="<?=$board_skin_path?>/img/btn_down.gif"></span>
         <? if ($mw_basic[cf_post_emoticon]) {?>
             <span class=mw_basic_comment_emoticon><a 
-                href="javascript:win_open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo'
+                href="javascript:window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo'
                 ,'width=600,height=400,scrollbars=yes')">☞ 이모티콘</a></span>
         <? } ?>
     </div>

@@ -481,8 +481,8 @@ $new_count = $row[cnt];
 // 최고, 그룹관리자라면 글 복사, 이동 가능
 $copy_href = $move_href = "";
 if ($write[wr_reply] == "" && ($is_admin == "super" || $is_admin == "group")) {
-    $copy_href = "javascript:win_open('$pc_skin_path/move.php?sw=copy&bo_table=$bo_table&wr_id=$wr_id&page=$page".$qstr."', 'boardcopy', 'left=50, top=50, width=500, height=550, scrollbars=1');";
-    $move_href = "javascript:win_open('$pc_skin_path/move.php?sw=move&bo_table=$bo_table&wr_id=$wr_id&page=$page".$qstr."', 'boardmove', 'left=50, top=50, width=500, height=550, scrollbars=1');";
+    $copy_href = "javascript:window.open('$pc_skin_path/move.php?sw=copy&bo_table=$bo_table&wr_id=$wr_id&page=$page".$qstr."', 'boardcopy', 'left=50, top=50, width=500, height=550, scrollbars=1');";
+    $move_href = "javascript:window.open('$pc_skin_path/move.php?sw=move&bo_table=$bo_table&wr_id=$wr_id&page=$page".$qstr."', 'boardmove', 'left=50, top=50, width=500, height=550, scrollbars=1');";
 }
 
 if ($mw_basic[cf_umz]) { // 짧은 글주소 사용 

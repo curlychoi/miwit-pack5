@@ -110,7 +110,7 @@ if ($mw_basic[cf_vote] && $vote && sizeof($vote_list)) {
             echo number_format($vt_total)."명 참여";
         ?>)
         <? if ($is_admin) { ?>
-        [<a href="#;" onclick="win_open('<?=$board_skin_path?>/mw.proc/mw.vote.list.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>', 'vote_list', 'width=600,height=500,scrollbars=1');">참여목록</a>]
+        [<a href="#;" onclick="window.open('<?=$board_skin_path?>/mw.proc/mw.vote.list.php?bo_table=<?=$bo_table?>&wr_id=<?=$wr_id?>', 'vote_list', 'width=600,height=500,scrollbars=1');">참여목록</a>]
         <? } ?>
         <? if ($is_admin or ($write[mb_id] && $member[mb_id] && $write[mb_id] == $member[mb_id])) { ?>
         [<a href="#;" onclick="mw_vote_init()">초기화</a>]

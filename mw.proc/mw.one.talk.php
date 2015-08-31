@@ -168,7 +168,7 @@ echo "<input type=hidden name=wr_name value='익명'>\n";
     <? } ?>
     <script type="text/javascript">
     function mw_member_photo(mb_id) {
-        win_open('<?=$board_skin_path?>/mw.proc/mw.comment.image.php?bo_table=<?=$bo_table?>&mb_id='+mb_id,'comment_image','width=500,height=350');
+        window.open('<?=$board_skin_path?>/mw.proc/mw.comment.image.php?bo_table=<?=$bo_table?>&mb_id='+mb_id,'comment_image','width=500,height=350');
     }
     </script>
     <?
