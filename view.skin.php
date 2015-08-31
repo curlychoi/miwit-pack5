@@ -380,10 +380,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="view_buttons">
-<?php echo $link_buttons?>
-</div>
-
 <?php
 if ($mw_basic['cf_file_tail']) {
     echo $mw_basic['cf_file_tail'];
@@ -393,6 +389,10 @@ if ($mw_basic['cf_include_file_tail'] && is_mw_file($mw_basic['cf_include_file_t
     include_once($mw_basic['cf_include_file_tail']);
 } 
 ?>
+
+<div class="view_buttons">
+<?php echo $link_buttons?>
+</div>
 
 <?php
 if ($mw_basic['cf_social_commerce']) include($social_commerce_path."/view.skin.php");
