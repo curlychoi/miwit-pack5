@@ -117,11 +117,12 @@ for ($i=$file_start; $i<=$view[file][count]; $i++) {
 	    $view[file][$i][view] = str_replace("style='cursor:pointer;'", "", $view[file][$i][view]);
 	}
         else {
+            if (is_g5()) {
+                $view[file][$i][view] = str_replace($img_class, 
+                    $img_class." onclick='mw_image_window(this, {$view[file][$i][image_width]}, {$view[file][$i][image_height]});'", $view[file][$i][view]);
+            }
 	    $view[file][$i][view] = str_replace("onclick='image_window(this);'", 
 		"onclick='mw_image_window(this, {$view[file][$i][image_width]}, {$view[file][$i][image_height]});'", $view[file][$i][view]);
-	    // 제나빌더용 (그누보드 원본수정으로 인해 따옴표' 가 없음;)
-	    $view[file][$i][view] = str_replace("onclick=image_window(this);", 
-		"onclick='mw_image_window(this, {$view[file][$i][image_width]}, {$view[file][$i][image_height]});'", $view[file][$i][view]); 
 	}
         echo $view[file][$i][view] . "<br/><br/>";
         if (trim($view[file][$i][content]))
