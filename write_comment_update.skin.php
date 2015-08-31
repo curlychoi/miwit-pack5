@@ -40,7 +40,7 @@ if ($mw_basic[cf_anonymous]) {
 }*/
 // 모바일
 if ($w == 'c') {
-    if (preg_match("/(iphone|samsung|lgte|mobile|BlackBerry|android|windows ce|mot|SonyEricsson)/i", $_SERVER[HTTP_USER_AGENT])) {
+    if (mw_agent_mobile()) {
         sql_query("update $write_table set wr_is_mobile = '1' where wr_id = '$comment_id'", false);
     }
 }

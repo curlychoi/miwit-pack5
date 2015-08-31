@@ -4,6 +4,7 @@ ver 2.9.6 (15.09.01)
     : 크롬 css 돋움폰트적용 오류 수정 (gino님 제안)
     : 퍼머링크 사용시 포인트 차감 메시지 오류 수정 (금광님 제안)
     : 서명 게시판 관리자에서 사용안할시 안보이기 (재아님 제안)
+    : 모바일 체크 함수 처리 (엑노님 제안)
     : 본문 버튼 위치 번경
 
     mw.basic/HISTORY
@@ -13,7 +14,10 @@ ver 2.9.6 (15.09.01)
     mw.basic/mw.lib/mw.function.lib.php
     mw.basic/list.skin.php
     mw.basic/write.skin.php
+    mw.basic/write_update.skin.php
     mw.basic/view.skin.php
+    mw.basic/view_comment.skin.php
+    mw.basic/write_comment_update.skin.php
 
 ver 2.9.5 (15.07.01)
     : 디자인 개선

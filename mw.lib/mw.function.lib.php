@@ -4229,3 +4229,16 @@ function mw_sideview($name)
     return $name;
 }
 
+function mw_agent_mobile() {
+    if (defined("G5_MOBILE_AGENT")) {
+        if (preg_match("/(".G5_MOBILE_AGENT.")/i", $_SERVER['HTTP_USER_AGENT'])) {
+            return true;
+        }
+    }
+    else if (preg_match("/(iphone|samsung|lgte|mobile|BlackBerry|android|windows ce|mot|SonyEricsson)/i", $_SERVER['HTTP_USER_AGENT'])) {
+        return true;
+    }
+
+    return false;
+}
+

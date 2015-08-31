@@ -649,7 +649,7 @@ else
     $is_comment_editor = false;
 
 // 모바일 접근시 에디터 사용안함
-if (preg_match("/(iphone|samsung|lgte|mobile|BlackBerry|android|windows ce|mot|SonyEricsson)/i", $_SERVER[HTTP_USER_AGENT])) {
+if (mw_agent_mobile()) {
     $is_comment_editor = false;
 }
 
