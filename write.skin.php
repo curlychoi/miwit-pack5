@@ -180,7 +180,7 @@ if ($w == "u")
             if ($is_file_content)
                 //$file_script .= "<br><input type='text' class=ed size=50 name='bf_content[$i]' value='{$row[bf_content]}' title='업로드 이미지 파일에 해당 되는 내용을 입력하세요.'>";
                 // 첨부파일설명에서 ' 또는 " 입력되면 오류나는 부분 수정
-                $file_script .= "<br><input type='text' size=50 name='bf_content[$i]' value='".addslashes(get_text($row[bf_content]))."' title='업로드 이미지 파일에 해당 되는 내용을 입력하세요.'>";
+                $file_script .= "<br><input type='text' name='bf_content[$i]' value='".addslashes(get_text($row[bf_content]))."' title='업로드 이미지 파일에 해당 되는 내용을 입력하세요.'>";
             $file_script .= "\");\n";
         }
         else
@@ -476,16 +476,16 @@ if (0 && $is_category && $mw_basic[cf_category_tab]) {
 </div>
 <?php } ?>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="write_table">
 <colgroup width=100>
 <colgroup width=''>
 <tr><td colspan=2 height=2 class=mw_basic_line_color></td></tr>
-<tr><td style="padding-left:20px" colspan=2 height=30 bgcolor=#f8f8f9><strong><?=$title_msg?></strong></td></tr>
+<tr><td style="padding:10px 0 0 20px;display:block;" colspan=2 height=30 bgcolor=#f8f8f9><strong><?=$title_msg?></strong></td></tr>
 
 <? if ($mw_basic[cf_contents_shop_write]) { ?>
 <tr>
-<td class=mw_basic_write_title>· <?=$mw_cash[cf_cash_name]?> </td>
-<td>
+<td class="mw_basic_write_title">· <?=$mw_cash[cf_cash_name]?> </td>
+<td class="mw_basic_write_content">
     글작성시 <?=$mw_cash[cf_cash_name]?> <?=$mw_basic[cf_contents_shop_write_cash]?> <?=$mw_cash[cf_cash_unit]?> 차감됩니다.
     <span style="color:#888;">(나의 <?=$mw_cash[cf_cash_name]?> <?=number_format($mw_cash[mb_cash])?> <?=$mw_cash[cf_cash_unit]?>
         ⇒ <a href="<?=$g4[path]?>/plugin/cybercash/index.php" target="_blank">충전하기</a>)</span>
@@ -496,9 +496,9 @@ if (0 && $is_category && $mw_basic[cf_category_tab]) {
 
 <?php if ($is_admin && $mw_basic['cf_contents_shop']) { ?>
 <tr>
-<td class=mw_basic_write_title>· 진행회원ID</td>
-<td class=mw_basic_write_content>
-    <input maxlength=20 size=15 name="contents_shop_id" itemname="진행회원ID" value="<?php echo $write['mb_id']?>" class=mw_basic_text>
+<td class="mw_basic_write_title">· 진행회원ID</td>
+<td class="mw_basic_write_content">
+    <input maxlength=20 name="contents_shop_id" itemname="진행회원ID" value="<?php echo $write['mb_id']?>" class=mw_basic_text>
     (관리자 전용, 글작성자 지정)
 </td></tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
@@ -506,9 +506,9 @@ if (0 && $is_category && $mw_basic[cf_category_tab]) {
 
 <? if ($is_admin && $mw_basic[cf_attribute] == "1:1") { ?>
 <tr>
-<td class=mw_basic_write_title>· 지정회원ID</td>
-<td class=mw_basic_write_content>
-    <input maxlength=20 size=15 name=wr_to_id itemname="지정회원" value="<?=$write[wr_to_id]?>" class=mw_basic_text>
+<td class="mw_basic_write_title">· 지정회원ID</td>
+<td class="mw_basic_write_content">
+    <input maxlength=20 name=wr_to_id itemname="지정회원" value="<?=$write[wr_to_id]?>" class=mw_basic_text>
     (관리자 전용, 특정회원에게만 보이는 글 작성시 사용)
 </td></tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
@@ -516,23 +516,23 @@ if (0 && $is_category && $mw_basic[cf_category_tab]) {
 
 <? if ($is_name) { ?>
 <tr>
-<td class=mw_basic_write_title>· 이름</td>
-<td><input maxlength=20 size=15 name=wr_name itemname="이름" required value="<?=$name?>" class=mw_basic_text></td></tr>
+<td class="mw_basic_write_title">· 이름</td>
+<td class="mw_basic_write_content"><input name=wr_name maxlength=20 itemname="이름" required value="<?=$name?>" class=mw_basic_text></td></tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <? } ?>
 
 <? if ($is_password) { ?>
 <tr>
-<td class=mw_basic_write_title>· 패스워드</td>
-<td><input type=password maxlength=20 size=15 name=wr_password itemname="패스워드" <?=$password_required?> class=mw_basic_text></td></tr>
+<td class="mw_basic_write_title">· 패스워드</td>
+<td class="mw_basic_write_content"><input type=password maxlength=20 name=wr_password itemname="패스워드" <?=$password_required?> class=mw_basic_text></td></tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <? } ?>
 
 <?php if ($mw_basic['cf_key_level'] && $mw_basic['cf_key_level'] <= $member['mb_level']) { ?>
 <tr>
-<td class=mw_basic_write_title>· 열람 패스워드</td>
-<td>
-    <input type=password maxlength=20 size=15 name=wr_key_password itemname="열람 패스워드" class=mw_basic_text>
+<td class="mw_basic_write_title">· 열람 패스워드</td>
+<td class="mw_basic_write_content">
+    <input type=password maxlength=20 name=wr_key_password itemname="열람 패스워드" class=mw_basic_text>
     <input type="checkbox" name="wr_key_password_del" id="wr_key_password_key">
     <label for="wr_key_password_key">삭제</label>
 </td></tr>
@@ -541,15 +541,15 @@ if (0 && $is_category && $mw_basic[cf_category_tab]) {
 
 <? if ($is_email) { ?>
 <tr>
-<td class=mw_basic_write_title>· 이메일</td>
-<td><input maxlength=100 size=50 name=wr_email email itemname="이메일" value="<?=$email?>" class=mw_basic_text></td></tr>
+<td class="mw_basic_write_title">· 이메일</td>
+<td class="mw_basic_write_content"><input maxlength=100  name=wr_email email itemname="이메일" value="<?=$email?>" class=mw_basic_text></td></tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <? } ?>
 
 <? if ($is_homepage) { ?>
 <tr>
-<td class=mw_basic_write_title>· 홈페이지</td>
-<td><input size=50 name=wr_homepage itemname="홈페이지" value="<?=$homepage?>" class=mw_basic_text></td></tr>
+<td class="mw_basic_write_title">· 홈페이지</td>
+<td class="mw_basic_write_content"><input name=wr_homepage itemname="홈페이지" value="<?=$homepage?>" class=mw_basic_text></td></tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <? } ?>
 
@@ -563,8 +563,8 @@ if ($is_dhtml_editor) $mw_basic[cf_content_align] = false;
 
 <? if ($is_notice || ($is_html && !$is_dhtml_editor) || $is_secret || $is_mail || $mw_basic[cf_anonymous] || $mw_basic[cf_content_align]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 옵션</td>
-<td>
+<td class="mw_basic_write_title">· 옵션</td>
+<td class="mw_basic_write_content">
     <? if ($is_notice) { ?>
     <input type="checkbox" name="notice" id="wr_notice" value="1" <?=$notice_checked?>>
     <label for="wr_notice">공지</label>
@@ -615,8 +615,8 @@ if ($mw_basic['cf_include_write_head'] && is_mw_file($mw_basic['cf_include_write
 
 <? if ($is_category) { ?>
 <tr>
-<td class=mw_basic_write_title>· 분류</td>
-<td>
+<td class="mw_basic_write_title">· 분류</td>
+<td class="mw_basic_write_content">
 <?
 if ($mw_basic[cf_category_radio]) {
     $category_list = array_filter(explode("|", $board[bo_category_list]), "trim");
@@ -651,14 +651,16 @@ if ($mw_basic[cf_category_radio]) {
 <? } ?>
 
 <tr>
-<td class=mw_basic_write_title>· 제목</td>
-<td><input style="width:98%;" name=wr_subject id="wr_subject" itemname="제목" required value="<?=$subject?>" class=mw_basic_text></td></tr>
+<td class="mw_basic_write_title">· 제목</td>
+<td class="mw_basic_write_content">
+    <input name=wr_subject id="wr_subject" itemname="제목" required
+        value="<?php echo $subject?>" class=mw_basic_text></td></tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 
 <? if ($mw_basic[cf_subject_style] && $mw_basic[cf_subject_style_level] <= $member[mb_level]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 제목 모양</td>
-<td>
+<td class="mw_basic_write_title">· 제목 모양</td>
+<td class="mw_basic_write_content">
     굵게 : <input type="checkbox" name="wr_subject_bold" value="1" <? if ($write[wr_subject_bold]) echo "checked"; ?>> 사용,
     글꼴 : <select name="wr_subject_font" id="wr_subject_font">
     <option value="">글꼴</option>
@@ -727,8 +729,8 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
 <? if ($mw_basic[cf_write_width] == "large") {?>
 <td colspan="2" style='padding:5px 0 5px 20px;'>
 <? } else { ?>
-<td class=mw_basic_write_title>· 내용</td>
-<td style='padding:5px 0 5px 0;'>
+<td class="mw_basic_write_title">· 내용</td>
+<td class="mw_basic_write_content">
 <? } ?>
     <? if (!$is_dhtml_editor) { ?>
     <table width=100%>
@@ -780,7 +782,7 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
     <? } ?>
 
     <? if ((!$is_dhtml_editor || (!is_g5() && $mw_basic[cf_editor] != "cheditor"))) { ?>
-    <textarea id="wr_content" name="wr_content" style='width:98%; word-break:break-all;' rows="<?=$write_height?>" itemname="내용" class=mw_basic_textarea
+    <textarea id="wr_content" name="wr_content" rows="<?=$write_height?>" itemname="내용" class=mw_basic_textarea
     <? if ($is_dhtml_editor && $mw_basic[cf_editor] == "geditor") echo "geditor"; ?>
     <? if ($write_min || $write_max) { ?>onkeyup="check_byte('wr_content', 'char_count');"<?}?>><?=$content?></textarea>
     <? if (($write_min || $write_max) && !$is_dhtml_editor) { ?><script> check_byte('wr_content', 'char_count'); </script><?}?>
@@ -796,8 +798,8 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
 
 <? if (($mw_basic[cf_type] == 'desc' && $mw_basic[cf_desc_use] && $mw_basic[cf_desc_use] <= $member[mb_level]) or $mw_basic[cf_contents_shop] == '2') { ?>
 <tr>
-<td class=mw_basic_write_title>· 컨텐츠 요약</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 컨텐츠 요약</td>
+<td class="mw_basic_write_content">
     <? sql_query("alter table $write_table add wr_contents_preview text not null after wr_contents_price", false); ?>
     <div style="padding:5px 0 5px 0;">
         <span style="cursor: pointer;" onclick="textarea_decrease('wr_contents_preview', 10);"><img src="<?=$board_skin_path?>/img/btn_up.gif"></span>
@@ -824,8 +826,8 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
 <? } ?>
 <? if ($mw_basic[cf_contents_shop]) { ?>
 <tr>
-<td class=mw_basic_write_title>· <?=$mw_cash[cf_cash_name]?></td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· <?=$mw_cash[cf_cash_name]?></td>
+<td class="mw_basic_write_content">
     <input type="text" size=10 name="wr_contents_price"
         numeric itemname="컨텐츠 가격" value="<?=$write[wr_contents_price]?>" class="mw_basic_text" <?
         if (!$is_admin) echo ' required ';
@@ -866,8 +868,8 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <? if ($mw_basic[cf_contents_shop] == '1') { ?>
 <tr>
-<td class=mw_basic_write_title>· 사용도메인 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 사용도메인 </td>
+<td class="mw_basic_write_content">
     <input type="checkbox" name="wr_contents_domain" id="wr_contents_domain" itemname="컨텐츠 사용도메인" value="1">
     <label for="wr_contents_domain">컨텐츠 구입시 사용도메인을 입력 받습니다.</label>
     <script> document.fwrite.wr_contents_domain.checked = "<?=$write[wr_contents_domain]?>" </script>
@@ -884,8 +886,8 @@ if ($mw_basic['cf_include_write_tail'] && is_mw_file($mw_basic['cf_include_write
 
 <? if ($mw_basic[cf_bomb_level] && $mw_basic[cf_bomb_time] && !$is_admin) { ?>
 <tr>
-<td class=mw_basic_write_title>· 자동폭파 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 자동폭파 </td>
+<td class="mw_basic_write_content">
     <?=$mw_basic[cf_bomb_time]?>시간 후 자동 폭파됩니다.
 </td>
 </tr>
@@ -893,8 +895,8 @@ if ($mw_basic['cf_include_write_tail'] && is_mw_file($mw_basic['cf_include_write
 <? } ?>
 <? if ($mw_basic[cf_bomb_level] && $mw_basic[cf_bomb_level] <= $member[mb_level] && (!$mw_basic[cf_bomb_time] || $is_admin)) { ?>
 <tr>
-<td class=mw_basic_write_title>· 자동폭파 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 자동폭파 </td>
+<td class="mw_basic_write_content">
     <?
     $bomb = array();
     $bm_year_start = date("Y", $g4[server_time]);
@@ -985,8 +987,8 @@ if ($mw_basic['cf_include_write_tail'] && is_mw_file($mw_basic['cf_include_write
 
 <? if ($mw_basic[cf_move_level] && $mw_basic[cf_move_level] <= $member[mb_level]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 이동예약 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 이동예약 </td>
+<td class="mw_basic_write_content">
     <?
     $move = array();
     $mv_year_start = date("Y", $g4[server_time]);
@@ -1096,8 +1098,8 @@ if ($mw_basic[cf_exam] && $mw_basic[cf_exam_level] <= $member[mb_level] && is_fi
 
 <? if ($mw_basic[cf_quiz] && $mw_basic[cf_quiz_level] <= $member[mb_level]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 퀴즈 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 퀴즈 </td>
+<td class="mw_basic_write_content">
     <input type="button" class="btn1" value="퀴즈설정" onclick="win_quiz()"/>
     <input type="button" class="btn1" value="퀴즈삭제" onclick="del_quiz()"/>
     <input type="hidden" name="qz_id" id="qz_id" value=""/>
@@ -1121,9 +1123,9 @@ if ($mw_basic[cf_exam] && $mw_basic[cf_exam_level] <= $member[mb_level] && is_fi
 
 <? if ($mw_basic[cf_google_map]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 지도삽입</td>
-<td class=mw_basic_write_content>
-    <input size="50" name=wr_google_map id="wr_google_map" itemname="지도삽입 주소" value="<?=$write[wr_google_map]?>" class=mw_basic_text>
+<td class="mw_basic_write_title">· 지도삽입</td>
+<td class="mw_basic_write_content">
+    <input name=wr_google_map id="wr_google_map" itemname="지도삽입 주소" value="<?=$write[wr_google_map]?>" class=mw_basic_text>
     <input type="button" value="주소확인" class="btn1" onclick="win_google_map()">
     <div>(본문에 {구글지도} 라고 입력하면 원하는 위치에 구글지도가 삽입됩니다.)</div>
 
@@ -1164,8 +1166,8 @@ if ($mw_basic[cf_exam] && $mw_basic[cf_exam_level] <= $member[mb_level] && is_fi
 
 <?  if ($mw_basic[cf_attribute] == 'qna' && $mw_basic[cf_qna_point_use]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 질문 포인트</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 질문 포인트</td>
+<td class="mw_basic_write_content">
     <input type="text" size="5" class="ed" name="wr_qna_point" required numeric value="<?=$write[wr_qna_point]?>" itemname="질문 포인트"
     <? if (!$is_admin && $w == 'u') echo "disabled"; ?> > 포인트.
     <? if ($w == 'u') { $mb = get_member($write['mb_id'], "mb_point"); $mb_point = $mb['mb_point']; } else $mb_point = $member[mb_point]; ?>
@@ -1176,8 +1178,8 @@ if ($mw_basic[cf_exam] && $mw_basic[cf_exam_level] <= $member[mb_level] && is_fi
 <? } ?>
 <? if ($mw_basic[cf_attribute] == 'qna' && $is_admin) { ?>
 <tr>
-<td class=mw_basic_write_title>· 질문 상태</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 질문 상태</td>
+<td class="mw_basic_write_content">
     <select name="wr_qna_status">
         <option value=""> </option>
         <option value="0"> 미해결 </option>
@@ -1193,8 +1195,8 @@ if ($mw_basic[cf_exam] && $mw_basic[cf_exam_level] <= $member[mb_level] && is_fi
 
 <?  if ($mw_basic[cf_read_level] && $mw_basic[cf_read_level_own] <= $member[mb_level]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 글읽기 레벨</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 글읽기 레벨</td>
+<td class="mw_basic_write_content">
     <select name="wr_read_level" class="mw_basic_text" itemname="글읽기 레벨">
     <option value=""> </option>
     <? for ($i=1; $i<=$member[mb_level]; $i++) { ?>
@@ -1209,8 +1211,8 @@ if ($mw_basic[cf_exam] && $mw_basic[cf_exam_level] <= $member[mb_level] && is_fi
 
 <? if ($mw_basic[cf_kcb_post] && $mw_basic[cf_kcb_post_level] <= $member[mb_level]) { ?>
 <tr>
-<td class=mw_basic_write_title>· <? echo $mw_basic[cf_kcb_typ] == "okname" ? "실명인증" : "성인인증" ?> </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· <? echo $mw_basic[cf_kcb_typ] == "okname" ? "실명인증" : "성인인증" ?> </td>
+<td class="mw_basic_write_content">
     <input type=checkbox name=wr_kcb_use value=1> 사용
     <script> document.fwrite.wr_kcb_use.checked = "<?=$write[wr_kcb_use]?>" </script>
 </td>
@@ -1230,8 +1232,8 @@ if ($mw_basic[cf_reward]) {
     }
 ?>
 <tr>
-<td class=mw_basic_write_title>· 리워드 종류</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 리워드 종류</td>
+<td class="mw_basic_write_content">
     <select name="re_site" class="mw_basic_text" required itemname="리워드 종류">
     <option value=""> </option>
     <option value="linkprice"> 링크프라이스 </option>
@@ -1242,37 +1244,37 @@ if ($mw_basic[cf_reward]) {
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <tr>
-<td class=mw_basic_write_title>· 리워드 업체</td>
-<td class=mw_basic_write_content>
-    <input type="text" size="50" name="re_company" value="<?=$reward[re_company]?>" class=mw_basic_text itemname="리워드 업체">
+<td class="mw_basic_write_title">· 리워드 업체</td>
+<td class="mw_basic_write_content">
+    <input type="text" name="re_company" value="<?=$reward[re_company]?>" class=mw_basic_text itemname="리워드 업체">
 </td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <tr>
-<td class=mw_basic_write_title>· 리워드 주소</td>
-<td class=mw_basic_write_content>
-    <input type="text" size="50" name="re_url" value="<?=$reward[re_url]?>" class=mw_basic_text required itemname="리워드 주소">
+<td class="mw_basic_write_title">· 리워드 주소</td>
+<td class="mw_basic_write_content">
+    <input type="text" name="re_url" value="<?=$reward[re_url]?>" class=mw_basic_text required itemname="리워드 주소">
 </td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <tr>
-<td class=mw_basic_write_title>· 리워드 종료</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 리워드 종료</td>
+<td class="mw_basic_write_content">
     <input type="text" id="re_edate" name="re_edate" class=mw_basic_text size="10" value="<?=$reward[re_edate]?>" readonly itemname="리워드 종료일" required>
 </td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <tr>
-<td class=mw_basic_write_title>· 리워드 적립</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 리워드 적립</td>
+<td class="mw_basic_write_content">
     <input type="text" size="10" name="re_point" value="<?=$reward[re_point]?>" itemname="리워드 포인트" numeric required class=mw_basic_text> 포인트
 </td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <? if ($w == "u") { ?>
 <tr>
-<td class=mw_basic_write_title>· 리워드 상태</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 리워드 상태</td>
+<td class="mw_basic_write_content">
     <select name="re_status" class="mw_basic_text" itemname="리워드 상태">
     <option value=""> 종료 </option>
     <option value="1"> 진행중 </option>
@@ -1304,8 +1306,8 @@ if ($mw_basic[cf_vote] && $mw_basic[cf_vote_level] <= $member[mb_level]) {
     }
 ?>
 <tr>
-<td class=mw_basic_write_title>· 설문기간 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 설문기간 </td>
+<td class="mw_basic_write_content">
     <input type="text" id="vt_sdate" name="vt_sdate" class=mw_basic_text size="10" value="<?=$vote[vt_sdate]?>" readonly>
     <select name="vt_stime">
         <? for ($i=0; $i<=23; $i++) { ?>
@@ -1334,8 +1336,8 @@ if ($mw_basic[cf_vote] && $mw_basic[cf_vote_level] <= $member[mb_level]) {
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <tr>
-<td class=mw_basic_write_title>· 설문다중선택 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 설문다중선택 </td>
+<td class="mw_basic_write_content">
     <select id="vt_multi" name="vt_multi">
     <option value="0"> 허용안함 </option>
     <? for ($i=2; $i<=10; $i++) { ?>
@@ -1349,8 +1351,8 @@ if ($mw_basic[cf_vote] && $mw_basic[cf_vote_level] <= $member[mb_level]) {
 <? if ($is_admin == "super") { ?>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <tr>
-<td class=mw_basic_write_title>· 설문포인트 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 설문포인트 </td>
+<td class="mw_basic_write_content">
     <input type="text" id="vt_point" name="vt_point" class=mw_basic_text size="10" value="<?=$vote[vt_point]?>">
     (설문참여자에게 포인트를 지급합니다. 관리자 전용기능)
 </td>
@@ -1358,25 +1360,25 @@ if ($mw_basic[cf_vote] && $mw_basic[cf_vote_level] <= $member[mb_level]) {
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <? } ?>
 <tr>
-<td class=mw_basic_write_title>· 설문 코멘트  </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 설문 코멘트  </td>
+<td class="mw_basic_write_content">
     <input type=checkbox name=vt_comment value=1> 사용 (코멘트를 남겨야 설문에 참여할 수 있습니다.)
     <script> document.fwrite.vt_comment.checked = "<?=$vote[vt_comment]?>" </script>
 </td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <tr>
-<td class=mw_basic_write_title>· 설문항목
+<td class="mw_basic_write_title">· 설문항목
         <span onclick="add_vote();" style='cursor:pointer; font-family:tahoma; font-size:12pt;'>+</span>
 </td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_content">
 
 <div id="mw_vote"></div>
 
 <script>
 function add_vote(val) {
     if (!val) val = "";
-    $("#mw_vote").append("<div style='margin:2px 0 2px 0;'><input type='text' size='50' maxlenth='20' name='vt_item[]' value=\""+val+"\" class=mw_basic_text></div>");
+    $("#mw_vote").append("<div style='margin:2px 0 2px 0;'><input type='text' maxlenth='20' name='vt_item[]' value=\""+val+"\" class=mw_basic_text></div>");
 }
 <?
 if ($w == "") { 
@@ -1401,9 +1403,9 @@ if ($w == "") {
 
 <? if ($mw_basic[cf_related]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 관련글 키워드</td>
-<td class=mw_basic_write_content height=50>
-    <input type="text" size=50 name="wr_related" itemname="관련글 키워드" value="<?=$write[wr_related]?>" class=mw_basic_text> <br/>
+<td class="mw_basic_write_title">· 관련글 키워드</td>
+<td class="mw_basic_write_content" height=50>
+    <input type="text" name="wr_related" itemname="관련글 키워드" value="<?=$write[wr_related]?>" class=mw_basic_text> <br/>
     키워드를 , 컴마로 구분하여 입력해주세요. (예 : 한예슬, 얼짱, 몸짱)
 </td>
 </tr>
@@ -1412,8 +1414,8 @@ if ($w == "") {
 
 <? if ($mw_basic[cf_comment_ban] && $mw_basic[cf_comment_ban_level] <= $member[mb_level]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 코멘트 금지</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· 코멘트 금지</td>
+<td class="mw_basic_write_content">
     <input type=checkbox name=wr_comment_ban value=1> (코멘트를 원하지 않을 경우 체크해주세요.)
     <script> document.fwrite.wr_comment_ban.checked = "<?=$write[wr_comment_ban]?>" </script>
 </td>
@@ -1423,8 +1425,8 @@ if ($w == "") {
 
 <? if ($mw_basic[cf_ccl]) { ?>
 <tr>
-<td class=mw_basic_write_title>· CCL</td>
-<td class=mw_basic_write_content>
+<td class="mw_basic_write_title">· CCL</td>
+<td class="mw_basic_write_content">
     <select name="wr_ccl_by"><option value="">사용안함</option><option value="by">사용</option></select>
     영리목적 : <select name="wr_ccl_nc"><option value="nc">사용불가</option><option value="">사용가능</option></select>
     변경 : <select name="wr_ccl_nd"><option value="nd">변경불가</option><option value="sa">동일조건변경가능</option><option value="">변경가능</option></select>
@@ -1444,9 +1446,9 @@ if ($w == "") {
 <? if ($is_link) { ?>
 <? for ($i=1; $i<=$g4[link_count]; $i++) { ?>
 <tr>
-<td class=mw_basic_write_title>· 링크 #<?=$i?></td>
-<td class=mw_basic_write_content>
-    <input type="text" size=50 name="wr_link<?=$i?>" id="wr_link<?=$i?>" itemname="링크 #<?=$i?>" value="<?=$write["wr_link{$i}"]?>" class=mw_basic_text>
+<td class="mw_basic_write_title">· 링크 #<?=$i?></td>
+<td class="mw_basic_write_content">
+    <input type="text" name="wr_link<?=$i?>" id="wr_link<?=$i?>" itemname="링크 #<?=$i?>" value="<?=$write["wr_link{$i}"]?>" class=mw_basic_text>
     <? if ($mw_basic[cf_link_target_level] && $mw_basic[cf_link_target_level] <= $member[mb_level]) { ?>
         <select name="wr_link<?=$i?>_target">
             <option value="_blank">새창 (_blank)</option>
@@ -1460,7 +1462,7 @@ if ($w == "") {
     <? } ?>
     <?php if ($mw_basic['cf_hidden_link'] && $mw_basic['cf_hidden_link'] <= $member['mb_level']) { ?>
     <div>
-        <input type="text" size=50 name="wr_hidden_link<?=$i?>" id="wr_hidden_link<?=$i?>" itemname="숨김링크 #<?=$i?>" value="<?=$write["wr_hidden_link{$i}"]?>" class="mw_basic_text"> (숨김링크)
+        <input type="text" name="wr_hidden_link<?=$i?>" id="wr_hidden_link<?=$i?>" itemname="숨김링크 #<?=$i?>" value="<?=$write["wr_hidden_link{$i}"]?>" class="mw_basic_text"> (숨김링크)
     </div>
 
     <?php } ?>
@@ -1473,8 +1475,8 @@ if ($w == "") {
 
 <? if ($mw_basic[cf_zzal]) { ?>
 <tr>
-<td class=mw_basic_write_title>· 짤방 이름</td>
-<td class=mw_basic_write_content><input type="text" size=30 name="wr_zzal" itemname="짤방이름" value="<?=$write[wr_zzal]?>" <? if ($mw_basic[cf_zzal_must]) echo "required"; ?> class=mw_basic_text></td>
+<td class="mw_basic_write_title">· 짤방 이름</td>
+<td class="mw_basic_write_content"><input type="text" name="wr_zzal" itemname="짤방이름" value="<?=$write[wr_zzal]?>" <? if ($mw_basic[cf_zzal_must]) echo "required"; ?> class=mw_basic_text></td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <? } ?>
@@ -1491,14 +1493,12 @@ if ($w == "") {
 
 <? if ($is_file) { ?>
 <tr>
-    <td class=mw_basic_write_title>
-        <table><tr><td style=" padding-top: 10px;">
+    <td class="mw_basic_write_title">
         · <? if ($mw_basic[cf_zzal]) echo "짤방"; else echo "파일"; ?>
         <span onclick="add_file();" style='cursor:pointer; font-family:tahoma; font-size:12pt;'>+</span>
         <span onclick="del_file();" style='cursor:pointer; font-family:tahoma; font-size:12pt;'>-</span>
-        </td></tr></table>
     </td>
-    <td class=mw_basic_write_content>
+    <td class="mw_basic_write_content">
         <table id="variableFiles"></table><?// print_r2($file); ?>
 	<? if ($mw_basic[cf_img_1_noview]) { ?>
 	첫번째 첨부파일은 썸네일로만 출력됩니다. 본문에 출력되지 않습니다. 
@@ -1568,8 +1568,8 @@ if ($w == "") {
 
 <? if ($is_trackback) { ?>
 <tr>
-    <td class=mw_basic_write_title>· 트랙백주소</td>
-    <td class=mw_basic_write_content><input type="text" size=50 name=wr_trackback itemname="트랙백" value="<?=$trackback?>" class=mw_basic_text>
+    <td class="mw_basic_write_title">· 트랙백주소</td>
+    <td class="mw_basic_write_content"><input type="text" name=wr_trackback itemname="트랙백" value="<?=$trackback?>" class=mw_basic_text>
         <? if ($w=="u") { ?><input type=checkbox name="re_trackback" value="1">핑 보냄<? } ?></td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
@@ -1577,8 +1577,8 @@ if ($w == "") {
 
 <? if ($mw_basic[cf_change_image_size] && $member[mb_level] >= $mw_basic[cf_change_image_size_level]) { ?>
 <tr>
-    <td class=mw_basic_write_title>· 크기변경</td>
-    <td class=mw_basic_write_content>
+    <td class="mw_basic_write_title">· 크기변경</td>
+    <td class="mw_basic_write_content">
         <input type="text" size=5 name=change_image_size itemname="첨부이미지 크기변경" value="<?=$change_image_size?>" class=mw_basic_text>px
         (첨부이미지 크기를 변경합니다, 작게만 가능) 
     </td>
@@ -1595,7 +1595,7 @@ if ($mw_basic['cf_bbs_banner']) {
 
 <? if ($is_norobot) { ?>
 <tr>
-    <td class=mw_basic_write_title>
+    <td class="mw_basic_write_title">
         <?
         // 이미지 생성이 가능한 경우 자동등록체크코드를 이미지로 만든다.
         if (function_exists("imagecreate") && $mw_basic[cf_norobot_image]) {
@@ -1608,7 +1608,8 @@ if ($mw_basic['cf_bbs_banner']) {
         }
         ?>
     </td>
-    <td><input type=input size=10 name=wr_key itemname="자동등록방지" required class=mw_basic_text>
+    <td class="mw_basic_write_content">
+        <input type=input size=10 name=wr_key itemname="자동등록방지" required class=mw_basic_text>
         <span class=mw_basic_norobot><?=$norobot_msg?></span>
     </td>
 </tr>
@@ -1617,15 +1618,15 @@ if ($mw_basic['cf_bbs_banner']) {
 
 <?php if ($is_guest && is_g5()) { //자동등록방지  ?>
 <tr>
-    <td class=mw_basic_write_title>· 자동등록방지</td>
-    <td class=mw_basic_write_content style="padding:5px 0 5px 0;">
+    <td class="mw_basic_write_title">· 자동등록방지</td>
+    <td class="mw_basic_write_content">
         <?php echo $captcha_html ?>
     </td>
 </tr>
 <?php } else if ($is_guest && is_mw_file($g4['bbs_path']."/kcaptcha_session.php")) { ?>
 <tr>
-    <td class=write_head><img id='kcaptcha_image' /></td>
-    <td><input class='ed' type=input size=10 name=wr_key itemname="자동등록방지" required>&nbsp;&nbsp;왼쪽의 글자를 입력하세요.</td>
+    <td class="mw_basic_write_title"><img id='kcaptcha_image' /></td>
+    <td class="mw_basic_write_content"><input class='ed' type=input size=10 name=wr_key itemname="자동등록방지" required>&nbsp;&nbsp;왼쪽의 글자를 입력하세요.</td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor=#e7e7e7></td></tr>
 <?php } ?>
@@ -1643,7 +1644,7 @@ if ($mw_basic['cf_bbs_banner']) {
         <!--<input type=image id="btn_submit" src="<?=$board_skin_path?>/img/btn_save.gif" border=0 accesskey='s'>&nbsp;-->
         <button type="submit" id="btn_submit" class="fa-button" accesskey='s'><i class="fa fa-save"></i> 글저장</button>&nbsp;
         <a href="<?php echo mw_seo_url($bo_table)?>"><img id="btn_list" src="<?=$board_skin_path?>/img/btn_list.gif" border=0 width=0 height=0></a>
-        <a href="<?php echo mw_seo_url($bo_table)?>" class="fa-button"><i class="fa fa-list"></i> 목록</a></td>
+        <button type="button" onclick="location.href='<?php echo mw_seo_url($bo_table)?>'" class="fa-button"><i class="fa fa-list"></i> 목록</a></td>
 </tr>
 </table>
 </form>

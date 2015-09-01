@@ -1,14 +1,17 @@
-
+#mw_basic .media-list-name,
 #mw_basic .mw_basic_list_name {
     overflow:visible;
 }
 
+#mw_basic .media-list-name .sv_wrap .sv,
 #mw_basic .mw_basic_list_name .sv_wrap .sv {
     white-space:normal;
     position:absolute;
     margin:0;
 }
 
+#mw_basic .media-list-name .sv_member,
+#mw_basic .media-list-name .sv_guest,
 #mw_basic .mw_basic_list_name .sv_member,
 #mw_basic .mw_basic_list_name .sv_guest {
     display:block;

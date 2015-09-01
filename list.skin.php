@@ -369,20 +369,20 @@ if ($is_category && $mw_basic[cf_category_tab]) {
 <tr><td colspan=<?=$colspan?> height=1 class=mw_basic_line_color></td></tr>
 <? if ($mw_basic[cf_type] != "gall" && !$mw_basic[cf_social_commerce] && !$mw_basic[cf_talent_market]) { ?>
 <tr class=mw_basic_list_title>
-    <? if ($is_checkbox) { ?><td width=40 class="media-no-text"><input onclick="if (this.checked) all_checked(true); else all_checked(false);" type=checkbox></td><?}?>
+    <? if ($is_checkbox) { ?><td width=40><input onclick="if (this.checked) all_checked(true); else all_checked(false);" type=checkbox></td><?}?>
     <? if (!$mw_basic[cf_post_num]) { ?><td width=60 class="media-no-text">번호</td><? } ?>
     <? if (!$mw_basic['cf_list_cate'] && $is_category) {?> <td width="80" class="media-no-text">분류</td> <? }?> 
     <? if (!$mw_basic[cf_post_name] && $mw_basic['cf_name_location']) { ?> <? if ($mw_basic[cf_attribute] != "anonymous") { ?> <td width=95>글쓴이</td> <?}?> <?}?>
     <? if ($mw_basic[cf_type] == "thumb") { ?><td width=<?=$mw_basic[cf_thumb_width]+20?>> 이미지 </td><?}?>
-    <td><span class="media-on-text"><input onclick="if (this.checked) all_checked(true); else all_checked(false);" type=checkbox></span>제목</td>
+    <td>제목</td>
     <? if ($mw_basic[cf_reward]) { ?> <td width=70 class="media-no-text">충전</td> <?}?>
     <? if ($mw_basic[cf_reward]) { ?> <td width=50 class="media-no-text">마감</td> <?}?>
     <? if ($mw_basic[cf_reward]) { ?> <td width=50 class="media-no-text">상태</td> <?}?>
     <? if ($mw_basic[cf_contents_shop]) { ?> <td width=80 class="media-no-text"><?=$mw_cash[cf_cash_name]?></td> <?}?>
-    <? if (!$mw_basic[cf_post_name] && !$mw_basic['cf_name_location']) { ?> <? if ($mw_basic[cf_attribute] != "anonymous") { ?> <td width=95 class="media-no-text">글쓴이</td> <?}?> <?}?>
+    <? if (!$mw_basic[cf_post_name] && !$mw_basic['cf_name_location']) { ?> <? if ($mw_basic[cf_attribute] != "anonymous") { ?> <td width=95 class="media-small-text">글쓴이</td> <?}?> <?}?>
     <? if ($mw_basic[cf_attribute] == "qna") { ?> <td width=50 class="media-no-text">상태</td> <?}?>
     <? if ($mw_basic[cf_attribute] == "qna" && $mw_basic[cf_qna_point_use]) { ?> <td width=40 class="media-no-text">포인트</td> <?}?>
-    <? if (!$mw_basic[cf_post_date]) { ?> <td width=70 class="media-no-text">날짜</td> <?}?>
+    <? if (!$mw_basic[cf_post_date]) { ?> <td width=70 class="media-small-text">날짜</td> <?}?>
     <? if (!$mw_basic[cf_list_good] && $is_good) { ?><td width=40 class="media-no-text"><?=subject_sort_link('wr_good', $qstr2, 1)?>추천</a></td><?}?>
     <? if (!$mw_basic[cf_list_nogood] && $is_nogood) { ?><td width=40 class="media-no-text"><?=subject_sort_link('wr_nogood', $qstr2, 1)?>비추천</a></td><?}?>
     <? if (!$mw_basic[cf_post_hit]) { ?> <td width=70 class="media-no-text"><?=subject_sort_link('wr_hit', $qstr2, 1)?>조회</a></td> <?}?>
@@ -953,15 +953,6 @@ else if ($mw_basic[cf_type] == "gall")
         echo " " . $list[$i][icon_hot];
         echo " " . $list[$i][icon_secret];
 
-        if (!$mw_basic[cf_post_name] && $mw_basic[cf_attribute] != "anonymous") {
-            echo "<div class='media-on-text media-list-name'>by {$list[$i][name]}";
-            if (!$mw_basic['cf_post_hit'])
-            echo "&nbsp;&nbsp;<i class='fa fa-eye'></i> {$list[$i]['wr_hit']}";
-            if (!$mw_basic['cf_post_date'])
-            echo "&nbsp;&nbsp;<i class='fa fa-clock-o'></i> {$list[$i]['datetime2']}";
-            echo "</div>";
-        }
-
         if ($mw_basic[cf_type] == "desc") {
             echo "</div>\n";
             $desc = strip_tags($list[$i][wr_content]);
@@ -983,7 +974,7 @@ else if ($mw_basic[cf_type] == "gall")
         <td class="mw_basic_list_contents_price media-no-text"><span><?=$mw_price?></span></td><?}?>
     <? if (!$mw_basic[cf_post_name] && !$mw_basic['cf_name_location']) { ?>
     <? if ($mw_basic[cf_attribute] != "anonymous") { ?>
-    <td class="mw_basic_list_name media-no-text"><?php echo $list[$i]['name']?></td><?php }}?>
+    <td class="mw_basic_list_name"><?php echo $list[$i]['name']?></td><?php }}?>
     <? if ($mw_basic[cf_attribute] == 'qna') { ?>
         <td class="mw_basic_list_qna_status media-no-text">
             <?/* if ($list[$i]['reply'] ) { ?>
@@ -1008,7 +999,7 @@ else if ($mw_basic[cf_type] == "gall")
         </td>
     <? } ?>
     <? if ($mw_basic[cf_attribute] == 'qna' && $mw_basic[cf_qna_point_use]) { ?> <td class="mw_basic_list_point media-no-text"><?=$list[$i][wr_qna_point]?></span></td> <?}?>
-    <? if (!$mw_basic[cf_post_date]) { ?> <td class="mw_basic_list_datetime media-no-text"><?=$list[$i][datetime2]?></td> <?}?>
+    <? if (!$mw_basic[cf_post_date]) { ?> <td class="mw_basic_list_datetime"><?=$list[$i][datetime2]?></td> <?}?>
     <? if (!$mw_basic[cf_list_good] && $is_good) { ?><td class="mw_basic_list_good media-no-text"><?=$list[$i][wr_good]?></td><? } ?>
     <? if (!$mw_basic[cf_list_nogood] && $is_nogood) { ?><td class="mw_basic_list_nogood media-no-text"><?=$list[$i][wr_nogood]?></td><? } ?>
     <? if (!$mw_basic[cf_post_hit]) { ?> <td class="mw_basic_list_hit media-no-text"><?=$list[$i][wr_hit]?></td> <?}?>
