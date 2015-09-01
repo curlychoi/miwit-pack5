@@ -12,6 +12,7 @@ ver 2.9.6 (15.09.01)
     : win_open -> window.open 으로 변경
     : 카카오스토리 웹공유
     : 엄지 서비스 중지에 따른 옵션 제거
+    : 페이지 오류 수정 (쪼리님 제안)
 
     miwit/HISTORY
     miwit/mw.adm/mw.config.php

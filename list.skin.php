@@ -84,8 +84,8 @@ if ($board[bo_use_category])
 }
 
 // page 변수 중복 제거
-$qstr = preg_replace("/&page=[0-9]+?/", "", $qstr);
-$qstr = preg_replace("/&amp;page=[0-9]+?/", "", $qstr);
+$qstr = preg_replace("/&page=([0-9]+)?/", "", $qstr);
+$qstr = preg_replace("/&amp;page=([0-9]+)?/", "", $qstr);
 $qstr = preg_replace("/amp;/", "", $qstr);
 $qstr = preg_replace("/&amp;/", "&", $qstr);
 
