@@ -625,29 +625,7 @@ if ($mw_basic[cf_sns])
         if (!strstr(strtolower($_SERVER[HTTP_USER_AGENT]), "mobile"))
             $kakao_url = "#;\" onclick=\"javascript:alert('모바일 기기에서만 작동합니다.');";
 
-        if (strstr($mw_basic[cf_sns], '/kakaostory/')) { ?>
-        <script src="<?=$pc_skin_path?>/mw.js/kakao.link.js"></script>
-        <script>
-        function kakaostorylink()
-        {
-            <? if (!strstr(strtolower($_SERVER[HTTP_USER_AGENT]), "mobile")) { ?>
-            alert("모바일 기기에서만 작동합니다."); return;
-            <? } ?>
-            kakao.link("story").send({
-                post : "<?=$kakao_subject?>\n<?=$sns_url?>",
-                appid : "<?=$_SERVER[HTTP_HOST]?>",
-                appver : "1.0",
-                appname : "<?=$kakao_name?>",
-                urlinfo : JSON.stringify({title:"<?=$kakao_subject?>", desc:"<?=$kakao_content?>", imageurl:["<?=$kakao_thumb_url?>"], type:"article"})
-            });
-        }
-        </script>
-
-        <!--<div><a href="<?=$kakaostory_url?>"><img src="<?=$pc_skin_path?>/img/send_kakaostory.png" valign="middle"></a></div>-->
-        <div><a href="#;" onclick="kakaostorylink()"><img src="<?=$pc_skin_path?>/img/send_kakaostory.png" valign="middle" style="cursor:pointer;"></a></div>
-        <?php } ?>
-
-        <?php if (strstr($mw_basic[cf_sns], '/kakao/')) { ?>
+        if (strstr($mw_basic[cf_sns], '/kakao/')) { ?>
         <div><a href="#;" id="kakao-link-btn"><img src="<?=$pc_skin_path?>/img/send_kakaotalk.png" valign="middle"></a></div>
         <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
         <script>
@@ -673,6 +651,45 @@ if ($mw_basic[cf_sns])
         </script>
         <?php } ?>
 
+        <?php if (strstr($mw_basic[cf_sns], '/kakaostory/')) { ?>
+        <script>
+        window.kakaoAsyncInit = function () {
+            Kakao.Story.createShareButton({
+                container: '#kakaostory-share-button'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//developers.kakao.com/sdk/js/kakao.story.min.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'kakao-js-sdk'));
+        </script>
+
+        <div id="kakaostory-share-button" data-url="<?php echo $sns_url?>"></div>
+        <?php } ?>
+    <?php } ?>
+
+    <?php if (strstr($mw_basic[cf_sns], '/band/')) { ?>
+    <style>.band img { width:24px; height:24px; }</style>
+    <div class="band">
+        <script src="//developers.band.us/js/share/band-button.js?v=20150509"></script>
+        <script>
+        new ShareBand.makeButton({"lang":"ko","type":"c"}  );
+        </script>
+    </div>
+    <?php } ?>
+
+    <?php if (strstr($mw_basic[cf_sns], '/line/')) { ?>
+    <style>.line img { width:24px; height:24px; }</style>
+    <div class="line">
+    <script src="//media.line.me/js/line-button.js?v=20140411" ></script>
+    <script>
+    new media_line_me.LineButton({"lang":"ko","type":"b"});
+    </script>
+    </div>
     <?php } ?>
 
     <? if (strstr($mw_basic[cf_sns], '/facebook_good/')) { ?>
@@ -694,26 +711,6 @@ if ($mw_basic[cf_sns])
       })();
     </script>
     <? } ?>
-
-    <?php if (strstr($mw_basic[cf_sns], '/band/')) { ?>
-    <style>.band img { width:24px; height:24px; }</style>
-    <div class="band">
-        <script src="//developers.band.us/js/share/band-button.js?v=20150509"></script>
-        <script>
-        new ShareBand.makeButton({"lang":"ko","type":"c"}  );
-        </script>
-    </div>
-    <?php } ?>
-
-    <?php if (strstr($mw_basic[cf_sns], '/line/')) { ?>
-    <style>.line img { width:24px; height:24px; }</style>
-    <div class="line">
-    <script src="//media.line.me/js/line-button.js?v=20140411" ></script>
-    <script>
-    new media_line_me.LineButton({"lang":"ko","type":"b"});
-    </script>
-    </div>
-    <?php } ?>
 
     <?php
     $view_sns = ob_get_contents();

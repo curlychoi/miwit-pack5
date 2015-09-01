@@ -9,6 +9,7 @@ ver 2.9.6 (15.09.01)
     : 본문 버튼 위치 번경
     : 분류 라인 오류 수정
     : win_open -> window.open 으로 변경
+    : 카카오스토리 웹공유
 
     miwit/HISTORY
     miwit/mw.adm/mw.config.update.php
