@@ -310,14 +310,6 @@ if (!($w == "u" || $w == "cu") && $config[cf_email_use])
     $write_run_time = mw_time_log($write_run_time, "[write] mail");
 }
 
-// 짧은 글주소 사용
-/*$umz = '';
-if ($mw_basic[cf_umz]) {
-    $url = "$g4[url]/$g4[bbs]/board.php?bo_table=$bo_table&wr_id=$wr_id";
-    $umz = umz_get_url($url);
-    sql_query("update $write_table set wr_umz = '$umz' where wr_id = '$wr_id'");
-}*/
-
 // SMS 전송
 if ($w == "" && $mw_basic[cf_sms_id] && $mw_basic[cf_sms_pw] && trim($mw_basic[cf_hp]) && $is_admin != "super")
 {

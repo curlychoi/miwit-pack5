@@ -3263,7 +3263,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
 	    <input type=checkbox name="cf_umz" id="cf_umz" value=1> 사용 <span class="cf_info">(게시물마다 umz.kr/xxxxx 형식의 짧은 글주소 자동생성)</span>  
             <div>도메인 선택  :
                 <select name="cf_umz2" id="cf_umz2">
-                    <option value="">umz.kr</option>
+                    <!--<option value="">umz.kr</option>-->
                     <!--<option value="mwt.so">mwt.so</option>-->
                     <option value="my">내도메인 (솔루션 구매시)</option>
                 </select>

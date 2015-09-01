@@ -32,12 +32,6 @@ if ($mw_basic[cf_anonymous]) {
     }
 }
 
-// 짧은 글주소 사용
-/*if ($mw_basic[cf_umz]) {
-    $url = "$g4[url]/$g4[bbs]/board.php?bo_table=$bo_table&wr_id=$wr_id#c_$comment_id";
-    $umz = umz_get_url($url);
-    sql_query("update $write_table set wr_umz = '$umz' where wr_id = '$comment_id'");
-}*/
 // 모바일
 if ($w == 'c') {
     if (mw_agent_mobile()) {

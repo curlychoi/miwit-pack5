@@ -11,8 +11,10 @@ ver 2.9.6 (15.09.01)
     : 분류 라인 오류 수정
     : win_open -> window.open 으로 변경
     : 카카오스토리 웹공유
+    : 엄지 서비스 중지에 따른 옵션 제거
 
     miwit/HISTORY
+    miwit/mw.adm/mw.config.php
     miwit/mw.adm/mw.config.update.php
     miwit/mw.proc/mw.file.viewer.php
     miwit/mw.proc/mw.one.talk.php

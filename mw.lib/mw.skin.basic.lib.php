@@ -546,3 +546,4 @@ if ($mw_basic['cf_thumb_round']) {
 #mw_basic .gall_list div.gall_image img.thumb { -webkit-border-radius:1em; -moz-border-radius:1em; border-radius:1em; }
 ".PHP_EOL;
 }
+$mw_basic[cf_umz] = 0;

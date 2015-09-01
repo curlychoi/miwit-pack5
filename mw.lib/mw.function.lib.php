@@ -770,6 +770,7 @@ function mw_get_sync_tag($content, $tag) {
 
 // 엄지 짧은링크 얻기
 function umz_get_url($url) {
+    return;
     global $mw_basic;
     global $is_admin;
 
