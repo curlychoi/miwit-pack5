@@ -480,7 +480,7 @@ if (0 && $is_category && $mw_basic[cf_category_tab]) {
 <colgroup width=100>
 <colgroup width=''>
 <tr><td colspan=2 height=2 class=mw_basic_line_color></td></tr>
-<tr><td style="padding:10px 0 0 20px;display:block;" colspan=2 height=30 bgcolor=#f8f8f9><strong><?=$title_msg?></strong></td></tr>
+<tr><td colspan=2 height=30 bgcolor=#f8f8f9 valign="top"><div style="padding:5px 0 0 20px;"><strong><?=$title_msg?></strong></div></td></tr>
 
 <? if ($mw_basic[cf_contents_shop_write]) { ?>
 <tr>
