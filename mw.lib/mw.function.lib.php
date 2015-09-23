@@ -4243,3 +4243,24 @@ function mw_agent_mobile() {
     return false;
 }
 
+if (!function_exists("get_safe_filename")) { //g4 에 없음
+function get_safe_filename($name)
+{
+    $pattern = '/["\'<>=#&!%\\\\(\)\*\+\?]/';
+    $name = preg_replace($pattern, '', $name);
+
+    return $name;
+}}
+
+function mb_id_check($mb_id)
+{
+    global $g4;
+    if (preg_match("/^[a-z0-9-_@]+$/i", $mb_id)) {
+        $row = sql_fetch("select mb_id from {$g4['member_table']} where mb_id = '{$mb_id}'");
+        if ($row['mb_id'])
+            return true;
+        return false;
+    }
+    return false;
+}
+

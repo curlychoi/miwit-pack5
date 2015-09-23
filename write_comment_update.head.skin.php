@@ -186,6 +186,7 @@ if ($mw_basic[cf_comment_file]) // 코멘트 첨부파일
     $filesize  = $_FILES[bf_file][size];
     $filename  = $_FILES[bf_file][name];
     $filename  = preg_replace('/(\s|\<|\>|\=|\(|\))/', '_', $filename);
+    $filename  = get_safe_filename($filename);
 
     // 서버에 설정된 값보다 큰파일을 업로드 한다면
     if ($filename)

@@ -1,8 +1,15 @@
-<?
+<?php
 include_once("_common.php");
 
 header("Content-Type: text/html; charset=$g4[charset]");
 
+function get_safe_filename($name)
+{
+    $pattern = '/["\'<>=#&!%\\\\(\)\*\+\?]/';
+    $name = preg_replace($pattern, '', $name);
+
+    return $name;
+}
 // --
 // 첨부 이미지 저장 디렉토리 
 // --
@@ -30,6 +37,8 @@ if ($work == 'delete') {
 }
 
 $file = $_FILES[image];
+$file[name] = get_safe_filename($file[name]);
+
 $size = getImageSize($file[tmp_name]);
 $mime = array('image/png', 'image/jpeg', 'image/gif');
 

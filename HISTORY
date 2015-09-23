@@ -1,3 +1,13 @@
+ver 2.9.7 (15.09.23)
+    : 파일 업로드 인젝션 취약점 보안 (한국인터넷진흥원에서 알려 주셨습니다.)
+
+    miwit/HISTORY
+    miwit/mw.geditor/upload.php
+    miwit/mw.lib/mw.function.lib.php
+    miwit/mw.proc/mw.comment.image.php
+    miwit/mw.proc/mw.comment.image.update.php
+    miwit/write_comment_update.head.skin.php
+ 
 ver 2.9.6 (15.09.01)
     : 반응형 지원!
     : 폴더명 mw.basic 에서 miwit 로 변경
