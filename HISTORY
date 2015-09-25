@@ -1,3 +1,9 @@
+ver 2.9.8 (15.00.00)
+    : 그누보드5 - 휴지통 사용시 최근게시물 cache 삭제
+
+    miwit/HISTORY
+    miwit/mw.lib/mw.function.lib.php
+ 
 ver 2.9.7 (15.09.23)
     : 파일 업로드 인젝션 취약점 보안 (한국인터넷진흥원에서 알려 주셨습니다.)
 
