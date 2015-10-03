@@ -4139,6 +4139,7 @@ function thumb_log($thumb_file, $act)
 
 function is_mw_file($path)
 {
+    $path = str_replace(G5_URL, "../", $path);
     if (@is_file($path))
         return true;
 

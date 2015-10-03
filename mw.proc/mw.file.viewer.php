@@ -101,7 +101,7 @@ for ($i=$file_start; $i<=$view[file][count]; $i++) {
 
         // 워터마크 이미지 출력
         if ($mw_basic[cf_watermark_use] && is_mw_file($mw_basic[cf_watermark_path])) {
-            preg_match("/src='([^']+)'/iUs", $view[file][$i][view], $match);
+            preg_match("/src=['|\"]([^']+)['|\"]/iUs", $view[file][$i][view], $match);
             $watermark_file = mw_watermark_file($match[1]);
             $view[file][$i][view] = str_replace($match[1], $watermark_file, $view[file][$i][view]);
         }

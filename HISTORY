@@ -1,8 +1,13 @@
 ver 2.9.8 (15.00.00)
     : 그누보드5 - 휴지통 사용시 최근게시물 cache 삭제
+    : 링크에 이미지 경로 포함시 본문 표시 오류 수정 (신비님 제안)
+    : 그누보드5 - 워터마크 본문 표시 오류 수정 (잿빛푸우님 제안)
 
     miwit/HISTORY
     miwit/mw.lib/mw.function.lib.php
+    miwit/mw.proc/mw.g5.adapter.extend.php
+    miwit/mw.proc/mw.file.viewer.php
+    miwit/list.skin.php
  
 ver 2.9.7 (15.09.23)
     : 파일 업로드 인젝션 취약점 보안 (한국인터넷진흥원에서 알려 주셨습니다.)
