@@ -6,7 +6,8 @@ if (!defined("G5_PATH")) return;
 $g4 = $g5;
 
 $g4['path'] = '';
-$dir = dirname(str_replace(G5_PATH, '', $_SERVER['SCRIPT_FILENAME']));
+$script_name = substr($_SERVER['SCRIPT_FILENAME'], strpos($_SERVER['SCRIPT_FILENAME'], G5_PATH)); 
+$dir = dirname(str_replace(G5_PATH, '', $script_name));
 if ($dir == '/')
     $g4['path'] = './';
 else
@@ -15,6 +16,7 @@ else
     }
 
 $g4['table_prefix']     = G5_TABLE_PREFIX;
+$g4['cookie_domain']    = G5_COOKIE_DOMAIN; 
 $g4['path']             = substr($g4['path'], 0, strlen($g4['path'])-1);
 
 $g4['url']              = G5_URL;

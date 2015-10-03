@@ -155,11 +155,11 @@ for ($i=1; $i<=$g4['link_count']; $i++) {
         $link_file_viewer .= mw_jwplayer($view['link'][$i])."<br><br>";
         $view['link'][$i] = '';
     }
-    else if (strstr($mw_basic['cf_multimedia'], '/link_image/') && preg_match("/\.($config[cf_image_extension])[$\?]/i", $view['link'][$i])) {
+    else if (strstr($mw_basic['cf_multimedia'], '/link_image/') && preg_match("/\.($config[cf_image_extension])($|\?)/i", $view['link'][$i])) {
         $link_file_viewer .= mw_file_view($view['link'][$i], $view)."<br><br>";
         $view['link'][$i] = '';
     }
-    else if (strstr($mw_basic['cf_multimedia'], '/link_flash/') && preg_match("/\.($config[cf_flash_extension])[$\?]/i", $view['link'][$i])) {
+    else if (strstr($mw_basic['cf_multimedia'], '/link_flash/') && preg_match("/\.($config[cf_flash_extension])($|\?)/i", $view['link'][$i])) {
         $link_file_viewer .= mw_file_view($view['link'][$i], $view)."<br><br>";
         $view['link'][$i] = '';
     }

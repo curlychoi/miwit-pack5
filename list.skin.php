@@ -411,7 +411,6 @@ else if (strstr($list[$i]['wr_option'], "html2"))
 
 if ($mw_basic[cf_include_list_main] && is_mw_file($mw_basic[cf_include_list_main])) {
     include($mw_basic[cf_include_list_main]);
-    $list_run_time = mw_time_log($list_run_time, "[list] include /mw.proc/mw.cash.membership.skin.php");
 }
 
 mw_basic_move_cate($bo_table, $list[$i][wr_id]);
