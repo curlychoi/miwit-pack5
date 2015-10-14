@@ -1928,14 +1928,16 @@ function mw_basic_age($value, $type='alert')
 
     if (!$value) return;
 
-    if (!$member[mb_birth])
-        $member_age = 0;
-    else
-        $member_age = floor((date("Ymd", $g4[server_time]) - $member[mb_birth]) / 10000);
+    if (!$member[mb_birth]) return;
+
+    $member_age = floor((date("Ymd", $g4[server_time]) - $member[mb_birth]) / 10000);
 
     preg_match("/^([0-9]+)([\+\-\=])$/", $value, $match);
+
     $age = $match[1];
     $age_type = $match[2];
+
+    $msg = '';
 
     switch ($age_type) {
         case "+" :
@@ -1949,7 +1951,7 @@ function mw_basic_age($value, $type='alert')
             break;
     }
 
-    if ($type == 'alert') {
+    if ($msg && $type == 'alert') {
         alert($msg);
     }
 
