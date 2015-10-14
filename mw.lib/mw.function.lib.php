@@ -3670,6 +3670,8 @@ function mw_make_thumbnail_row ($bo_table, $wr_id, $wr_content, $remote=false, $
 
     global $is_admin;
 
+    global $write;
+
     $is_thumb = false;
 
     if (!$thumb_file) {
@@ -3700,15 +3702,21 @@ function mw_make_thumbnail_row ($bo_table, $wr_id, $wr_content, $remote=false, $
     else
     {
         preg_match_all("/<img.*src=\\\"(.*)\\\"/iUs", stripslashes($wr_content), $matchs);
+        preg_match_all("/<img.*src=\\\"(.*)\\\"/iUs", stripslashes($write['wr_content']), $matchs2);
 
         for ($i=0, $m=count($matchs[1]); $i<$m; ++$i)
         {
             $mat = $matchs[1][$i];
+            $mat2 = $matchs2[1][$i];
 
             // 이모티콘 썸네일 생성 제외
             if (strstr($mat, "mw.basic.comment.image")) $mat = '';
             if (strstr($mat, "mw.emoticon")) $mat = '';
             if (preg_match("/cheditor[0-9]\/icon/i", $mat)) $mat = '';
+
+            if (strstr($mat2, "mw.basic.comment.image")) $mat2 = '';
+            if (strstr($mat2, "mw.emoticon")) $mat2 = '';
+            if (preg_match("/cheditor[0-9]\/icon/i", $mat2)) $mat2 = '';
 
             if ($mat)
             {
@@ -3717,6 +3725,10 @@ function mw_make_thumbnail_row ($bo_table, $wr_id, $wr_content, $remote=false, $
                 $dat = preg_replace("/(http:\/\/.*)\/data\//i", $g4['path']."/data/", $mat);
                 if (!is_mw_file($dat) && (substr($mat, 0, 1) == '/' or substr($mat, 0, 1) == '.'))
                     $dat = str_replace("//", "/", $_SERVER['DOCUMENT_ROOT'].$mat);
+
+                $dat2 = preg_replace("/(http:\/\/.*)\/data\//i", $g4['path']."/data/", $mat2);
+                if (!is_mw_file($dat2) && (substr($mat2, 0, 1) == '/' or substr($mat2, 0, 1) == '.'))
+                    $dat2 = str_replace("//", "/", $_SERVER['DOCUMENT_ROOT'].$mat2);
 
                 // 서버내 이미지 썸네일 생성
                 if (is_mw_file($dat))
@@ -3729,7 +3741,7 @@ function mw_make_thumbnail_row ($bo_table, $wr_id, $wr_content, $remote=false, $
                 }
 
                 // 외부 이미지 썸네일 생성
-                else if ($remote)
+                else if ($remote and $mat != $mat2)
                 {
                     $ret = mw_save_remote_image($mat, $thumb_file);
                     if ($ret)
