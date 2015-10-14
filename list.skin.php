@@ -1066,6 +1066,8 @@ if ($mw_basic['cf_type'] == 'gall') {
             <div class="item" onclick="mw_qna(0)"><i class="fa fa-question"></i> 선택 질문 미해결</div>
             <div class="item" onclick="mw_qna(1)"><i class="fa fa-mortar-board"></i> 선택 질문 해결</div>
             <div class="item" onclick="mw_qna(2)"><i class="fa fa-inbox"></i> 선택 질문 보류</div>
+            <div class="item" onclick="select_secret()"><i class="fa fa-inbox"></i> 선택 비밀글</div>
+            <div class="item" onclick="select_secret_open()"><i class="fa fa-inbox"></i> 선택 비밀글 해제</div>
         </div><!--mw_manage-->
         <?php } // is_checkbox ?>
 
@@ -1195,6 +1197,38 @@ function select_delete() {
         return;
 
     f.action = "<?php echo $g4['bbs_path']?>/delete_all.php";
+    f.submit();
+}
+
+// 선택한 게시물 비밀글
+function select_secret() {
+    var f = document.fboardlist;
+
+    $("#admin_action").val('');
+
+    if (!check_confirm("비밀글로 변경"))
+        return;
+
+    if (!confirm("선택한 게시물을 정말 비밀글로 변경 하시겠습니까?"))
+        return;
+
+    f.action = "<?php echo $pc_skin_path?>/secret_all.php?opt=secret";
+    f.submit();
+}
+
+// 선택한 게시물 해제 비밀글
+function select_secret_open() {
+    var f = document.fboardlist;
+
+    $("#admin_action").val('');
+
+    if (!check_confirm("비밀글에서 공개글로 변경"))
+        return;
+
+    if (!confirm("선택한 게시물을 정말 비밀글에서 공개글로 변경 하시겠습니까?"))
+        return;
+
+    f.action = "<?php echo $pc_skin_path?>/secret_all.php";
     f.submit();
 }
 
