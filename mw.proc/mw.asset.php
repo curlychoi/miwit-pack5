@@ -41,4 +41,16 @@ foreach ($script as $s) {
         echo "<script src=\"{$s}\"></script>";
 }
 
+if ($is_admin == "super") { 
+    ?>
+    <script>
+    function mw_config() {
+        var url = "<?php echo $board_skin_path?>/mw.adm/mw.config.php?bo_table=<?php echo $bo_table?>";
+        var config = window.open(url, "config", "width=1100, height=700, scrollbars=yes");
+        config.focus();
+    }
+    </script>
+    <?php
+}
+
 

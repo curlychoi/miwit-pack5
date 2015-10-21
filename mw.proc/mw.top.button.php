@@ -23,16 +23,6 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 if ($wr_id) return;
 ?>
-    <?php if ($is_admin == "super") { ?>
-    <script>
-    function mw_config() {
-        var url = "<?php echo $board_skin_path?>/mw.adm/mw.config.php?bo_table=<?php echo $bo_table?>";
-        var config = window.open(url, "config", "width=1100, height=700, scrollbars=yes");
-        config.focus();
-    }
-    </script>
-    <?php } ?>
-
     <span class="mw_basic_total">
     <button class="fa-button">총 게시물 <?=number_format($total_count)?>건,
     최근 <?=number_format($new_count)?> 건</button>

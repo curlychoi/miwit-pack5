@@ -755,6 +755,7 @@ if ($is_admin || $history_href || $is_singo_admin)
     <div class="mw_manage_title"><i class="fa fa-gear"></i> 관리</div>
     <div class="mw_manage">
     <?php
+    echo "<div class=\"item\" onclick=\"mw_config()\"><i class=\"fa fa-gear\"></i> 스킨설정</div>";
     if ($is_singo_admin && $view[mb_id] != $member[mb_id]) { 
         echo "<div class=\"item\" onclick=\"btn_intercept('{$write[mb_id]}', '{$write[wr_ip]}')\">
                 <i class=\"fa fa-times-circle\"></i> 회원차단</div> ";

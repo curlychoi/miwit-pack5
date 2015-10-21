@@ -4,12 +4,16 @@ ver 2.9.8 (15.00.00)
     : 외부 이미지 썸네일 생성 후 글 수정시 이미지 경로 변경 체크 (도장관님 제안)
     : 그누보드5 - 휴지통 사용시 최근게시물 cache 삭제
     : 그누보드5 - 워터마크 본문 표시 오류 수정 (잿빛푸우님 제안)
+    : 뷰페이지에 스킨설정 화면 링크 추가 (젬스박님 제안)
 
     miwit/HISTORY
     miwit/mw.lib/mw.function.lib.php
     miwit/mw.proc/mw.g5.adapter.extend.php
     miwit/mw.proc/mw.file.viewer.php
+    miwit/mw.proc/mw.asset.php
+    miwit/mw.proc/mw.top.button.php
     miwit/list.skin.php
+    miwit/view_head.skin.php
     miwit/secret_all.php
  
 ver 2.9.7 (15.09.23)
