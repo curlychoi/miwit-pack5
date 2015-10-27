@@ -6,13 +6,20 @@ ver 2.9.8 (15.00.00)
     : 뷰페이지에 보드설정 화면 링크 추가
     : 그누보드5 - 휴지통 사용시 최근게시물 cache 삭제
     : 그누보드5 - 워터마크 본문 표시 오류 수정 (잿빛푸우님 제안)
+    : 그누보드5 모바일 경로 오류수정
 
     miwit/HISTORY
+    miwit/_common.php
+    miwit/mw.adm/_common.php
     miwit/mw.lib/mw.function.lib.php
+    miwit/mw.proc/_common.php
     miwit/mw.proc/mw.g5.adapter.extend.php
     miwit/mw.proc/mw.file.viewer.php
     miwit/mw.proc/mw.asset.php
     miwit/mw.proc/mw.top.button.php
+    miwit/mw.geditor/_common.php
+    miwit/mw.okname/_common.php
+    miwit/mw.js/mw.g5.adapter.js.php
     miwit/list.skin.php
     miwit/view_head.skin.php
     miwit/secret_all.php

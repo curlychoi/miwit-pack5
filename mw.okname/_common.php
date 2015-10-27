@@ -19,8 +19,14 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-$g4_path = "../../../..";
-include_once("$g4_path/common.php");
+$g4_path = "../../../.."; // common.php 의 상대 경로
+if (is_file("$g4_path/common.php"))
+    include_once("$g4_path/common.php");
+else {
+    $g4_path = "../../../../..";
+    include_once("$g4_path/common.php");
+}
+
 header("Content-Type: text/html; charset=$g4[charset]");
 
 $is_test = false;
