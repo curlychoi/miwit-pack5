@@ -1928,7 +1928,7 @@ function mw_basic_age($value, $type='alert')
 
     if (!$value) return;
 
-    if (!$member[mb_birth]) return;
+    //if (!$member[mb_birth]) return;
 
     $member_age = floor((date("Ymd", $g4[server_time]) - $member[mb_birth]) / 10000);
 

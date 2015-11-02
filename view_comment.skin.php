@@ -137,8 +137,10 @@ if (!$is_admin && $mw_basic['cf_cash_grade_use'] && !$grade['gd_comment']) {
 
 if (!$is_admin && $mw_basic['cf_age'] && strstr($mw_basic['cf_age_opt'], 'c')) {
     $msg = mw_basic_age($mw_basic['cf_age'], "comment");
-    $is_comment_write = false;
-    $write_error = "readonly onclick=\"alert('{$msg}'); return false;\"";
+    if ($msg) {
+        $is_comment_write = false;
+        $write_error = "readonly onclick=\"alert('{$msg}'); return false;\"";
+    }
 }
 
 if ($cwin==1) {
