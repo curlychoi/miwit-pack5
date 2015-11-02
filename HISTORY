@@ -1,9 +1,11 @@
 ver 2.9.8 (15.00.00)
+    : 반응형 지원!!
     : 링크에 이미지 경로 포함시 본문 표시 오류 수정 (신비님 제안)
     : 목록에서 선택 비밀글 설정 (의자왕님 제안)
     : 외부 이미지 썸네일 생성 후 글 수정시 이미지 경로 변경 체크 (도장관님 제안)
     : 뷰페이지에 스킨설정 화면 링크 추가 (젬스박님 제안)
     : 뷰페이지에 보드설정 화면 링크 추가
+    : font-awesome 4.4.0 업그레이드
     : 그누보드5 - 휴지통 사용시 최근게시물 cache 삭제
     : 그누보드5 - 워터마크 본문 표시 오류 수정 (잿빛푸우님 제안)
     : 그누보드5 모바일 경로 오류수정
@@ -20,6 +22,7 @@ ver 2.9.8 (15.00.00)
     miwit/mw.geditor/_common.php
     miwit/mw.okname/_common.php
     miwit/mw.js/mw.g5.adapter.js.php
+    miwit/mw.css/font-awesome-4.4.0/*
     miwit/list.skin.php
     miwit/view_head.skin.php
     miwit/secret_all.php

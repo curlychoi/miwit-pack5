@@ -148,7 +148,7 @@ if ($mw_basic[cf_reward]) $colspan+=3;
 if ($mw_basic[cf_contents_shop]) $colspan++;
 if ($mw_basic[cf_type] == "thumb") $colspan++;
 if ($mw_basic[cf_type] == "gall") $colspan = $board[bo_gallery_cols];
-if ($mw_basic[cf_attribute] == "qna") $colspan += 2;
+else if ($mw_basic[cf_attribute] == "qna") $colspan += 2;
 
 // 목록 셔플
 if ($mw_basic[cf_list_shuffle]) { // 공지사항 제외 처리
@@ -372,20 +372,22 @@ if ($is_category && $mw_basic[cf_category_tab]) {
     <? if ($is_checkbox) { ?><td width=40><input onclick="if (this.checked) all_checked(true); else all_checked(false);" type=checkbox></td><?}?>
     <? if (!$mw_basic[cf_post_num]) { ?><td width=60 class="media-no-text">번호</td><? } ?>
     <? if (!$mw_basic['cf_list_cate'] && $is_category) {?> <td width="80" class="media-no-text">분류</td> <? }?> 
-    <? if (!$mw_basic[cf_post_name] && $mw_basic['cf_name_location']) { ?> <? if ($mw_basic[cf_attribute] != "anonymous") { ?> <td width=95>글쓴이</td> <?}?> <?}?>
-    <? if ($mw_basic[cf_type] == "thumb") { ?><td width=<?=$mw_basic[cf_thumb_width]+20?>> 이미지 </td><?}?>
+    <? if (!$mw_basic[cf_post_name] && $mw_basic['cf_name_location']) { ?> <? if ($mw_basic[cf_attribute] != "anonymous") { ?> <td width=95 class="media-no-text">글쓴이</td> <?}?> <?}?>
+    <? if ($mw_basic[cf_type] == "thumb") { ?><td width="<?=$mw_basic[cf_thumb_width]+20?>" class="thumb_td"> 이미지 </td><?}?>
     <td>제목</td>
+    <?php if ($mw_basic['cf_type'] != 'desc') { ?>
     <? if ($mw_basic[cf_reward]) { ?> <td width=70 class="media-no-text">충전</td> <?}?>
     <? if ($mw_basic[cf_reward]) { ?> <td width=50 class="media-no-text">마감</td> <?}?>
     <? if ($mw_basic[cf_reward]) { ?> <td width=50 class="media-no-text">상태</td> <?}?>
     <? if ($mw_basic[cf_contents_shop]) { ?> <td width=80 class="media-no-text"><?=$mw_cash[cf_cash_name]?></td> <?}?>
-    <? if (!$mw_basic[cf_post_name] && !$mw_basic['cf_name_location']) { ?> <? if ($mw_basic[cf_attribute] != "anonymous") { ?> <td width=95 class="media-small-text">글쓴이</td> <?}?> <?}?>
+    <? if (!$mw_basic[cf_post_name] && !$mw_basic['cf_name_location']) { ?> <? if ($mw_basic[cf_attribute] != "anonymous") { ?> <td width=95 class="media-no-text">글쓴이</td> <?}?> <?}?>
     <? if ($mw_basic[cf_attribute] == "qna") { ?> <td width=50 class="media-no-text">상태</td> <?}?>
     <? if ($mw_basic[cf_attribute] == "qna" && $mw_basic[cf_qna_point_use]) { ?> <td width=40 class="media-no-text">포인트</td> <?}?>
-    <? if (!$mw_basic[cf_post_date]) { ?> <td width=70 class="media-small-text">날짜</td> <?}?>
+    <? if (!$mw_basic[cf_post_date]) { ?> <td width=70 class="media-no-text">날짜</td> <?}?>
     <? if (!$mw_basic[cf_list_good] && $is_good) { ?><td width=40 class="media-no-text"><?=subject_sort_link('wr_good', $qstr2, 1)?>추천</a></td><?}?>
     <? if (!$mw_basic[cf_list_nogood] && $is_nogood) { ?><td width=40 class="media-no-text"><?=subject_sort_link('wr_nogood', $qstr2, 1)?>비추천</a></td><?}?>
     <? if (!$mw_basic[cf_post_hit]) { ?> <td width=70 class="media-no-text"><?=subject_sort_link('wr_hit', $qstr2, 1)?>조회</a></td> <?}?>
+    <?php } // $mw_basic['cf_type'] != 'desc' ?>
 </tr>
 <tr><td colspan=<?=$colspan?> height=1 class=mw_basic_line_color></td></tr>
 <tr><td colspan=<?=$colspan?> height=3 style="background-color:#efefef;"></td></tr>
@@ -697,36 +699,12 @@ else if ($mw_basic[cf_type] == "gall")
         $is_notice_thumb = true;
     }
 
-    if (($line_number+1)%$colspan==1) echo "<tr>";
+    //if (($line_number+1)%$colspan==1) echo "<tr>";
+    if (!$line_number) echo "<tr><td>";
 ?>
-    <td width="<?=$td_width?>%" class="mw_basic_list_gall <?=$class?>">
+    <!--<td width="<?=$td_width?>%" class="mw_basic_list_gall <?=$class?>">-->
 
-<?php /*?>
-        <? if ($is_checkbox) { ?>
-        <div style="text-align:left; width:<?=$set_width+18?>px; margin:0 auto 0 auto;'" class="gall-checkbox"><!--
-            --><input type="checkbox" name="chk_wr_id[]" value="<?=$list[$i][wr_id]?>"></div>
-        <? } ?>
-        <div><? if ($list[$i][icon_new]) { echo "<div class='icon_gall_new'><img src='{$pc_skin_path}/img/icon_gall_new.png'></div>"; } ?><a href="<?=$list[$i][href]?>"><img src="<?=$thumb_file?>" <?=$thumb_width?> <?=$thumb_height?> align=absmiddle></a></div>
-        <div class="mw_basic_list_subject_gall"
-            <? if (!$mw_basic[cf_thumb_keep]) echo "style='width:".($set_width+10)."px; text-align:left;'"; ?>>
-        <? if ($is_category && $list[$i][ca_name]) { ?>
-            <div style="margin:0 0 5px 0;"><a href="<?=$list[$i][ca_name_href]?>"
-                class=mw_basic_list_category <?php echo $ca_color_style?>>[<?=$list[$i][ca_name]?>]</a></div>
-        <? } ?>
-        <?=$write_icon?> <a href="<?=$list[$i][href]?>"><?=$list[$i][subject]?></a>
-        <? if ($list[$i][comment_cnt]) { ?>
-            <a href="<?=$list[$i][comment_href]?>" class=mw_basic_list_comment_count><?=$list[$i][wr_comment]?></a>
-        <? } ?>
-        </div>
-
-    </td>
-    <? if (($line_number+1)%$colspan==0) echo "</tr>"; ?>
-
-
-<?php */?>
-
-
-<?php /**/?>
+        <div class="mw_basic_list_gall">
 
         <?php if ($is_checkbox) { ?>
         <div class="gall_check"><input type=checkbox name=chk_wr_id[] value="<?=$list[$i][wr_id]?>"></div>
@@ -766,20 +744,15 @@ else if ($mw_basic[cf_type] == "gall")
                     <i class="fa fa-eye"></i> <?php echo $list[$i]['wr_hit']?>
                 </div>
                 <?php } ?>
-
             </td>
         </tr>
         <tr>
             <td valign="top">
 
                 <div class="gall_subject" style="width:<?=$mw_basic[cf_thumb_width]?>px;">
-                    <div><a href="<?=$list[$i][href]?>"><?=$list[$i][subject]?></a></div></div>
-            <!--
-                <div class="gall_info">
-                    <span class="nu"><?//=number_format($list[$i][wr_hit])?></span>명이 구경하고,<br/>
-                    <span class="nu"><?//=number_format($list[$i][wr_comment])?></span>번 이야기 되었습니다.
+                    <div><a href="<?=$list[$i][href]?>"><?=$list[$i][subject]?></a></div>
                 </div>
-            -->
+
                 <div class="gall_member">
                     <?php if ($mw_basic['cf_attribute'] != "anonymous" && !$list[$i]['wr_anonymous']) echo $list[$i][name]?>&nbsp;
 
@@ -814,15 +787,15 @@ else if ($mw_basic[cf_type] == "gall")
         </tr>
         </table></div>
 
+    </div>
 
+    <!--</td>-->
+    <?php if ((($line_number+1)%2==0) ) echo '<div class="mobile_list_gall_br"></div>'; ?>
+    <?php if ((($line_number+1)%$colspan==0) ) echo '<div class="list_gall_br"></div>'; ?>
+    <?php if ($line_number >= $list_count) echo "</td></tr>"; ?>
+    <?php //if ($list_count == $i-1) echo "</tr>"; ?>
 
-
-
-    </td>
-    <? if (($line_number+1)%$colspan==0) echo "</tr>"; ?>
-<?php /**/ ?>
-
-<? } else { // $mw_basic[cf_type] == "gall" ?>
+<?php } else { // $mw_basic[cf_type] == "gall" ?>
 
 <tr align=center <? if ($list[$i][is_notice]) echo "bgcolor='#f8f8f9'"; ?>>
 
@@ -872,29 +845,28 @@ else if ($mw_basic[cf_type] == "gall")
 
     <!-- 썸네일 -->
     <td class=mw_basic_list_thumb><!-- 여백제거
-        --><? if ($list[$i][icon_new]) { echo "<div class='icon_gall_new'><img src='{$pc_skin_path}/img/icon_gall_new.png'></div>"; } ?><div><a href="<?=$list[$i][href]?>"><img src="<?=$thumb_file?>" width=<?=$mw_basic[cf_thumb_width]?> height=<?=$mw_basic[cf_thumb_height]?> align=absmiddle></a></div><!--
+        --><? if ($list[$i][icon_new]) { echo "<div class='icon_gall_new'><img src='{$pc_skin_path}/img/icon_gall_new.png'></div>"; } ?><div><a href="<?=$list[$i][href]?>"><img src="<?=$thumb_file?>" width=<?=$mw_basic[cf_thumb_width]?> height=<?=$mw_basic[cf_thumb_height]?> align="absmiddle" class="list_thumb_img"></a></div><!--
     --></td>
     <?php } ?>
 
     <!-- 글제목 -->
-    <td class=mw_basic_list_subject>
+    <td class="mw_basic_list_subject <?php echo $mw_basic['cf_type'] == 'desc' ? 'desc' : '';?>">
 
         <?php/* if ($is_checkbox) { ?>
         <span class="media-on-text"><input type=checkbox name=chk_wr_id[] value="<?=$list[$i][wr_id]?>"></span>
         <?php }*/ ?>
         <?
         if ($mw_basic[cf_type] == "desc" && is_mw_file($thumb_file)) {
-
             if ($list[$i][icon_secret] || $list[$i][is_secret] || $list[$i][wr_view_block] || $list[$i][wr_key_password])
                 $thumb_file = $board_skin_path.'/img/lock.png'; 
 
             if (is_notice($list[$i]['wr_id']) && $thumb_file == mw_get_noimage())
                 $thumb_file = $board_skin_path.'/img/notice.png';
 
-            echo "<div class=mw_basic_list_thumb>";
+            echo "<div class='mw_basic_list_thumb thumb_td'>";
             if ($list[$i][icon_new])
                 echo "<div class='icon_gall_new'><img src='{$pc_skin_path}/img/icon_gall_new.png'></div>";
-            echo "<div><a href=\"{$list[$i][href]}\"><img src=\"{$thumb_file}\" width={$mw_basic[cf_thumb_width]} height={$mw_basic[cf_thumb_height]} align=absmiddle></a></div>";
+            echo "<div><a href=\"{$list[$i][href]}\"><img src=\"{$thumb_file}\" width={$mw_basic[cf_thumb_width]} height={$mw_basic[cf_thumb_height]} align='absmiddle' class='list_thumb_img'></a></div>";
             echo "</div>\n";
         }
         if ($mw_basic[cf_type] == "desc") {
@@ -952,18 +924,68 @@ else if ($mw_basic[cf_type] == "gall")
         echo " " . $list[$i][icon_hot];
         echo " " . $list[$i][icon_secret];
 
-        if ($mw_basic[cf_type] == "desc") {
-            echo "</div>\n";
-            $desc = strip_tags($list[$i][wr_content]);
-            if ($list[$i][wr_contents_preview])
-                $desc = conv_content($list[$i][wr_contents_preview], $html);
-            $desc = preg_replace("/{이미지\:([0-9]+)[:]?([^}]*)}/i", "", $desc);
-            $desc = mw_reg_str($desc);
-            $desc = cut_str($desc, $mw_basic[cf_desc_len]);
-            echo "<div class='mw_basic_list_desc media-no-text'>$desc</div>\n";
-        }
+        echo "</div>\n";
+        //if ($mw_basic['cf_type'] == 'desc') {
+
+            echo "<div class='list_desc_info media-on-text'>";
+
+            if ($mw_basic['cf_reward']) {
+                echo number_format($reward['re_point']).'P';
+                echo $reward['edate'];
+                echo "<img src='{$board_skin_path}/img/btn_reward_{$reward['re_status']}.gif' align='absmiddle'>";
+            }
+            if ($mw_basic['cf_contents_shop']) {
+                echo "<span class='item'>{$mw_price}</span>";
+            }
+            if (!$mw_basic['cf_post_name'] && !$mw_basic['cf_name_location']) { 
+                if ($mw_basic['cf_attribute'] != "anonymous") {
+                    echo "<span class='item'><i class='fa fa-user'></i> ".$list[$i]['name']."</span>";
+                }
+            }
+            if ($mw_basic[cf_attribute] == 'qna') { 
+                    if ($list[$i]['reply']) {
+                        echo "&nbsp;";
+                    }
+                    else if ($list[$i]['wr_qna_status'] == 2) {
+                        echo "<span class='item'><i class='fa fa-battery-0'></i> 보류</span>";
+                    }
+                    else if ($list[$i]['wr_qna_status'] == 1) {
+                        echo "<span class='item'><i class='fa fa-battery-4'></i> 해결</span>";
+                    }
+                    else {
+                        echo "<span class='item'><i class='fa fa-battery-1'></i> 미해결</span>";
+                    }
+            }
+            if ($mw_basic[cf_attribute] == 'qna' && $mw_basic['cf_qna_point_use']) {
+                echo "<span class='item'><i class='fa fa-gift'></i> ".$list[$i]['wr_qna_point']."</span>";
+            }
+            if (!$mw_basic['cf_post_date']) {
+                echo "<span class='item media-on-text'><i class='fa fa-calendar'></i> ".$list[$i]['datetime2']."</span>";
+            }
+            if (!$mw_basic['cf_list_good'] && $is_good) {
+                echo "<span class='item media-no-text'><i class='fa fa-thumbs-up'></i> ".$list[$i]['wr_good']."</span>";
+            }
+            if (!$mw_basic['cf_list_nogood'] && $is_nogood) {
+                echo "<span class='item media-no-text'><i class='fa fa-thumbs-down'></i> ".$list[$i]['wr_nogood']."</span>";
+            }
+            if (!$mw_basic['cf_post_hit']) {
+                echo "<span class='item'><i class='fa fa-eye'></i> ".$list[$i]['wr_hit']."</span>";
+            }
+            echo "</div>";
+
+            if ($mw_basic['cf_type'] == 'desc') {
+                $desc = strip_tags($list[$i]['wr_content']);
+                if ($list[$i]['wr_contents_preview'])
+                    $desc = conv_content($list[$i]['wr_contents_preview'], $html);
+                $desc = preg_replace("/{이미지\:([0-9]+)[:]?([^}]*)}/i", "", $desc);
+                $desc = mw_reg_str($desc);
+                $desc = cut_str($desc, $mw_basic['cf_desc_len']);
+                echo "<div class='mw_basic_list_desc media-no-text'>{$desc}</div>\n";
+            }
+        //}
         ?>
     </td>
+    <?php if ($mw_basic['cf_type'] != 'desc') { ?>
     <? if ($mw_basic[cf_reward]) { ?>
     <td class="mw_basic_list_reward_point media-no-text"><?=number_format($reward[re_point])?> P</td>
     <td class="mw_basic_list_reward_edate media-no-text"><?=$reward[edate]?></td>
@@ -973,7 +995,7 @@ else if ($mw_basic[cf_type] == "gall")
         <td class="mw_basic_list_contents_price media-no-text"><span><?=$mw_price?></span></td><?}?>
     <? if (!$mw_basic[cf_post_name] && !$mw_basic['cf_name_location']) { ?>
     <? if ($mw_basic[cf_attribute] != "anonymous") { ?>
-    <td class="mw_basic_list_name"><?php echo $list[$i]['name']?></td><?php }}?>
+    <td class="mw_basic_list_name media-no-text"><?php echo $list[$i]['name']?></td><?php }}?>
     <? if ($mw_basic[cf_attribute] == 'qna') { ?>
         <td class="mw_basic_list_qna_status media-no-text">
             <?/* if ($list[$i]['reply'] ) { ?>
@@ -998,10 +1020,11 @@ else if ($mw_basic[cf_type] == "gall")
         </td>
     <? } ?>
     <? if ($mw_basic[cf_attribute] == 'qna' && $mw_basic[cf_qna_point_use]) { ?> <td class="mw_basic_list_point media-no-text"><?=$list[$i][wr_qna_point]?></span></td> <?}?>
-    <? if (!$mw_basic[cf_post_date]) { ?> <td class="mw_basic_list_datetime"><?=$list[$i][datetime2]?></td> <?}?>
+    <? if (!$mw_basic[cf_post_date]) { ?> <td class="mw_basic_list_datetime media-no-text"><?=$list[$i][datetime2]?></td> <?}?>
     <? if (!$mw_basic[cf_list_good] && $is_good) { ?><td class="mw_basic_list_good media-no-text"><?=$list[$i][wr_good]?></td><? } ?>
     <? if (!$mw_basic[cf_list_nogood] && $is_nogood) { ?><td class="mw_basic_list_nogood media-no-text"><?=$list[$i][wr_nogood]?></td><? } ?>
     <? if (!$mw_basic[cf_post_hit]) { ?> <td class="mw_basic_list_hit media-no-text"><?=$list[$i][wr_hit]?></td> <?}?>
+    <?php } // $mw_basic['cf_type'] != 'desc' ?>
 </tr>
 <? if ($i<$list_size-1) { // 마지막 라인 출력 안함 ?>
 <!--<tr><td colspan=<?=$colspan?> height=1 bgcolor=#E7E7E7></td></tr>-->
@@ -1012,7 +1035,7 @@ else if ($mw_basic[cf_type] == "gall")
 <?} //$mw_basic[cf_type] == "gall" else?>
 
 <?php
-if ($mw_basic['cf_type'] == 'gall') {
+/* if ($mw_basic['cf_type'] == 'gall') {
     $rest = $colspan-($line_number%$colspan);
     if ($rest > 0) {
         for ($z=0; $z<$rest; ++$z) {
@@ -1020,7 +1043,7 @@ if ($mw_basic['cf_type'] == 'gall') {
         }
         echo "</tr>\n";
     }
-}
+}*/
 ?>
 <?php if ($line_number == 0) { echo "<tr><td colspan={$colspan} class=mw_basic_nolist>게시물이 없습니다.</td></tr>"; } ?>
 <tr><td colspan=<?=$colspan?> class=mw_basic_line_color height=1></td></tr>
@@ -1339,6 +1362,7 @@ $(window).load(function () {
 </script>
 
 <style>
+<?php if ($mw_basic['cf_type'] == 'desc') echo "#mw_basic .list_desc_info { display:block; }".PHP_EOF; ?>
 <?php echo $cf_css?>
 </style>
 <link rel="stylesheet" href="<?php echo $board_skin_path?>/sideview.css"/>

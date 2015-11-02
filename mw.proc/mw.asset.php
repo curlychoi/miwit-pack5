@@ -22,8 +22,7 @@ $css = array();
 $css[] = $pc_skin_path."/style.common.css?".filemtime($pc_skin_path."/style.common.css");
 $css[] = $pc_skin_path."/mw.js/ui-lightness/jquery-ui-1.9.2.custom.min.css";
 $css[] = $pc_skin_path."/mw.js/mw.star.rate/jquery.mw.star.rate.css";
-if (!defined("_MW5_"))
-    $css[] = $pc_skin_path."/mw.css/font-awesome-4.3.0/css/font-awesome.css";
+$css[] = $pc_skin_path."/mw.css/font-awesome-4.4.0/css/font-awesome.css";
 
 
 /* ---- */
