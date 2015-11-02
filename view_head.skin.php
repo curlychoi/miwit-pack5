@@ -207,7 +207,8 @@ if (($mw_basic[cf_must_notice] || $mw_basic[cf_must_notice_read] || $mw_basic[cf
 else
 {
     if ($mw_basic[cf_must_notice_read]) {
-        $tmp_notice = str_replace($notice_div, ",", trim($board[bo_notice]));
+        //$tmp_notice = str_replace($notice_div, ",", trim($board[bo_notice]));
+        $tmp_notice = implode(",", array_filter(explode($notice_div, trim($board[bo_notice])), "strlen"));
         $cnt_notice = sizeof(explode(",", $tmp_notice));
 
         if ($tmp_notice) {

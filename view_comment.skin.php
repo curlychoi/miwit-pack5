@@ -50,7 +50,8 @@ if ($cwin && $mw_basic[cf_comment_level] && $mw_basic[cf_comment_level] > $membe
 
 if ($cwin && ($mw_basic[cf_must_notice_read] || $mw_basic[cf_must_notice_comment])) // 공지 읽기 필수
 {
-    $tmp_notice = str_replace($notice_div, ",", trim($board[bo_notice]));
+    //$tmp_notice = str_replace($notice_div, ",", trim($board[bo_notice]));
+    $tmp_notice = implode(",", array_filter(explode($notice_div, trim($board[bo_notice])), "strlen"));
     $cnt_notice = sizeof(explode(",", $tmp_notice));
 
     if ($tmp_notice) {
@@ -78,7 +79,8 @@ if ($is_comment_write) {
 }
 
 if ($mw_basic[cf_must_notice_comment]) {
-    $tmp_notice = str_replace($notice_div, ",", trim($board[bo_notice]));
+    //$tmp_notice = str_replace($notice_div, ",", trim($board[bo_notice]));
+    $tmp_notice = implode(",", array_filter(explode($notice_div, trim($board[bo_notice])), "strlen"));
     $cnt_notice = sizeof(explode(",", $tmp_notice));
 
     if ($tmp_notice) {
