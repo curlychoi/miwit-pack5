@@ -1296,15 +1296,22 @@ function mw_move_cate() {
 function mw_notice(sw) {
     $("#admin_action").val('');
 
+    var str = '';
+
     if (sw == 'up') {
+        str = '공지로 등록';
         if (!confirm("공지로 등록하시겠습니까?")) {
             return false;
         }
     } else {
+        str = '공지 내림';
         if (!confirm("공지를 내리시겠습니까?")) {
             return false;
         }
     }
+
+    if (!check_confirm(str)) 
+        return;
 
     $("#sw").val(sw);
 

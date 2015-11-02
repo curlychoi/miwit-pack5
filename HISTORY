@@ -1,5 +1,7 @@
 ver 2.9.8 (15.00.00)
     : 반응형 지원!!
+    : 갤러리형등 반응형 지원 (신비님 제안)
+    : 요약형 디자인 개선 (신비님 제안) 
     : 링크에 이미지 경로 포함시 본문 표시 오류 수정 (신비님 제안)
     : 목록에서 선택 비밀글 설정 (의자왕님 제안)
     : 외부 이미지 썸네일 생성 후 글 수정시 이미지 경로 변경 체크 (도장관님 제안)
@@ -8,7 +10,8 @@ ver 2.9.8 (15.00.00)
     : font-awesome 4.4.0 업그레이드
     : 그누보드5 - 휴지통 사용시 최근게시물 cache 삭제
     : 그누보드5 - 워터마크 본문 표시 오류 수정 (잿빛푸우님 제안)
-    : 그누보드5 모바일 경로 오류수정
+    : 그누보드5 모바일 경로 오류수정 (엑노님 제안)
+    : 게시물 선택하지 않고 공지올림/내림 진행시 오류수정  (엑노님 제안) 
 
     miwit/HISTORY
     miwit/_common.php
@@ -19,6 +22,7 @@ ver 2.9.8 (15.00.00)
     miwit/mw.proc/mw.file.viewer.php
     miwit/mw.proc/mw.asset.php
     miwit/mw.proc/mw.top.button.php
+    miwit/mw.proc/mw.notice.check.php
     miwit/mw.geditor/_common.php
     miwit/mw.okname/_common.php
     miwit/mw.js/mw.g5.adapter.js.php
@@ -26,6 +30,7 @@ ver 2.9.8 (15.00.00)
     miwit/list.skin.php
     miwit/view_head.skin.php
     miwit/secret_all.php
+    miwit/style.common.css
  
 ver 2.9.7 (15.09.23)
     : 파일 업로드 인젝션 취약점 보안 (한국인터넷진흥원에서 알려 주셨습니다.)

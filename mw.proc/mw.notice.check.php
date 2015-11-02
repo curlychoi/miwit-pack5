@@ -26,10 +26,13 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
 if ($is_admin != 'board' && $is_admin != 'group' && $is_admin != 'super') 
-    exit("게시판 관리자 이상 접근이 가능합니다.");
+    die("게시판 관리자 이상 접근이 가능합니다.");
 
 if ($sw != "up" && $sw != "down")
-    alert("sw 값이 제대로 넘어오지 않았습니다.");
+    die("sw 값이 제대로 넘어오지 않았습니다.");
+
+if (!is_array($chk_wr_id))
+    die("게시물을 선택해주세요.");
 
 include_once($board_skin_path."/mw.lib/mw.skin.basic.lib.php");
 
