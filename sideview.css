@@ -3,6 +3,7 @@
     overflow:visible;
 }
 
+#mw_basic .list_desc_info .sv_wrap .sv,
 #mw_basic .media-list-name .sv_wrap .sv,
 #mw_basic .mw_basic_list_name .sv_wrap .sv {
     white-space:normal;
@@ -10,12 +11,13 @@
     margin:0;
 }
 
+#mw_basic .list_desc_info .sv_member,
+#mw_basic .list_desc_info .sv_guest,
 #mw_basic .media-list-name .sv_member,
 #mw_basic .media-list-name .sv_guest,
 #mw_basic .mw_basic_list_name .sv_member,
 #mw_basic .mw_basic_list_name .sv_guest {
     display:block;
-    width:90px;
     font-size:12px;
     line-height:15px;
     color:#3d5b7a;

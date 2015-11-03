@@ -960,7 +960,7 @@ else if ($mw_basic[cf_type] == "gall")
                 echo "<span class='item'><i class='fa fa-gift'></i> ".$list[$i]['wr_qna_point']."</span>";
             }
             if (!$mw_basic['cf_post_date']) {
-                echo "<span class='item media-on-text'><i class='fa fa-calendar'></i> ".$list[$i]['datetime2']."</span>";
+                echo "<span class='item'><i class='fa fa-calendar'></i> ".$list[$i]['datetime2']."</span>";
             }
             if (!$mw_basic['cf_list_good'] && $is_good) {
                 echo "<span class='item media-no-text'><i class='fa fa-thumbs-up'></i> ".$list[$i]['wr_good']."</span>";

@@ -510,12 +510,17 @@ img {
 
 #mw_basic .list_desc_info {
     height:30px;
+    color:#999;
 }
 
 #mw_basic .list_desc_info span.item {
     float:left;
     line-height:20px;
     margin-right:10px;
+    vertical-align:top;
+}
+#mw_basic .list_desc_info span.item img {
+    margin:0;
 }
  
 #mw_basic .list_desc_info span.mw_basic_list_name {
@@ -523,7 +528,14 @@ img {
 
 #mw_basic .list_desc_info span.item i {
     line-height:10px;
-    padding-right:5px;
+}
+
+#mw_basic .list_desc_info a:hover,
+#mw_basic .list_desc_info a:link,
+#mw_basic .list_desc_info a:visited,
+#mw_basic .list_desc_info a:active {
+    font-weight:normal;
+    color:#999;
 }
 
 /* 글제목 */
@@ -2352,6 +2364,11 @@ i.fa-warning { color:#f36a2e; }
         max-height: 100%;
     }
 
+    #mw_basic .mw_basic_comment_content img {
+        max-width: 100% !important;
+        max-height: 100%;
+    }
+
     #mw_basic .write_table {
     }
 
@@ -2377,6 +2394,10 @@ i.fa-warning { color:#f36a2e; }
 
     #mw_basic #wr_subject { 
        width:300px; 
+    }
+
+    #mw_basic .mw_basic_list_subject {
+        overflow:visible;
     }
 
     #mw_basic #wr_content { 
@@ -2443,8 +2464,34 @@ i.fa-warning { color:#f36a2e; }
         width:100px !important;
         margin-left:10px;
     }
+
     #mw_basic .list_desc_info {
         display:block;
+    }
+
+    #mw_basic .sv_wrap {
+        vertical-align:top;
+    }
+
+    #mw_basic .sv_wrap .sv_member img {
+        margin:0;
+    }
+
+    #mw_basic .media-list-subject {
+        font-size:14px;
+    }
+
+    #mw_basic .list_desc_info span.item i {
+        line-height:10px;
+        padding-right:0px;
+    }
+
+    #mw_basic .list_desc_info a:hover,
+    #mw_basic .list_desc_info a:link,
+    #mw_basic .list_desc_info a:visited,
+    #mw_basic .list_desc_info a:active {
+        font-weight:normal;
+        color:#999;
     }
 }
 
