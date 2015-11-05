@@ -2335,7 +2335,7 @@ i.fa-warning { color:#f36a2e; }
         padding:3px 3px 3px 3px;
         /*padding:5px 7px 5px 7px;*/
     }
-    .mw_basic_total { display:block; line-height:30px; }
+    #mw_basic .mw_basic_total { display:block; margin-bottom:5px; }
 
     #btn_comment_submit { width:50px; }
 
