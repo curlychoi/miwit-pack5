@@ -189,6 +189,7 @@ include_once("$board_skin_path/mw.proc/mw.cash.membership.skin.php");
 <?php $link_buttons = ob_get_contents(); ob_end_clean(); ?>
 
 <!-- 제목, 글쓴이, 날짜, 조회, 추천, 비추천 -->
+<div class="mw_basic_view_subject">
 <h1>
 <?php 
 if ($is_category)
@@ -204,6 +205,7 @@ if ($mw_basic['cf_attribute'] == 'qna' && !$view['is_notice']) {
 }
 ?>
 </h1>
+</div>
 
 <div class="mw_basic_view_title">
     <?php echo $mw_admin_button?>
