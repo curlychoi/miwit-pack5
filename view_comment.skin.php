@@ -1358,6 +1358,7 @@ var g4_skin_path = "<?=$board_skin_path?>";
 <? if ($cwin) { ?> <script type="text/javascript" src="<?=$board_skin_path?>/mw.js/ZeroClipboard.js"></script> <? } ?>
 <script type="text/javascript">
 $(document).ready(function () {
+    $(".tooltip").removeClass("tooltip");
     $(".mw_basic_comment_url").click(function () {
         var comment_id = $(this).attr("value");
         var top = $(this).position().top + 15 ;
