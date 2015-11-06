@@ -810,9 +810,11 @@ img {
 
 /* 그누보드5 */
 #mw_basic .mw_basic_page .pg_page, #mw_basic .mw_basic_page .pg_current {
-    padding:5px;
-    height:15px;
-    line-height:16px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height:20px;
+    line-height:15px;
     padding:3px 5px 2px 5px;
 }
 
@@ -2426,6 +2428,8 @@ i.fa-warning { color:#f36a2e; }
     }
 
     #mw_basic .gall_list div.gall_star div.gall_star_inner {
+        width:140px;
+        overflow:hidden;
         position:absolute;       
         margin-left:-5px;
     }
@@ -2501,6 +2505,19 @@ i.fa-warning { color:#f36a2e; }
         font-weight:normal;
         color:#999;
     }
+
+    #mw_basic #search_top .search_top_box {
+        width:300px;
+    }
+
+    #mw_basic #search_top .search_top_stx {
+        width:250px;
+    }
+
+    #mw_basic #search_top .search_top_button {
+        width:40px;
+    }
+
 }
 
 nav.pg_wrap {
