@@ -1506,7 +1506,7 @@ img {
     font-weight:normal;
     color:#888;
     font-size:11px;
-    float:right;
+    float:left;
     padding:0;
     margin:0 0 5px 0;
 }
@@ -1645,8 +1645,8 @@ img {
 }
 
 #mw_basic .comment_buttons {
-    text-align:right;
-    float:right;
+    text-align:left;
+    float:left;
     height:30px;
 }
 
