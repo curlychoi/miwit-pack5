@@ -1,0 +1,26 @@
+v.1.0.3 (14.01.10)
+    : 매년 반복 음력 버그 수정
+    : 대체 휴일제 적용 옵션
+
+    plugin/logo-planner/HISTORY.php
+    plugin/logo-planner/_lib.php
+    plugin/logo-planner/list.php
+    plugin/logo-planner/view.php
+    plugin/logo-planner/write.php
+    plugin/logo-planner/write_update.php
+
+v.1.0.2 (12.09.14)
+    : 음력 버그 수정
+
+    plugin/logo-planner/_lib.php
+
+v.1.0.1 (12.02.03)
+    : 매년 반복 오류 수정
+
+    plugin/logo-planner/_lib.php
+
+v.1.0.0 (11.09.09)
+    : 배포시작
+
+로고플래너 이력 ↑
+

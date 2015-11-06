@@ -1,0 +1,46 @@
+
+body { padding:10px; }
+
+.w { background-color:#ddd; }
+.w td { background-color:#fff; }
+.w .tt { font:bold 11px 'dotum'; color:#3f4ea1; }
+
+.v { background-color:#ddd; }
+.v td { background-color:#fff; height:30px; }
+.v .tt { font:bold 11px 'dotum'; color:#3f4ea1; }
+
+.f { height:30px; font:normal 11px 'dotum'; }
+.fp { font:normal 11px 'dotum'; margin:5px 0 0 0; float:left; }
+.fp a { font:bold 11px 'dotum'; }
+.fb { float:right; }
+
+.t { border-top:2px solid #818181; }
+.t .tt { background-color:#f2f2f2; font:normal 11px 'dotum'; text-align:center; height:30px; color:#3f4ea1; border-bottom:1px solid #d5d5d5; }
+.t .tl { border-bottom:1px solid #e8e8e8; height:50px; text-align:center; font:normal 11px 'dotum'; }
+.t .tl a { font:normal 11px 'dotum'; }
+.t .tn { background-color:#fff; padding:100px 0 100px 0; text-align:center; color:#bbb; border-bottom:1px solid #d5d5d5; }
+
+.b { background-color:#efefef; cursor:pointer; font:normal 11px 'dotum'; }
+
+.g { width:450px; height:15px; margin:0 auto 0 auto; }
+.g td { word-break:nowrap; text-align:center; font:normal 11px 'verdana'; color:#fff; }
+.g td a { font:normal 11px 'verdana'; color:#fff; }
+
+.s0 { background-color:#f1899a; }
+.s1 { background-color:#9cd2dd; }
+.s2 { background-color:#8ad54e; }
+
+.i { font:normal 11px 'dotum'; color:#999; }
+
+.i0 { background-color:#f1899a; color:#fff; }
+.i1 { background-color:#9cd2dd; color:#fff; }
+.i2 { background-color:#8ad54e; color:#fff; }
+
+.i0 a { color:#fff; }
+.i1 a { color:#fff; }
+.i2 a { color:#fff; }
+
+.it { color:#fff; padding:0 0 0 10px; height:20px; }
+.is { color:#fff; width:70px; text-align:center; }
+
+

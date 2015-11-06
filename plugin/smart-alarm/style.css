@@ -1,0 +1,16 @@
+
+#moa_alarm { cursor:pointer; color:#777; font-size:11px; }
+#moa_box  { border:1px solid #333; width:400px; height:380px; display:none; position:absolute; background-color:#fff; z-index:99999; }
+#moa  { margin:10px; color:#444; text-align:left; }
+#moa ul { margin:0; padding:0; list-style:none; width:100%; }
+#moa ul li { margin:0; padding:5px 0 0 0; height:57px; *height:63px; clear:both; cursor:pointer; }
+#moa ul li { background-color:#fff; color:#444; border-bottom:1px solid #e6e6e6; }
+#moa ul li { display:block; }
+#moa ul li:after { content:''; }
+#moa ul li span.name { font-weight:bold; color:#3b5998; }
+#moa ul li div {  }
+#moa ul li div.msg { margin:0px 0 0 0; font-size:11px; }
+#moa ul li div.time { margin:3px 0 0 0; font-size:10px; }
+#moa ul li div.image { float:left; width:52px; height:52px; margin:0 10px 0 5px; background-color:#f2f2f2; }
+#moa ul li div.image img { float:left; width:48px; height:48px; margin:2px 0 0 2px; border:0; background-color:#fff; }
+

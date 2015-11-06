@@ -1,0 +1,198 @@
+
+/*---------------------------
+    latest_write
+----------------------------*/
+.latest_write {
+    border:0;
+    text-align:left;
+}
+
+.latest_write h2 {
+    font-size:1.2em;
+    line-height:30px;
+    height:30px;
+    border-bottom:2px solid #aaa;
+    margin:0 0 10px 0;
+    padding:0;
+
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.latest_write h2 a {
+    position:absolute;
+    line-height:30px;
+    height:30px;
+    border-bottom:2px solid #e74c3c;
+    min-width:120px;
+    padding:0;
+    padding-left:5px;
+    text-decoration:none;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.latest_write h2 a:before {
+    font-family:FontAwesome;
+    content:"\f0f6";
+    margin-right:10px;
+}
+
+.latest_write ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.latest_write ul li {
+    font-size:1em;
+    line-height:25px;
+    border-bottom:1px solid #efefef;
+    position:relative;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    padding-left:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box
+    box-sizing: border-box;
+}
+
+.latest_write ul li:before {
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+    display:inline-block;
+    text-decoration:inherit;
+    content:"\f0da";
+    content:"\f0f6";
+    width:10px;
+    text-align:center;
+    margin-right:10px;
+    color:#888;
+    color:#e67e22;
+    color:#bdc3c7;
+}
+
+.latest_write ul li.new:before {
+    color:#e74c3c;
+}
+
+.latest_write ul li.secret:before {
+    content:"\f023";
+}
+
+.latest_write ul li a:hover {
+    color:#e74c3c;
+}
+
+.latest_write .comment {
+    position:absolute;
+    right:0;
+    font-size:.8em;
+    color:#FF6600;
+    background-color:#fff;
+    padding:0 5px 0 5px;
+} 
+
+/*---------------------------
+    latest_comment
+----------------------------*/
+.latest_comment {
+    border:0;
+    text-align:left;
+}
+
+.latest_comment h2 {
+    font-size:1.2em;
+    line-height:30px;
+    height:30px;
+    border-bottom:2px solid #aaa;
+    margin:0 0 10px 0;
+    padding:0;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.latest_comment h2 a {
+    position:absolute;
+    line-height:30px;
+    height:30px;
+    border-bottom:2px solid #e74c3c;
+    min-width:120px;
+    padding-left:5px;
+    text-decoration:none;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.latest_comment h2 a:before {
+    font-family:FontAwesome;
+    content:"\f0e6";
+    margin-right:10px;
+}
+
+.latest_comment ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.latest_comment ul li {
+    font-size:1em;
+    line-height:25px;
+    border-bottom:1px solid #efefef;
+    position:relative;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    padding-left:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box
+    box-sizing: border-box;
+}
+
+.latest_comment ul li:before {
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+    display:inline-block;
+    text-decoration:inherit;
+    content:"\f0e5";
+    width:10px;
+    text-align:center;
+    margin-right:10px;
+    color:#888;
+    color:#e67e22;
+    color:#bdc3c7;
+}
+
+.latest_comment ul li.new:before {
+    color:#e74c3c;
+}
+
+.latest_comment ul li.secret:before {
+    content:"\f023";
+}
+
+
+.latest_comment ul li a:hover {
+    color:#e74c3c;
+}
+
+.latest_comment .comment {
+    position:absolute;
+    right:0;
+    font-size:.8em;
+    color:#FF6600;
+    background-color:#fff;
+    padding:0 5px 0 5px;
+} 
+

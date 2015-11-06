@@ -1,0 +1,135 @@
+v.1.1.8 (14.05.22)
+    : 배추빌더5 용 css 수정
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/style.css
+
+v.1.1.7 (14.05.06)
+    : 댓글 퍼머링크 오류 수정
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/_lib.php
+
+v.1.1.6 (14.03.04)
+    : 질문게시판 답변채택시 알림 (AndroidGame님 제안)
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/_lib.php
+
+v.1.1.5 (15.03.01)
+    : 그누보드5 지원 
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/script.js
+
+v.1.1.4 (14.10.24)
+    : 설정변경 회원만 가능 (금광님 제안)
+    : 모바일 전체삭제시 pc 화면으로 넘어가는 문제 (쌍란님 제안)
+    : 모바일 원클릭으로 개선
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/index.php
+    plugin/smart-alarm/delete.php
+
+v.1.1.3 (14.10.17)
+    : 모바일빌더 연동지원
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/_lib.php
+    plugin/smart-alarm/index.php
+
+v.1.1.2 (14.01.17)
+    : 알람 ajax 창 원클릭 종료
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/script.js
+
+v.1.1.1 (13.12.27)
+    : 게시판 삭제시 에러 발생하는 문제 해결 (바리데기님 제안)
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/index.php
+
+v.1.1.0 (13.12.13)
+    : 게시물 확인시 알람 끄기 (틴톡님 제안, 배추스킨 2.3.5 이상)
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/_lib.php
+
+v.1.0.9 (13.11.29)
+    : 모아보기 페이지 링크 다른곳에 영향안주도록 css 조정
+    : 익명 알람 개선 (청해님 제안) 
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/_lib.php
+    plugin/smart-alarm/index.php
+
+v.1.0.8 (13.10.04)
+    : 알람 숫자 강조 표시 (재아님 제안)
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/script.js
+
+v.1.0.7 (13.09.06)
+    : 모아보기 페이지 알람 링크 오류 (청해님 제안)
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/script.js
+
+v.1.0.6 (13.07.19)
+    : css 수정 (html5 대응)
+    : 수동삭제기능 (신비님 제안)
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/index.php
+    plugin/smart-alarm/style.css
+    plugin/smart-alarm/delete.php
+
+v.1.0.5 (12.11.30)
+    : 알림자동삭제 데이터 입출력시에 모두 작동
+    : 비회원 이미지 엑박 나오는 문제
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/_lib.php
+
+v.1.0.4 (12.07.20)
+    : 익명게시판도 알람 적용 (배추스킨 1.7.0 이상)
+    : 언급기능추가 (사용방법: [@닉네임], 예: [@곱슬최씨] 님 안녕하세요)
+    : 게시판별 알림 설정 (배추스킨 1.7.0 이상)
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/_lib.php
+
+v.1.0.3 (12.05.25)
+    : 그누보드 하위폴더 사용시 모든알람보기 링크 수정
+    : 그누보드 하위폴더 사용시 모든알람보기 이미지 엑박 수정
+
+    plugin/smart-alarm/HISTORY
+    plugin/smart-alarm/ajax.php
+    plugin/smart-alarm/index.php
+
+v.1.0.2 (12.05.11)
+    : 알람 모아보기 페이지 접근시 7일 지난 확인한 알람 자동삭제 (날짜는 _config.php 설정)
+    : 알림 모아보기에 게시판명 출력
+    : 내 답글에만 알림, 알림 사용안함 옵션 추가
+
+    plugin/smart-alarm/_lib.php
+    plugin/smart-alarm/_config.php
+    plugin/smart-alarm/index.php
+
+v.1.0.1 (11.10.14)
+    : 알람모아보기 페이지 접근시 알람카운트 초기화
+    : 알람메뉴 접근시 알람카운트 초기화 쿼리 한번만 실행.
+    : 코멘트 이미지 경로 오류수정
+    : 동일 게시물 동일인 중복 알람 제거
+
+    plugin/smart-alarm/_lib.php
+    plugin/smart-alarm/index.php
+    plugin/smart-alarm/ajax.php
+    plugin/smart-alarm/script.php
+
+v.1.0.0 (11.05.02)
+    : 배포시작
+
+스마트알람 이력 ↑
+

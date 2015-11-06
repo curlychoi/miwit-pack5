@@ -1,0 +1,34 @@
+
+#mw5 .head .search-text {
+    border-color:#34495e;
+}
+
+#mw5 .head .search-button {
+    background-color:#34495e;
+    color:#fff;
+}
+
+#mw5 nav {
+    border-bottom:3px solid #131c27;
+}
+
+#mw5 .navbar {
+    background-color:#34495e;
+}
+
+#mw5 .navbar a:hover,
+#mw5 .navbar a:link,
+#mw5 .navbar a:active,
+#mw5 .navbar a:visited {
+    color:#fff;
+}
+
+#mw5 .navbar li.select {
+    background-color:#222f3f;
+}
+
+#mw5 .navbar li.underline {
+    border-color:#131c27;
+}
+
+

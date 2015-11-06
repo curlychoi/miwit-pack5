@@ -1,0 +1,98 @@
+.poll h2 {
+    font-size:1.2em;
+    line-height:30px;
+    height:30px;
+    border-bottom:2px solid #aaa;
+    margin:0 0 10px 0;
+    padding:0;
+
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.poll h2 a {
+    text-decoration:none;
+
+    position:absolute;
+    line-height:30px;
+    height:30px;
+    border-bottom:2px solid #e74c3c;
+    min-width:120px;
+    padding-left:5px;
+    text-decoration:none;
+
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.poll h2 a:before {
+    font-family:FontAwesome;
+    content:"\f080";
+    margin-right:10px;
+}
+
+.poll h2 .point {
+    font-size:.8em;
+    font-weight:normal;
+    position:absolute;
+    right:15px;
+    margin-top:5px;
+}
+
+.poll ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.poll ul li {
+    margin:0;
+    padding:0;
+
+    line-height:20px;
+    position:relative;
+    white-space:nowrap;
+    overflow:hidden;
+    padding-left:20px;
+}
+
+.poll ul li.question {
+    font-size:1.1em;
+    font-weight:bold;
+    line-height:20px;
+    padding:0 0 5px 10px;
+}
+
+.poll ul li.question:before {
+    font-family:FontAwesome;
+    content:"\f00c";
+    margin-right:5px;
+}
+
+.poll ul li input {
+    cursor:pointer;
+}
+
+.poll ul li label {
+    cursor:pointer;
+    margin-left:5px;
+}
+
+.poll .button {
+    padding:20px 0 10px 0;
+    text-align:center;
+}
+
+.poll .button button {
+    background-color:#95a5a6;
+    width:45%;
+    height:30px;
+    border:0;
+    color:#fff;
+    outline:none;
+}
+
+
+

@@ -1,0 +1,30 @@
+
+#mw5 .head .search-text {
+    border-color:#3498db;
+}
+
+#mw5 .head .search-button {
+    background-color:#3498db;
+    color:#fff;
+}
+
+#mw5 .navbar {
+    background-color:#3498db;
+}
+
+#mw5 .navbar a:hover,
+#mw5 .navbar a:link,
+#mw5 .navbar a:active,
+#mw5 .navbar a:visited {
+    color:#fff;
+}
+
+#mw5 .navbar li.select {
+    background-color:#3e87c7;
+}
+
+#mw5 .navbar li.underline {
+    border-color:#2573be;
+}
+
+

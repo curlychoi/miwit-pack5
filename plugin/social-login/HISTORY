@@ -1,0 +1,197 @@
+v.1.2.0 (15.06.01)
+    : 페이스북 변경사항 적용 (nick1224님 제안)
+    : 그누보드4 최신 패치 적용 (4차원섭이님 제안)
+    : 그누보드5 최신버전 정보수정 오류 해결 (박훈님 제안)
+    : 24px 아이콘 추가
+
+    plugin/social-login/HISTORY
+    plugin/social-login/include.php
+    plugin/social-login/facebook-login.php
+    plugin/social-login/bbs/register_form.php
+    plugin/social-login/bbs/register_form_update.php
+    plugin/social-login/img/facebook24.png
+    plugin/social-login/img/twitter24.png
+    plugin/social-login/img/google24.png
+    plugin/social-login/img/naver24.png
+    plugin/social-login/img/kakao24.png
+ 
+v.1.1.9 (15.03.01)
+    : 그누보드5 지원
+
+    plugin/social-login/HISTORY
+    plugin/social-login/bbs/register_form.php
+    plugin/social-login/bbs/register_form_update.php
+    extend/mw.social-login.extend.php
+ 
+v.1.1.8 (15.02.01)
+    : 카카오, 네이버로그인 euc-kr 한글처리 (쉬크남님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/kakao-login.php
+    plugin/social-login/naver-login.php
+ 
+v.1.1.7 (14.12.05)
+    : 그누보드 업데이트로 인한 정보수정 오류 해결 (아크메즈님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/bbs/register_form_update.php
+ 
+v.1.1.6 (14.11.07)
+    : 정보수정 오류 해결 (아크메즈님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/bbs/register_form.php
+ 
+v.1.1.5 (14.08.22)
+    : 페이스북 로그인 인증서 교체 (sadmoon님 제안) 
+
+    plugin/social-login/HISTORY
+    plugin/social-login/lib/facebook/fb_ca_chain_bundle.crt
+    plugin/social-login/facebook-login.php
+ 
+v.1.1.4 (14.08.08)
+    : 정보수정시 패스워드 입력창 제거 (하태영님 제안)
+    : 아이디, 비밀번호를 이용해 로그인 안되게
+    : 정보수정시 비밀번호 틀리다고 나오는 문제 해결
+    : 패스워드 찾기시 소셜로그인으로 안내
+
+    plugin/social-login/HISTORY
+    plugin/social-login/_lib.php
+    plugin/social-login/bbs/register_form.php
+    extend/mw.social-login.extend.php
+ 
+v.1.1.3 (14.06.27)
+    : 제휴마케팅 적립지원 (신비님 제안)
+    : 회원가입 경로 지원
+
+    plugin/social-login/HISTORY
+    plugin/social-login/kakao-login.php
+    plugin/social-login/naver-login.php
+    plugin/social-login/twitter-login.php
+    plugin/social-login/facebook-login.php
+    plugin/social-login/google-login.php
+ 
+v.1.1.2 (14.06.20)
+    : 카카오톡 연동 (Park님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/_config.php
+    plugin/social-login/_upgrade.php
+    plugin/social-login/kakao-login.php
+    plugin/social-login/include.php
+    plugin/social-login/img/kakao.png
+    plugin/social-login/img/kakao-small.png
+    extend/mw.social-login.extend.php
+ 
+v.1.1.1 (14.05.30)
+    : 회원정보 연속수정시 경로 오류 (재아님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/bbs/register_form_update.php
+ 
+v.1.1.0 (14.05.16)
+    : OAuth 서버 설치시 중복 선언 문제 (재아님 제안)
+    : 네이버 로그인 오류 (재아님, Maru님 제안)
+    : 일부 서버 정보수정 오류 해결 (Maru님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/_config.php
+    plugin/social-login/lib/twitter/OAuth.php
+    plugin/social-login/bbs/register_form.php
+ 
+v.1.0.9 (14.05.09)
+    : 정보수정 페이지 별도 제공 (jobdong님 제안)
+    : 탈퇴, 차단회원 처리
+    : 네이버 로그인 추가
+
+    plugin/social-login/HISTORY
+    plugin/social-login/_config.php
+    plugin/social-login/bbs/*
+    plugin/social-login/img/naver.png
+    plugin/social-login/img/naver_small.png
+    plugin/social-login/naver-login.php
+    plugin/social-login/facebook-login.php
+    plugin/social-login/twitter-login.php
+    plugin/social-login/google-login.php
+    plugin/social-login/include.php
+    extend/mw.social-login.extend.php
+ 
+v.1.0.8 (13.11.22)
+    : 회원가입시 포인트 적용 (청해님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/facebook-login.php
+    plugin/social-login/twitter-login.php
+    plugin/social-login/google-login.php
+ 
+v.1.0.7 (13.09.06)
+    : 모바일 기기에서 페이스북 로그인 안되는 문제 해결 (제이리님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/include.php
+ 
+v.1.0.6 (13.07.19)
+    : 별명 중복 문제 (모아님 제안)
+    : 이메일 중복문제
+    : 페이스북 php 경고 메시지 출력 안함
+
+    plugin/social-login/HISTORY
+    plugin/social-login/twitter-login.php
+    plugin/social-login/facebook-login.php
+    plugin/social-login/google-login.php
+
+v.1.0.5 (13.06.21)
+    : 트위터 api 버전업 (쌈마님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/lib/twitter/twitteroauth.php
+
+v.1.0.4 (13.06.14)
+    : 정보수정시 비밀번호 입력 건너뛰기 (젬스박님 제안)
+
+    plugin/social-login/HISTORY
+    extend/mw.social-login.extend.php
+
+v.1.0.3 (12.09.14)
+    : charset 적용
+    : 일부 IE 브라우져 버그 해결 (페이스북 변경사항)
+
+    plugin/social-login/_common.php
+    plugin/social-login/include.php
+
+v.1.0.2 (12.06.29)
+    : 구글 로그인 연동
+    : 페이스북 생년월일 하이픈 제거
+    : 디렉토리 구조변경 (src -> lib)
+
+    plugin/social-login/img/google.png
+    plugin/social-login/img/google_small.png
+    plugin/social-login/lib/*
+    plugin/social-login/src/ -> 삭제
+    plugin/social-login/_upgrade.php
+    plugin/social-login/_config.php
+    plugin/social-login/google-login.php
+
+v.1.0.l (12.06.22)
+    : 트위터 로그인 연동 (abraham-twitteroauth 라이브러리 사용)
+    : 데이터 addslashes 적용
+    : 아이콘 크기 변경
+    : 페이스북 이름 utf8 버그 수정
+
+    plugin/social-login/img/facebook.png
+    plugin/social-login/img/facebook_small.png
+    plugin/social-login/img/twitter.png
+    plugin/social-login/img/twitter_small.png
+    plugin/social-login/src/OAuth.php
+    plugin/social-login/src/twitteroauth.php
+    plugin/social-login/facebook-login.php
+    plugin/social-login/twitter-login.php
+    plugin/social-login/twitter-redirect.php
+    plugin/social-login/_upgrade.php
+    plugin/social-login/_config.php
+
+v.1.0.0 (12.06.15)
+    : 배포시작
+
+소셜로그인 이력 ↑
+
