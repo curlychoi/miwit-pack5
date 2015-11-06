@@ -113,16 +113,16 @@ function mw_latest_mobile($skin_dir="", $bo_tables, $rows=10, $subject_len=50, $
                         $row['wr_subject'] = "보기가 차단된 게시물입니다.";
 
                     if ($row['wr_view_block'])
-                        $file[$k]['path'] = $mw_mobile['path']."/img/lock.png";
+                        $file[$k]['path'] = $latest_skin_url."/img/lock.png";
 
                     if ($row['icon_secret'])
-                        $file[$k]['path'] = $mw_mobile['path']."/img/lock.png";
+                        $file[$k]['path'] = $latest_skin_url."/img/lock.png";
 
                     if ($row['wr_key_password'])
-                        $file[$k]['path'] = $mw_mobile['path']."/img/lock.png";
+                        $file[$k]['path'] = $latest_skin_url."/img/lock.png";
 
                     if ($row['wr_singo_lock'])
-                        $file[$k]['path'] = $mw_mobile['path']."/img/lock.png";
+                        $file[$k]['path'] = $latest_skin_url."/img/lock.png";
 
                     $file[$k]['subject'] = conv_subject($row['wr_subject'], $subject_len, "…");
                     $file[$k]['wr_comment'] = $row['wr_comment'];
@@ -131,7 +131,7 @@ function mw_latest_mobile($skin_dir="", $bo_tables, $rows=10, $subject_len=50, $
 
                 if (count($file) < $is_img) {
                     for ($j=count($file); $j<$is_img; $j++) {
-                        $file[$j]['path'] = "$latest_skin_path/img/noimage.gif";
+                        $file[$j]['path'] = $latest_skin_url."/img/noimage.gif";
                         $file[$j]['subject'] = "...";
                         $file[$j]['href'] = "#";
                     }   
@@ -166,7 +166,7 @@ function mw_latest_mobile($skin_dir="", $bo_tables, $rows=10, $subject_len=50, $
                     $list[$j] = get_list($row, $board, $latest_skin_path, $subject_len);
                 }
 		$list[$j]['content'] = $list[$i]['wr_content'] = "";
-                $list[$j]['href'] = $mw_mobile['path']."/board.php?bo_table={$bo_table}&wr_id={$list[$j]['wr_id']}";
+                $list[$j]['href'] = G5_BBS_URL."/board.php?bo_table={$bo_table}&wr_id={$list[$j]['wr_id']}";
 	    }
 	    if (!$j) {
 		for ($j=0; $j<$rows; $j++) {
@@ -231,7 +231,7 @@ function mw_mobile_get_thumb($bo_tables, $cnt=1, $is_rand)
                 $file['bo_table'] = $bo_table;
                 $file['wr_id'] = $max;
                 $file['path'] = $file_path;
-                $file['href'] = "{$mw_mobile['path']}/board.php?bo_table={$bo_table}&wr_id={$max}";
+                $file['href'] = G5_BBS_URL."/board.php?bo_table={$bo_table}&wr_id={$max}";
 
                 //$filemtime = filemtime($file_path);
                 if (!$files[$max]['wr_id']) {

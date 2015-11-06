@@ -223,7 +223,7 @@ bo_url<?php echo $mw_latest_mobile_cnt?> = new Array();
 
 </div> <!-- latest-swipe -->
 
-<? if ($mw_latest_mobile_cnt==1) { ?><script src="<?php echo G5_JS_URL?>/swipe.js"></script><? } ?>
+<? if ($mw_latest_mobile_cnt==1) { ?><script src="<?php echo G5_THEME_URL?>/js/swipe.js"></script><? } ?>
 <script>
 index_old = 0;
 var elem<?php echo $mw_latest_mobile_cnt?> = document.getElementById('swipe-box<?php echo $mw_latest_mobile_cnt?>');

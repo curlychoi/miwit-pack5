@@ -10,21 +10,17 @@ if (G5_IS_MOBILE) {
 include_once(G5_THEME_PATH.'/head.php');
 
 $list = array();
-$sql = " select * from {$g5['menu_table']} ";
-$sql.= "  where me_use = '1' ";
-$sql.= "  order by me_order, me_code ";
-$qry = sql_query($sql);
-while ($row = sql_fetch_array($qry)) {
-    preg_match("/bo_table=([0-9a-zA-Z_]+)&/", $row['me_link'].'&', $match);
-    if (!$match[1])
-        preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
+for ($i=0; $row=$mw5_menu[$i]; ++$i) {
+    $latest_table = mw_get_board($row['me_link']);
+    if ($latest_table and !in_array($latest_table, $list))
+        $list[] = $latest_table;
 
-    $latest_table = $match[1];
+    for ($j=0; $row2=$mw5_menu[$i]['sub'][$j]; $j++) {
+        $latest_table = mw_get_board($row2['me_link']);
+        if ($latest_table and !in_array($latest_table, $list))
+            $list[] = $latest_table;
+    }
 
-    if (!$latest_table) continue;
-    if (in_array($latest_table, $list)) continue;
-
-    $list[] = $latest_table;
 }
 
 mw_script($theme_path."/js/mw.slider.js");
@@ -76,10 +72,14 @@ $(document).ready(function() {
 
 <div class="latest">
 <?php
-for ($i=0, $m=count($list); $i<$m; ++$i) {
-    echo "<div class=\"item\">".latest("theme/mw5", $list[$i], 5, 50, 0)."</div>";
+$i = 1;
+while ($latest_table = array_shift($list)) {
+    $mw_skin_config = mw_skin_config($latest_table);
+    if ($mw_skin_config['cf_attribute'] == "1:1") continue;
 
-    if (($i+1)%2==0) echo "</div><div class=\"latest\">";
+    echo "<div class=\"item\">".latest("theme/mw5", $latest_table, 5, 50, 0)."</div>";
+
+    if (($i++)%2==0) echo "</div><div class=\"latest\">";
 }
 ?>
 </div>
