@@ -1508,8 +1508,7 @@ img {
     font-size:11px;
     float:right;
     padding:0;
-    margin:0;
-    margin-right:10px;
+    margin:0 0 5px 0;
 }
 
 /* 댓글 버튼 */
@@ -1647,7 +1646,6 @@ img {
 
 #mw_basic .comment_buttons {
     text-align:right;
-    padding:10px 10px 0 0;
     float:right;
     height:30px;
 }
@@ -2538,16 +2536,6 @@ i.fa-warning { color:#f36a2e; }
         width:40px;
     }
 
-    #mw_basic .mw_basic_comment_func {
-    position:absolute;
-float:left;
-width:145px;
-margin-top:30px;
-white-space:nowrap;
-    }
-    #mw_basic .mw_basic_comment_content {
-        margin-top:25px;
-    }
 }
 
 nav.pg_wrap {

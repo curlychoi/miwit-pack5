@@ -475,18 +475,6 @@ for ($i=0; $i<$to_record; $i++) {
                 <? if ($is_admin) { ?> <input type="checkbox" name="chk_comment_id[]" class="chk_comment_id" value="<?=$list[$i][wr_id]?>"> <? } ?>
                 <? if ($mw_basic[cf_attribute] == 'qna' && $write[wr_qna_status] && $write[wr_qna_id] == $list[$i][wr_id]) { ?> <img src="<?=$board_skin_path?>/img/icon_choose.png" align="absmiddle"> <? } ?>
                 <span class=mw_basic_comment_name><?=$list[$i][name]?></span>
-                <span class="mw_basic_comment_func">
-                <? /*if ($is_ip_view && $list[$i][ip]) { ?> <span class="mw_basic_comment_ip media-ip">(<?=$list[$i][ip]?>)</span> <?}*/?>
-                <? if ($history_href) { echo "<a href=\"$history_href\" title=\"변경기록\"><i class='fa fa-history'></i></a>"; } ?>
-                <? if ($list[$i][is_edit]) { echo "<a href=\"javascript:comment_box('{$comment_id}', 'cu');\" title='수정'><i class='fa fa-eraser fa-square-o'></i></a> "; } ?>
-                <? if ($list[$i][is_del])  { echo "<a href=\"javascript:comment_delete('{$list[$i][del_link]}');\" title='삭제'><i class='fa fa-cut'></i></a> "; } ?>
-                <? if ($list[$i][singo_href]) { ?><a href="<?=$list[$i][singo_href]?>"><i class="fa fa-warning"></i></a><?}?>
-		<? if ($is_admin or $is_singo_admin) { ?>
-		<a href="#;" title='접근차단' onclick="btn_intercept('<?=$list[$i][mb_id]?>', '<?=$list[$i][wr_ip]?>')"><i class="fa fa-user-times"></i></a>
-		<a href="#;" class="tooltip" title='<?php echo $list[$i]['ip']?> 조회' onclick="btn_ip('<?=$list[$i][wr_ip]?>')"><i class="fa fa-info-circle"></i></a>
-		<a href="#;" class="tooltip" title='<?php echo $list[$i]['ip']?> 검색' onclick="btn_ip_search('<?=$list[$i][wr_ip]?>')"><i class="fa fa-search"></i></a>
-		<?php } ?>
-                </span><!--mw_basic_comment_func-->
                 <span class="mw_basic_comment_datetime media-date"><i class="fa fa-clock-o"></i> <?php echo $row['datetime2']?></span>
                 <span class="mw_basic_comment_datetime media-date-sns"><i class="fa fa-clock-o"></i> <?php echo $row['datetime_sns']?></span>
             </td>
@@ -532,6 +520,20 @@ for ($i=0; $i<$to_record; $i++) {
             </td>
         </tr>
         </table>
+
+        <div class="mw_basic_comment_func">
+        <? if ($history_href) { echo "<a href=\"$history_href\" title=\"변경기록\"><i class='fa fa-history'></i></a>"; } ?>
+        <? if ($list[$i][is_edit]) { echo "<a href=\"javascript:comment_box('{$comment_id}', 'cu');\" title='수정'><i class='fa fa-eraser fa-square-o'></i></a> "; } ?>
+        <? if ($list[$i][is_del])  { echo "<a href=\"javascript:comment_delete('{$list[$i][del_link]}');\" title='삭제'><i class='fa fa-cut'></i></a> "; } ?>
+        <? if ($list[$i][singo_href]) { ?><a href="<?=$list[$i][singo_href]?>"><i class="fa fa-warning"></i></a><?}?>
+        <? if ($is_admin or $is_singo_admin) { ?>
+        <a href="#;" title='접근차단' onclick="btn_intercept('<?=$list[$i][mb_id]?>', '<?=$list[$i][wr_ip]?>')"><i class="fa fa-user-times"></i></a>
+        <a href="#;" class="tooltip" title='<?php echo $list[$i]['ip']?> 조회' onclick="btn_ip('<?=$list[$i][wr_ip]?>')"><i class="fa fa-info-circle"></i></a>
+        <a href="#;" class="tooltip" title='<?php echo $list[$i]['ip']?> 검색' onclick="btn_ip_search('<?=$list[$i][wr_ip]?>')"><i class="fa fa-search"></i></a>
+        <?php } ?>
+        </div><!--mw_basic_comment_func-->
+
+        <div class="division"></div>
 
         <?php if ($list[$i]['mb_id'] != '@lucky-writing') { ?>
         <div class="comment_buttons">
