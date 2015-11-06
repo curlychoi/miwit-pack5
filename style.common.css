@@ -2421,6 +2421,16 @@ i.fa-warning { color:#f36a2e; }
         
     }
 
+    #mw_basic .gall_list div.gall_star {
+        width:130px;
+    }
+
+    #mw_basic .gall_list div.gall_star div.gall_star_inner {
+        position:absolute;       
+        margin-left:-5px;
+    }
+
+
     #mw_basic .mw_basic_list_gall .gall_image {
         position:relative;
         width:130px;

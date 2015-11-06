@@ -730,7 +730,7 @@ else if ($mw_basic[cf_type] == "gall")
                 <div class="gall_image">
                     <?php if ($list[$i][icon_new]) { echo "<div class='icon_gall_new'><img src='{$pc_skin_path}/img/icon_gall_new.png'></div>"; } ?>
                     <?php if ($is_notice_thumb or $is_lock_thumb) { ?>
-                        <div><a href="<?=$list[$i][href]?>" style="background:url(<?php echo $thumb_file?>) no-repeat center center; display:block; border:1px solid #ddd; <?php echo "width:{$set_width}px; height:{$set_height}px; text-align:left;"?>"></a></div>
+                        <div><a href="<?=$list[$i][href]?>" style="background:url(<?php echo $thumb_file?>) no-repeat center center; display:block; border:1px solid #ddd; <?php echo "width:{$set_width}px; height:{$set_height}px; text-align:left;"?>" class="thumb"></a></div>
                     <?php } else { ?>
                         <div><a href="<?=$list[$i][href]?>"><!--
                         --><img src="<?=$thumb_file?>" class="thumb"
@@ -768,7 +768,7 @@ else if ($mw_basic[cf_type] == "gall")
                 <?php
                 $rate = mw_rate($bo_table, $list[$i]['wr_id']);
                 ?>
-                    <div id="list_rate_<?php echo $list[$i]['wr_id']?>"></div>
+                    <div class="gall_star_inner" id="list_rate_<?php echo $list[$i]['wr_id']?>"></div>
                     <script>
                     $(document).ready(function () {
                         $("#list_rate_<?php echo $list[$i]['wr_id']?>").mw_star_rate({
@@ -1370,6 +1370,12 @@ $(window).load(function () {
 
 <style>
 <?php if ($mw_basic['cf_type'] == 'desc') echo "#mw_basic .list_desc_info { display:block; }".PHP_EOF; ?>
+@media screen and (max-width:500px) {
+    #mw_basic .mw_basic_list_gall a.thumb {
+        width:100% !important;
+        height:<?php echo round((130/$mw_basic['cf_thumb_height'])*$mw_basic['cf_thumb_height'])?>px !important;
+    }
+}
 <?php echo $cf_css?>
 </style>
 <link rel="stylesheet" href="<?php echo $board_skin_path?>/sideview.css"/>
