@@ -518,7 +518,7 @@ img {
     float:left;
     line-height:20px;
     margin-right:10px;
-    vertical-align:top;
+    font-size:12px;
 }
 #mw_basic .list_desc_info span.item img {
     margin:0;
@@ -527,8 +527,12 @@ img {
 #mw_basic .list_desc_info span.mw_basic_list_name {
 }
 
+#mw_basic .list_desc_info span.item .sv_wrap {
+    margin:2px 0 0 0;
+}
+
 #mw_basic .list_desc_info span.item i {
-    line-height:10px;
+    margin:5px 3px 0 0;    
 }
 
 #mw_basic .list_desc_info a:hover,
@@ -2540,6 +2544,9 @@ i.fa-warning { color:#f36a2e; }
         width:40px;
     }
 
+    #mw_basic .mw_basic_list_subject img:first-child {
+        margin:10px 5px 0 2px;
+    }
 }
 
 nav.pg_wrap {
