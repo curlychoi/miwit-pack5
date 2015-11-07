@@ -14,6 +14,10 @@ if ($config['cf_use_email_certify'] && strstr($_SERVER['PHP_SELF'], G5_BBS_DIR."
     $('#login_password_lost').after('&nbsp;<a href="<?php echo $re?>" class="btn01">이메일재인증</a>');
     </script><?
 }
+
+if (G5_IS_MOBILE) {
+    echo "<style>.mbskin { padding:20px; }</style>".PHP_EOL;
+}
 ?>
 
 <?php if ($is_admin == 'super') {  ?><!-- <div style='float:left; text-align:center;'>RUN TIME : <?php echo get_microtime()-$begin_time; ?><br></div> --><?php }  ?>
