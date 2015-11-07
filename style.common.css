@@ -337,7 +337,7 @@ img {
     border:2px solid #6B95BD;
     border:1px solid #999;
     background-color:#F8F8F9;
-    padding:10px;
+    padding:10px 0 10px 10px;
     margin:0 0 10px 0;
 }
 
@@ -1503,13 +1503,16 @@ img {
 
 /* 댓글 버튼 */
 #mw_basic .mw_basic_comment_func {
-    width:145px;
     font-weight:normal;
     color:#888;
     font-size:11px;
     float:left;
     padding:0;
     margin:0 0 5px 0;
+}
+#mw_basic .mw_basic_comment_func.user {
+    width:60px;
+    margin-left:2px;
 }
 
 /* 댓글 버튼 */
@@ -1647,8 +1650,9 @@ img {
 
 #mw_basic .comment_buttons {
     text-align:left;
-    float:left;
     height:30px;
+    float:right;
+    margin-top:10px;
 }
 
 #mw_basic .comment_buttons .button {
@@ -1663,7 +1667,7 @@ img {
     background-color:#fff;
 
     float:left;
-    width:60px;
+    width:50px;
     height:20px;
     text-align:center;
     padding:2px 0 0 0;
