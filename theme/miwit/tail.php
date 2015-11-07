@@ -47,11 +47,15 @@ mw_script($theme_path.'/js/mw.scroll.top.js');
 
 </div><!-- #mw5 -->
 
-<link rel="stylesheet" href="<?php echo G5_URL?>/attendance/suggest.css"> 
+<?php if (is_dir(G5_PLUGIN_PATH."/attendance")) {?>
+<link rel="stylesheet" href="<?php echo G5_PLUGIN_URL?>/attendance/suggest.css"> 
 <script src="<?php echo G5_PLUGIN_URL?>/attendance/suggest.js.php?t=<?php echo time()?>"></script>
+<?php }?>
 
-<link rel="stylesheet" href="<?php echo G5_URL?>/memo-up/suggest.css"> 
+<?php if (is_dir(G5_PLUGIN_PATH."/memo-up")) {?>
+<link rel="stylesheet" href="<?php echo G5_PLUGIN_URL?>/memo-up/suggest.css"> 
 <script src="<?php echo G5_PLUGIN_URL?>/memo-up/suggest.js.php?t=<?php echo time()?>"></script> 
+<?php }?>
 
 <?php
 if (file_exists($g4['path']."/extend/mw.mobile.extend.php")) {
