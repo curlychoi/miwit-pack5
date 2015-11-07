@@ -58,7 +58,7 @@ mw_script($theme_path.'/js/mw.scroll.top.js');
 <?php }?>
 
 <?php
-if (file_exists($g4['path']."/extend/mw.mobile.extend.php")) {
+if (file_exists($g4['path']."/extend/mw.mobile.extend.php") and !G5_USE_MOBILE) {
     //$mobile_link = mw_seo_url($bo_table, $wr_id, '', 2);
     $mobile_link = "$g4[path]/plugin/mobile";
     if ($bo_table) {
@@ -68,7 +68,7 @@ if (file_exists($g4['path']."/extend/mw.mobile.extend.php")) {
     }
     echo "<a href='{$mobile_link}' id='device_change'>모바일 웹으로 보기</a>";
 }
-else if (G5_DEVICE_BUTTON_DISPLAY && !G5_IS_MOBILE) {
+else if (G5_DEVICE_BUTTON_DISPLAY and G5_USE_MOBILE and !G5_IS_MOBILE) {
     $seq = 0;
     $p = parse_url(G5_URL);
     $href = $p['scheme'].'://'.$p['host'].$_SERVER['PHP_SELF'];
