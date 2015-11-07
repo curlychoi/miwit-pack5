@@ -176,7 +176,7 @@ $write_pages = get_paging(10, $page, $total_page, "{$_SERVER['PHP_SELF']}?is_mob
     /*padding:5px 7px 4px 7px;*/
 }
 
-<?php if ($_GET['is_mobile']) { ?>
+<?php if ($_GET['is_mobile'] or (defined("G5_IS_MOBILE") and G5_IS_MOBILE)) { ?>
 #allmoa {
     list-style:none;
     margin:5px;
