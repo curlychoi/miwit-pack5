@@ -2654,7 +2654,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
                 $row = mw_category_info($ca_name);
                 if (!$row) {
                     sql_query("insert into {$mw['category_table']} set bo_table = '{$bo_table}', ca_name = '{$ca_name}' ");
-                    $row['ca_id'] = mysql_insert_id();
+                    $row['ca_id'] = sql_insert_id();
                 }
                 ?>
                 <tr>

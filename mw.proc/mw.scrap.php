@@ -39,7 +39,7 @@ $sql = " insert into $g4[scrap_table] ( mb_id, bo_table, wr_id, ms_datetime )
          values ( '$member[mb_id]', '$bo_table', '$wr_id', '$g4[time_ymdhis]' ) ";
 sql_query($sql);
 
-$ms_id = mysql_insert_id();
+$ms_id = sql_insert_id();
 
 $ms_subject = addslashes($write[wr_subject]);
 sql_query(" update $g4[scrap_table] set ms_subject = '$ms_subject' where ms_id = '$ms_id'", false);

@@ -70,7 +70,7 @@ if ($mw_basic[cf_vote]) {
 
     if ($vote[vt_multi]) {
         $qry = sql_query("select count(*) as cnt from $mw[vote_log_table] where vt_id = '$vote[vt_id]' group by mb_id");
-        $vt_total = mysql_num_rows($qry);
+        $vt_total = sql_num_rows($qry);
     }
     else {
         $vt_total = $vote[vt_total];

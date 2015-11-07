@@ -1,4 +1,4 @@
-ver 2.9.8 (15.11.05)
+ver 2.9.8 (15.11.07)
     : 반응형 지원!!
     : 갤러리형등 반응형 지원 (신비님 제안)
     : 요약형 디자인 개선 (신비님 제안) 
@@ -16,10 +16,12 @@ ver 2.9.8 (15.11.05)
     : 댓글 관리자 자신의 글 추천 가능 (크레이티브님 제안)
     : 공지필수 데이터 filter 처리
     : 제목 word-break 적용
+    : mysqli 지원
 
     miwit/HISTORY
     miwit/_common.php
     miwit/mw.adm/_common.php
+    miwit/mw.adm/mw.config.php
     miwit/mw.lib/mw.function.lib.php
     miwit/mw.proc/_common.php
     miwit/mw.proc/mw.g5.adapter.extend.php
@@ -28,6 +30,10 @@ ver 2.9.8 (15.11.05)
     miwit/mw.proc/mw.top.button.php
     miwit/mw.proc/mw.notice.check.php
     miwit/mw.proc/mw.comment.good.php
+    miwit/mw.proc/mw.list.1n1.php
+    miwit/mw.proc/mw.scrap.php
+    miwit/mw.proc/mw.vote.php
+    miwit/mw.proc/mw.copy.new.php
     miwit/mw.geditor/_common.php
     miwit/mw.okname/_common.php
     miwit/mw.js/mw.g5.adapter.js.php
@@ -35,6 +41,8 @@ ver 2.9.8 (15.11.05)
     miwit/list.skin.php
     miwit/view_head.skin.php
     miwit/view_comment.skin.php
+    miwit/write.skin.php
+    miwit/write_update.skin.php
     miwit/secret_all.php
     miwit/style.common.css
  

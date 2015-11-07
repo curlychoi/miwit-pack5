@@ -2141,7 +2141,7 @@ function mw_move($board, $wr_id_list, $chk_bo_table, $sw)
                 sql_query("lock tables $move_write_table write", false);
                 sql_query($sql);
 
-                $insert_id = mysql_insert_id();
+                $insert_id = sql_insert_id();
                 sql_query("unlock tables", false);
 
                 sql_query(" update $move_write_table set wr_trackback = '".addslashes($row2[wr_trackback])."' where wr_id = '$insert_id' ", false);
@@ -2267,7 +2267,7 @@ function mw_move($board, $wr_id_list, $chk_bo_table, $sw)
                         $sql.= ", vt_point = '$tmp[vt_point]' ";
                         sql_query($sql);
 
-                        $insert_vt_id = mysql_insert_id();
+                        $insert_vt_id = sql_insert_id();
 
                         $qry = sql_query("select * from $mw[vote_item_table] where vt_id = '$vt_id' order by vt_num");
                         while ($tmp = sql_fetch_array($qry)) {
@@ -4280,4 +4280,37 @@ function mb_id_check($mb_id)
     }
     return false;
 }
+
+if (!function_exists("sql_insert_id")) {
+function sql_insert_id($link=null)
+{
+    if (defined("G5_PATH")) {
+        global $g5;
+
+        if(!$link)
+            $link = $g5['connect_db'];
+
+        if(function_exists('mysqli_insert_id') && defined("G5_MYSQLI_USE") && G5_MYSQLI_USE)
+            return mysqli_insert_id($link);
+        else
+            return mysql_insert_id($link);
+    }
+    else {
+        global $connect_db;
+
+        if(!$link)
+            $link = $connect_db;
+
+        return mysql_insert_id($link);
+    }
+}}
+
+if (!function_exists("sql_num_rows")) {
+function sql_num_rows($result)
+{
+    if (function_exists('mysqli_num_rows') && defined("G5_MYSQLI_USE") && G5_MYSQLI_USE)
+        return mysqli_num_rows($result);
+    else
+        return mysql_num_rows($result);
+}}
 
