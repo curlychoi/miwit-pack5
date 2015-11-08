@@ -1578,7 +1578,10 @@ function mw_get_ccl_info($ccl)
 
 function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되었습니다.')
 {
-    global $g4, $member, $is_admin;
+    global $g4;
+    global $member;
+    global $is_admin;
+    global $board_skin_path;
 
     $write_table = "$g4[write_prefix]$board[bo_table]";
 
@@ -1586,7 +1589,7 @@ function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되
     if (!$row)
         return;
 
-    $board_skin_path = "$g4[path]/skin/board/$board[bo_skin]";
+    //$board_skin_path = "$g4[path]/skin/board/$board[bo_skin]";
     $lib_file_path = "$board_skin_path/mw.lib/mw.skin.basic.lib.php";
     if (is_mw_file($lib_file_path)) include($lib_file_path);
 
