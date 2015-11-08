@@ -87,7 +87,7 @@ $sql = " insert into $move_write_table
                 wr_10             = '".addslashes($write[wr_10])."' ";
 sql_query($sql);
 
-$insert_id = mysql_insert_id();
+$insert_id = sql_insert_id();
 $save_parent = $insert_id;
 sql_query(" update $move_write_table set wr_parent = '$save_parent' where wr_id = '$insert_id' ");
 
@@ -174,7 +174,7 @@ if ($tmp) {
     $sql.= ", vt_point = '$tmp[vt_point]' ";
     sql_query($sql);
 
-    $insert_vt_id = mysql_insert_id();
+    $insert_vt_id = sql_insert_id();
 
     $qry = sql_query("select * from $mw[vote_item_table] where vt_id = '$vt_id' order by vt_num");
     while ($tmp = sql_fetch_array($qry)) {

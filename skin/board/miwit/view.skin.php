@@ -30,7 +30,7 @@ include_once("$board_skin_path/mw.lib/mw.skin.basic.lib.php");
 include("view_head.skin.php");
 
 if ($write['wr_key_password'] && !get_session($ss_key_name."_".$write['wr_id'])) {
-    include("{$pc_skin_path}/mw.proc/mw.key.php");
+    include("{$board_skin_path}/mw.proc/mw.key.php");
     return;
 }
 
@@ -40,7 +40,7 @@ if (is_reaction_test())
 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
 ?>
 
-<?php include_once($pc_skin_path."/mw.proc/mw.asset.php")?>
+<?php include_once($board_skin_path."/mw.proc/mw.asset.php")?>
 
 <script> document.title = "<?=strip_tags(addslashes($view[wr_subject]))?>"; </script>
 
@@ -124,7 +124,7 @@ include_once("$board_skin_path/mw.proc/mw.list.hot.skin.php");
         </form>
     </td>
     <td align="right">
-        <?php include($pc_skin_path."/mw.proc/mw.top.button.php")?>
+        <?php include($board_skin_path."/mw.proc/mw.top.button.php")?>
     </td>
 </tr>
 <tr><td height=5></td></tr>
@@ -328,7 +328,7 @@ for ($i=1; $i<=$g4[link_count]; $i++) {
         $("#youtube_thumb").removeClass("fa-youtube");
         $("#youtube_thumb").addClass("fa-spinner fa-pulse");
 
-        $.get("<?php echo $pc_skin_path?>/mw.proc/mw.youtube.thumb.php", {
+        $.get("<?php echo $board_skin_path?>/mw.proc/mw.youtube.thumb.php", {
             "bo_table":"<?php echo $bo_table?>",
             "wr_id":"<?php echo $wr_id?>",
             "num":"<?php echo $i?>"
@@ -632,7 +632,7 @@ if ($bomb) {
     <script>
     $(document).ready(function () {
         $("#view_rate").mw_star_rate({
-            path : "<?php echo $pc_skin_path?>/mw.js/mw.star.rate/",
+            path : "<?php echo $board_skin_path?>/mw.js/mw.star.rate/",
             default_value : <?php echo round($write['wr_rate'], 1)?>,
             readonly : true,
             readonly_msg : '',
@@ -965,9 +965,9 @@ $(document).ready(function () {
             'bf_no' : bf_no
         }
 
-        $.post("<?php echo $pc_skin_path?>/mw.proc/mw.exif.show.php", param, function (req) {
+        $.post("<?php echo $board_skin_path?>/mw.proc/mw.exif.show.php", param, function (req) {
             $("body").append("<div id='exif-info' title='클릭하면 창이 닫힙니다.'></div>");
-            $("#exif-info").css({ 'background': 'url(<?php echo $pc_skin_path?>/img/exif.png) no-repeat' });
+            $("#exif-info").css({ 'background': 'url(<?php echo $board_skin_path?>/img/exif.png) no-repeat' });
             $("#exif-info").css("position", "absolute");
             $("#exif-info").css("left", x);
             $("#exif-info").css("top", y);
@@ -1248,7 +1248,7 @@ function file_download(link, no) {
 <?php if (is_file($g4['path']."/js/board.js")) { ?>
 <script src="<?php echo $g4['path']."/js/board.js"?>"></script>
 <?php } ?>
-<script src="<?php echo $pc_skin_path."/mw.js/mw_image_window.js"?>"></script>
+<script src="<?php echo $board_skin_path."/mw.js/mw_image_window.js"?>"></script>
 
 <script>
 // 서명 링크를 새창으로

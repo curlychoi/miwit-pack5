@@ -89,7 +89,7 @@ for ($i=1; $i<=$g4['link_count']; $i++)
 {
     //if ($mw_basic[cf_link_log])  {
         $view['link'][$i] = set_http(get_text($view["wr_link{$i}"]));
-        $view['link_href'][$i] = "$pc_skin_path/link.php?bo_table=$board[bo_table]&wr_id=$view[wr_id]&no=$i" . $qstr;
+        $view['link_href'][$i] = "$board_skin_path/link.php?bo_table=$board[bo_table]&wr_id=$view[wr_id]&no=$i" . $qstr;
         $view['link_hit'][$i] = (int)$view["wr_link{$i}_hit"];
     //}
     $view['link_target'][$i] = $view["wr_link{$i}_target"];
@@ -220,7 +220,7 @@ else
     }
 }
 
-include($pc_skin_path.'/mw.proc/mw.file.viewer.php');
+include($board_skin_path.'/mw.proc/mw.file.viewer.php');
 
 if ($write[wr_singo] && $write[wr_singo] >= $mw_basic[cf_singo_number] && $mw_basic[cf_singo_write_block]) {
     $content = " <div class='singo_info'> 신고가 접수된 게시물입니다. (신고수 : $write[wr_singo]회)<br/>";
@@ -432,7 +432,7 @@ if (!$total_count && ($sca || $stx))
     // 원글만 얻는다. (코멘트의 내용도 검색하기 위함)
     $sql = " select distinct wr_parent from $write_table where $sql_search ";
     $result = sql_query($sql);
-    $total_count = mysql_num_rows($result);
+    $total_count = sql_num_rows($result);
 } 
 else 
 {
@@ -482,8 +482,8 @@ $new_count = $row[cnt];
 // 최고, 그룹관리자라면 글 복사, 이동 가능
 $copy_href = $move_href = "";
 if ($write[wr_reply] == "" && ($is_admin == "super" || $is_admin == "group")) {
-    $copy_href = "javascript:window.open('$pc_skin_path/move.php?sw=copy&bo_table=$bo_table&wr_id=$wr_id&page=$page".$qstr."', 'boardcopy', 'left=50, top=50, width=500, height=550, scrollbars=1');";
-    $move_href = "javascript:window.open('$pc_skin_path/move.php?sw=move&bo_table=$bo_table&wr_id=$wr_id&page=$page".$qstr."', 'boardmove', 'left=50, top=50, width=500, height=550, scrollbars=1');";
+    $copy_href = "javascript:window.open('$board_skin_path/move.php?sw=copy&bo_table=$bo_table&wr_id=$wr_id&page=$page".$qstr."', 'boardcopy', 'left=50, top=50, width=500, height=550, scrollbars=1');";
+    $move_href = "javascript:window.open('$board_skin_path/move.php?sw=move&bo_table=$bo_table&wr_id=$wr_id&page=$page".$qstr."', 'boardmove', 'left=50, top=50, width=500, height=550, scrollbars=1');";
 }
 
 if ($mw_basic[cf_umz]) { // 짧은 글주소 사용 
@@ -560,36 +560,36 @@ if ($mw_basic[cf_sns])
     <!--<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>-->
     <? if (strstr($mw_basic[cf_sns], '/me2day/')) { ?>
     <div><a href="<?=$me2day_url?>" target="_blank" title="이 글을 미투데이로 보내기"><img 
-        src="<?=$pc_skin_path?>/img/send_me2day.png" border="0"></a></div>
+        src="<?=$board_skin_path?>/img/send_me2day.png" border="0"></a></div>
     <? } ?>
     <? if (strstr($mw_basic[cf_sns], '/twitter/')) { ?>
     <div><a href="<?=$twitter_url?>" target="_blank" title="이 글을 트위터로 보내기"><img
-        src="<?=$pc_skin_path?>/img/send_twitter.png" border="0"></a></div>
+        src="<?=$board_skin_path?>/img/send_twitter.png" border="0"></a></div>
     <? } ?>
     <? if (strstr($mw_basic[cf_sns], '/facebook/')) { ?>
     <div><a href="<?=$facebook_url?>" target="_blank" title="이 글을 페이스북으로 보내기"><img
-        src="<?=$pc_skin_path?>/img/send_facebook.png" border="0"></a></div>
+        src="<?=$board_skin_path?>/img/send_facebook.png" border="0"></a></div>
     <? } ?>
 
     <? if (strstr($mw_basic[cf_sns], '/google_plus/')) { ?>
     <div><a href="<?=$google_plus_url?>" target="_blank" title="이 글을 구글플러스로 보내기"><img
-        src="<?=$pc_skin_path?>/img/send_google_plus.png" border="0"></a></div>
+        src="<?=$board_skin_path?>/img/send_google_plus.png" border="0"></a></div>
     <? } ?>
 
     <? if (strstr($mw_basic[cf_sns], '/yozm/') && $yozm_url) { ?>
     <div><a href="<?=$yozm_url?>" target="_blank" title="이 글을 요즘으로 보내기"><img
-        src="<?=$pc_skin_path?>/img/send_yozm.png" border="0"></a></div>
+        src="<?=$board_skin_path?>/img/send_yozm.png" border="0"></a></div>
     <? } ?>
     <? if (strstr($mw_basic[cf_sns], '/cyworld/')) { ?>
-    <div><img src="<?=$pc_skin_path?>/img/send_cy.png" border="0" onclick="<?=$cy_url?>" style="cursor:pointer" title="싸이월드 공감"></div>
+    <div><img src="<?=$board_skin_path?>/img/send_cy.png" border="0" onclick="<?=$cy_url?>" style="cursor:pointer" title="싸이월드 공감"></div>
     <? } ?>
     <? if (strstr($mw_basic[cf_sns], '/naver/')) { ?>
     <div><a href="<?=$naver_url?>" target="_blank" title="이 글을 네이버 북마크로 보내기"><img
-        src="<?=$pc_skin_path?>/img/send_naver.png" border="0"></a></div>
+        src="<?=$board_skin_path?>/img/send_naver.png" border="0"></a></div>
     <? } ?>
     <? if (strstr($mw_basic[cf_sns], '/google/')) { ?>
     <div><a href="<?=$google_url?>" target="_blank" title="이 글을 구글 북마크로 보내기"><img
-        src="<?=$pc_skin_path?>/img/send_google.png" border="0"></a></div>
+        src="<?=$board_skin_path?>/img/send_google.png" border="0"></a></div>
     <? } ?>
     <? if (strstr(strtolower($_SERVER[HTTP_USER_AGENT]), "mobile") or $is_admin) { ?>
         <?
@@ -627,7 +627,7 @@ if ($mw_basic[cf_sns])
             $kakao_url = "#;\" onclick=\"javascript:alert('모바일 기기에서만 작동합니다.');";
 
         if (strstr($mw_basic[cf_sns], '/kakao/')) { ?>
-        <div><a href="#;" id="kakao-link-btn"><img src="<?=$pc_skin_path?>/img/send_kakaotalk.png" valign="middle"></a></div>
+        <div><a href="#;" id="kakao-link-btn"><img src="<?=$board_skin_path?>/img/send_kakaotalk.png" valign="middle"></a></div>
         <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
         <script>
         // 사용할 앱의 Javascript 키를 설정해 주세요.

@@ -166,8 +166,8 @@ echo "<div style='margin:0;padding:0;font-size:0;line-height:0;height:0;clear:bo
 
 echo bc_code($mw_basic[cf_comment_head]);
 ?>
-<link rel="stylesheet" href="<?php echo $pc_skin_path?>/mw.js/mw.star.rate/jquery.mw.star.rate.css" type="text/css">
-<script src="<?php echo $pc_skin_path?>/mw.js/mw.star.rate/jquery.mw.star.rate.js"></script>
+<link rel="stylesheet" href="<?php echo $board_skin_path?>/mw.js/mw.star.rate/jquery.mw.star.rate.css" type="text/css">
+<script src="<?php echo $board_skin_path?>/mw.js/mw.star.rate/jquery.mw.star.rate.js"></script>
 
 <? if ($mw_basic[cf_source_copy] && $cwin) { // 출처 자동 복사 ?>
 <script type="text/javascript" src="<?=$board_skin_path?>/mw.js/autosourcing.open.compact.js"></script>
@@ -189,7 +189,7 @@ var char_max = parseInt(<?=$comment_max?>); // 최대
 </script>
 
 <? if ($cwin==1) { ?>
-<link href="<?php echo $pc_skin_path?>/mw.css/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet">
+<link href="<?php echo $board_skin_path?>/mw.css/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet">
 <script type="text/javascript" src="<?="$board_skin_path/mw.js/mw_image_window.js"?>"></script>
 <table width=100% cellpadding=10 align=center><tr><td>
 <?}?>
@@ -462,6 +462,16 @@ for ($i=0; $i<$to_record; $i++) {
             echo "</div>";
         }
         ?>
+        <?php if ($is_admin or $is_singo_admin) { ?>
+            <div class="division" style="padding-top:10px;"></div>
+            <div class="mw_basic_comment_func user">
+                <a href="#;" title='접근차단' onclick="btn_intercept('<?=$list[$i][mb_id]?>', '<?=$list[$i][wr_ip]?>')"><i class="fa fa-user-times"></i></a>
+                <a href="#;" class="tooltip" title='<?php echo $list[$i]['ip']?> 조회' onclick="btn_ip('<?=$list[$i][wr_ip]?>')"><i class="fa fa-info-circle"></i></a>
+                <a href="#;" class="tooltip" title='<?php echo $list[$i]['ip']?> 검색' onclick="btn_ip_search('<?=$list[$i][wr_ip]?>')"><i class="fa fa-search"></i></a>
+            </div>
+            <div class="division"></div>
+        <?php } ?>
+
     </td>
     <td width="2" bgcolor="#dedede"><div style="width:2px;"></div></td>
     <td><div style="width:10px;"></div></td>
@@ -475,20 +485,14 @@ for ($i=0; $i<$to_record; $i++) {
                 <? if ($is_admin) { ?> <input type="checkbox" name="chk_comment_id[]" class="chk_comment_id" value="<?=$list[$i][wr_id]?>"> <? } ?>
                 <? if ($mw_basic[cf_attribute] == 'qna' && $write[wr_qna_status] && $write[wr_qna_id] == $list[$i][wr_id]) { ?> <img src="<?=$board_skin_path?>/img/icon_choose.png" align="absmiddle"> <? } ?>
                 <span class=mw_basic_comment_name><?=$list[$i][name]?></span>
-                <span class="mw_basic_comment_func">
-                <? /*if ($is_ip_view && $list[$i][ip]) { ?> <span class="mw_basic_comment_ip media-ip">(<?=$list[$i][ip]?>)</span> <?}*/?>
-                <? if ($history_href) { echo "<a href=\"$history_href\" title=\"변경기록\"><i class='fa fa-history'></i></a>"; } ?>
-                <? if ($list[$i][is_edit]) { echo "<a href=\"javascript:comment_box('{$comment_id}', 'cu');\" title='수정'><i class='fa fa-eraser fa-square-o'></i></a> "; } ?>
-                <? if ($list[$i][is_del])  { echo "<a href=\"javascript:comment_delete('{$list[$i][del_link]}');\" title='삭제'><i class='fa fa-cut'></i></a> "; } ?>
-                <? if ($list[$i][singo_href]) { ?><a href="<?=$list[$i][singo_href]?>"><i class="fa fa-warning"></i></a><?}?>
-		<? if ($is_admin or $is_singo_admin) { ?>
-		<a href="#;" title='접근차단' onclick="btn_intercept('<?=$list[$i][mb_id]?>', '<?=$list[$i][wr_ip]?>')"><i class="fa fa-user-times"></i></a>
-		<a href="#;" class="tooltip" title='<?php echo $list[$i]['ip']?> 조회' onclick="btn_ip('<?=$list[$i][wr_ip]?>')"><i class="fa fa-info-circle"></i></a>
-		<a href="#;" class="tooltip" title='<?php echo $list[$i]['ip']?> 검색' onclick="btn_ip_search('<?=$list[$i][wr_ip]?>')"><i class="fa fa-search"></i></a>
-		<?php } ?>
-                </span><!--mw_basic_comment_func-->
                 <span class="mw_basic_comment_datetime media-date"><i class="fa fa-clock-o"></i> <?php echo $row['datetime2']?></span>
                 <span class="mw_basic_comment_datetime media-date-sns"><i class="fa fa-clock-o"></i> <?php echo $row['datetime_sns']?></span>
+
+                <div class="mw_basic_comment_func" style="float:right;">
+                <? if ($list[$i][is_edit]) { echo "<a href=\"javascript:comment_box('{$comment_id}', 'cu');\" title='수정'><i class='fa fa-eraser fa-square-o'></i></a> "; } ?>
+                <? if ($list[$i][is_del])  { echo "<a href=\"javascript:comment_delete('{$list[$i][del_link]}');\" title='삭제'><i class='fa fa-cut'></i></a> "; } ?>
+                </div><!--mw_basic_comment_func-->
+
             </td>
         </tr>
         </table>
@@ -533,8 +537,18 @@ for ($i=0; $i<$to_record; $i++) {
         </tr>
         </table>
 
+        <div class="division"></div>
+
         <?php if ($list[$i]['mb_id'] != '@lucky-writing') { ?>
         <div class="comment_buttons">
+            <?php if ($history_href) {?>
+            <span class="button"><a href="<?php echo $history_href?>" title="변경기록"><i class='fa fa-history'></i></a></span>
+            <?php } ?>
+
+            <?php if ($list[$i]['singo_href']) { ?>
+            <span class="button"><a href="<?=$list[$i][singo_href]?>"><i class="fa fa-warning"></i></a></span>
+            <?php } ?>
+
             <span class="mw_basic_comment_url button" value="<?=$list[$i][wr_id]?>">
                 <i class="fa fa-anchor"></i>
                 <span class='media-comment-button'>주소</span>
@@ -1358,6 +1372,7 @@ var g4_skin_path = "<?=$board_skin_path?>";
 <? if ($cwin) { ?> <script type="text/javascript" src="<?=$board_skin_path?>/mw.js/ZeroClipboard.js"></script> <? } ?>
 <script type="text/javascript">
 $(document).ready(function () {
+    $(".tooltip").removeClass("tooltip");
     $(".mw_basic_comment_url").click(function () {
         var comment_id = $(this).attr("value");
         var top = $(this).position().top + 15 ;

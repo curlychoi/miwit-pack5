@@ -80,7 +80,7 @@ $(document).ready(function () {
         }
         var t = Date.now() ;
 
-        $.get("<?php echo $pc_skin_path?>/mw.proc/mw.jump.update.php", {
+        $.get("<?php echo $board_skin_path?>/mw.proc/mw.jump.update.php", {
             "bo_table":"<?php echo $bo_table?>",
             "wr_id":"<?php echo $wr_id?>",
             "t":t

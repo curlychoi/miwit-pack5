@@ -29,6 +29,7 @@ img {
     font-size:12px;
     color:#000;
     text-align:left;
+    overflow:hidden;
 }
 
 #mw_basic form {
@@ -336,7 +337,7 @@ img {
     border:2px solid #6B95BD;
     border:1px solid #999;
     background-color:#F8F8F9;
-    padding:10px;
+    padding:10px 0 10px 10px;
     margin:0 0 10px 0;
 }
 
@@ -517,7 +518,7 @@ img {
     float:left;
     line-height:20px;
     margin-right:10px;
-    vertical-align:top;
+    font-size:12px;
 }
 #mw_basic .list_desc_info span.item img {
     margin:0;
@@ -526,8 +527,12 @@ img {
 #mw_basic .list_desc_info span.mw_basic_list_name {
 }
 
+#mw_basic .list_desc_info span.item .sv_wrap {
+    margin:2px 0 0 0;
+}
+
 #mw_basic .list_desc_info span.item i {
-    line-height:10px;
+    margin:5px 3px 0 0;    
 }
 
 #mw_basic .list_desc_info a:hover,
@@ -888,7 +893,7 @@ img {
     font-family:inherit;
     line-height:25px;
     padding:0;
-    margin:0 0 10px 0;
+    margin:12px 0 10px 0;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;
@@ -1505,10 +1510,13 @@ img {
     font-weight:normal;
     color:#888;
     font-size:11px;
-    float:right;
+    float:left;
     padding:0;
-    margin:0;
-    margin-right:10px;
+    margin:0 0 5px 0;
+}
+#mw_basic .mw_basic_comment_func.user {
+    width:60px;
+    margin-left:2px;
 }
 
 /* 댓글 버튼 */
@@ -1645,10 +1653,10 @@ img {
 }
 
 #mw_basic .comment_buttons {
-    text-align:right;
-    padding:10px 10px 0 0;
+    text-align:left;
+    height:30px;
     float:right;
-    height:20px;
+    margin-top:10px;
 }
 
 #mw_basic .comment_buttons .button {
@@ -1663,7 +1671,7 @@ img {
     background-color:#fff;
 
     float:left;
-    width:60px;
+    width:50px;
     height:20px;
     text-align:center;
     padding:2px 0 0 0;
@@ -2330,6 +2338,7 @@ i.fa-warning { color:#f36a2e; }
     .media-small-text { width:70px; }
     .media-on-text { display:inline; }
     .media-list-search { display:block; }
+    .media-list-search select:nth-child(1) { display:block; }
 
     #mw_basic .fa-button {
         padding:3px 3px 3px 3px;
@@ -2381,7 +2390,8 @@ i.fa-warning { color:#f36a2e; }
         font-weight:bold;
         color:#000;
         text-align:left;
-        padding:10px 0 0px 10px;
+        margin:10px 0 0 0;
+        padding:0px 0 0px 10px;
         height:20px;
     }
 
@@ -2518,6 +2528,25 @@ i.fa-warning { color:#f36a2e; }
         width:40px;
     }
 
+    #mw_basic .comment_buttons {
+    }
+
+    #mw_basic .comment_buttons .button {
+        width:20px;
+        padding-bottom:10px;
+    }
+
+    #mw_basic .mw_basic_comment_good.button {
+        width:40px;
+    }
+
+    #mw_basic .mw_basic_comment_nogood.button {
+        width:40px;
+    }
+
+    #mw_basic .mw_basic_list_subject img:first-child {
+        margin:10px 5px 0 2px;
+    }
 }
 
 nav.pg_wrap {

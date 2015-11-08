@@ -151,7 +151,7 @@ if ($mw_basic['cf_download_day'] && $mw_basic['cf_download_count'] && !$is_admin
     $sql.= "  group by wr_id";
     $qry = sql_query($sql);
 
-    if (mysql_num_rows($qry) >= $mw_basic['cf_download_count'])
+    if (sql_num_rows($qry) >= $mw_basic['cf_download_count'])
         alert("다운로드는 {$mw_basic['cf_download_day']}일에 {$mw_basic['cf_download_count']}번만 가능합니다.");
 }
 

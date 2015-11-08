@@ -218,7 +218,7 @@ echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimu
 ?>
 
 <?php if (!defined("_MW5_")) { ?>
-<link href="<?php echo $pc_skin_path?>/mw.css/font-awesome-4.3.0/css/font-awesome.css" rel="stylesheet">
+<link href="<?php echo $board_skin_path?>/mw.css/font-awesome-4.3.0/css/font-awesome.css" rel="stylesheet">
 <?php } ?>
 
 <? if ($mw_basic[cf_type] == "desc" || $mw_basic[cf_type] == "thumb") { // 요약형, 썸네일형일경우 제목 볼드 ?>
@@ -257,7 +257,7 @@ echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimu
     <? } ?>
 <? } ?>
 
-<?php include_once($pc_skin_path."/mw.proc/mw.asset.php")?>
+<?php include_once($board_skin_path."/mw.proc/mw.asset.php")?>
 
 <!-- 게시판 목록 시작 -->
 <table width="<?=$bo_table_width?>" align="center" cellpadding="0" cellspacing="0"><tr><td id=mw_basic>
@@ -301,7 +301,7 @@ $list_run_time = mw_time_log($list_run_time, "[list] /mw.proc/mw.list.hot.skin.p
         </form>
     </td>
     <td align="right">
-        <?php include($pc_skin_path."/mw.proc/mw.top.button.php")?>
+        <?php include($board_skin_path."/mw.proc/mw.top.button.php")?>
     </td>
 </tr>
 <tr><td height=5></td></tr>
@@ -728,7 +728,7 @@ else if ($mw_basic[cf_type] == "gall")
                 <?php } ?>
 
                 <div class="gall_image">
-                    <?php if ($list[$i][icon_new]) { echo "<div class='icon_gall_new'><img src='{$pc_skin_path}/img/icon_gall_new.png'></div>"; } ?>
+                    <?php if ($list[$i][icon_new]) { echo "<div class='icon_gall_new'><img src='{$board_skin_path}/img/icon_gall_new.png'></div>"; } ?>
                     <?php if ($is_notice_thumb or $is_lock_thumb) { ?>
                         <div><a href="<?=$list[$i][href]?>" style="background:url(<?php echo $thumb_file?>) no-repeat center center; display:block; border:1px solid #ddd; <?php echo "width:{$set_width}px; height:{$set_height}px; text-align:left;"?>" class="thumb"></a></div>
                     <?php } else { ?>
@@ -772,7 +772,7 @@ else if ($mw_basic[cf_type] == "gall")
                     <script>
                     $(document).ready(function () {
                         $("#list_rate_<?php echo $list[$i]['wr_id']?>").mw_star_rate({
-                            path : "<?php echo $pc_skin_path?>/mw.js/mw.star.rate/",
+                            path : "<?php echo $board_skin_path?>/mw.js/mw.star.rate/",
                             default_value : <?php echo round($rate['rate'], 1)?>,
                             readonly : true,
                             readonly_msg : '',
@@ -845,7 +845,7 @@ else if ($mw_basic[cf_type] == "gall")
 
     <!-- 썸네일 -->
     <td class=mw_basic_list_thumb><!-- 여백제거
-        --><? if ($list[$i][icon_new]) { echo "<div class='icon_gall_new'><img src='{$pc_skin_path}/img/icon_gall_new.png'></div>"; } ?><div><a href="<?=$list[$i][href]?>"><img src="<?=$thumb_file?>" width=<?=$mw_basic[cf_thumb_width]?> height=<?=$mw_basic[cf_thumb_height]?> align="absmiddle" class="list_thumb_img"></a></div><!--
+        --><? if ($list[$i][icon_new]) { echo "<div class='icon_gall_new'><img src='{$board_skin_path}/img/icon_gall_new.png'></div>"; } ?><div><a href="<?=$list[$i][href]?>"><img src="<?=$thumb_file?>" width=<?=$mw_basic[cf_thumb_width]?> height=<?=$mw_basic[cf_thumb_height]?> align="absmiddle" class="list_thumb_img"></a></div><!--
     --></td>
     <?php } ?>
 
@@ -865,7 +865,7 @@ else if ($mw_basic[cf_type] == "gall")
 
             echo "<div class='mw_basic_list_thumb thumb_td'>";
             if ($list[$i][icon_new])
-                echo "<div class='icon_gall_new'><img src='{$pc_skin_path}/img/icon_gall_new.png'></div>";
+                echo "<div class='icon_gall_new'><img src='{$board_skin_path}/img/icon_gall_new.png'></div>";
             echo "<div><a href=\"{$list[$i][href]}\"><img src=\"{$thumb_file}\" width={$mw_basic[cf_thumb_width]} height={$mw_basic[cf_thumb_height]} align='absmiddle' class='list_thumb_img'></a></div>";
             echo "</div>\n";
         }
@@ -1235,7 +1235,7 @@ function select_secret() {
     if (!confirm("선택한 게시물을 정말 비밀글로 변경 하시겠습니까?"))
         return;
 
-    f.action = "<?php echo $pc_skin_path?>/secret_all.php?opt=secret";
+    f.action = "<?php echo $board_skin_path?>/secret_all.php?opt=secret";
     f.submit();
 }
 
@@ -1251,7 +1251,7 @@ function select_secret_open() {
     if (!confirm("선택한 게시물을 정말 비밀글에서 공개글로 변경 하시겠습니까?"))
         return;
 
-    f.action = "<?php echo $pc_skin_path?>/secret_all.php";
+    f.action = "<?php echo $board_skin_path?>/secret_all.php";
     f.submit();
 }
 
