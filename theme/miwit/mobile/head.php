@@ -10,19 +10,16 @@ if ($mw['config']['cf_seo_url']) {
     $pc_url = mw_seo_url($bo_table, $wr_id, '&mobile=1&device=pc', false);
 }
 else {
-    $pc_url = set_http(preg_replace('/^m\./i', '', $_SERVER[HTTP_HOST]));
-    $pc_url.= str_replace("/plugin/mobile", "", $_SERVER[SCRIPT_NAME]);
     if ($bo_table) {
-        $pc_url .= "/$g4[bbs]/board.php?bo_table=$bo_table";
+        $pc_url .= G5_BBS_URL."/board.php?bo_table=".$bo_table;
         if ($wr_id) {
-            $pc_url .= "&wr_id=$wr_id";
-        }   
-        $pc_url .= "&mobile=1";
+            $pc_url .= "&wr_id=".$wr_id;
+        }
+        $pc_url .= "&device=pc";
     }
     else {
-        $pc_url .= "?mobile=1";
+        $pc_url .= "?device=pc";
     }
-    $pc_url .= "&device=pc";
 }
 $a = mw_mobile_total_alarm();
 extract($a);
