@@ -318,7 +318,7 @@ function log_del(obj, what)
     obj.value = '로그를 비우는 중입니다. 잠시만 기다려주세요...';
     obj.disabled = true;
 
-    $.post("<?php echo $pc_skin_path?>/mw.proc/mw.log.del.php", {
+    $.post("<?php echo $board_skin_path?>/mw.proc/mw.log.del.php", {
         'what': what,
         'bo_table' : '<?php echo $bo_table?>',
         'token':'<?php echo $token?>' 
@@ -1150,7 +1150,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
                 }
                 var t = Date.now() ;
 
-                $.get("<?php echo $pc_skin_path?>/mw.proc/mw.delete.subject.color.php?t="+t, {
+                $.get("<?php echo $board_skin_path?>/mw.proc/mw.delete.subject.color.php?t="+t, {
                         "color": $("#cf_subject_style_color_default").val(),
                         "bo_table": "<?php echo $bo_table?>"
                     },

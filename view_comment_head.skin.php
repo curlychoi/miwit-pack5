@@ -233,7 +233,7 @@ if ($mw_basic['cf_rate_level'] && $row['wr_rate'] > 0) {
     <script>
     $(document).ready(function () {
         $("#star_rate_<?php echo $row['wr_id']?>").mw_star_rate({
-            path : "<?php echo $pc_skin_path?>/mw.js/mw.star.rate/",
+            path : "<?php echo $board_skin_path?>/mw.js/mw.star.rate/",
             star : "star1",
             default_value : <?php echo round($row['wr_rate'], 1)?>,
             readonly : true,

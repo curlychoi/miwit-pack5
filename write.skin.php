@@ -282,7 +282,7 @@ if (!$is_member) {
     if (!$homepage) $homepage = get_cookie("mw_cookie_homepage");
 }
 ?>
-<?php include_once($pc_skin_path."/mw.proc/mw.asset.php")?>
+<?php include_once($board_skin_path."/mw.proc/mw.asset.php")?>
 <?php
 //==============================================================================
 // jquery date picker
@@ -403,7 +403,7 @@ var char_max = parseInt(<?=$write_max?>); // 최대
         </form>
     </td>
     <td align="right">
-        <?php include($pc_skin_path."/mw.proc/mw.top.button.php")?>
+        <?php include($board_skin_path."/mw.proc/mw.top.button.php")?>
     </td>
 </tr>
 <tr><td height=5></td></tr>
@@ -2000,7 +2000,7 @@ function fwrite_check(f) {
 
 <?php if ($is_dhtml_editor && $mw_basic['cf_editor'] == "geditor") { ?>
     <script> var g4_skin_path = "<?=$board_skin_path?>"; </script>
-    <script src="<?php echo $pc_skin_path?>/mw.geditor/geditor.js?<?php echo time()?>"></script>
+    <script src="<?php echo $board_skin_path?>/mw.geditor/geditor.js?<?php echo time()?>"></script>
     <?php if (strstr($write['wr_option'], "html2")) { ?>
 	<script> geditor_wr_content.mode_change(); </script>
     <?php } ?>

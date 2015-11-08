@@ -28,12 +28,13 @@ if (defined("G5_PATH")) {
     //$basic_run_time = mw_time_log($basic_run_time, "[basic] include /mw.proc/mw.g5.adapter.extend.php");
 }
 
-if (!defined("_MW_MOBILE_")) $pc_skin_path = $board_skin_path;
+if (defined("_MW_MOBILE_"))
+    $board_skin_path = $mw_mobile['board_skin_path'];
 
-if (!$pc_skin_path) $pc_skin_path = $board_skin_path;
+$pc_skin_path = $board_skin_path;
 
 if (!defined("_MW_BOARD_")) {
-    include_once("$pc_skin_path/mw.lib/mw.function.lib.php");
+    include_once("$board_skin_path/mw.lib/mw.function.lib.php");
     $basic_run_time = mw_time_log($basic_run_time, "[basic] include /mw.lib/mw.function.lib.php");
 }
 
@@ -78,7 +79,7 @@ mw_mkdir($mw_basic_config_path, 0707);
 $basic_run_time = mw_time_log($basic_run_time, "[basic] mw_mkdir($mw_basic_config_path, 0707)");
 
 $mw_basic_upgrade_time_file = "$mw_basic_config_path/{$board['bo_table']}_upgrade_time";
-//if (!is_mw_file($mw_basic_upgrade_time_file)) mw_write_file($mw_basic_upgrade_time_file, filectime("$pc_skin_path/mw.adm/mw.upgrade.php"));
+//if (!is_mw_file($mw_basic_upgrade_time_file)) mw_write_file($mw_basic_upgrade_time_file, filectime("$board_skin_path/mw.adm/mw.upgrade.php"));
 
 $mw_basic_upgrade_time = mw_read_file($mw_basic_upgrade_time_file);
 $basic_run_time = mw_time_log($basic_run_time, "[basic] mw_read_file($mw_basic_upgrade_time_file)");
@@ -88,9 +89,9 @@ $basic_run_time = mw_time_log($basic_run_time, "[basic] mw_read_file($mw_basic_u
 //$mw_basic = sql_fetch($sql, false);
 
 // 업그레이드 파일 생성시간을 검사해서 변경되었을 경우에만 업그레이드 파일 실행
-if (!is_mw_file($mw_basic_upgrade_time_file) || filectime("$pc_skin_path/mw.adm/mw.upgrade.php") != $mw_basic_upgrade_time) {
-    include_once("$pc_skin_path/mw.adm/mw.upgrade.php");
-    mw_write_file($mw_basic_upgrade_time_file, filectime("$pc_skin_path/mw.adm/mw.upgrade.php"));
+if (!is_mw_file($mw_basic_upgrade_time_file) || filectime("$board_skin_path/mw.adm/mw.upgrade.php") != $mw_basic_upgrade_time) {
+    include_once("$board_skin_path/mw.adm/mw.upgrade.php");
+    mw_write_file($mw_basic_upgrade_time_file, filectime("$board_skin_path/mw.adm/mw.upgrade.php"));
     $basic_run_time = mw_time_log($basic_run_time, "[basic] mw_write_file($mw_basic_upgrade_time_file)");
 }
 
@@ -502,7 +503,7 @@ if ($mw_basic['cf_cash_grade_use'] && !$is_admin)
 if ($mw_basic[cf_write_button])
     $write_href = "./write.php?bo_table=$bo_table";
 
-include($pc_skin_path.'/mw.proc/mw.seo.php');
+include($board_skin_path.'/mw.proc/mw.seo.php');
 $basic_run_time = mw_time_log($basic_run_time, "[basic] include /mw.proc/mw.seo.php");
 
 // 권한별 설정

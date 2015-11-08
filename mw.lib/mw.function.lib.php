@@ -1051,9 +1051,9 @@ function mw_delete_editor_image($data)
 // 팝업공지
 function mw_board_popup($view, $html=0)
 {
-    global $is_admin, $bo_table, $g4, $board_skin_path, $mw_basic, $board, $pc_skin_path;
+    global $is_admin, $bo_table, $g4, $board_skin_path, $mw_basic, $board, $board_skin_path;
 
-    if (!$pc_skin_path) $pc_skin_path = $board_skin_path;
+    if (!$board_skin_path) $board_skin_path = $board_skin_path;
 
     $dialog_id = "mw_board_popup_$view[wr_id]";
 
@@ -1130,7 +1130,7 @@ function mw_board_popup($view, $html=0)
         $html = 2;
 
     $view[content] = conv_content($view[wr_content], $html);
-    include("$pc_skin_path/view_head.skin.php");
+    include("$board_skin_path/view_head.skin.php");
 
     set_session("ss_popup_token", $token = uniqid(time()));
 
@@ -1152,7 +1152,7 @@ HEREDOC;
                 function mw_board_popup_del() {
                     var q = confirm("정말로 팝업공지를 내리시겠습니까?")
                     if (q) {
-                        $.get("$pc_skin_path/mw.proc/mw.popup.php?bo_table=$bo_table&wr_id=$view[wr_id]&token=$token", function (ret) {
+                        $.get("$board_skin_path/mw.proc/mw.popup.php?bo_table=$bo_table&wr_id=$view[wr_id]&token=$token", function (ret) {
                             alert(ret);
                         });
                     }
@@ -1202,7 +1202,7 @@ HEREDOC;
                 "팝업내림": function () {
                     var q = confirm("정말로 팝업공지를 내리시겠습니까?")
                     if (q) {
-                        $.get("$pc_skin_path/mw.proc/mw.popup.php?bo_table=$bo_table&wr_id=$view[wr_id]&token=$token", function (ret) {
+                        $.get("$board_skin_path/mw.proc/mw.popup.php?bo_table=$bo_table&wr_id=$view[wr_id]&token=$token", function (ret) {
                             alert(ret);
                         });
                     }
@@ -2687,10 +2687,10 @@ function mw_jwplayer($url, $opt="")
     global $jwplayer;
     global $jwplayer_count;
     global $board_skin_path;
-    global $pc_skin_path;
+    global $board_skin_path;
     global $mw_basic;
 
-    if (!$pc_skin_path) $pc_skin_path = $board_skin_path;
+    if (!$board_skin_path) $board_skin_path = $board_skin_path;
     if (!$jwplayer) $jwplayer = false;
     if (!$jwplayer_count) $jwplayer_count = 0;
 
@@ -2699,14 +2699,14 @@ function mw_jwplayer($url, $opt="")
 
     $buffer = '';
     if (!$jwplayer) {
-        $buffer .= "<script src='$pc_skin_path/{$mw_basic['cf_jwplayer_version']}/jwplayer.js'></script>";
+        $buffer .= "<script src='$board_skin_path/{$mw_basic['cf_jwplayer_version']}/jwplayer.js'></script>";
         $buffer .= "<script>jwplayer.key='';</script>";
         $jwplayer = true;
     }
     $buffer .= "<div id='jwplayer{$jwplayer_count}'>Loading the player...</div>";
     $buffer .= "<script> jwplayer('jwplayer{$jwplayer_count}').setup({ ";
     if ($mw_basic['cf_jwplayer_version'] == 'jwplayer5') {
-        $buffer .= " flashplayer:'$pc_skin_path/jwplayer5/player.swf', ";
+        $buffer .= " flashplayer:'$board_skin_path/jwplayer5/player.swf', ";
         global $g4;
         $url = str_replace("../..", $g4[url], $url);
         $url = str_replace("..", $g4[url], $url);
@@ -3279,32 +3279,32 @@ function mw_editor_image_copy($content)
 
 function mw_write_icon($row)
 {
-    global $board_skin_path, $pc_skin_path, $is_singo, $quiz_path;
+    global $board_skin_path, $board_skin_path, $is_singo, $quiz_path;
     global $quiz_id, $bomb_id, $vote_id;
 
     $write_icon = '';
     $style =  "align=\"absmiddle\" style=\"border-bottom:2px solid #fff;\" class=\"write_icon\"";
 
     if ($row['wr_kcb_use'])
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_kcb.png\" {$style}>";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_kcb.png\" {$style}>";
     elseif (in_array($row['wr_id'], $bomb_id))
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_bomb.gif\" {$style}>";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_bomb.gif\" {$style}>";
     elseif ($row['wr_key_password'])
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_key.png\" {$style} width=\"13\" height=\"12\">";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_key.png\" {$style} width=\"13\" height=\"12\">";
     elseif (strstr($row['wr_option'], 'secret'))
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_secret.gif\" {$style} width=\"13\" height=\"12\">";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_secret.gif\" {$style} width=\"13\" height=\"12\">";
     elseif (in_array($row['wr_id'], $quiz_id))
         $write_icon = "<img src=\"{$quiz_path}/img/icon_quiz.png\" {$style}>";
     elseif (in_array($row['wr_id'], $vote_id))
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_vote.png\" {$style}>";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_vote.png\" {$style}>";
     elseif (strstr($row['wr_link1'], "youtu"))
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_youtube.png\" {$style} width=\"13\" height=\"12\">";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_youtube.png\" {$style} width=\"13\" height=\"12\">";
     elseif ($row['wr_is_mobile'])
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_mobile.png\" {$style} width=\"13\" height=\"12\">";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_mobile.png\" {$style} width=\"13\" height=\"12\">";
     else {
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_subject.gif\" {$style} width=\"13\" height=\"12\">";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_subject.gif\" {$style} width=\"13\" height=\"12\">";
         if ($row['icon_new'])
-            $write_icon = "<img src=\"{$pc_skin_path}/img/icon_subject.gif\" {$style} width=\"13\" height=\"12\">";
+            $write_icon = "<img src=\"{$board_skin_path}/img/icon_subject.gif\" {$style} width=\"13\" height=\"12\">";
     }
 
     // ---- font awesome
@@ -3316,7 +3316,7 @@ function mw_write_icon($row)
 
 /*
     if ($row['wr_kcb_use'])
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_kcb.png\" {$style}>";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_kcb.png\" {$style}>";
     elseif (in_array($row['wr_id'], $bomb_id))
         $write_icon = "<i class='fa fa-bomb fa-spin'></i>&nbsp;";
     elseif ($row['wr_key_password'])
@@ -3340,10 +3340,10 @@ function mw_write_icon($row)
     // ---- 
 
     if ($is_singo)
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_red.png\" {$style}>";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_red.png\" {$style}>";
 
     if ($row['wr_view_block'])
-        $write_icon = "<img src=\"{$pc_skin_path}/img/icon_view_block.png\" {$style}>";
+        $write_icon = "<img src=\"{$board_skin_path}/img/icon_view_block.png\" {$style}>";
 
     return $write_icon;
 }

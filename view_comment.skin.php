@@ -166,8 +166,8 @@ echo "<div style='margin:0;padding:0;font-size:0;line-height:0;height:0;clear:bo
 
 echo bc_code($mw_basic[cf_comment_head]);
 ?>
-<link rel="stylesheet" href="<?php echo $pc_skin_path?>/mw.js/mw.star.rate/jquery.mw.star.rate.css" type="text/css">
-<script src="<?php echo $pc_skin_path?>/mw.js/mw.star.rate/jquery.mw.star.rate.js"></script>
+<link rel="stylesheet" href="<?php echo $board_skin_path?>/mw.js/mw.star.rate/jquery.mw.star.rate.css" type="text/css">
+<script src="<?php echo $board_skin_path?>/mw.js/mw.star.rate/jquery.mw.star.rate.js"></script>
 
 <? if ($mw_basic[cf_source_copy] && $cwin) { // 출처 자동 복사 ?>
 <script type="text/javascript" src="<?=$board_skin_path?>/mw.js/autosourcing.open.compact.js"></script>
@@ -189,7 +189,7 @@ var char_max = parseInt(<?=$comment_max?>); // 최대
 </script>
 
 <? if ($cwin==1) { ?>
-<link href="<?php echo $pc_skin_path?>/mw.css/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet">
+<link href="<?php echo $board_skin_path?>/mw.css/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet">
 <script type="text/javascript" src="<?="$board_skin_path/mw.js/mw_image_window.js"?>"></script>
 <table width=100% cellpadding=10 align=center><tr><td>
 <?}?>

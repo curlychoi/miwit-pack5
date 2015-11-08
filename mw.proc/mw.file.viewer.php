@@ -274,7 +274,7 @@ if ($mw_basic[cf_google_map] && trim($write[wr_google_map])) {
     ob_start();
     ?>
     <script src="http://maps.google.com/maps/api/js?sensor=true&language=ko"></script>
-    <script src="<?=$pc_skin_path?>/mw.js/mw.google.js"></script>
+    <script src="<?=$board_skin_path?>/mw.js/mw.google.js"></script>
     <script>
     $(document).ready(function () {
         mw_google_map("google_map", "<?=addslashes($write[wr_google_map])?>");

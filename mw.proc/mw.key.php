@@ -23,7 +23,7 @@ $board['bo_use_list_view'] = false;
     <fieldset>
         <legend> 게시물 열람 </legend>
         <div class="ibox">
-            <div class="title_img"><img src="<?=$pc_skin_path?>/img/title_key.png"></div>
+            <div class="title_img"><img src="<?=$board_skin_path?>/img/title_key.png"></div>
             <div class="fbox">
                 <input type="password" size="20" name="wr_key_password" id="wr_key_password">
                 <input type="submit" value="확인" class="btn">
@@ -41,7 +41,7 @@ $board['bo_use_list_view'] = false;
 
 <script>
 function check_key() {
-    $.get("<?php echo $pc_skin_path?>/mw.proc/mw.key.update.php", $("#fkey").serialize(), function (str) {
+    $.get("<?php echo $board_skin_path?>/mw.proc/mw.key.update.php", $("#fkey").serialize(), function (str) {
         if (str == "ok") {
             location.reload();
         }
