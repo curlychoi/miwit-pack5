@@ -271,7 +271,7 @@ for ($i=0; $row=$mw5_menu[$i]; ++$i)
     echo "<li class='{$nav_class}' data-target='{$role}'>";
     echo "<a href=\"{$row['me_link']}\" target=\"_{$row['me_target']}\">{$me_name}</a></li>\n";
 
-    if ($j>1) echo $drop_menu;
+    if ($j>0) echo $drop_menu;
 }
 if ($i == 0) {  
     echo "<li class=\"nothing\">메뉴 준비 중입니다.";
