@@ -2,6 +2,11 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 if (defined("_MW_MOBILE_")) return;
+
+$pc_url = get_device_change_url();
+if ($mw['config']['cf_seo_url']) {
+    $pc_url = mw_seo_url($bo_table, $wr_id, '&device=pc', false);
+}
 ?>
 <div style="clear:both;"></div>
 </div> <!-- mw_mobile -->

@@ -11,39 +11,30 @@ if(!$is_admin && $group['gr_device'] == 'mobile')
 
 $g5['title'] = $group['gr_subject'];
 include_once(G5_THEME_PATH.'/head.php');
-include_once(G5_LIB_PATH.'/latest.lib.php');
 ?>
-
 
 <!-- 메인화면 최신글 시작 -->
+<div class="latest">
 <?php
-//  최신글
-$sql = " select bo_table, bo_subject
-            from {$g5[board_table]}
-            where gr_id = '{$gr_id}'
-              and bo_list_level <= '{$member[mb_level]}'
-              and bo_device <> 'mobile' ";
-if(!$is_admin)
-    $sql .= " and bo_use_cert = '' ";
-$sql .= " order by bo_order ";
-$result = sql_query($sql);
-for ($i=0; $row=sql_fetch_array($result); $i++) {
-    $lt_style = "";
-    if ($i%2==1) $lt_style = "margin-left:20px";
-    else $lt_style = "";
-?>
-    <div style="float:left;<?php echo $lt_style ?>">
-    <?php
-    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
-    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
-    echo latest('theme/basic', $row['bo_table'], 5, 70);
-    ?>
-    </div>
-<?php
+$sql = " select * from {$g5['menu_table']} ";
+$sql.= "  where me_link like '%bo_table%' ";
+$sql.= "    and me_code like '{$menu['me_code']}%' ";
+$sql.= "  order by me_code, me_order ";
+$qry = sql_query($sql);
+for ($i=1; $row=sql_fetch_array($qry); ++$i) {
+    $latest_table = mw_get_board($row['me_link']);
+    if (!$latest_table) continue;
+
+    $mw_skin_config = mw_skin_config($latest_table);
+    if ($mw_skin_config['cf_attribute'] == "1:1") continue;
+
+    echo "<div class=\"item\">".latest("theme/mw5", $latest_table, 5, 50, 0)."</div>";
+
+    if (($i++)%2==0) echo "</div><div class=\"latest\">";
 }
 ?>
+</div>
 <!-- 메인화면 최신글 끝 -->
 
 <?php
 include_once(G5_THEME_PATH.'/tail.php');
-?>

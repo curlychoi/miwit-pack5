@@ -21,34 +21,7 @@ if ($member['mb_id']) {
 //$a = mw_mobile_total_alarm();
 //extract($a);
 
-$mobile_board = array();
-$sql = " select *
-           from {$g5['menu_table']}
-          where me_use = '1'
-            and length(me_code) = '2'
-          order by me_order, me_id ";
-$qry = sql_query($sql);
-for ($i=0; $row=sql_fetch_array($qry); $i++) {
-    preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
-    if (!$match[1])
-        preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
-    if ($match[1])
-        $mobile_board[] = $match[1];
-    $sql2 = " select *
-               from {$g5['menu_table']}
-              where me_use = '1'
-                and length(me_code) = '4'
-                and substring(me_code, 1, 2) = '{$row['me_code']}'
-              order by me_order, me_id ";
-    $qry2 = sql_query($sql2);
-    for ($j=0; $row2=sql_fetch_array($qry2); $j++) {
-        preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);
-        if (!$match[1])
-            preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);
-        if ($match[1])
-            $mobile_board[] = $match[1];
-    }
-}
+$mw5_menu = mw_get_menu();
 ?>
 <style>
 #mw_side {
@@ -61,228 +34,6 @@ for ($i=0; $row=sql_fetch_array($qry); $i++) {
     background-color:#ddd;
     -webkit-overflow-scrolling: touch;
     <?php if (strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "mobile")) echo "overflow-y:scroll"; ?>
-}
-
-#mw_side_button {
-    position:fixed;
-    top:400px;
-    left:10px;
-    cursor:pointer;
-    z-index:9998;
-    background-color:#000;
-    background-color:#428bca;
-    font-weight:normal;
-    font-size:25px;
-    color:#fff;
-    border-radius:30px;
-    padding:5px 10px 5px 10px;
-    -webkit-transform: translate3d(0,0,0);
-    box-shadow:0px 0px 3px #999;
-    border:3px solid #fff;
-}
-
-#mw_side_button .total_alarm {
-    position:absolute;
-    background-color:#000;
-    background-color:#2368a3;
-    background-color:red;
-    color:#fff;
-    padding:2px 7px 2px 7px;
-    border-radius:10px;
-    margin:-45px 0 0 20px;
-    font:bold 12px 'dotum';
-    opacity:0.8;
-}
-
-.mw_side_profile {
-    background-color:#428bca;
-    font:bold 15px 'gulim';
-    color:#fff;
-    height:55px;
-}
-.mw_side_profile a {
-    font:bold 15px 'gulim';
-    color:#fff;
-}
-
-.mw_side_profile #mw_side_image { 
-    background-color:#fff;
-    width:45px;
-    height:45px;
-    border:2px solid #fff;
-    margin:5px 7px 0 5px;
-    float:left;
-}
-
-.mw_side_profile .mw_side_name {
-    float:left;
-    margin:17px 0 0 10px;
-}
-
-.mw_side_profile #mw_side_alarm {
-    float:right;
-    cursor:pointer;
-    font:normal 20px 'dotum';
-    margin:15px 10px 9px 0;
-    padding:0 10px 0px 0;
-    border-right:1px solid #2d7abd;
-}
-
-.mw_side_profile #mw_side_alarm .new {
-    position:absolute;
-    background-color:#000;
-    background-color:#2368a3;
-    color:#fff;
-    padding:2px 7px 2px 7px;
-    border-radius:10px;
-    margin:-30px 0 0 7px;
-    font:bold 10px 'dotum';
-    opacity:0.8;
-}
-
-.mw_side_profile #mw_side_close {
-    float:right;
-    cursor:pointer;
-    font:normal 20px 'dotum';
-    margin:15px 10px 0 0;
-}
-
-#mw_side .mw_side_func {
-    height:71px;
-    border-bottom:1px solid #ddd;
-}
-
-#mw_side .mw_side_func .item {
-    border-right:1px solid #ddd;
-    width:70px;
-    height:70px;
-    float:left;
-    text-align:center;
-    cursor:pointer;
-    background-color:#efefef;
-}
-
-#mw_side .mw_side_func .item div {
-    padding-top:13px;
-}
-
-#mw_side .mw_side_cash {
-    font:normal 12px 'dotum';
-    height:40px;
-    padding:5px 10px 0px 10px;
-    background-color:#dfdfdf;
-    border-bottom:1px solid #ddd;
-}
-
-#mw_side .mw_side_cash .cash_name {
-    float:left;
-    line-height:30px;
-}
-
-#mw_side .mw_side_cash .my_cash {
-    float:right;
-    line-height:30px;
-}
-
-#mw_side .mw_side_cash .my_cash .nu {
-    color:#ff6600;
-}
-
-#mw_side .comment {
-/*
-    font:normal 11px 'gulim';
-    color:#ff6600;
-    background-color:#6e969a;
-*/
-    float:right;
-    margin:3px 7px 0 0;
-    padding:0;
-    background-color:#dfdfdf;
-    color:#ff6600;
-    width:25px;
-    height:25px;
-    text-align:center;
-    font-weight:bold;
-    font-size:11px;
-    line-height:25px;
-    border:1px solid #ccc;
-    border-radius:15px;
-
-}
-#mw_side .comment2 {
-    float:right;
-    margin:3px 7px 0 0;
-    padding:0;
-    background-color:translate;
-    color:#ff6600;
-    width:25px;
-    height:25px;
-    text-align:center;
-    font-weight:bold;
-    font-size:11px;
-    line-height:25px;
-    border:1px solid #ddd;
-    border-radius:15px;
-}
-
-#mw_side .mw_side_att {
-    font:normal 12px 'dotum';
-    height:40px;
-    padding:5px 10px 0px 10px;
-    background-color:#efefef;
-    border-bottom:1px solid #ddd;
-    line-height:30px;
-}
-
-#mw_side .mw_side_foot {
-    margin-top:20px;
-    text-align:center;
-}
-
-#mw_side .mw_side_foot a {
-    font:normal 11px 'dotum';
-    color:#777;
-}
-
-#mw_side .mw_side_menu div {
-}
-
-#mw_side .mw_side_menu .group {
-    line-height:30px;
-    padding:5px 0 5px 7px;
-    background-color:#eee;
-    border-bottom:1px solid #ddd;
-    cursor:pointer;
-    background-color:#fff;
-}
-
-#mw_side .mw_side_menu .board {
-    display:none;
-    background-color:#efefef;
-    background-color:#dfdfdf;
-    font-size:12px;
-}
-
-#mw_side .mw_side_menu .board div {
-    padding:5px 0 5px 12px;
-    line-height:30px;
-    border-bottom:1px solid #ccc;
-}
-
-#mw_side .mw_side_func i {
-    font-size:20px;
-}
-
-#mw_side .mw_side_func .new {
-    position:absolute;
-    background-color:#000;
-    background-color:#428bca;
-    color:#fff;
-    padding:2px 7px 2px 7px;
-    border-radius:10px;
-    margin:-25px 0 0 -10px;
-    font:bold 10px 'dotum';
-    opacity:0.8;
 }
 </style>
 
@@ -344,6 +95,7 @@ for ($i=0; $row=sql_fetch_array($qry); $i++) {
 
     <div class="mw_side_menu">
     <?php
+/*
     $list = array();
     $group_count = array();
     for ($i=0, $m=count($mobile_board); $i<$m; $i++) {
@@ -381,6 +133,41 @@ for ($i=0; $row=sql_fetch_array($qry); $i++) {
         }
         echo "</div>\n";
     }
+
+*/
+for ($i=0; $row=$mw5_menu[$i]; ++$i)
+{
+    $role = substr($row['me_code'], 0, 2);
+
+    ob_start();
+    echo "<div id=\"board-{$role}\" class=\"board\">\n";
+    for ($j=0; $row2=$mw5_menu[$i]['sub'][$j]; ++$j) {
+        $bo_new = '';
+        if ($row2['bo_new'])
+            $bo_new = "<span class=\"comment\">{$row2['bo_new']}</span>";
+
+        echo "<a href=\"{$row2['me_link']}\" target=\"_{$row2['me_target']}\"><div>{$row2['me_name']} {$bo_new}</div></a>\n";
+    }
+    echo "</div>\n";
+    $drop_menu = ob_get_clean();
+
+    $nav_class = "item";
+    if ($role == substr($menu['me_code'], 0, 2))
+        $nav_class = "select";
+
+    $me_name = $row['me_name'];
+    if ($row['new'])
+        $me_name .= "<span class='new'>{$row['new']}</span>";
+    //if ($j>1) $me_name .= "<span class='caret'>∨</span>";
+
+    echo "<div class=\"group\" id=\"group-{$role}\">{$me_name}";
+    if ($row['new'])
+        echo " <span class='comment2'>{$row['new']}</span>";
+    echo "</div>\n";
+
+    if ($j>0) echo $drop_menu;
+}
+
     ?>
     </div>
 

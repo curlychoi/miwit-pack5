@@ -6,21 +6,6 @@ if (defined("_MW_MOBILE_")) return;
 include_once(G5_PATH.'/lib/mw.mobile.lib.php');
 include_once(G5_THEME_PATH.'/head.sub.php');
 
-if ($mw['config']['cf_seo_url']) {
-    $pc_url = mw_seo_url($bo_table, $wr_id, '&mobile=1&device=pc', false);
-}
-else {
-    if ($bo_table) {
-        $pc_url .= G5_BBS_URL."/board.php?bo_table=".$bo_table;
-        if ($wr_id) {
-            $pc_url .= "&wr_id=".$wr_id;
-        }
-        $pc_url .= "&device=pc";
-    }
-    else {
-        $pc_url .= "?device=pc";
-    }
-}
 $a = mw_mobile_total_alarm();
 extract($a);
 

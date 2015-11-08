@@ -209,6 +209,15 @@ function mw_get_board($url)
     return $match[1];
 }
 
+function mw_get_content($url)
+{
+    preg_match("/co_id=([0-9a-zA-Z_]+)&/", $url.'&', $match);
+    if (!$match[1])
+        preg_match("/\/c\/([0-9a-zA-Z-_]+)&/", $url.'&', $match);
+
+    return $match[1];
+}
+
 function mw_get_menu()
 {
     global $g5;
@@ -244,19 +253,21 @@ function mw_get_menu()
         $g_count = 0;
         $g_table = '';
 
-        preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
+        /* preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
         if (!$match[1])
-            preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
+            preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match); */
 
-        if ($match[1]) {
-            $mw_skin_config = mw_skin_config($match[1]);
+        $get = mw_get_board($row['me_link']);
+
+        if ($get) {
+            $mw_skin_config = mw_skin_config($get);
             if ($mw_skin_config['cf_attribute'] != "1:1" or $is_admin) {
-                $b = sql_fetch(" select bo_count_write, bo_new from {$g5['board_table']} where bo_table = '{$match[1]}' ");
-                $t = sql_fetch(" select count(*) as cnt from {$g5['write_prefix']}{$match[1]} where wr_is_comment = '' and wr_datetime >= DATE_SUB(NOW(), INTERVAL {$b['bo_new']} HOUR) ");
+                $b = sql_fetch(" select bo_count_write, bo_new from {$g5['board_table']} where bo_table = '{$get}' ");
+                $t = sql_fetch(" select count(*) as cnt from {$g5['write_prefix']}{$get} where wr_is_comment = '' and wr_datetime >= DATE_SUB(NOW(), INTERVAL {$b['bo_new']} HOUR) ");
 
                 $g_new += $t['cnt'];
                 $g_count += $b['bo_count_write'];
-                $g_table = $match[1];
+                $g_table = $get;
             }
         }
 
@@ -280,19 +291,21 @@ function mw_get_menu()
                 }
             }
 
-            preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);
+            /* preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);
             if (!$match[1])
-                preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);
+                preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);*/
 
-            if ($match[1] && $match[1] == $g_table) {
+            $get = mw_get_board($row2['me_link']);
+
+            if ($get && $get == $g_table) {
                 $row2['bo_new'] = $g_new;
                 $row2['bo_count'] = $g_count;
             }
-            else if ($match[1]) {
-                $mw_skin_config = mw_skin_config($match[1]);
+            else if ($get) {
+                $mw_skin_config = mw_skin_config($get);
                 if ($mw_skin_config['cf_attribute'] != "1:1" or $is_admin) {
-                    $b = sql_fetch(" select bo_count_write, bo_new from {$g5['board_table']} where bo_table = '{$match[1]}' ");
-                    $t = sql_fetch(" select count(*) as cnt from {$g5['write_prefix']}{$match[1]} where wr_is_comment = '' and wr_datetime >= DATE_SUB(NOW(), INTERVAL {$b['bo_new']} HOUR) ");
+                    $b = sql_fetch(" select bo_count_write, bo_new from {$g5['board_table']} where bo_table = '{$get}' ");
+                    $t = sql_fetch(" select count(*) as cnt from {$g5['write_prefix']}{$get} where wr_is_comment = '' and wr_datetime >= DATE_SUB(NOW(), INTERVAL {$b['bo_new']} HOUR) ");
 
                     $row2['bo_new'] = $t['cnt'];
                     $row2['bo_count'] = $b['bo_count_write'];
