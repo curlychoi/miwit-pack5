@@ -3674,6 +3674,7 @@ function mw_make_thumbnail_row ($bo_table, $wr_id, $wr_content, $remote=false, $
     global $is_admin;
 
     global $write;
+    global $w;
 
     $is_thumb = false;
 
@@ -3733,6 +3734,10 @@ function mw_make_thumbnail_row ($bo_table, $wr_id, $wr_content, $remote=false, $
                 if (!is_mw_file($dat2) && (substr($mat2, 0, 1) == '/' or substr($mat2, 0, 1) == '.'))
                     $dat2 = str_replace("//", "/", $_SERVER['DOCUMENT_ROOT'].$mat2);
 
+                if ($w == 'u' and $mat == $mat2) {
+                    $remote = false;
+                }
+
                 // 서버내 이미지 썸네일 생성
                 if (is_mw_file($dat))
                 {
@@ -3744,7 +3749,7 @@ function mw_make_thumbnail_row ($bo_table, $wr_id, $wr_content, $remote=false, $
                 }
 
                 // 외부 이미지 썸네일 생성
-                else if ($remote and $mat != $mat2)
+                else if ($remote)
                 {
                     $ret = mw_save_remote_image($mat, $thumb_file);
                     if ($ret)
