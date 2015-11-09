@@ -3,8 +3,8 @@ if (!defined("_GNUBOARD_")) exit;
 
 if (!$is_sidebar) {
     echo "<style>";
-    echo ".main { width:{$mw['config']['cf_width']}px; }";
-    echo ".menu_title { width:{$mw['config']['cf_width']}px; }";
+    echo "#mw5 .main { width:{$mw['config']['cf_width']}px; }";
+    echo "#mw5 .menu_title { width:{$mw['config']['cf_width']}px; }";
     echo "</style>";
     return;
 }
