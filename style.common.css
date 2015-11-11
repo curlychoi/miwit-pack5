@@ -1716,7 +1716,8 @@ img {
 }
 
 /* 댓글 추천 */
-#mw_basic .mw_basic_comment_good {
+#mw_basic .comment_buttons .mw_basic_comment_good {
+    width:60px;
 }
 
 #mw_basic .comment_buttons .mw_basic_comment_good a {
@@ -1724,7 +1725,8 @@ img {
 }
 
 /* 댓글 반대 */
-#mw_basic .mw_basic_comment_nogood {
+#mw_basic .comment_buttons .mw_basic_comment_nogood {
+    width:60px;
 }
 
 #mw_basic .mw_basic_comment_nogood a {
