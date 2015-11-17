@@ -2914,6 +2914,17 @@ function get_safe_filename($name)
     return $name;
 }
 
+// 파일명 치환
+function replace_filename($name)
+{
+    @session_start();
+    $ss_id = session_id();
+    $usec = get_microtime();
+    $ext = array_pop(explode('.', $name));
+
+    return sha1($ss_id.$_SERVER['REMOTE_ADDR'].$usec).'.'.$ext;
+}
+
 // 아이코드 사용자정보
 function get_icode_userinfo($id, $pass)
 {
@@ -3161,23 +3172,5 @@ function check_vaild_callback($callback){
    } else {
              return true;
    }
-}
-
-// Browscap 정보 얻기
-function get_browscap_info($agent)
-{
-    if(!$agent)
-        return false;
-
-    include_once(G5_PLUGIN_PATH.'/browscap/Browscap.php');
-
-    $browscap = new phpbrowscap\Browscap(G5_DATA_PATH.'/cache');
-    $browscap->updateMethod = 'cURL';
-    $browscap->doAutoUpdate = false;
-    $browscap->cacheFilename = 'browscap_cache.php';
-
-    $info = $browscap->getBrowser($agent);
-
-    return $info;
 }
 ?>
