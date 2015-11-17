@@ -3370,11 +3370,11 @@ function mw_list_link($row)
         $qstr .= "&page=".$page;
 
     $sign = '&';
-    if ($mw['config']['cf_seo_url']) {
+    //if ($mw['config']['cf_seo_url']) {
         $row['href'] = mw_seo_url($bo_table, $row['wr_id'], $qstr);
         if (!$qstr)
             $sign = '?';
-    }
+    //}
 
     // 링크로그
     for ($j=1; $j<=$g4['link_count']; $j++)
