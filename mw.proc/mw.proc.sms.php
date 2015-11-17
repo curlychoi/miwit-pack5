@@ -7,6 +7,8 @@ $icode_pw = $mw_basic[cf_sms_pw];
 $socket_host = "211.172.232.124";
 $port_setting = 1;
 
+$strCallBack = str_replace("-", "", $strCallBack);
+
 // SMS 모듈 클래스 생성
 $SMS = new mwBasicSMS;
 $SMS->SMS_con($socket_host,$icode_id,$icode_pw,$port_setting);

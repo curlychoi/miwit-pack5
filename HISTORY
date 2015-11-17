@@ -1,3 +1,9 @@
+ver 2.9.9 (15.00.00)
+    : 회신문자 하이픈과 관계없이 전송가능하게 (Lacooon님  제안)
+
+    miwit/HISTORY
+    miwit/mw.proc/mw.proc.sms.php
+ 
 ver 2.9.8 (15.11.08)
     : 반응형 지원!!
     : 갤러리형등 반응형 지원 (신비님 제안)
