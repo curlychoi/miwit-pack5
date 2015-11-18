@@ -1,3 +1,10 @@
+v.1.0.4 (15.11.18)
+    : mysqli 지원
+
+    plugin/logo-planner/HISTORY.php
+    plugin/logo-planner/_lib.php
+    plugin/logo-planner/write_update.php
+
 v.1.0.3 (14.01.10)
     : 매년 반복 음력 버그 수정
     : 대체 휴일제 적용 옵션
