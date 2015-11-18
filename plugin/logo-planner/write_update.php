@@ -118,7 +118,7 @@ else if ($w == "d" && $ls_id)
 else
 {
     sql_query(" insert into $mw_logo_planner[logo_table] set $sql_common, ls_datetime = '$g4[time_ymdhis]' ");
-    $ls_id = mysql_insert_id();
+    $ls_id = sql_insert_id();
 
     $act = '등록';
     $url = "view.php?ls_id=$ls_id";

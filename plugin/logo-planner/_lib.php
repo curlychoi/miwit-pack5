@@ -125,4 +125,28 @@ function mw_logo_planner()
     return $mw_logo_img;
 }
 
+if (!function_exists("sql_insert_id")) {
+function sql_insert_id($link=null)
+{
+    if (defined("G5_PATH")) {
+        global $g5;
+
+        if(!$link)
+            $link = $g5['connect_db'];
+
+        if(function_exists('mysqli_insert_id') && defined("G5_MYSQLI_USE") && G5_MYSQLI_USE)
+            return mysqli_insert_id($link);
+        else
+            return mysql_insert_id($link);
+    }
+    else {
+        global $connect_db;
+
+        if(!$link)
+            $link = $connect_db;
+
+        return mysql_insert_id($link);
+    }
+}}
+
 
