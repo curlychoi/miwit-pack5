@@ -1,0 +1,21 @@
+.mw_star_rate {
+    width:145px;
+    height:24px;
+    cursor:pointer;
+    font:normal 11px 'dotum';
+    color:#777;
+}
+
+.mw_star_rate .rate {
+    width:12px;
+    height:24px;
+    float:left;
+}
+
+.mw_star_rate .grade {
+    float:left;
+    margin:7px 0 0 10px;
+    font:bold 13px 'dotum';
+    color:#f75b70;
+}
+
