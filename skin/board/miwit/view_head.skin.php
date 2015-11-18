@@ -257,6 +257,8 @@ if ($member[mb_id] && ($is_admin == "super" || $group[gr_admin] == $member[mb_id
 $prev_wr_subject = str_replace("\"", "'", $prev_wr_subject);
 $next_wr_subject = str_replace("\"", "'", $next_wr_subject);
 
+$nosecret_href = '';
+$secret_href = '';
 if ($is_admin && strstr($write[wr_option], "secret")) {
     // 잠금 해제 버튼
     $nosecret_href = "btn_nosecret();";
@@ -266,17 +268,19 @@ if ($is_admin && strstr($write[wr_option], "secret")) {
 }
 
 // 파일로그
+$download_log_href = '';
 if ($mw_basic[cf_download_log] && $is_admin) {
     $download_log_href = "btn_download_log()";
 }
 
 // 링크로그
+$link_log_href = '';
 if ($mw_basic[cf_link_log] && $is_admin) {
     $link_log_href = "btn_link_log()";
 }
 
-
 // 로그버튼
+$history_href = '';
 if ($mw_basic[cf_post_history] && $member[mb_level] >= $mw_basic[cf_post_history_level]) {
     $history_href = "btn_history($wr_id)";
 }
@@ -284,11 +288,13 @@ if ($mw_basic[cf_post_history] && $member[mb_level] >= $mw_basic[cf_post_history
 $is_singo_admin = mw_singo_admin($member[mb_id]);
 
 // 신고 버튼
+$singo_href = '';
 if ($mw_basic[cf_singo]) {
     $singo_href = "javascript:btn_singo($wr_id, $wr_id)";
 }
 
 // 인쇄 버튼
+$print_href = '';
 if ($mw_basic[cf_print]) {
     $print_href = "javascript:btn_print()";
 }

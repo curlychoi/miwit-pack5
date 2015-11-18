@@ -79,9 +79,8 @@ for ($i=count($tmp_array)-1; $i>=0; $i--)
     }
     else {
         $sql = " update {$write_table} ";
-        $sql.= "    set wr_option = replace(wr_option, ',secret', '') ";
-        $sql.= "  where wr_option like '%secret%' ";
-        $sql.= "    and wr_id = '{$write['wr_id']}' ";
+        $sql.= "    set wr_option = replace(wr_option, 'secret', '') ";
+        $sql.= "  where wr_id = '{$write['wr_id']}' ";
     }
     sql_query($sql);
 }

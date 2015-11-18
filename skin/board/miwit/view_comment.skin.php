@@ -542,11 +542,11 @@ for ($i=0; $i<$to_record; $i++) {
         <?php if ($list[$i]['mb_id'] != '@lucky-writing') { ?>
         <div class="comment_buttons">
             <?php if ($history_href) {?>
-            <span class="button"><a href="<?php echo $history_href?>" title="변경기록"><i class='fa fa-history'></i></a></span>
+            <span class="button"><a href="<?php echo $history_href?>" title="변경기록"><i class='fa fa-history'></i> 로그</a></span>
             <?php } ?>
 
-            <?php if ($list[$i]['singo_href']) { ?>
-            <span class="button"><a href="<?=$list[$i][singo_href]?>"><i class="fa fa-warning"></i></a></span>
+            <?php if ($is_member and $list[$i]['singo_href']) { ?>
+            <span class="button"><a href="<?=$list[$i][singo_href]?>"><i class="fa fa-warning"></i> 신고</a></span>
             <?php } ?>
 
             <span class="mw_basic_comment_url button" value="<?=$list[$i][wr_id]?>">

@@ -1,3 +1,23 @@
+ver 2.9.9 (15.11.18)
+    : 외부이미지 썸네일 생성 오류 수정 (금광님 제안)
+    : 회신문자 하이픈과 관계없이 전송가능하게 (Lacooon님 제안)
+    : 모바일 빌더 연동시 게시물 링크 교정 (edccesl님 제안)
+    : 임시저장 기능 오류 수정 (태양이님 제안)
+    : 컨텐츠샵 관리자 링크 수정 (티비플님 제안)
+    : 선택삭제 오류 수정 (세뇨르님 제안)
+    : 선택 비밀글 해제 오류 수정 (세뇨르님 제안)
+    : 모바일 열람 비밀번호 오류 (업스톤님 제안)
+    : 모바일 답글삭제 오류 (부멉님 제안)
+
+    miwit/HISTORY
+    miwit/mw.adm/mw.config.php
+    miwit/mw.lib/mw.function.lib.php
+    miwit/mw.proc/mw.proc.sms.php
+    miwit/mw.proc/mw.temp.php
+    miwit/write.skin.php
+    miwit/list.skin.php
+    miwit/secret_all.php
+ 
 ver 2.9.8 (15.11.08)
     : 반응형 지원!!
     : 갤러리형등 반응형 지원 (신비님 제안)
@@ -4171,6 +4191,6 @@ ver.1.0.0 (08.05.01)
 - 수정한 파일이 있다면 버전업된 부분만 적용하셔도 됩니다.
 
 [기타문의]
-- 곱슬최씨의 그누보드4 스킨 작업실 (http://g4.miwit.com)
+- 마이위트 (http://www.miwit.com)
 
 ==========================================================

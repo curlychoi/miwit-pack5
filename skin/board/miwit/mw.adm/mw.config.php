@@ -45,6 +45,10 @@ if (!$mw_basic[cf_thumb_height]) $mw_basic[cf_thumb_height] = 50;
 if (!$mw_basic[cf_write_width]) $mw_basic[cf_write_width] = "normal";
 if (!$mw_basic[cf_write_height]) $mw_basic[cf_write_height] = 10;
 
+$cash_admin_path = $g4['admin_path'] . '/mw.cash';
+if (is_g5())
+    $cash_admin_path .= '5';
+
 set_session("ss_config_token", $token = uniqid(time()));
 ?>
 <!doctype html>
@@ -3563,7 +3567,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
         <div style="color:#444;">컨텐츠샵이 설치되어 있는 것으로 추정됩니다. 캐쉬이름은 [<?=$mw_cash[cf_cash_name]?>] 입니다.</div>
         <? } else {?>
         컨텐츠샵이 설치되어 있지 않습니다.<br/><br/> 컨텐츠샵은
-        배추 패밀리 회원만 이용하실 수 있습니다.  ⇒ <a href="http://g4.miwit.com/" target="_blank"><u>가입하기</u></a>
+        배추 패밀리 회원만 이용하실 수 있습니다.  ⇒ <a href="http://www.miwit.com/" target="_blank"><u>가입하기</u></a>
         <? } ?>
     </div>
 
@@ -3571,7 +3575,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
 	<div class="cf_title"> <input type=checkbox disabled>&nbsp; <strong>멤버쉽</strong> </div>
 	<div class="cf_content">
             <input type=checkbox disabled> 
-            <a href="<?=$g4[admin_path]?>/mw.cash/mw.membership.php"
+            <a href="<?php echo $cash_admin_path?>/mw.membership.php"
                 target="_blank" style="text-decoration:underline">관리자 - 컨텐츠샵 - 멤버쉽 설정</a> 메뉴에서 설정해주세요.
 	</div>
     </div>
@@ -3665,7 +3669,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
 	<div class="cf_content" height=80>
             <input type="checkbox" name="cf_cash_grade_use" id="cf_cash_grade_use" value="1"> 사용
             <input type="button" value="등급설정" class="btn1" onclick="window.open('<?php
-                echo $g4['admin_path']?>/mw.cash/mw.grade.php')">
+                echo $cash_admin_path?>/mw.grade.php')">
             <script>
             $("#cf_cash_grade_use").attr("checked", <?php echo $mw_basic['cf_cash_grade_use']?"true":"false"?>);
             </script>
@@ -3773,7 +3777,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
         i-PIN 인증은 신용평가 전문기관인 <a href="http://click.linkprice.com/click.php?m=allcredit&a=A100226477&l=0000"
         target="_blank">KCB</a> 를 통해 이루어집니다.<br/>
         계약 후 이용 가능합니다.
-        [<a href="http://help.miwit.com/bbs/board.php?bo_table=g4_notice&wr_id=1024" target="_blank">계약안내</a>]
+        [<a href="http://www.miwit.com/b/g4_notice-1024" target="_blank">계약안내</a>]
     </div>
 
     <?
@@ -3785,21 +3789,21 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
     <div class="cf_item" style="font-weight:bold; background-color:#fff; border:1px solid #ddd;
         padding:20px 0 20px 20px; margin:0 0 10px 0; color:#ff0000; line-height:20px;">
             아래 두 파일의 권한(permission)을 755 로 변경해주세요.
-            <a href="http://g4.miwit.com/bbs/board.php?bo_table=mw_tip&wr_id=726" target="_blank">[변경방법 자세히보기]</a>
+            <a href="http://www.miwit.com/b/mw_tip-726" target="_blank">[변경방법 자세히보기]</a>
             <br/>
-            skin/board/<?=$board[bo_skin]?>/mw.okname/okname
+            skin/board/<?=$board[bo_skin]?>/mw.okname/okname<br/>
             skin/board/<?=$board[bo_skin]?>/mw.okname/okname64
     </div>
     <?} ?>
 
     <?
-    $pkey = substr(sprintf('%o', fileperms("../mw.okname/key")), -4);
+    $pkey = substr(sprintf('%o', @fileperms("../mw.okname/key")), -4);
     if ($pkey != '0707') {
     ?>
     <div class="cf_item" style="font-weight:bold; background-color:#fff; border:1px solid #ddd;
         padding:20px 0 20px 20px; margin:0 0 10px 0; color:#ff0000; line-height:20px;">
             아래 디렉토리 권한(permission)을 707 로 변경해주세요.
-            <a href="http://g4.miwit.com/bbs/board.php?bo_table=mw_tip&wr_id=726" target="_blank">[변경방법 자세히보기]</a>
+            <a href="http://www.miwit.com/b/mw_tip-726" target="_blank">[변경방법 자세히보기]</a>
             <br/>
             skin/board/<?=$board[bo_skin]?>/mw.okname/key
     </div>
