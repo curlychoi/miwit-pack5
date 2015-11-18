@@ -6,7 +6,6 @@ include_once(G5_LIB_PATH.'/mw.common.lib.php');
 include_once(G5_LIB_PATH.'/mw.popular.lib.php');
 include_once(G5_LIB_PATH.'/mw.widget.lib.php');
 include_once(G5_LIB_PATH.'/mw.host.lib.php');
-include_once(G5_LIB_PATH.'/outlogin.lib.php');
 include_once(G5_LIB_PATH.'/latest.lib.php');
 include_once(G5_LIB_PATH.'/outlogin.lib.php');
 include_once(G5_LIB_PATH.'/poll.lib.php');
