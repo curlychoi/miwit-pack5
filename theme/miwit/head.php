@@ -114,7 +114,7 @@ include_once(G5_PATH."/lib/mw.string.lib.php");
 
     <!-- 상단검색창 시작 -->
     <div class="search-box">
-        <form name="fmainsearch" action="<?php echo G5_URL?>/plugin/united-search/">
+        <form name="fmainsearch" action="<?php echo G5_BBS_URL?>/search.php">
             <input type="hidden" name="sfl" value="wr_subject||wr_content">
             <input type="hidden" name="sop" value="and">
             <span class="search-text"><input type=text name=stx></span>
