@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Bechu-Basic Skin for Gnuboard4
  *
@@ -20,7 +20,7 @@
  */
 
 include_once("_common.php");
-include_once("$board_skin_path/mw.lib/mw.skin.basic.lib.php");
+include_once($board_skin_path."/mw.lib/mw.skin.basic.lib.php");
 
 // 임시 저장
 
@@ -32,7 +32,7 @@ header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
 header("Cache-Control: pre-check=0, post-check=0, max-age=0"); // HTTP/1.1
 header("Pragma: no-cache"); // HTTP/1.0
 
-if ($w == "save")
+if ($work == "save")
 {
     $wr_subject = urldecode($wr_subject);
     $wr_content = urldecode($wr_content);
@@ -58,11 +58,9 @@ if ($w == "save")
         sql_query($sql);
     }
 }
-else if ($w == "get")
+else if ($work == "get")
 {
     $row = sql_fetch(" select * from $mw[temp_table] where bo_table = '$bo_table' and mb_id = '$member[mb_id]' ");
     echo "$row[tp_subject]-mw-basic-temp-return-$row[tp_content]";
 }
 
-
-?>

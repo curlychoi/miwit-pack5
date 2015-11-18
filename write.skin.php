@@ -1708,7 +1708,7 @@ $(document).ready(function () {
     <? if ($w == "" && $is_member) { ?>
     $.post("<?=$board_skin_path?>/mw.proc/mw.temp.php", 
         {
-            "w": "get",
+            "work": "get",
             "bo_table": "<?=$bo_table?>"
         },
         function(data) {
@@ -1747,7 +1747,7 @@ function mw_save_temp(msg)
     <? } ?>
 
     $.post("<?=$board_skin_path?>/mw.proc/mw.temp.php", {
-        "w" : "save",
+        "work" : "save",
         "bo_table" : "<?=$bo_table?>",
         "wr_subject" : encodeURIComponent(wr_subject),
         "wr_content" : encodeURIComponent(wr_content)

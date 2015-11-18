@@ -1,10 +1,14 @@
 ver 2.9.9 (15.00.00)
+    : 외부이미지 썸네일 생성 오류 수정 (금광님 제안)
     : 회신문자 하이픈과 관계없이 전송가능하게 (Lacooon님 제안)
     : 모바일 빌더 연동시 게시물 링크 교정 (edccesl님 제안)
+    : 임시저장 기능 오류 수정 (태양이님 제안)
 
     miwit/HISTORY
     miwit/mw.lib/mw.function.lib.php
     miwit/mw.proc/mw.proc.sms.php
+    miwit/mw.proc/mw.temp.php
+    miwit/write.skin.php
  
 ver 2.9.8 (15.11.08)
     : 반응형 지원!!
