@@ -364,6 +364,7 @@ if ($is_category && $mw_basic[cf_category_tab]) {
 <input type='hidden' name='sca'  value='<?=$sca?>'>
 <input type='hidden' name='page' value='<?=$page?>'>
 <input type='hidden' name='sw' id='sw'  value=''>
+<input type='hidden' name='btn_submit' id='btn_submit'  value=''>
 
 <table width=100% border=0 cellpadding=0 cellspacing=0>
 <tr><td colspan=<?=$colspan?> height=1 class=mw_basic_line_color></td></tr>
@@ -1219,7 +1220,12 @@ function select_delete() {
     if (!confirm("선택한 게시물을 정말 "+str+" 하시겠습니까?\n\n한번 "+str+"한 자료는 복구할 수 없습니다"))
         return;
 
+    f.btn_submit.value = "선택삭제";
+    <?php if (is_g5()) { ?>
+    f.action = "<?php echo $g4['bbs_path']?>/board_list_update.php";
+    <?php } else { ?>
     f.action = "<?php echo $g4['bbs_path']?>/delete_all.php";
+    <?php } ?>
     f.submit();
 }
 
