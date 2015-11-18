@@ -37,7 +37,7 @@ $g4 = $g5;
 $g4['path'] = '';
 $script_name = substr($_SERVER['SCRIPT_FILENAME'], strpos($_SERVER['SCRIPT_FILENAME'], G5_PATH)); 
 $dir = dirname(str_replace(G5_PATH, '', $script_name));
-if ($dir == '/')
+if ($dir == '/' or $dir == '\\')
     $g4['path'] = './';
 else
     for ($i=0, $m=substr_count($dir, '/'); $i<$m; ++$i) {
