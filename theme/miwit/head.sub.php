@@ -127,7 +127,7 @@ if ($bo_table && $wr_id)
     }
 
     if (!$ogp_thumb or !is_file(str_replace($g4['url'], $g4['path'], $ogp_thumb)))
-        $ogp_thumb = $g4['url']."/curlychoi.png";
+        $ogp_thumb = $g4['url']."/img/image_src.png";
 
     $ogp_title = trim(cut_str(strip_tags($write['wr_subject']), 255));
     $ogp_site_name = trim(cut_str(strip_tags($config['cf_title']), 255));
