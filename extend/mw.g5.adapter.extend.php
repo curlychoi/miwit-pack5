@@ -64,12 +64,22 @@ $g4['charset']          = "utf-8";
 $g4['admin_path']       = $g4['path'].'/'.G5_ADMIN_DIR;
 $g4['link_count']       = G5_LINK_COUNT;
 
-$board_skin_path    = get_g4_skin_path('board', $board['bo_mobile_skin']);
-$member_skin_path   = get_g4_skin_path('member', $config['cf_mobile_member_skin']);
-$new_skin_path      = get_g4_skin_path('new', $config['cf_mobile_new_skin']);
-$search_skin_path   = get_g4_skin_path('search', $config['cf_mobile_search_skin']);
-$connect_skin_path  = get_g4_skin_path('connect', $config['cf_mobile_connect_skin']);
-$faq_skin_path      = get_g4_skin_path('faq', $config['cf_mobile_faq_skin']);
+if (G5_IS_MOBILE) {
+    $board_skin_path    = get_g4_skin_path('board', $board['bo_mobile_skin']);
+    $member_skin_path   = get_g4_skin_path('member', $config['cf_mobile_member_skin']);
+    $new_skin_path      = get_g4_skin_path('new', $config['cf_mobile_new_skin']);
+    $search_skin_path   = get_g4_skin_path('search', $config['cf_mobile_search_skin']);
+    $connect_skin_path  = get_g4_skin_path('connect', $config['cf_mobile_connect_skin']);
+    $faq_skin_path      = get_g4_skin_path('faq', $config['cf_mobile_faq_skin']);
+}
+else {
+    $board_skin_path    = get_g4_skin_path('board', $board['bo_skin']);
+    $member_skin_path   = get_g4_skin_path('member', $config['cf_member_skin']);
+    $new_skin_path      = get_g4_skin_path('new', $config['cf_new_skin']);
+    $search_skin_path   = get_g4_skin_path('search', $config['cf_search_skin']);
+    $connect_skin_path  = get_g4_skin_path('connect', $config['cf_connect_skin']);
+    $faq_skin_path      = get_g4_skin_path('faq', $config['cf_faq_skin']);
+}
 
 $g4['bbs_img_path']     = $board_skin_path."/bbs-img";
 
