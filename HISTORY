@@ -3,8 +3,10 @@ ver 2.9.9 (15.00.00)
     : 회신문자 하이픈과 관계없이 전송가능하게 (Lacooon님 제안)
     : 모바일 빌더 연동시 게시물 링크 교정 (edccesl님 제안)
     : 임시저장 기능 오류 수정 (태양이님 제안)
+    : 컨텐츠샵 관리자 링크 수정 (티비플님 제안)
 
     miwit/HISTORY
+    miwit/mw.adm/mw.config.php
     miwit/mw.lib/mw.function.lib.php
     miwit/mw.proc/mw.proc.sms.php
     miwit/mw.proc/mw.temp.php
@@ -4183,6 +4185,6 @@ ver.1.0.0 (08.05.01)
 - 수정한 파일이 있다면 버전업된 부분만 적용하셔도 됩니다.
 
 [기타문의]
-- 곱슬최씨의 그누보드4 스킨 작업실 (http://g4.miwit.com)
+- 마이위트 (http://www.miwit.com)
 
 ==========================================================
