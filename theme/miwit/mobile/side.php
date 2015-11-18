@@ -156,8 +156,7 @@ for ($i=0; $row=$mw5_menu[$i]; ++$i)
         $nav_class = "select";
 
     $me_name = $row['me_name'];
-    if ($row['new'])
-        $me_name .= "<span class='new'>{$row['new']}</span>";
+    //if ($row['new']) $me_name .= "<span class='new'>{$row['new']}</span>";
     //if ($j>1) $me_name .= "<span class='caret'>∨</span>";
 
     echo "<div class=\"group\" id=\"group-{$role}\">{$me_name}";
