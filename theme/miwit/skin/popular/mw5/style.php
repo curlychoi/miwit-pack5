@@ -56,7 +56,7 @@ for ($i=1; $i<=10; ++$i) {
     #mw5 .popular .scroll li.rank{$i}:before {
         content:'{$i}';
         width:15px;
-        position:absolute;
+        float:left;
         text-align:center;
         background-color:#34495e;
         border:0;
@@ -175,7 +175,7 @@ for ($i=1; $i<=10; ++$i) {
     #mw5 .popular .popular-hover li.rank{$i}:before {
         content:'{$i}';
         width:15px;
-        position:absolute;
+        float:left;
         text-align:center;
         background-color:#34495e;
         border:0;
