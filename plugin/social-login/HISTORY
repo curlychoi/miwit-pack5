@@ -1,3 +1,10 @@
+v.1.2.1 (15.11.21)
+    : 그누보드5에서 전체검색 안되는 문제 해결 (신비님 제안)
+
+    plugin/social-login/HISTORY
+    plugin/social-login/_lib.php
+    extend/mw.social-login.extend.php
+ 
 v.1.2.0 (15.06.01)
     : 페이스북 변경사항 적용 (nick1224님 제안)
     : 그누보드4 최신 패치 적용 (4차원섭이님 제안)

@@ -12,6 +12,39 @@
 
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가 
 
+function list_social_login()
+{
+    return array(
+        '@fb'=>'페이스북',
+        '@gl'=>'구글',
+        '@tw'=>'트위터',
+        '@nv'=>'네이버',
+        '@ka'=>'카카오톡'
+    );
+}
+
+function verify_social_login($mb_id=null)
+{
+    global $member;
+
+
+    if (!$mb_id)
+        $mb_id = trim($member['mb_id']);
+
+    if (!$mb_id) return false;
+
+    $sns = substr(strtolower($mb_id), 0, 3);
+    $id = substr($mb_id, 3);
+
+    $id = substr(preg_replace('#[^a-z0-9_]#i', '', $id), 0, 20);
+
+    if (!array_key_exists($sns, list_social_login())) return false;
+
+    if ("{$sns}-{$id}" == $mb_id) return true;
+
+    return false;
+}
+
 function is_social_login($mb_id=null)
 {
     global $member;
@@ -21,16 +54,9 @@ function is_social_login($mb_id=null)
 
     if (!$mb_id) return;
 
-    $mw_social_id = array(
-        '@fb'=>'페이스북',
-        '@gl'=>'구글',
-        '@tw'=>'트위터',
-        '@nv'=>'네이버',
-        '@ka'=>'카카오톡'
-    );
     $sns = substr(strtolower($mb_id), 0, 3);
 
-    if (array_key_exists($sns, $mw_social_id)) {
+    if (array_key_exists($sns, list_social_login())) {
         return $mw_social_id[$sns];
     }
 
