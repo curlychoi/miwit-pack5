@@ -122,4 +122,6 @@ function mw_naver_generate_state() {
         return md5($mt . $rand); 
 }
 
-
+if (!function_exists("mwp_is_social")) { 
+function mwp_is_social() { 
+}}
