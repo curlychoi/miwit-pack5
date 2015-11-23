@@ -16,12 +16,13 @@ include_once(G5_THEME_PATH.'/head.php');
 <!-- 메인화면 최신글 시작 -->
 <div class="latest">
 <?php
+$i = 1;
 $sql = " select * from {$g5['menu_table']} ";
 $sql.= "  where me_link like '%bo_table%' ";
 $sql.= "    and me_code like '{$menu['me_code']}%' ";
 $sql.= "  order by me_code, me_order ";
 $qry = sql_query($sql);
-for ($i=1; $row=sql_fetch_array($qry); ++$i) {
+while ($row = sql_fetch_array($qry)) {
     $latest_table = mw_get_board($row['me_link']);
     if (!$latest_table) continue;
 
