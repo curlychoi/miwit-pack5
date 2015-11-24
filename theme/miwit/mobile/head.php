@@ -8,16 +8,6 @@ include_once(G5_THEME_PATH.'/head.sub.php');
 
 $a = mw_mobile_total_alarm();
 extract($a);
-
-$navbar_fixed_top = "";
-if ($mw_mobile['use_head_fixed']) {
-    $navbar_fixed_top = "navbar-fixed-top";
-
-    if (defined("MW_MOBILE_INDEX") && $mwus['path'])
-        echo "<style>#mw_mobile { margin-top:100px; }</style>";
-    else
-        echo "<style>#mw_mobile { margin-top:50px; }</style>";
-}
 ?>
 
 <!-- Latest compiled and minified CSS -->
@@ -29,7 +19,7 @@ if ($mw_mobile['use_head_fixed']) {
 <link rel="stylesheet" href="<?php echo G5_THEME_URL?>/mobile/theme.css">
 <link rel="stylesheet" href="<?php echo G5_THEME_URL?>/mobile/style.css">
 
-<div class="navbar navbar-default <?php echo $navbar_fixed_top?> navbar-static-top">
+<div class="navbar navbar-default navbar-fixed-top navbar-static-top">
     <button type="button" class="navbar-toggle navbar-toggle-always" id="mw_toggle_button">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>

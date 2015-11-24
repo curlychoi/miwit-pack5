@@ -24,6 +24,7 @@ a:hover, a:link, a:active, a:visited {
     padding:5px;
     background-color: #f3f3f3;
     background-color:#fff;
+    margin-top:50px;
 }
 #mw_mobile .comment {
     font-size:11px;
