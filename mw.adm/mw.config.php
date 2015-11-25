@@ -3890,6 +3890,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
 <p align=center>
     선택
     <select name="range">
+        <option value=""></option>
         <option value="group">그룹적용</option>
         <option value="all">전체적용</option>
     </select>
