@@ -1398,6 +1398,22 @@ function mw_move_cate_one() {
     max-width:<?php echo $board['bo_image_width']-200?>px;
     height:auto; 
 }
+
+@media screen and (max-width:<?php echo $board['bo_image_width']?>px) {
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+    }
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
 <?php echo $cf_css?>
 </style>
 <link rel="stylesheet" href="<?php echo $board_skin_path?>/sideview.css"/>
