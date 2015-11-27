@@ -733,7 +733,31 @@ function mw_set_sync_tag($content) {
             }
         }
     }
+    $content = mw_email_slice($content);
+
     return $content;
+}
+
+function mw_email_slice($content)
+{
+    preg_match_all("/([0-9a-z._-]+@[a-z0-9._-]{4,})/i", $content, $matches);
+    for ($i=0, $m=count($matches[1]); $i<$m; ++$i) {
+        $content = str_replace($matches[1][$i], mw_basic_nobot_slice($matches[1][$i]), $content);
+    }
+
+    return $content;
+}
+
+// 이메일의 자동수집을 막기위해 자바스크립트로 한글자씩 잘라 출력함.
+// 한글등의 2 byte 이상의 문자는 작동 안함.
+function mw_basic_nobot_slice($str) {
+    $ret = "<script>";
+    $ret.= "document.write(";
+    for ($i=0; $i<strlen($str); $i++) {
+	$ret .= "\"".substr($str, $i, 1)."\" + ";	
+    }
+    $ret.= "\"\")</script>";
+    return $ret;
 }
 
 function mw_width_ratio($width, $height, $target)
