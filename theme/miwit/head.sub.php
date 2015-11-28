@@ -67,6 +67,9 @@ header("Pragma: no-cache"); // HTTP/1.0
 <meta charset="utf-8">
 <?php
 if (G5_IS_MOBILE) {
+    if ($viewport)
+    echo '<meta name="viewport" content="width='.$viewport.'">'.PHP_EOL;
+    else
     echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">'.PHP_EOL;
     echo '<meta name="HandheldFriendly" content="true">'.PHP_EOL;
     echo '<meta name="format-detection" content="telephone=no">'.PHP_EOL;
