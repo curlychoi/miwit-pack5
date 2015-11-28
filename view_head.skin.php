@@ -281,7 +281,7 @@ if ($mw_basic[cf_link_log] && $is_admin) {
 
 // 로그버튼
 $history_href = '';
-if ($mw_basic[cf_post_history] && $member[mb_level] >= $mw_basic[cf_post_history_level]) {
+if ($mw_basic[cf_post_history] && $mw_basic[cf_post_history_level] && $member[mb_level] >= $mw_basic[cf_post_history_level]) {
     $history_href = "btn_history($wr_id)";
 }
 
@@ -826,8 +826,6 @@ if ($is_admin || $history_href || $is_singo_admin)
     ?>
     </div><!--mw_manage-->
     <?php
-    $mw_admin_button = ob_get_contents();
-    //ob_end_flush();
-    ob_end_clean();
+    $mw_admin_button = ob_get_clean();
 }
 
