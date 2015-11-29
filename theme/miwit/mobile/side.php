@@ -95,78 +95,43 @@ $mw5_menu = mw_get_menu();
 
     <div class="mw_side_menu">
     <?php
-/*
-    $list = array();
-    $group_count = array();
-    for ($i=0, $m=count($mobile_board); $i<$m; $i++) {
-        $board = sql_fetch("select gr_id, bo_table, bo_subject, bo_new from $g4[board_table] where bo_table = '{$mobile_board[$i]}'");
-        if (!$board) continue;
+    for ($i=0; $row=$mw5_menu[$i]; ++$i)
+    {
+        $role = substr($row['me_code'], 0, 2);
 
-        $sql = " select count(*) as cnt from $g4[write_prefix]$board[bo_table] ";
-        $sql.= " where wr_is_comment = '' ";
-        $sql.= " and wr_datetime >= '".date("Y-m-d H:i:s", $g4['server_time'] - ($board['bo_new'] * 3600))."'" ;
-        $row = sql_fetch($sql);
+        ob_start();
+        echo "<div id=\"board-{$role}\" class=\"board\">\n";
+        for ($j=0; $row2=$mw5_menu[$i]['sub'][$j]; ++$j) {
+            $href = $row2['me_link'];
+            $bo_new = '';
+            if ($row2['bo_new'])
+                $bo_new = "<span class=\"comment\">{$row2['bo_new']}</span>";
 
-        $cnt = '';
-        if ($row[cnt])
-            $cnt = "<span class='comment'>$row[cnt]</span>";
-
-        $href = mw_seo_url($board['bo_table']);
-        $list[$board['gr_id']][$board['bo_table']]['bo_subject'] = $board['bo_subject'];
-        $list[$board['gr_id']][$board['bo_table']]['bo_new'] = $row['cnt'];
-        $group_count[$board['gr_id']] += $row['cnt'];
-    }
-
-    foreach ((array)$list as $gr_id => $row) {
-        $group = sql_fetch("select * from {$g4['group_table']} where gr_id = '{$gr_id}' ");
-        echo "<div class=\"group\" id=\"group-{$gr_id}\"><i class=\"fa fa-book\"></i>&nbsp; {$group['gr_subject']}";
-        if ($group_count[$gr_id])
-            echo " <span class='comment2'>{$group_count[$gr_id]}</span>";
-        echo "</div>\n";
-        echo "<div id=\"board-{$gr_id}\" class=\"board\">\n";
-        foreach ((array)$row as $bo_table => $item) {
-            $href = mw_seo_url($bo_table);
-            $new = "<span class='comment'>{$item['bo_new']}</span>";
-            if (!$item['bo_new'])
-                $new = '';
-            echo "<a href=\"{$href}\"><div><i class=\"fa fa-file-o\"></i> &nbsp;{$item['bo_subject']} {$new}</div></a>\n";
+            echo "<a href=\"{$href}\" target=\"_{$row2['me_target']}\"><div>{$row2['me_name']} {$bo_new}</div></a>\n";
         }
         echo "</div>\n";
+        $drop_menu = ob_get_clean();
+
+        $nav_class = "item";
+        if ($role == substr($menu['me_code'], 0, 2))
+            $nav_class = "select";
+
+        $me_name = $row['me_name'];
+
+        $group_link_begin = '';
+        $group_link_end = '';
+        if ($j<2 and $row['me_link'] == $href) {
+            $group_link_begin = "<a href=\"{$row['me_link']}\" target=\"_{$row['me_target']}\">";
+            $group_link_end = "</a>";
+        }
+ 
+        echo "<div class=\"group\" id=\"group-{$role}\">{$group_link_begin}<div>{$me_name}";
+        if ($row['new'])
+            echo " <span class='comment2'>{$row['new']}</span>";
+        echo "</div>{$group_link_end}</div>\n";
+
+        if ($j>1 or $row['me_link'] != $href) echo $drop_menu;
     }
-
-*/
-for ($i=0; $row=$mw5_menu[$i]; ++$i)
-{
-    $role = substr($row['me_code'], 0, 2);
-
-    ob_start();
-    echo "<div id=\"board-{$role}\" class=\"board\">\n";
-    for ($j=0; $row2=$mw5_menu[$i]['sub'][$j]; ++$j) {
-        $bo_new = '';
-        if ($row2['bo_new'])
-            $bo_new = "<span class=\"comment\">{$row2['bo_new']}</span>";
-
-        echo "<a href=\"{$row2['me_link']}\" target=\"_{$row2['me_target']}\"><div>{$row2['me_name']} {$bo_new}</div></a>\n";
-    }
-    echo "</div>\n";
-    $drop_menu = ob_get_clean();
-
-    $nav_class = "item";
-    if ($role == substr($menu['me_code'], 0, 2))
-        $nav_class = "select";
-
-    $me_name = $row['me_name'];
-    //if ($row['new']) $me_name .= "<span class='new'>{$row['new']}</span>";
-    //if ($j>1) $me_name .= "<span class='caret'>∨</span>";
-
-    echo "<div class=\"group\" id=\"group-{$role}\">{$me_name}";
-    if ($row['new'])
-        echo " <span class='comment2'>{$row['new']}</span>";
-    echo "</div>\n";
-
-    if ($j>0) echo $drop_menu;
-}
-
     ?>
     </div>
 

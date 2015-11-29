@@ -373,7 +373,7 @@ a:hover, a:link, a:active, a:visited {
 #mw_side .mw_side_menu div {
 }
 
-#mw_side .mw_side_menu .group {
+#mw_side .mw_side_menu .group div {
     line-height:30px;
     padding:5px 0 5px 7px;
     background-color:#eee;

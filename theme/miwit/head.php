@@ -152,11 +152,12 @@ for ($i=0; $row=$mw5_menu[$i]; ++$i)
     ob_start();
     echo "<ul class=\"dropdown\" data-role=\"{$role}\">\n";
     for ($j=0; $row2=$mw5_menu[$i]['sub'][$j]; ++$j) {
+        $href = $row2['me_link'];
         $bo_new = '';
         if ($row2['bo_new'])
             $bo_new = "<span class=\"new\">{$row2['bo_new']}</span>";
 
-        echo "<li><a href=\"{$row2['me_link']}\" target=\"_{$row2['me_target']}\">{$row2['me_name']}{$bo_new}</a></li>\n";
+        echo "<li><a href=\"{$href}\" target=\"_{$row2['me_target']}\">{$row2['me_name']}{$bo_new}</a></li>\n";
     }
     echo "</ul>\n";
     $drop_menu = ob_get_clean();
@@ -168,13 +169,13 @@ for ($i=0; $row=$mw5_menu[$i]; ++$i)
     $me_name = $row['me_name'];
     if ($row['new'])
         $me_name .= "<span class='new'>{$row['new']}</span>";
-    if ($j>1)
+    if ($j>1 or $row['me_link'] != $href)
         $me_name .= "<span class='caret'>∨</span>";
 
     echo "<li class='{$nav_class}' data-target='{$role}'>";
     echo "<a href=\"{$row['me_link']}\" target=\"_{$row['me_target']}\">{$me_name}</a></li>\n";
 
-    if ($j>0) echo $drop_menu;
+    if ($j>1 or $row['me_link'] != $href) echo $drop_menu;
 }
 if ($i == 0) {  
     echo "<li class=\"nothing\">메뉴 준비 중입니다.";
