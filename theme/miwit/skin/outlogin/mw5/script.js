@@ -17,17 +17,17 @@ $(document).ready(function () {
     });
 
     $("form[name=foutlogin]").submit(function () {
-        if (!$("input[name=mb_id]").val()) {
+        if (!$(this).find("input[name=mb_id]").val()) {
             alert("회원아이디를 입력하십시오.");
-            $("input[name=mb_id]").focus();
+            $(this).find("input[name=mb_id]").focus();
             return false;
         }
-        if (!$("input[name=mb_password]").val()) {
+        if (!$(this).find("input[name=mb_password]").val()) {
             alert("패스워드를 입력하십시오.");
-            $("input[name=mb_password]").focus();
+            $(this).find("input[name=mb_password]").focus();
             return false;
         }
         return true;
-    });
+    }); 
 });
 
