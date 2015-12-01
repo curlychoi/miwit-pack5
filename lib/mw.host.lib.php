@@ -27,20 +27,90 @@ if (!defined('_GNUBOARD_')) exit;
 if (!function_exists("mw_sub_domain_only")) {
 function mw_sub_domain_only($sub_domain="")
 {
-    global $g4, $_SERVER;
+    global $g4;
+    global $is_admin;
 
-    if (!$g4[cookie_domain]) return false;
     if (!$_SERVER[HTTP_HOST]) return false;
 
-    //$diff = substr($_SERVER[HTTP_HOST], 0, strlen($sub_domain)+1);
-    //if ($diff != $sub_domain.".") {
+    if (@is_file($g4['path']."/plugin/mobile/_config.php"))
+        include_once($g4['path']."/plugin/mobile/_config.php");
 
-    if (mw_get_sub_domain() == 'm') return;
+    if ($mw_mobile['m_subdomain'] and mw_get_sub_domain() == 'm') return;
+
+    if (!$g4[cookie_domain] and G5_COOKIE_DOMAIN)
+        $g4[cookie_domain] = G5_COOKIE_DOMAIN;
+
+    if (!$g4[cookie_domain])
+        $g4[cookie_domain] = '.'.get_top_domain();
+
+    if (!$g4[cookie_domain])
+        return;
 
     if ($_SERVER[HTTP_HOST] != $sub_domain.$g4[cookie_domain]) {
         goto_url2("http://".$sub_domain.$g4[cookie_domain].$_SERVER[REQUEST_URI]);
     }
 }}
+
+function get_top_domain($url='')
+{
+    if (!$url)
+        $url = $_SERVER['HTTP_HOST'];
+
+    $url = strtolower(trim($url));
+    $url = parse_url('http://'.$url);
+
+    $host = $url['host'];
+
+$list = "
+com
+net
+kr
+co
+kr
+cn
+tv
+me
+asia
+co
+so
+info
+name
+tel
+mobi
+biz
+org
+cc
+co.kr
+or.kr
+ac.kr
+or.kr
+ne.kr
+re.kr
+pe.kr
+xyz
+io
+xxx
+jp
+la
+qa
+my
+tw
+tm
+ws
+gg
+vn
+";
+
+    $list = explode("\r", trim($list));
+    $list = array_map('trim', $list);
+    $list = implode("|", $list);
+    $list = str_replace(".", "\.", $list);
+
+    preg_match("/([0-9a-z-]+)\.({$list})$/iUs", $host, $match);
+
+    return $match[0];
+}
+
 
 // 현재 서브도메인을 얻는다.
 // config.php 에 $g4[cookie_domain] 이 설정되어 있어야만 작동한다.
