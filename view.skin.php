@@ -1400,6 +1400,15 @@ function mw_move_cate_one() {
 }
 
 @media screen and (max-width:<?php echo $board['bo_image_width']?>px) {
+    #mw_basic .mw_basic_view_content img {
+        max-width: 100% !important;
+        max-height: 100%;
+    }
+
+    #mw_basic .mw_basic_comment_content img {
+        max-width: 100% !important;
+        max-height: 100%;
+    }
     .videoWrapper {
         position: relative;
         padding-bottom: 56.25%; /* 16:9 */
