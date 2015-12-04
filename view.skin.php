@@ -1385,6 +1385,13 @@ function mw_move_cate_one() {
 
 <?php if (!is_g5()) { ?>
 <script> $(document).ready (function() { resizeBoardImage(<?=$board[bo_image_width]?>); }); </script>
+<?php } else { ?>
+<script>
+    $("a.view_image").click(function() {
+        window.open(this.href, "large_image", "location=yes,links=no,toolbar=no,top=10,left=10,width=10,height=10,resizable=yes,scrollbars=no,status=no");
+        return false;
+    });
+</script>
 <?php } ?>
 
 <style>

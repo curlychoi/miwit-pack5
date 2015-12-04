@@ -31,6 +31,11 @@ else if ($mw_basic[cf_talent_market]) {
 else {
     $file_start = 0;
 }
+if (is_g5()) {
+    include_once(G5_LIB_PATH.'/thumbnail.lib.php');
+    $view['content'] = get_view_thumbnail($view['content']);
+    echo '<script src="'.G5_JS_URL.'/viewimageresize.js"></script>'.PHP_EOL;
+}
 
 $jwplayer = false;
 $jwplayer_count = 0;
