@@ -6,6 +6,7 @@ ver 3.0.0 (15.11.00)
     : 권한없어도 관리 버튼 보이는 문제 해결 (태양이님 제안)
     : 스마트 에디터 사진 첨부시 확대기능 (테크니션님 제안)
     : 크롬 돋움폰트 강제적용 제거
+    : 댓글 로그, 신고 버튼 글자 출력 반응형 수정
 
     miwit/HISTORY
     miwit/mw.adm/mw.config.php
@@ -13,6 +14,7 @@ ver 3.0.0 (15.11.00)
     miwit/mw.proc/mw.file.viewer.php
     miwit/view.skin.php
     miwit/view_head.skin.php
+    miwit/view_comment.skin.php
  
 ver 2.9.9 (15.11.18)
     : 외부이미지 썸네일 생성 오류 수정 (금광님 제안)
