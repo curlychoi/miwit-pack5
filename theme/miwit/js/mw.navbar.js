@@ -34,15 +34,13 @@ var head_fixed =
         h = parseInt($(".navbar").position().top);
         navbar_height = parseInt($(".navbar").css("height"));
 
+        css_w = w + "%";
+        if (w > 100) 
+            css_w = (w+0) + "px";
+
         css  = "<style>";
         css += ".navbar-fixed { ";
-        if (w > 100) {
-            css += "    width:" + (w+4) + "px; ";
-            //css += "  margin-left: -2px; ";
-        }
-        else {
-            css += " width:" + w + "%; ";
-        }
+        css += "    width:"+css_w+"; ";
         css += "    position:fixed; ";
         css += "    z-index:99; ";
         css += "    margin:0; ";
@@ -50,6 +48,7 @@ var head_fixed =
         css += "}";
 
         css += ".navbar-fixed-back { ";
+        //css += "    width:"+css_w+"; ";
         css += "    font-size:0; ";
         css += "    line-height:0; ";
         css += "    clear:both; ";
@@ -63,7 +62,10 @@ var head_fixed =
 
     run: function ()
     {
-        if (first_head_fixed) head_fixed.init();
+        if (first_head_fixed)
+            head_fixed.init();
+        else
+            $(".navbar-fixed").css("width", $(".navbar-fixed-back").css("width"));
 
         sct = $(window).scrollTop();
 
