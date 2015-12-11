@@ -30,13 +30,10 @@ var head_fixed =
         var css = null;
 
         w = parseInt($(".navbar").css("width"));
-        //h = parseInt($(".navbar").position().top + parseInt($(".navbar").css("margin-top")));
         h = parseInt($(".navbar").position().top);
         navbar_height = parseInt($(".navbar").css("height"));
 
-        css_w = w + "%";
-        if (w > 100) 
-            css_w = (w+0) + "px";
+        css_w = '100%';
 
         css  = "<style>";
         css += ".navbar-fixed { ";
@@ -44,7 +41,6 @@ var head_fixed =
         css += "    position:fixed; ";
         css += "    z-index:99; ";
         css += "    margin:0; ";
-        //css += "    box-shadow:0px 1px 1px #444; ";
         css += "}";
 
         css += ".navbar-fixed-back { ";
@@ -64,8 +60,6 @@ var head_fixed =
     {
         if (first_head_fixed)
             head_fixed.init();
-        else
-            $(".navbar-fixed").css("width", $(".navbar-fixed-back").css("width"));
 
         sct = $(window).scrollTop();
 
@@ -110,7 +104,6 @@ $(document).ready(function () {
 
         var $menu = $(".dropdown[data-role='"+$(this).attr("data-target")+"']");
 
-        //$menu.css("top", $(this).position().top);
         $menu.css("left", $(this).position().left);
         $menu.show();
     })
