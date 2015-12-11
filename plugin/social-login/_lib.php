@@ -56,8 +56,9 @@ function is_social_login($mb_id=null)
 
     $sns = substr(strtolower($mb_id), 0, 3);
 
-    if (array_key_exists($sns, list_social_login())) {
-        return $mw_social_id[$sns];
+    $arr = list_social_login();
+    if (array_key_exists($sns, $arr)) {
+        return $arr[$sns];
     }
 
     return false;
