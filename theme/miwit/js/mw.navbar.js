@@ -90,10 +90,8 @@ var head_fixed =
     }
 }
 
-$(window).ready(function () {
-    $(window).on('load scroll resize mousewheel', function () {
-        head_fixed.run();
-    });
+$(window).on('load scroll resize mousewheel', function () {
+    head_fixed.run();
 });
 
 $(document).ready(function () {
