@@ -12,7 +12,7 @@ function mw_script($src)
     if (!@is_file(G5_PATH.$src)) return;
 
     $mtime = filemtime(G5_PATH.$src);
-    $src = G5_URL.$src;//."?".$mtime;
+    $src = G5_URL.$src."?".$mtime;
 
     add_javascript("<script src=\"{$src}\"></script>");
 }
@@ -24,7 +24,7 @@ function mw_css($href)
     if (!@is_file(G5_PATH.$href)) return;
 
     $mtime = filemtime(G5_PATH.$href);
-    $href = G5_URL.$href;//."?".$mtime;
+    $href = G5_URL.$href."?".$mtime;
 
     add_stylesheet("<link rel=\"stylesheet\" href=\"{$href}\">");
 }
