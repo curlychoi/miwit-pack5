@@ -429,53 +429,13 @@ include_once("$board_skin_path/mw.proc/mw.cash.membership.skin.php");
 <input type=hidden name=sst      value="<?=$sst?>">
 <input type=hidden name=sod      value="<?=$sod?>">
 <input type=hidden name=page     value="<?=$page?>">
-
 <?php
 // 익명게시판
 if ($mw_basic[cf_attribute] == "anonymous" && $is_guest) {
     $is_name = $is_email = $is_homepage = false;
     echo "<input type=hidden name=wr_name value='익명'>\n";
 } 
-
-if (0 && $is_category && $mw_basic[cf_category_tab]) {
-    $category_list = array_map("trim", explode("|", $board[bo_category_list]));
-    if ($mw_basic['cf_ca_order']) {
-        sort($category_list);
-    }
 ?>
-<div class="category_tab">
-<ul>
-    <?php
-    $i = 1;
-    $l = 6;
-    $m = sizeof($category_list);
-    if (!$mw_basic['cf_default_category']) {
-        echo "<li";
-        if (!$sca) echo " class='selected'";
-        echo "><a href=\"".mw_seo_url($bo_table)."\">전체</a></li>";
-        ++$i;
-        ++$m;
-    }
-    //for ($m=sizeof($category_list); $i<$m; ++$i) {
-    foreach ($category_list as $cate) {
-        echo "<li";
-        if (urldecode($sca) == $cate) echo " class='selected'";
-        echo "><a href=\"". mw_seo_url($bo_table, 0, "&sca=".urlencode($cate))."\">";
-        echo $cate."</a></li>";
-
-        if ($m>=10 && $i++%$l==0 && $i<=$m) echo "</ul><ul>";
-    }
-    $rest = $l-(($i-1)%$l);
-    if ($rest > 0 and $m >= 10) {
-        for ($z=0; $z<$rest; ++$z) {
-            echo "<li class='none'>&nbsp;</li>\n";
-        }
-    }
-    ?>
-</ul>
-</div>
-<?php } ?>
-
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="write_table">
 <colgroup width=100>
 <colgroup width=''>

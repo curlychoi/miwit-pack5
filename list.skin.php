@@ -342,11 +342,11 @@ if ($is_category && $mw_basic[cf_category_tab]) {
         echo "><a href=\"". mw_seo_url($bo_table, 0, "&sca=".urlencode($cate))."\">";
         echo $cate."</a></li>";
 
-        if ($m>=10 && $i++%$l==0 && $i<=$m) echo "</ul><ul>";
+        if ($m>=$l && $i++%$l==0 && $i<=$m) echo "</ul><ul>";
     }
     //$rest = $l-(($i-1)%$l);
     $rest = ceil(($i-1)/$l)*$l-($i-1);
-    if ($rest > 0 and $m >= 10) {
+    if ($rest > 0 and $m >= $l) {
         for ($z=0; $z<$rest; ++$z) {
             echo "<li class='none'>&nbsp;</li>\n";
         }
