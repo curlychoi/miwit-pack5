@@ -278,7 +278,7 @@ $google_map_is_view = false;
 if ($mw_basic[cf_google_map] && trim($write[wr_google_map])) {
     ob_start();
     ?>
-    <script src="http://maps.google.com/maps/api/js?sensor=true&language=ko"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true&language=ko&region=kr"></script>
     <script src="<?=$board_skin_path?>/mw.js/mw.google.js"></script>
     <script>
     $(document).ready(function () {
