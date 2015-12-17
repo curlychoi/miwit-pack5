@@ -326,6 +326,7 @@ if ($is_category && $mw_basic[cf_category_tab]) {
     <?php
     $i = 1;
     $l = 6;
+    if (mw_is_mobile_builder() or G5_IS_MOBILE) $l = 3;
     $m = sizeof($category_list);
     if (!$mw_basic['cf_default_category']) {
         echo "<li";
