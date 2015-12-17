@@ -328,8 +328,8 @@ if ($is_category && $mw_basic[cf_category_tab]) {
     $l = 6; // 탭갯수
     $p = 10; // 이 값이 넘어가면 라인이 추가되기 시작
     if (mw_is_mobile_builder() or G5_IS_MOBILE) {
-        $l = 3;
-        $p = 5;
+        $l = 3; // 모바일 탭갯수
+        $p = 5; // 모바일 이 값이 넘어가면 라인이 추가되기 시작
     }
     $m = sizeof($category_list);
     if (!$mw_basic['cf_default_category']) {
