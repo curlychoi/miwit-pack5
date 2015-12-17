@@ -705,7 +705,7 @@ if ($mw_basic[cf_sns])
 
     <? if (strstr($mw_basic[cf_sns], '/google_good/')) { ?>
     <!-- +1 버튼이 렌더링되기를 원하는 곳에 이 태그를 넣습니다. -->
-    <div id="google_good"><g:plusone size="medium" annotation="inline" width="150"></g:plusone></div>
+    <div id="google_good"><g:plusone size="standard" annotation="bubble" width="150"></g:plusone></div>
 
     <!-- 적절한 곳에 이 렌더링 호출을 넣습니다. -->
     <script type="text/javascript">
