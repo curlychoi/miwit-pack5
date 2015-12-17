@@ -12,7 +12,7 @@ foreach((array)$_POST as $key => $val) {
 ?>
 <html>
 <body>
-<form name="fmove" method="post" action="../bbs/<?php echo basename($_SERVER['PHP_SELF'])?>">
+<form name="fmove" method="post" action="../bbs/<?php echo basename($_SERVER['SCRIPT_NAME'])?>">
 <?php echo $post?>
 </form>
 <script>
