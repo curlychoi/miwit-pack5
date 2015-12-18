@@ -2,10 +2,14 @@
 header("content-type:text/css; charset:utf-8");
 
 $css = "gallery-{$_GET['bo_table']}-{$_GET['rows']}-{$_GET['subject_len']}";
+
+$w = 170; // 가로
+$h = 100; // 세로
 ?>
 .<?php echo $css?> {
     border:0;
     text-align:left;
+    overflow:hidden;
 }
 
 .<?php echo $css?> h2 {
@@ -16,10 +20,9 @@ $css = "gallery-{$_GET['bo_table']}-{$_GET['rows']}-{$_GET['subject_len']}";
     margin:0 0 10px 0;
     padding:0;
 
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 .<?php echo $css?> h2 a {
@@ -32,86 +35,92 @@ $css = "gallery-{$_GET['bo_table']}-{$_GET['rows']}-{$_GET['subject_len']}";
     padding-left:5px;
     text-decoration:none;
 
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 .<?php echo $css?> ul {
     margin:0;
     padding:0;
     list-style:none;
+    display:table;
+    width:100%;
+    table-layout:fixed;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
 }
 
 .<?php echo $css?> ul li {
-    font-size:1em;
-    line-height:20px;
-    border-bottom:1px solid #efefef;
-    position:relative;
-    white-space:nowrap;
-    overflow:hidden;
-    float:left;
-    width:170px;
-    height:160px;
-    background-color:#000;
+    display:table-cell;
+    vertical-align:top;
+    text-align:center;
+    background-color:#fff;
     color:#fff;
-    margin-right:7px;
-    margin-bottom:5px;
     box-sizing:border-box;
     -moz-box-sizing:border-box;
     -webkit-box-sizing:border-box;
+}
+
+.<?php echo $css?> ul li:last-child {
+    margin-right:0;
 }
 
 .<?php echo $css?> ul li img {
-    width:170px;
-    height:120px;
+    width:<?php echo $w?>px;
+    height:<?php echo $h?>px;
 
-    border-top:1px solid #ccc;
+    /*border-top:1px solid #ccc;
     border-right:1px solid #ccc;
-    border-left:1px solid #ccc;
+    border-left:1px solid #ccc;*/
 
     box-sizing:border-box;
     -moz-box-sizing:border-box;
     -webkit-box-sizing:border-box;
 }
 
-/*
-.<?php echo $css?> ul li:before {
-    font-family:FontAwesome;
-    font-weight:normal;
-    font-style:normal;
-    display:inline-block;
-    text-decoration:inherit;
-    content:"\f0da";
-    width:10px;
+.<?php echo $css?> ul li div.noimage {
+    width:<?php echo $w?>px;
+    height:<?php echo $h?>px;
     text-align:center;
-    margin-right:5px;
-    color:#888;
-    color:#e67e22;
-    color:#bdc3c7;
+    background-color:#efefef;
+    margin:0 auto 0 auto;
+
+    /*border-top:1px solid #ccc;
+    border-right:1px solid #ccc;
+    border-left:1px solid #ccc;*/
+
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
 }
 
-.<?php echo $css?> ul li.new:before {
-    color:#e74c3c;
+.<?php echo $css?> ul li div.noimage i {
+    font-size:50px;
+    line-height:<?php echo $h?>px;
+    color:#999;
 }
-
-.<?php echo $css?> ul li.secret:before {
-    content:"\f023";
-}
-
 
 .<?php echo $css?> ul li a:hover {
     color:#e74c3c;
 }
-*/
 
 .<?php echo $css?> ul li a {
     color:#fff;
 }
 .<?php echo $css?> ul li div.title {
     color:#fff;
-    padding:10px 0 0 5px;
+    width:<?php echo $w?>px;
+    height:30px;
+    margin:0 auto 0 auto;
+    display:block;
+    line-height:30px;
     font-size:13px;
+    background-color:#aaa;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
 }
 
 .<?php echo $css?> .comment {
@@ -122,4 +131,5 @@ $css = "gallery-{$_GET['bo_table']}-{$_GET['rows']}-{$_GET['subject_len']}";
     background-color:#000;
     padding:0 5px 0 5px;
 } 
+
 
