@@ -23,6 +23,9 @@ else
         $e = ($a+1)*5;
         $r = rand($s, $e-1);
         for ($i=$s; $i<$e; $i++) {
+
+            $list[$i] = mw_get_list($list[$i]);
+
             if ($r == $i)
                 $list[$i]['subject'] = "<strong>{$list[$i]['subject']}</strong>";
 
@@ -36,8 +39,9 @@ else
             }
 
             $class = '';
-            if ($list[$i]['icon_secret'])
+            if ($list[$i]['icon_secret'] or $list[$i]['wr_singo_lock'] or $list[$i]['wr_view_lock']) {
                 $class.= " secret";
+            }
 
             if ($list[$i]['icon_new'])
                 $class.= " new";
