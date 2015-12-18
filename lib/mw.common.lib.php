@@ -178,6 +178,13 @@ function mw_html_entities($str)
 
 function mw_skin_config($bo_table)
 {
+    global $mw;
+
+    $mw_basic = $mw['skin_config'][$bo_table];
+    if (!empty($mw_basic)) {
+        return $mw_basic;
+    }
+
     $file = G5_DATA_PATH."/mw.basic.config/".$bo_table;
 
     $content = '';
@@ -189,6 +196,8 @@ function mw_skin_config($bo_table)
 
     $content = base64_decode($content);
     $content = unserialize($content);
+
+    $mw['skin_config'][$bo_table] = $content;
 
     return $content;
 }
@@ -329,3 +338,31 @@ function mw_get_menu()
 
     return $mw5_menu;
 }
+
+function mw_get_list($list)
+{
+    global $g4;
+    global $g5;
+    global $config;
+    global $qstr;
+    global $page;
+    global $mw;
+    global $is_admin;
+
+    $mw_basic = mw_skin_config($board['bo_table']);
+
+    $list['wr_singo_lock'] = false;
+    if ($list['wr_singo'] && $list['wr_singo'] >= $mw_basic['cf_singo_number']) {
+        $list['wr_subject'] = "신고가 접수된 게시물입니다.";
+        $list['wr_content'] = "신고가 접수된 게시물입니다.";
+        $list['wr_singo_lock'] = true;
+    }
+
+    if ($list['wr_view_block']) {
+        $list['wr_subject'] = "보기가 차단된 게시물입니다.";
+        $list['wr_content'] = "보기가 차단된 게시물입니다.";
+    }
+
+    return $list;
+}
+
