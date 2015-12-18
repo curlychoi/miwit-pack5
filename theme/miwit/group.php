@@ -18,7 +18,7 @@ include_once(G5_THEME_PATH.'/head.php');
 <?php
 $i = 1;
 $sql = " select * from {$g5['menu_table']} ";
-$sql.= "  where me_link like '%bo_table%' ";
+$sql.= "  where (me_link like '%bo_table%' or me_link like '%/b/%') ";
 $sql.= "    and me_code like '{$menu['me_code']}%' ";
 $sql.= "  order by me_code, me_order ";
 $qry = sql_query($sql);
