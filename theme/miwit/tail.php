@@ -91,10 +91,6 @@ else if (G5_DEVICE_BUTTON_DISPLAY and G5_USE_MOBILE and !G5_IS_MOBILE) {
     echo "<a href=\"{$href}\" id=\"device_change\">모바일 버전으로 보기</a>";
 }
 
-
-if ($config['cf_analytics']) {
-    echo $config['cf_analytics'];
-}
 ?>
 
 <!-- } 하단 끝 -->
