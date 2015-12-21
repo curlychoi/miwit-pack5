@@ -612,7 +612,7 @@ for ($i=0; $i<$to_record; $i++) {
         <input type="hidden" id='html_<?=$comment_id?>'
             value="<?=strstr($list[$i][wr_option], 'html2')?'1':'';?>"><!-- html -->
         <textarea id="save_comment_<?php echo $comment_id?>"
-            style="display:none;"><?=get_text($list[$i][content1], 0)?></textarea>
+            style="display:none;"><?php if ($is_admin or $list[$i]['mb_id'] == $member['mb_id']) echo get_text($list[$i][content1], 0)?></textarea>
         <?php } ?>
     </td>
 </tr>

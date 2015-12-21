@@ -740,6 +740,7 @@ function mw_set_sync_tag($content) {
 
 function mw_email_slice($content)
 {
+    $content = preg_replace("/<a href=\"mailto:([0-9a-z._-]+@[a-z0-9._-]{4,})\">([0-9a-z._-]+@[a-z0-9._-]{4,})<\/a>/i", "\\1", $content);
     preg_match_all("/([0-9a-z._-]+@[a-z0-9._-]{4,})/i", $content, $matches);
     for ($i=0, $m=count($matches[1]); $i<$m; ++$i) {
         $content = str_replace($matches[1][$i], mw_basic_nobot_slice($matches[1][$i]), $content);
