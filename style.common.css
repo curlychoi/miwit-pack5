@@ -2562,15 +2562,19 @@ i.fa-warning { color:#f36a2e; }
 
     #mw_basic .comment_buttons .button {
         width:20px;
+        width:auto;
         padding-bottom:10px;
+        margin-left:10px;
     }
 
     #mw_basic .mw_basic_comment_good.button {
         width:40px;
+        width:auto;
     }
 
     #mw_basic .mw_basic_comment_nogood.button {
         width:40px;
+        width:auto;
     }
 
     #mw_basic .mw_basic_list_subject img:first-child {

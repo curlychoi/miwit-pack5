@@ -600,7 +600,7 @@ for ($i=0; $i<$to_record; $i++) {
                 <span class="mw_basic_comment_reply button">
                     <a href="javascript:comment_box('<?php echo $comment_id?>', 'c', '<?php echo $list[$i]['wr_name']?>');">
                     <i class='fa fa-reply fa-rotate-180'></i>
-                    <span class='media-comment-button'>답글</span>
+                    답글
                     </a>
                 </span>
             <?php } ?>
