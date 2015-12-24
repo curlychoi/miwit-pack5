@@ -98,12 +98,15 @@ if (preg_match("/\.($config[cf_movie_extension])$/i", $file[0][file])) {
     $file[0][movie] = true;
 } 
 elseif ($file[0][view]) {
-    if ($board[bo_image_width] < $file[0][image_width]) { // 이미지 크기 조절
-        $img_width = $board[bo_image_width];
-    } else {
+    if ($board[bo_image_width]-200 < $file[0][image_width]) { // 이미지 크기 조절
+        $img_width = $board[bo_image_width]-200;
+    }
+    else {
         $img_width = $file[0][image_width];
     }
-    $file[0][view] = str_replace("<img", "<img width=\"{$img_width}\"", $file[0][view]);
+    $file[0][view] = str_replace("<img", "<img style=\"max-width:{$img_width}px\"", $file[0][view]);
+    $file[0][view] = preg_replace("/ width=\"[0-9]+\"/", "", $file[0][view]);
+    $file[0][view] = preg_replace("/ height=\"[0-9]+\"/", "", $file[0][view]);
     if ($mw_basic[cf_image_save_close])
         $file[0][view] = str_replace("<img", "<img oncontextmenu=\"return false\" style=\"-webkit-touch-callout:none\" ", $file[0][view]);
 
@@ -162,7 +165,7 @@ if ($mw_basic[cf_singo]) {
 
 // 로그버튼
 $history_href = "";
-if ($mw_basic[cf_post_history] && $member[mb_level] >= $mw_basic[cf_post_history_level]) {
+if ($mw_basic[cf_post_history] && $mw_basic[cf_post_history_level] && $member[mb_level] >= $mw_basic[cf_post_history_level]) {
     $history_href = "javascript:btn_history({$row[wr_id]})";
 }
 
@@ -179,6 +182,10 @@ if ($mw_basic[cf_attribute] != "anonymous" && !$row[wr_anonymous] && $row[mb_id]
     $is_comment_image = true;
     $tmpsize = @getImageSize($comment_image);
     $comment_image.= '?'.filemtime($comment_image);
+    $comment_class = '';
+}
+else {
+    $comment_class = 'noimage';
 }
 
 $row[content] = mw_reg_str($row[content]); // 자동치환
