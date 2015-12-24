@@ -434,15 +434,17 @@ for ($i=0; $i<$to_record; $i++) {
     <td><? for ($k=0; $k<strlen($list[$i][wr_comment_reply]); $k++) echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?></td>
 
     <td valign="top" style="text-align:left;">
-        <img src="<?=$comment_image?>" class="comment_image"
+        <div class="comment_image <?php echo $comment_class?>">
+        <img src="<?php echo $comment_image?>"
             <?php
             if ($is_comment_image) { echo "onclick='mw_image_window(this, {$tmpsize[0]}, {$tmpsize[1]});'"; }
             else if (($is_member && $list[$i][mb_id] == $member[mb_id] && !$list[$i][wr_anonymous]) || $is_admin) { echo "onclick='mw_member_photo(\"{$list[$i]['mb_id']}\");'"; }?>>
 
         <? if (($is_member && $list[$i][mb_id] == $member[mb_id] && !$list[$i][wr_anonymous]) || $is_admin) { ?>
-        <div style="margin:0 0 0 10px;"><a href="javascript:mw_member_photo('<?=$list[$i][mb_id]?>')"
+        <div><a href="javascript:mw_member_photo('<?=$list[$i][mb_id]?>')"
             style="font:normal 11px; color:#888; text-decoration:none;"><? echo $is_comment_image ? "사진변경" : "사진등록"; ?></a></div>
-        <? } ?>
+        <?php } ?>
+        </div>
 
         <script>
         function mw_member_photo(mb_id) {
@@ -477,7 +479,7 @@ for ($i=0; $i<$to_record; $i++) {
     <td><div style="width:10px;"></div></td>
 
     <td width="100%" valign="top">
-        <table width=100% height="28" cellpadding=0 cellspacing=0 style="background:url(<?=$board_skin_path?>/img/co_title_bg.gif);">
+        <table width=100% height="28" cellpadding=0 cellspacing=0>
         <tr>
             <!-- 이름, 아이피 -->
             <td>

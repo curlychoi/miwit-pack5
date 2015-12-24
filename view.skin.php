@@ -648,11 +648,13 @@ if ($is_signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymo
     $tmpsize = array(0, 0);
     $is_comment_image = false;
     $comment_image = mw_get_noimage();
+    $comment_class = 'noimage';
     if ($mw_basic[cf_attribute] != "anonymous" && !$view[wr_anonymous] && $view[mb_id] && file_exists("$comment_image_path/{$view[mb_id]}")) {
         $comment_image = "$comment_image_path/{$view[mb_id]}";
         $is_comment_image = true;
         $tmpsize = @getimagesize($comment_image);
         $comment_image.= '?'.filemtime($comment_image);
+        $comment_class = '';
     }
 
     $signature = preg_replace("/<a[\s]+href=[\'\"](http:[^\'\"]+)[\'\"][^>]+>(.*)<\/a>/i", "[$1 $2]", $signature);
@@ -666,7 +668,8 @@ if ($is_signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymo
         <td width="70">
             <div class="line">
 
-            <img src="<?=$comment_image?>" class="comment_image"
+            <div class="comment_image <?php echo $comment_class?>">
+            <img src="<?=$comment_image?>"
                 <?php
                 if ($is_comment_image) { echo "onclick='mw_image_window(this, {$tmpsize[0]}, {$tmpsize[1]});'"; }
                 else if (($is_member && $view[mb_id] == $member[mb_id] && !$view[wr_anonymous]) || $is_admin) { echo "onclick='mw_member_photo(\"{$view['mb_id']}\");'"; }?>>
@@ -1430,6 +1433,7 @@ function mw_move_cate_one() {
         height: 100%;
     }
 }
+
 <?php echo $cf_css?>
 </style>
 <link rel="stylesheet" href="<?php echo $board_skin_path?>/sideview.css"/>
