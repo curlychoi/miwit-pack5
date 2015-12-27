@@ -85,7 +85,7 @@ else {
     .good-box .in { text-align:center; height:30px; margin:0 auto 0 auto; }
     .good-box span { float:left; margin:5px 0 0 27px; font-size:12px; font-weight:bold; color:#fff; }
     .good-box .gg { width:100px; height:30px; display:inline-block; cursor:pointer; background:url(<?=$img_path?>/btn_good.gif); }
-    .good-box button { font-size:13px; background-color:#efefef; border:0; width:60px; height:30px; color:#aaa; display:inline-block; }
+    .good-box button { font-size:13px; background-color:#efefef; border:0; width:60px; height:30px; color:#aaa; display:inline-block; outline:none; }
     .good-box button:first-child { margin-right:5px; }
     .good-box button div { }
     .good-box button i { font-size:15px; }

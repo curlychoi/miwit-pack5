@@ -2607,6 +2607,9 @@ nav.pg_wrap {
 #mw_good {
     padding-top:30px;
     height:70px;    
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
 }
 
 #qr_code_layer {
