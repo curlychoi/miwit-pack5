@@ -1619,6 +1619,7 @@ function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되
     if (is_mw_file($lib_file_path)) include($lib_file_path);
 
     if (trim($mw_basic['cf_trash']) && $mw_basic['cf_trash'] != $board['bo_table'] && !$write['wr_is_comment']) {
+        mw_row_delete_point($board, $write);
         mw_move($board, $write['wr_id'], $mw_basic['cf_trash'], 'move');
         if (is_g5())
             delete_cache_latest($board['bo_table']);
@@ -4346,4 +4347,27 @@ function sql_num_rows($result)
     else
         return mysql_num_rows($result);
 }}
+
+function mw_row_delete_point($board, $write)
+{
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '코멘트');
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '댓글');
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '쓰기');
+
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '@qna');
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '@qna-hold');
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '@qna-choose');
+
+    $sql = " select * from $g4[point_table] ";
+    $sql.= "  where po_rel_table = '$board[bo_table]' ";
+    $sql.= "    and po_rel_id = '$write[wr_id]' ";
+    $sql.= "    and (po_rel_action like '%@good%' or po_rel_action like '%@nogood%') ";
+    $qry = sql_query($sql);
+    while ($row = sql_fetch_array($qry)) {
+        delete_point($write[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@good');
+        delete_point($row[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@good_re');
+        delete_point($write[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@nogood');
+        delete_point($row[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@nogood_re');
+    }
+}
 
