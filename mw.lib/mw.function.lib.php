@@ -1907,13 +1907,12 @@ function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되
     }
 
     // 공지사항 삭제
-    $notice_array = explode("\n", trim($board[bo_notice]));
-    $bo_notice = "";
-    for ($k=0; $k<count($notice_array); $k++)
-        if ((int)$write[wr_id] != (int)$notice_array[$k])
-            $bo_notice .= $notice_array[$k] . "\n";
-    $bo_notice = trim($bo_notice);
-    sql_query(" update $g4[board_table] set bo_notice = '$bo_notice' where bo_table = '$board[bo_table]' ");
+    global $notice_div;
+
+    $bo_notice = explode($notice_div, trim($board['bo_notice']));
+    $bo_notice = implode($notice_div, array_diff($bo_notice, $write['wr_id']));
+
+    sql_query(" update {$g4['board_table']} set bo_notice = '{$bo_notice}' where bo_table = '{$board['bo_table']}' ");
 
     if (is_g5())
         delete_cache_latest($board['bo_table']);
@@ -1990,18 +1989,19 @@ function mw_basic_age($value, $type='alert')
 function mw_basic_move_cate($bo_table, $wr_id)
 {
     global $g4, $mw_basic, $mw, $board, $write_table;
+    global $notice_div;
 
     $sql = " select * from $mw[move_table] where bo_table = '$bo_table' and wr_id = '$wr_id' and mv_datetime <= '$g4[time_ymdhis]' ";
     $row = sql_fetch($sql);
 
     if (!$row) return;
 
-    $notice_array = explode("\n", trim($board[bo_notice]));
+    $notice_array = explode($notice_div, trim($board[bo_notice]));
     if ($row[mv_notice] == "u") {
         
         if (!in_array((int)$wr_id, $notice_array))
         {
-            $bo_notice = $wr_id . '\n' . $board[bo_notice];
+            $bo_notice = $wr_id . $notice_div . $board[bo_notice];
             sql_query(" update $g4[board_table] set bo_notice = '$bo_notice' where bo_table = '$bo_table' ");
         }
     }
@@ -2009,7 +2009,7 @@ function mw_basic_move_cate($bo_table, $wr_id)
         $bo_notice = '';
         for ($i=0; $i<count($notice_array); $i++)
             if ((int)$wr_id != (int)$notice_array[$i])
-                $bo_notice .= $notice_array[$i] . '\n';
+                $bo_notice .= $notice_array[$i] . $notice_div;
         $bo_notice = trim($bo_notice);
         sql_query(" update $g4[board_table] set bo_notice = '$bo_notice' where bo_table = '$bo_table' ");
 
@@ -2555,17 +2555,18 @@ function mw_move($board, $wr_id_list, $chk_bo_table, $sw)
     }
 
     // 공지사항에는 등록되어 있지만 실제 존재하지 않는 글 아이디는 삭제합니다.
+    global $notice_div;
     $bo_notice = "";
     $lf = "";
     if ($board[bo_notice]) {
-        $tmp_array = explode("\n", $board[bo_notice]);
+        $tmp_array = explode($notice_div, $board[bo_notice]);
         for ($i=0; $i<count($tmp_array); $i++) {
             $tmp_wr_id = trim($tmp_array[$i]);
             $row = sql_fetch(" select count(*) as cnt from $g4[write_prefix]$bo_table where wr_id = '$tmp_wr_id' ");
             if ($row[cnt]) 
             {
                 $bo_notice .= $lf . $tmp_wr_id;
-                $lf = "\n";
+                $lf = $notice_div;
             }
         }
     }
