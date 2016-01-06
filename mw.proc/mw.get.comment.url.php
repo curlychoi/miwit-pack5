@@ -20,7 +20,7 @@
  */
 
 include_once("_common.php");
-include_once("$board_skin_path/mw.lib/mw.skin.basic.lib.php");
+include_once($board_skin_path."/mw.lib/mw.skin.basic.lib.php");
 
 header("Content-Type: text/html; charset=$g4[charset]");
 $gmnow = gmdate("D, d M Y H:i:s") . " GMT";
@@ -44,16 +44,6 @@ if ($mw_basic[cf_umz])
 }
 
 $board_skin_path = substr($board_skin_path, 9, strlen($board_skin_path));
-?>
 
-<table border="0" cellpadding="0" cellspacing="0">
-<tr>
-    <td>
-        <nobr style="float:left; margin:10px 10px 0 10px; font:normal 11px 'gulim'; color:#888; word-break:break-all;" id="comment_url_result"><?=$comment_url?></nobr>
-    </td>
-    <td>
-        <span style="float:left; margin:9px 10px 0 0; "><img src="<?=$board_skin_path?>/img/copy.png" id="comment_url_copy" align="absmiddle"></span>
-    </td>
-</tr>
-</table>
+echo $comment_url;
 

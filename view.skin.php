@@ -53,6 +53,7 @@ SyntaxHighlighter.config.clipboardSwf = '<?=$board_skin_path?>/mw.js/syntaxhighl
 SyntaxHighlighter.all();
 </script>
 
+<!--
 <script src="<?=$board_skin_path?>/mw.js/ZeroClipboard.js?time=<?=time()?>"></script>
 <script>
 function initClipboard() {
@@ -72,6 +73,7 @@ $(document).ready(function () {
     }
 });
 </script>
+-->
 
 <?php if ($mw_basic[cf_source_copy]) { // 출처 자동 복사 ?>
 <?php $copy_url = $shorten ? $shorten : set_http("{$g4[url]}/{$g4[bbs]}/board.php?bo_table={$bo_table}&wr_id={$wr_id}"); ?>
@@ -248,8 +250,8 @@ if ($mw_basic['cf_attribute'] == 'qna' && !$view['is_notice']) {
 <?php if ($mw['config']['cf_seo_url'] or $mw_basic['cf_shorten']) { ?>
 <div class="mw_basic_view_url">
     <i class="fa fa-anchor"></i>
-    <span id="post_url"><?php echo $shorten?></span>
-    <img src="<?php echo $board_skin_path?>/img/copy.png" id="post_url_copy" align="absmiddle">
+    <input type="text" id="post_url" value="<?php echo $shorten?>" readonly/>
+    <!--<img src="<?php echo $board_skin_path?>/img/copy.png" id="post_url_copy" align="absmiddle">-->
 </div>
 <?php
 } 
@@ -259,7 +261,7 @@ else if ($mw_basic[cf_umz]) { // 짧은 글주소 사용
 <div class="mw_basic_view_url">
     글주소 :
     <span id="post_url"><?=$view[wr_umz]?></span>
-    <img src="<?=$board_skin_path?>/img/copy.png" id="post_url_copy" align="absmiddle">
+    <!--<img src="<?=$board_skin_path?>/img/copy.png" id="post_url_copy" align="absmiddle">-->
 
     <?php if ($is_admin) { ?>
     <span id='btn_get_umz'><a><img src="<?=$board_skin_path?>/img/reumz.png" align="absmiddle"/></a></span>
@@ -302,11 +304,16 @@ for ($i=0; $i<count($view[file]); $i++) {
     <a href="javascript:file_download('<?=$view[file][$i][href]?>', '<?=$i?>');" title="<?=$view[file][$i][content]?>">
     <i class="fa fa-save"></i>&nbsp;
     <?=$view[file][$i][source]?></a>
-    <span class=mw_basic_view_file_info> (<?=$view[file][$i][size]?>), Down : <?=$view[file][$i][download]?>, <?=$view[file][$i][datetime]?></span>
-    <? if ($good_href) { ?>
-    <img src="<?=$board_skin_path?>/img/btn_down_good.png" align="absmiddle" style="cursor:pointer;" onclick="mw_good_act_nocancel('good')"/>
-    <? } ?>
-    <a href="#c_write"><img src="<?=$board_skin_path?>/img/btn_down_comment.png" align="absmiddle"/></a>
+    <span class="mw_basic_view_file_info">
+        <i class="fa fa-database"></i> <?php echo $view[file][$i]['size']?>
+        <i class="fa fa-download"></i> <?php echo $view[file][$i]['download']?>
+        <span title="<?php echo $view[file][$i]['datetime']?>"><i class="fa fa-clock-o"></i> <?php echo mw_basic_sns_date($view[file][$i]['datetime'])?></span>
+        <?php if ($good_href) : ?>
+        <i class="fa fa-thumbs-o-up" style="cursor:pointer;" onclick="mw_good_act_nocancel('good')"> <?php echo $view['wr_good']?></i>
+        
+        <?php endif; ?>
+        <a href="#c_write"><i class="fa fa-comment-o"></i></a>
+    </span>
 </div>
 <?php
     }
@@ -351,7 +358,7 @@ for ($i=1; $i<=$g4[link_count]; $i++) {
     <?php } ?>
     <a href="<?=$view[link_href][$i]?>" target="<?=$view[link_target][$i]?>"><?=$link?></a>
     <span class=mw_basic_view_link_info>(<?=$view[link_hit][$i]?>)</span>
-    <span><img src="<?=$board_skin_path?>/img/qr.png" class="qr_code" value="<?=$view[link][$i]?>" align="absmiddle"></span>
+    <span class="qr_code" value="<?=$view[link][$i]?>"><i class="fa fa-qrcode"></i></span>
 </div>
 <?php
     }
@@ -360,6 +367,10 @@ for ($i=1; $i<=$g4[link_count]; $i++) {
 
 <script>
 $(document).ready(function () {
+    $("#post_url").click(function () {
+        $(this).select();
+    });
+
     $("#mw_basic").append("<div id='qr_code_layer'>QR CODE</div>");
     $(".qr_code").css("cursor", "pointer");
     $(".qr_code").toggle(function () {

@@ -1020,6 +1020,11 @@ img {
 #mw_basic .mw_basic_view_file_info {
     font-size:11px;
     color:#d3d3d3;
+    color:#bbb;
+}
+
+#mw_basic .mw_basic_view_file_info i {
+    margin-left:10px;
 }
 
 /* 참조주소 */
@@ -2612,7 +2617,19 @@ nav.pg_wrap {
     -moz-box-sizing:border-box;
 }
 
-#qr_code_layer {
+#mw_basic .qr_code {
+    position:relative;
+    
+}
+
+#mw_basic .qr_code i {
+    position:absolute;
+    font-size:15px;
+    margin:9px 0 0 7px;
+    color:#aaa;
+}
+
+#mw_basic #qr_code_layer {
     display:none;
     position:absolute;
     background-color:#fff;
@@ -2620,15 +2637,15 @@ nav.pg_wrap {
     padding:10px;
     width:280px;
 }
-#qr_code_layer .qr_code_google {
+#mw_basic #qr_code_layer .qr_code_google {
     border:5px solid #469CE0;
     float:left;
 }
-#qr_code_layer .qr_code_google img {
+#mw_basic #qr_code_layer .qr_code_google img {
     width:100px;
     height:100px;
 }
-#qr_code_layer .qr_code_info {
+#mw_basic #qr_code_layer .qr_code_info {
     float:left;
     margin:0 0 0 10px;
     width:115px;
@@ -2649,4 +2666,56 @@ nav.pg_wrap {
 #mw_basic .gall_notice img {
 }
 
+#mw_basic #post_url {
+    border:0;
+    cursor:pointer;
+    width:95%;
+    outline:none;
+    color:#888;
+}
+
+#mw_basic #comment_url {
+    border:0;
+    cursor:pointer;
+    width:100%;
+    outline:none;
+    color:#888;
+    background:transparent;
+}
+
+
+#mw_basic #comment_url_popup {
+    display:none;
+    position:absolute;
+    z-index:9999;
+    padding:10px;
+    margin:10px 0 0 0;
+    box-shadow:1px 1px 1px #aaa;
+    list-style:none;
+    color:#888;
+
+    border-radius: 5px;
+    border: 0px solid;
+    border-color: #E5E5E5 #D3D3D3 #B9C1C6;
+    border-right:0;
+    background-color:#efefef;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#mw_basic #comment_url_popup:before {
+    content:'';
+    position:absolute;
+    border-style:solid;
+    border-width:0 5px 10px;
+    border-color:#efefef transparent;
+    display:block;
+    width:0;
+    z-index:1;
+    top:-10px;
+    left:85%;
+
+}
 

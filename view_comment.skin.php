@@ -1396,7 +1396,10 @@ $(document).ready(function () {
                 "bo_table" : "<?=$bo_table?>",
                 "wr_id" : comment_id
             }, function (dat) {
-                $("#comment_url").html(dat);
+                //$("#comment_url").html(dat);
+                $("#comment_url").val(dat);
+                $("#comment_url").attr('size', $("#comment_url").val().length+5);
+                $("#comment_url").click(function () { $(this).select(); } );
                 $("#comment_url_popup").css("display", "block");
                 $("#comment_url_popup").css("position", "absolute");
                 $("#comment_url_popup").css("top", top);
@@ -1406,7 +1409,7 @@ $(document).ready(function () {
                 $("#comment_url_loading").remove();
                 $("#comment_url_copy").css("cursor", "pointer");
 
-                var clipBoardComment = new ZeroClipboard.Client();
+                /*var clipBoardComment = new ZeroClipboard.Client();
                 ZeroClipboard.setMoviePath("<?=$board_skin_path?>/mw.js/ZeroClipboard.swf");
                 clipBoardComment.setHandCursor(true);
                 clipBoardComment.addEventListener('mouseOver', function (client) {
@@ -1417,7 +1420,7 @@ $(document).ready(function () {
                     $("#comment_url").html("");
                     $("#comment_url_popup").css("display", "none");
                 });  
-                clipBoardComment.glue("comment_url_copy");
+                clipBoardComment.glue("comment_url_copy");*/
 /*
                 var clip_comment = new ZeroClipboard(document.getElementById("comment_url_copy"), {
                     moviePath: "<?=$board_skin_path?>/mw.js/ZeroClipboard.swf"
@@ -1445,6 +1448,9 @@ $(document).ready(function () {
 });
 </script>
 <div id="comment_url_popup" style="display:none;">
+    <input type="text" id="comment_url" value="" readonly/>
+</div>
+<!--
 <table border="0" cellpadding="0" cellspacing="0" height="53" background="<?=$board_skin_path?>/img/pg.png">
 <tr>
     <td width="5"valign="top"><img src="<?=$board_skin_path?>/img/pl.png"></td>
@@ -1455,6 +1461,7 @@ $(document).ready(function () {
     <td width="5" valign="top"><img src="<?=$board_skin_path?>/img/pr.png"></td>
 </tr>
 </table>
+-->
 </div>
 
 <? if ($cwin) { ?>
