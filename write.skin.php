@@ -96,7 +96,7 @@ if (($w == "" || $w == "r") && $mw_basic[cf_write_register] && !$is_admin) {
 }
 
 // 글작성 제한
-if (($w == "" || $w == "r") && $mw_basic[cf_write_day] && $mw_basic[cf_write_day_count]) {
+if (($w == "" || $w == "r") && $mw_basic[cf_write_day] && $mw_basic[cf_write_day_count] && !$is_admin) {
     $old = date("Y-m-d 00:00:00", $g4[server_time]-((60*60*24)*($mw_basic[cf_write_day]-1)));
     $sql = "select count(wr_id) as cnt from $write_table ";
     $sql.= " where wr_is_comment = '0' ";
