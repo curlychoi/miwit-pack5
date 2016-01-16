@@ -641,14 +641,14 @@ if ($bomb) {
     </div> 
 
     <script>
-    $(document).ready(function () {
+    //$(document).ready(function () {
         $("#view_rate").mw_star_rate({
             path : "<?php echo $board_skin_path?>/mw.js/mw.star.rate/",
             default_value : <?php echo round($write['wr_rate'], 1)?>,
             readonly : true,
             readonly_msg : '',
         });
-    });
+    //});
     </script>
 <?php } ?>
 
