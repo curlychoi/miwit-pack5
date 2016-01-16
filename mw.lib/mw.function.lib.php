@@ -1909,8 +1909,8 @@ function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되
     // 공지사항 삭제
     global $notice_div;
 
-    $bo_notice = explode($notice_div, trim($board['bo_notice']));
-    $bo_notice = implode($notice_div, array_diff($bo_notice, $write['wr_id']));
+    $bo_notice = @explode($notice_div, trim($board['bo_notice']));
+    $bo_notice = @implode($notice_div, @array_diff($bo_notice, $write['wr_id']));
 
     sql_query(" update {$g4['board_table']} set bo_notice = '{$bo_notice}' where bo_table = '{$board['bo_table']}' ");
 
