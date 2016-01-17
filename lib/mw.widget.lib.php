@@ -10,7 +10,7 @@ function mw_connect()
     $list = array();
 
     $sql_admin = '';
-    $sql_admin = ' and mb_id <> '.$config['cf_admin'];
+    $sql_admin = " and mb_id <> '{$config['cf_admin']}' ";
 
     $sql = "select * from {$g4['login_table']} where mb_id <> '' {$sql_admin} ";
     $qry = sql_query($sql);

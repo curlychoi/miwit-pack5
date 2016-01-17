@@ -109,6 +109,11 @@ $h = 100; // 세로
 .<?php echo $css?> ul li a {
     color:#fff;
 }
+
+.<?php echo $css?> ul li a:hover {
+    text-decoration:none;
+}
+
 .<?php echo $css?> ul li div.title {
     color:#fff;
     width:<?php echo $w?>px;
@@ -121,6 +126,7 @@ $h = 100; // 세로
     box-sizing:border-box;
     -moz-box-sizing:border-box;
     -webkit-box-sizing:border-box;
+    position:relative;
 }
 
 .<?php echo $css?> .comment {
@@ -128,7 +134,7 @@ $h = 100; // 세로
     right:0;
     font-size:.8em;
     color:#FF6600;
-    background-color:#000;
+    color:#e74c3c;
     padding:0 5px 0 5px;
 } 
 
