@@ -175,7 +175,7 @@ if (!$is_sidebar) {
 
     <?php
     ob_start();
-    if ($mw['config']['cf_sidebar_latest_write']) { 
+    if ($mw['config']['cf_sidebar_poll']) { 
         $poll = poll("theme/mw5");
         if ($poll)
             echo "<div class=\"block\">{$poll}</div>";
