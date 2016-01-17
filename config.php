@@ -5,7 +5,7 @@
 ********************/
 
 define('G5_VERSION', '그누보드5');
-define('G5_GNUBOARD_VER', '5.1.9');
+define('G5_GNUBOARD_VER', '5.1.11');
 
 // 이 상수가 정의되지 않으면 각각의 개별 페이지는 별도로 실행될 수 없음
 define('_GNUBOARD_', true);
@@ -57,7 +57,7 @@ define('G5_LGXPAY_DIR',     'lgxpay');
 
 define('G5_SNS_DIR',        'sns');
 define('G5_SYNDI_DIR',      'syndi');
-define('G5_PHPMAILER_DIR',  'PHPMailer_v2.0.4');
+define('G5_PHPMAILER_DIR',  'PHPMailer');
 define('G5_SESSION_DIR',    'session');
 define('G5_THEME_DIR',      'theme');
 
@@ -159,7 +159,8 @@ define('G5_MOBILE_AGENT',   'phone|samsung|lgtel|mobile|[^A]skt|nokia|blackberry
 
 // SMTP
 // lib/mailer.lib.php 에서 사용
-define('G5_SMTP', '127.0.0.1');
+define('G5_SMTP',      '127.0.0.1');
+define('G5_SMTP_PORT', '25');
 
 
 /********************
