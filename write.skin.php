@@ -710,20 +710,9 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
                 <script src="<?php echo $board_skin_path?>/mw.js/mw.emoticon.js"></script>
             <? } ?>
             <? if ($mw_basic[cf_post_specialchars]) {?>
-            <button type="button" class="fa-button" onclick="specialchars()"><i class="fa fa-magic"></i> <span class="media-comment-button">특수문자</span></button>
-            <style>
-            #mw_basic_special_characters {
-                display:none;
-                border:1px solid #ddd;
-                background-color:#fff;
-                padding:10px;
-                position:absolute;
-            }
-            #mw_basic_special_characters table td {
-                padding:3px;
-                cursor:pointer;
-            }
-            </style>
+            <button type="button" class="fa-button" onclick="specialchars()"><i class="fa fa-magic"></i>
+            <span class="media-comment-button">특수문자</span></button>
+
             <div id="mw_basic_special_characters">hi</div>
             <script>
             function specialchars() {

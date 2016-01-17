@@ -21,6 +21,9 @@ function win_emoticon(dir) {
     }
 
     emoticon_close();
+    if (typeof special_close == 'function') { 
+        special_close();
+    }
     $("body").append('<div id="win_emoticon"></div>');
     $("#win_emoticon").load(url, function () {
         $("#win_emoticon > select[name=dir]").change(function () {

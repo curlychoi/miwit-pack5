@@ -973,36 +973,13 @@ $(document).ready(function () {
 
     <?php } //comment_emoticon ?>
 
-    <?php if ($mw_basic[cf_comment_specialchars]) {?>
-    <button type="button" class="fa-button" onclick="specialchars()"><i class="fa fa-magic"></i> <span class="media-comment-button">특수문자</span></button>
-    <style>
-    #mw_basic_special_characters {
-        display:none;
-        border:1px solid #ddd;
-        background-color:#fff;
-        padding:10px;
-        position:absolute;
-        margin:0 0 0 100px;
-        z-index:99999999;
-    }
-    #mw_basic_special_characters table td {
-        padding:3px;
-        cursor:pointer;
-    }
-    </style>
-    <div id="mw_basic_special_characters">hi</div>
+    <?php if ($mw_basic['cf_comment_specialchars']) {?>
+    <button type="button" class="fa-button" name="btn_special"><i class="fa fa-magic"></i>
+        <span class="media-comment-button">특수문자</span></button>
     <script>
-    function specialchars() {
-        $.get("<?=$board_skin_path?>/mw.proc/mw.special.characters.php", function (str) {
-            $("#mw_basic_special_characters").html(str);
-            $("#mw_basic_special_characters table td").click(function () {
-                $("#wr_content").val($("#wr_content").val()+$(this).text());
-                $("#mw_basic_special_characters").toggle();
-            });
-        });
-        $("#mw_basic_special_characters").toggle();
-    }
+    board_skin_path = '<?php echo $board_skin_path?>';
     </script>
+    <script src="<?php echo $board_skin_path?>/mw.js/mw.specialchars.js"></script>
     <?php }//comment_specialchars ?>
 
     <?php if ($mw_basic[cf_comment_file] && $mw_basic[cf_comment_file] <= $member['mb_level'] && !$write_error) { ?>

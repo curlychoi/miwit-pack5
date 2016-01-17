@@ -2398,6 +2398,42 @@ i.fa-warning { color:#f36a2e; }
     cursor:pointer;
 } 
 
+
+#win_special {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:99999999;
+    background-color:#fff;
+    border:1px solid #ccc;
+    border-radius: 3px;
+    max-height:70%;
+    box-shadow:5px 5px 3px #aaa;
+}
+
+#win_special table {
+    border:0;
+    background-color:#ccc;
+    margin:10px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#win_special table td {
+    padding:5px;
+    cursor:pointer;
+    color:#999;
+    background-color:#fff;
+    font-size:20px;
+}
+
+#win_special table td:hover {
+    color:#000;
+    font-weight:bold;
+    background-color:#efefef;
+}
+
 @media screen and (max-width:500px) {
     #mw_basic { padding:5px; }
     .media-ip { display:none; }

@@ -15,12 +15,16 @@ ver 3.0.0 (16.01.17)
     : 별점표시 document.ready 안하고 바로 출력
     : 날짜별 글작성 제한 관리자 제외
     : 하큐어 이모티콘 적용 (태양이님 제안)
-    : 이모티콘 관리
+    : 이모티콘 기능 개선
 
     miwit/HISTORY
     miwit/mw.adm/mw.config.php
+    miwit/mw.adm/mw.config.update.php
+    miwit/mw.adm/mw.upgrade.php
     miwit/mw.lib/mw.function.lib.php
     miwit/mw.proc/mw.file.viewer.php
+    miwit/mw.js/mw.emoticon.js
+    miwit/mw.emoticon/hacure/*
     miwit/view.skin.php
     miwit/list.skin.php
     miwit/view.skin.php
