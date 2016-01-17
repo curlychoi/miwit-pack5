@@ -981,6 +981,30 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
 	</div>
     </div>
 
+    <div class="cf_item">
+	<div class="cf_title"> <input type=checkbox name=chk[cf_emoticon] value=1>&nbsp; 기본 이모티콘 </div>
+	<div class="cf_content">
+            <?php
+            $dirs = array();
+            foreach (glob(dirname(__FILE__).'/../mw.emoticon/*') as $row) {
+                if (is_dir($row)) {
+                    $dirs[] = basename($row);
+                }
+            }
+            ?>
+            <select name="cf_emoticon">
+            <option value="">기본</option>
+            <?php
+            foreach ((array)$dirs as $dir) : 
+                printf('<option value="%s">%s</option>', $dir, $dir);
+            endforeach;
+            ?>
+            </select>
+	    <script> document.cf_form.cf_emoticon.value = "<?php echo $mw_basic[cf_emoticon]?>"; </script>
+	</div>
+    </div>
+
+
     <div class="block"></div>
 
 </div> <!-- tabs-1 -->

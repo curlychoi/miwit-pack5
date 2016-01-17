@@ -964,7 +964,13 @@ $(document).ready(function () {
 
     <div class="comment_function">
     <?php if ($mw_basic[cf_comment_emoticon] && !$is_comment_editor && !$write_error) {?>
-    <button type="button" class="fa-button" onclick="window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo','width=600,height=400,scrollbars=yes')" style="*margin-right:10px;"><i class="fa fa-smile-o"></i> <span class="media-comment-button">이모티콘</span></button>
+    <button type="button" class="fa-button" name="btn_emoticon" style="*margin-right:10px;"><i class="fa fa-smile-o"></i> <span class="media-comment-button">이모티콘</span></button>
+    <script>
+    board_skin_path = '<?php echo $board_skin_path?>';
+    bo_table = '<?php echo $bo_table?>';
+    </script>
+    <script src="<?php echo $board_skin_path?>/mw.js/mw.emoticon.js"></script>
+
     <?php } //comment_emoticon ?>
 
     <?php if ($mw_basic[cf_comment_specialchars]) {?>

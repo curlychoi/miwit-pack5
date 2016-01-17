@@ -1469,19 +1469,6 @@ function bc_code($str, $is_content=1, $only_admin=0) {
                 return $content;'
             );
             $str = preg_replace_callback("/include\(\"([^\"]+)\"\)/i", $callback, $str);
-
-            /*$str = preg_replace_callback("/include\(\"([^\"]+)\"\)/i",
-            function ($arg) {
-                global $g4;
-                $content = $arg[0];
-                if (is_mw_file($arg[1])) {
-                    ob_start();
-                    include($arg[1]);
-                    $content = ob_get_contents();
-                    ob_end_clean();
-                }
-                return $content;
-            }, $str);*/
         }
     }
     if ($only_admin) {
@@ -1506,6 +1493,14 @@ function bc_code($str, $is_content=1, $only_admin=0) {
 
     $str = preg_replace("/\[today\]/iU", date('Y년 m월 d일', $g4['server_time']), $str);
     $str = preg_replace("/\[day of the week\]/iU", get_yoil($g4['time_ymdhis']), $str);
+
+    $call_emoticon = create_function ('$arg', '
+        global $board_skin_path;
+        if (!preg_match("/^[0-9a-z-_\/]+$/i", $arg[1])) return $arg[0];
+        $img = glob("{$board_skin_path}/mw.emoticon/{$arg[1]}.{gif,jpg,jpeg,png}", GLOB_BRACE);
+        return sprintf("<img src=\"%s\" align=\"absmiddle\"/>", $img[0]);
+    ');
+    $str = preg_replace_callback("/\[e:([^\]]+)\]/i", $call_emoticon, $str);
 
     preg_match_all("/\[counting (.*)\]/iU", $str, $matches);
     for ($i=0, $m=count($matches[1]); $i<$m; $i++) {

@@ -702,12 +702,15 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
             <span style="cursor: pointer;" onclick="textarea_increase('wr_content', 10);"><img src="<?=$board_skin_path?>/img/btn_down.gif"></span>
             <? */ ?>
             <? if ($mw_basic[cf_post_emoticon]) {?>
-                <span class=mw_basic_comment_emoticon><a 
-                    href="#;" onclick="window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo'
-                    ,'width=600,height=400,scrollbars=yes')">☞ 이모티콘</a></span>
+                <button type="button" class="fa-button" name="btn_emoticon" style="*margin-right:10px;"><i class="fa fa-smile-o"></i> <span class="media-comment-button">이모티콘</span></button>
+                <script>
+                board_skin_path = '<?php echo $board_skin_path?>';
+                bo_table = '<?php echo $bo_table?>';
+                </script>
+                <script src="<?php echo $board_skin_path?>/mw.js/mw.emoticon.js"></script>
             <? } ?>
             <? if ($mw_basic[cf_post_specialchars]) {?>
-            <a href="#;" onclick="specialchars()">☞특수문자</a>
+            <button type="button" class="fa-button" onclick="specialchars()"><i class="fa fa-magic"></i> <span class="media-comment-button">특수문자</span></button>
             <style>
             #mw_basic_special_characters {
                 display:none;
@@ -765,11 +768,6 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
         <span style="cursor: pointer;" onclick="textarea_decrease('wr_contents_preview', 10);"><img src="<?=$board_skin_path?>/img/btn_up.gif"></span>
         <span style="cursor: pointer;" onclick="textarea_original('wr_contents_preview', 10);"><img src="<?=$board_skin_path?>/img/btn_init.gif"></span>
         <span style="cursor: pointer;" onclick="textarea_increase('wr_contents_preview', 10);"><img src="<?=$board_skin_path?>/img/btn_down.gif"></span>
-        <? if ($mw_basic[cf_post_emoticon]) {?>
-            <span class=mw_basic_comment_emoticon><a 
-                href="javascript:window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo'
-                ,'width=600,height=400,scrollbars=yes')">☞ 이모티콘</a></span>
-        <? } ?>
     </div>
 
     <? if (!$is_dhtml_editor || $mw_basic[cf_editor] != "cheditor") { ?>

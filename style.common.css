@@ -2362,6 +2362,42 @@ i.fa-warning { color:#f36a2e; }
     display:none;
 }
 
+
+#win_emoticon {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:99999999;
+    background-color:#fff;
+    border:1px solid #ccc;
+    border-radius: 3px;
+    max-height:70%;
+    overflow-y:scroll;
+    box-shadow:5px 5px 3px #aaa;
+}
+
+#win_emoticon select {
+    margin:10px 0 0 0;
+}
+
+#win_emoticon ul.emo {
+    list-style:none;
+    margin:0;
+    padding:10px;
+} 
+
+#win_emoticon ul.emo li {
+    list-style:none;
+    margin:10px;
+    padding:0;
+    float:left;
+} 
+
+#win_emoticon ul.emo img {
+    cursor:pointer;
+} 
+
 @media screen and (max-width:500px) {
     #mw_basic { padding:5px; }
     .media-ip { display:none; }
@@ -2718,4 +2754,5 @@ nav.pg_wrap {
     left:85%;
 
 }
+
 
