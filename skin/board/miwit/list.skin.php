@@ -325,7 +325,12 @@ if ($is_category && $mw_basic[cf_category_tab]) {
 <ul>
     <?php
     $i = 1;
-    $l = 6;
+    $l = 6; // 탭갯수
+    $p = 10; // 이 값이 넘어가면 라인이 추가되기 시작
+    if (mw_is_mobile_builder() or G5_IS_MOBILE) {
+        $l = 3; // 모바일 탭갯수
+        $p = 5; // 모바일 이 값이 넘어가면 라인이 추가되기 시작
+    }
     $m = sizeof($category_list);
     if (!$mw_basic['cf_default_category']) {
         echo "<li";
@@ -341,11 +346,11 @@ if ($is_category && $mw_basic[cf_category_tab]) {
         echo "><a href=\"". mw_seo_url($bo_table, 0, "&sca=".urlencode($cate))."\">";
         echo $cate."</a></li>";
 
-        if ($m>=10 && $i++%$l==0 && $i<=$m) echo "</ul><ul>";
+        if ($m>=$p && $i++%$l==0 && $i<=$m) echo "</ul><ul>";
     }
     //$rest = $l-(($i-1)%$l);
     $rest = ceil(($i-1)/$l)*$l-($i-1);
-    if ($rest > 0 and $m >= 10) {
+    if ($rest > 0 and $m >= $p) {
         for ($z=0; $z<$rest; ++$z) {
             echo "<li class='none'>&nbsp;</li>\n";
         }
@@ -961,7 +966,7 @@ else if ($mw_basic[cf_type] == "gall")
                 echo "<span class='item'><i class='fa fa-gift'></i> ".$list[$i]['wr_qna_point']."</span>";
             }
             if (!$mw_basic['cf_post_date']) {
-                echo "<span class='item'><i class='fa fa-calendar'></i> ".$list[$i]['datetime2']."</span>";
+                echo "<span class='item'><i class='fa fa-clock-o'></i> ".$list[$i]['datetime2']."</span>";
             }
             if (!$mw_basic['cf_list_good'] && $is_good) {
                 echo "<span class='item media-no-text'><i class='fa fa-thumbs-up'></i> ".$list[$i]['wr_good']."</span>";

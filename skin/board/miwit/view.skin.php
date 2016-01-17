@@ -53,26 +53,6 @@ SyntaxHighlighter.config.clipboardSwf = '<?=$board_skin_path?>/mw.js/syntaxhighl
 SyntaxHighlighter.all();
 </script>
 
-<script src="<?=$board_skin_path?>/mw.js/ZeroClipboard.js?time=<?=time()?>"></script>
-<script>
-function initClipboard() {
-    clipBoardView = new ZeroClipboard.Client();
-    ZeroClipboard.setMoviePath("<?=$board_skin_path?>/mw.js/ZeroClipboard.swf");
-    clipBoardView.addEventListener('mouseOver', function (client) {
-        clipBoardView.setText($("#post_url").text());
-    });
-    clipBoardView.addEventListener('complete', function (client) {
-        alert("클립보드에 복사되었습니다. \'Ctrl+V\'를 눌러 붙여넣기 해주세요.");
-    });  
-    clipBoardView.glue("post_url_copy");
-}
-$(document).ready(function () {
-    if ($("#post_url").text()) {
-        initClipboard();
-    }
-});
-</script>
-
 <?php if ($mw_basic[cf_source_copy]) { // 출처 자동 복사 ?>
 <?php $copy_url = $shorten ? $shorten : set_http("{$g4[url]}/{$g4[bbs]}/board.php?bo_table={$bo_table}&wr_id={$wr_id}"); ?>
 <script src="<?=$board_skin_path?>/mw.js/autosourcing.open.compact.js"></script>
@@ -144,7 +124,24 @@ include_once("$board_skin_path/mw.proc/mw.cash.membership.skin.php");
 ?>
 
 <!-- 링크 버튼 -->
-<?php ob_start(); ?>
+<?php
+ob_start();
+
+if ($mw_basic['cf_prev_next'])
+{
+    $tmp_href = $prev_href;
+    $tmp_wr_subject = $prev_wr_subject;
+
+    $prev_href = $next_href;
+    $prev_wr_subject = $next_wr_subject;
+
+    $next_href = $tmp_href;
+    $next_wr_subject = $tmp_wr_subject;
+
+    unset($tmp_href);
+    unset($tmp_wr_subject);
+}
+?>
 <table width=100%>
 <tr height=35>
     <td>
@@ -248,8 +245,8 @@ if ($mw_basic['cf_attribute'] == 'qna' && !$view['is_notice']) {
 <?php if ($mw['config']['cf_seo_url'] or $mw_basic['cf_shorten']) { ?>
 <div class="mw_basic_view_url">
     <i class="fa fa-anchor"></i>
-    <span id="post_url"><?php echo $shorten?></span>
-    <img src="<?php echo $board_skin_path?>/img/copy.png" id="post_url_copy" align="absmiddle">
+    <input type="text" id="post_url" value="<?php echo $shorten?>" readonly/>
+    <!--<img src="<?php echo $board_skin_path?>/img/copy.png" id="post_url_copy" align="absmiddle">-->
 </div>
 <?php
 } 
@@ -259,7 +256,7 @@ else if ($mw_basic[cf_umz]) { // 짧은 글주소 사용
 <div class="mw_basic_view_url">
     글주소 :
     <span id="post_url"><?=$view[wr_umz]?></span>
-    <img src="<?=$board_skin_path?>/img/copy.png" id="post_url_copy" align="absmiddle">
+    <!--<img src="<?=$board_skin_path?>/img/copy.png" id="post_url_copy" align="absmiddle">-->
 
     <?php if ($is_admin) { ?>
     <span id='btn_get_umz'><a><img src="<?=$board_skin_path?>/img/reumz.png" align="absmiddle"/></a></span>
@@ -302,11 +299,16 @@ for ($i=0; $i<count($view[file]); $i++) {
     <a href="javascript:file_download('<?=$view[file][$i][href]?>', '<?=$i?>');" title="<?=$view[file][$i][content]?>">
     <i class="fa fa-save"></i>&nbsp;
     <?=$view[file][$i][source]?></a>
-    <span class=mw_basic_view_file_info> (<?=$view[file][$i][size]?>), Down : <?=$view[file][$i][download]?>, <?=$view[file][$i][datetime]?></span>
-    <? if ($good_href) { ?>
-    <img src="<?=$board_skin_path?>/img/btn_down_good.png" align="absmiddle" style="cursor:pointer;" onclick="mw_good_act_nocancel('good')"/>
-    <? } ?>
-    <a href="#c_write"><img src="<?=$board_skin_path?>/img/btn_down_comment.png" align="absmiddle"/></a>
+    <span class="mw_basic_view_file_info">
+        <i class="fa fa-database"></i> <?php echo $view[file][$i]['size']?>
+        <i class="fa fa-download"></i> <?php echo $view[file][$i]['download']?>
+        <span title="<?php echo $view[file][$i]['datetime']?>"><i class="fa fa-clock-o"></i> <?php echo mw_basic_sns_date($view[file][$i]['datetime'])?></span>
+        <?php if ($good_href) : ?>
+        <i class="fa fa-thumbs-o-up" style="cursor:pointer;" onclick="mw_good_act_nocancel('good')"> <?php echo $view['wr_good']?></i>
+        
+        <?php endif; ?>
+        <a href="#c_write"><i class="fa fa-comment-o"></i></a>
+    </span>
 </div>
 <?php
     }
@@ -351,7 +353,7 @@ for ($i=1; $i<=$g4[link_count]; $i++) {
     <?php } ?>
     <a href="<?=$view[link_href][$i]?>" target="<?=$view[link_target][$i]?>"><?=$link?></a>
     <span class=mw_basic_view_link_info>(<?=$view[link_hit][$i]?>)</span>
-    <span><img src="<?=$board_skin_path?>/img/qr.png" class="qr_code" value="<?=$view[link][$i]?>" align="absmiddle"></span>
+    <span class="qr_code" value="<?=$view[link][$i]?>"><i class="fa fa-qrcode"></i></span>
 </div>
 <?php
     }
@@ -360,6 +362,10 @@ for ($i=1; $i<=$g4[link_count]; $i++) {
 
 <script>
 $(document).ready(function () {
+    $("#post_url").on('focus, mouseup, click', function () {
+        $(this)[0].setSelectionRange(0, 9999);
+    });
+
     $("#mw_basic").append("<div id='qr_code_layer'>QR CODE</div>");
     $(".qr_code").css("cursor", "pointer");
     $(".qr_code").toggle(function () {
@@ -630,14 +636,14 @@ if ($bomb) {
     </div> 
 
     <script>
-    $(document).ready(function () {
+    //$(document).ready(function () {
         $("#view_rate").mw_star_rate({
             path : "<?php echo $board_skin_path?>/mw.js/mw.star.rate/",
             default_value : <?php echo round($write['wr_rate'], 1)?>,
             readonly : true,
             readonly_msg : '',
         });
-    });
+    //});
     </script>
 <?php } ?>
 
@@ -648,11 +654,13 @@ if ($is_signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymo
     $tmpsize = array(0, 0);
     $is_comment_image = false;
     $comment_image = mw_get_noimage();
+    $comment_class = 'noimage';
     if ($mw_basic[cf_attribute] != "anonymous" && !$view[wr_anonymous] && $view[mb_id] && file_exists("$comment_image_path/{$view[mb_id]}")) {
         $comment_image = "$comment_image_path/{$view[mb_id]}";
         $is_comment_image = true;
         $tmpsize = @getimagesize($comment_image);
         $comment_image.= '?'.filemtime($comment_image);
+        $comment_class = '';
     }
 
     $signature = preg_replace("/<a[\s]+href=[\'\"](http:[^\'\"]+)[\'\"][^>]+>(.*)<\/a>/i", "[$1 $2]", $signature);
@@ -666,7 +674,8 @@ if ($is_signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymo
         <td width="70">
             <div class="line">
 
-            <img src="<?=$comment_image?>" class="comment_image"
+            <div class="comment_image <?php echo $comment_class?>">
+            <img src="<?=$comment_image?>"
                 <?php
                 if ($is_comment_image) { echo "onclick='mw_image_window(this, {$tmpsize[0]}, {$tmpsize[1]});'"; }
                 else if (($is_member && $view[mb_id] == $member[mb_id] && !$view[wr_anonymous]) || $is_admin) { echo "onclick='mw_member_photo(\"{$view['mb_id']}\");'"; }?>>
@@ -1385,6 +1394,13 @@ function mw_move_cate_one() {
 
 <?php if (!is_g5()) { ?>
 <script> $(document).ready (function() { resizeBoardImage(<?=$board[bo_image_width]?>); }); </script>
+<?php } else { ?>
+<script>
+    $("a.view_image").click(function() {
+        window.open(this.href, "large_image", "location=yes,links=no,toolbar=no,top=10,left=10,width=10,height=10,resizable=yes,scrollbars=no,status=no");
+        return false;
+    });
+</script>
 <?php } ?>
 
 <style>
@@ -1398,6 +1414,32 @@ function mw_move_cate_one() {
     max-width:<?php echo $board['bo_image_width']-200?>px;
     height:auto; 
 }
+
+@media screen and (max-width:<?php echo $board['bo_image_width']?>px) {
+    #mw_basic .mw_basic_view_content img {
+        max-width: 100% !important;
+        max-height: 100%;
+    }
+
+    #mw_basic .mw_basic_comment_content img {
+        max-width: 100% !important;
+        max-height: 100%;
+    }
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+    }
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
 <?php echo $cf_css?>
 </style>
 <link rel="stylesheet" href="<?php echo $board_skin_path?>/sideview.css"/>

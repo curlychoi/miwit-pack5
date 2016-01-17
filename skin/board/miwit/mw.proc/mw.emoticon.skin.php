@@ -1,58 +1,55 @@
-<?
-/**
- * Bechu-Basic Skin for Gnuboard4
- *
- * Copyright (c) 2008 Choi Jae-Young <www.miwit.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- */
-
+<?php
 include_once("_common.php");
+include_once($board_skin_path.'/mw.lib/mw.skin.basic.lib.php');
 
-$emoticon_path = "$g4[url]/skin/board/$board[bo_skin]/mw.emoticon";
-
-$g4[title] = "이모티콘 입력";
-$viewport = "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0\">";
-ob_start();
-include_once("$g4[path]/head.sub.php");
-$head = ob_get_clean();
-$head = str_replace("<head>", "<head>\n{$viewport}", $head);
-echo $head;
-?>
-
-<script type="text/javascript">
-function add(img) {
-    opener.document.getElementById("wr_content").value += "\n[" + img + "]\n";
-    self.close();
+$dirs = array();
+foreach (glob(dirname(__FILE__).'/../mw.emoticon/*') as $row) {
+    if (is_dir($row)) {
+        $dirs[] = basename($row);
+    }
 }
-</script>
 
+echo '<ul class="menu">';
+echo '<li><a href="#;" onclick="win_emoticon(\'default\')">default</a></li>';
+foreach ((array)$dirs as $dir) {
+    printf('<li><a href="#;" onclick="win_emoticon(\'%s\')">%s</a></li>', $dir, $dir);
+}
+echo '</ul>';
 
-<? for ($i=1; $i<=93; $i++) {?>
-<? $img = "$emoticon_path/em{$i}.gif"; ?>
+unset($dir);
 
-<span style="margin:10px;"> <a href="javascript:add('<?=$img?>');"><img src="<?=$img?>"></a> </span>
-
-<? } ?>
-
-
-
-<div style="margin:10px 0 0 10px;">
-이모티콘 출처 : http://blog.roodo.com/onion_club
-</div>
-
-<?
-include_once("$g4[path]/tail.sub.php");
+$dir = $mw_basic['cf_emoticon'];
+if (preg_match('/^[0-9a-z-_]+$/i', $_REQUEST['dir'])) {
+    $dir = $_REQUEST['dir'];
+}
+else if ($_REQUEST['dir'] == 'default') {
+    $dir = '';
+}
 ?>
+<div class="clear"></div>
+<ul class="emo">
+<?php
+$path = '../mw.emoticon';
+$emo_dir = '';
+if (preg_match("/[0-9a-z-_]+/i", $dir) and is_dir($path.'/'.$dir)) {
+    $emo_dir = $dir;
+    $path .= '/'.$emo_dir;
+}
+
+$emo = glob($path."/*.{gif,jpg,jpeg,png}", GLOB_BRACE);
+sort($emo);
+
+foreach ((array)$emo as $item) :
+    if (!preg_match("/^[0-9a-z-_]+\.(png|jpe?g|gif)$/i", basename($item))) continue;
+
+    preg_match("/^([0-9a-z-_]+)\./i", basename($item), $match);
+    $add = $emo_dir ? $emo_dir.'/'.$match[1] : $match[1];
+
+    $path = str_replace('..', $board_skin_path, $item);
+
+    printf('<li><img src="%s" onclick="emoticon_add(\'%s\')"></li>', $path, $add);
+endforeach;
+?>
+</ul>
+
+

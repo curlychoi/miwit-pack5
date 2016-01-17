@@ -96,7 +96,7 @@ if (($w == "" || $w == "r") && $mw_basic[cf_write_register] && !$is_admin) {
 }
 
 // 글작성 제한
-if (($w == "" || $w == "r") && $mw_basic[cf_write_day] && $mw_basic[cf_write_day_count]) {
+if (($w == "" || $w == "r") && $mw_basic[cf_write_day] && $mw_basic[cf_write_day_count] && !$is_admin) {
     $old = date("Y-m-d 00:00:00", $g4[server_time]-((60*60*24)*($mw_basic[cf_write_day]-1)));
     $sql = "select count(wr_id) as cnt from $write_table ";
     $sql.= " where wr_is_comment = '0' ";
@@ -411,7 +411,7 @@ var char_max = parseInt(<?=$write_max?>); // 최대
 
 <?php
 include_once("$board_skin_path/mw.proc/mw.notice.top.php");
-include_once("$board_skin_path/mw.proc/mw.search.top.php");
+//include_once("$board_skin_path/mw.proc/mw.search.top.php");
 include_once("$board_skin_path/mw.proc/mw.cash.membership.skin.php");
 ?>
 
@@ -429,53 +429,13 @@ include_once("$board_skin_path/mw.proc/mw.cash.membership.skin.php");
 <input type=hidden name=sst      value="<?=$sst?>">
 <input type=hidden name=sod      value="<?=$sod?>">
 <input type=hidden name=page     value="<?=$page?>">
-
 <?php
 // 익명게시판
 if ($mw_basic[cf_attribute] == "anonymous" && $is_guest) {
     $is_name = $is_email = $is_homepage = false;
     echo "<input type=hidden name=wr_name value='익명'>\n";
 } 
-
-if (0 && $is_category && $mw_basic[cf_category_tab]) {
-    $category_list = array_map("trim", explode("|", $board[bo_category_list]));
-    if ($mw_basic['cf_ca_order']) {
-        sort($category_list);
-    }
 ?>
-<div class="category_tab">
-<ul>
-    <?php
-    $i = 1;
-    $l = 6;
-    $m = sizeof($category_list);
-    if (!$mw_basic['cf_default_category']) {
-        echo "<li";
-        if (!$sca) echo " class='selected'";
-        echo "><a href=\"".mw_seo_url($bo_table)."\">전체</a></li>";
-        ++$i;
-        ++$m;
-    }
-    //for ($m=sizeof($category_list); $i<$m; ++$i) {
-    foreach ($category_list as $cate) {
-        echo "<li";
-        if (urldecode($sca) == $cate) echo " class='selected'";
-        echo "><a href=\"". mw_seo_url($bo_table, 0, "&sca=".urlencode($cate))."\">";
-        echo $cate."</a></li>";
-
-        if ($m>=10 && $i++%$l==0 && $i<=$m) echo "</ul><ul>";
-    }
-    $rest = $l-(($i-1)%$l);
-    if ($rest > 0 and $m >= 10) {
-        for ($z=0; $z<$rest; ++$z) {
-            echo "<li class='none'>&nbsp;</li>\n";
-        }
-    }
-    ?>
-</ul>
-</div>
-<?php } ?>
-
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="write_table">
 <colgroup width=100>
 <colgroup width=''>
@@ -742,38 +702,20 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
             <span style="cursor: pointer;" onclick="textarea_increase('wr_content', 10);"><img src="<?=$board_skin_path?>/img/btn_down.gif"></span>
             <? */ ?>
             <? if ($mw_basic[cf_post_emoticon]) {?>
-                <span class=mw_basic_comment_emoticon><a 
-                    href="#;" onclick="window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo'
-                    ,'width=600,height=400,scrollbars=yes')">☞ 이모티콘</a></span>
+                <button type="button" class="fa-button" name="btn_emoticon" style="*margin-right:10px;"><i class="fa fa-smile-o"></i> <span class="media-comment-button">이모티콘</span></button>
+                <script>
+                board_skin_path = '<?php echo $board_skin_path?>';
+                bo_table = '<?php echo $bo_table?>';
+                </script>
+                <script src="<?php echo $board_skin_path?>/mw.js/mw.emoticon.js"></script>
             <? } ?>
             <? if ($mw_basic[cf_post_specialchars]) {?>
-            <a href="#;" onclick="specialchars()">☞특수문자</a>
-            <style>
-            #mw_basic_special_characters {
-                display:none;
-                border:1px solid #ddd;
-                background-color:#fff;
-                padding:10px;
-                position:absolute;
-            }
-            #mw_basic_special_characters table td {
-                padding:3px;
-                cursor:pointer;
-            }
-            </style>
-            <div id="mw_basic_special_characters">hi</div>
+            <button type="button" class="fa-button" name="btn_special"><i class="fa fa-magic"></i>
+                <span class="media-comment-button">특수문자</span></button>
             <script>
-            function specialchars() {
-                $.get("<?=$board_skin_path?>/mw.proc/mw.special.characters.php", function (str) {
-                    $("#mw_basic_special_characters").html(str);
-                    $("#mw_basic_special_characters table td").click(function () {
-                        $("#wr_content").val($("#wr_content").val()+$(this).text());
-                        $("#mw_basic_special_characters").toggle();
-                    });
-                });
-                $("#mw_basic_special_characters").toggle();
-            }
+            board_skin_path = '<?php echo $board_skin_path?>';
             </script>
+            <script src="<?php echo $board_skin_path?>/mw.js/mw.specialchars.js"></script>
             <? } ?>
         </td>
         <td align=right><? if ($write_min || $write_max) { ?><span id=char_count></span>글자<?}?></td>
@@ -805,11 +747,6 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
         <span style="cursor: pointer;" onclick="textarea_decrease('wr_contents_preview', 10);"><img src="<?=$board_skin_path?>/img/btn_up.gif"></span>
         <span style="cursor: pointer;" onclick="textarea_original('wr_contents_preview', 10);"><img src="<?=$board_skin_path?>/img/btn_init.gif"></span>
         <span style="cursor: pointer;" onclick="textarea_increase('wr_contents_preview', 10);"><img src="<?=$board_skin_path?>/img/btn_down.gif"></span>
-        <? if ($mw_basic[cf_post_emoticon]) {?>
-            <span class=mw_basic_comment_emoticon><a 
-                href="javascript:window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo'
-                ,'width=600,height=400,scrollbars=yes')">☞ 이모티콘</a></span>
-        <? } ?>
     </div>
 
     <? if (!$is_dhtml_editor || $mw_basic[cf_editor] != "cheditor") { ?>

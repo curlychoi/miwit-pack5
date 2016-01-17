@@ -733,7 +733,32 @@ function mw_set_sync_tag($content) {
             }
         }
     }
+    $content = mw_email_slice($content);
+
     return $content;
+}
+
+function mw_email_slice($content)
+{
+    $content = preg_replace("/<a href=\"mailto:([0-9a-z._-]+@[a-z0-9._-]{4,})\">([0-9a-z._-]+@[a-z0-9._-]{4,})<\/a>/i", "\\1", $content);
+    preg_match_all("/([0-9a-z._-]+@[a-z0-9._-]{4,})/i", $content, $matches);
+    for ($i=0, $m=count($matches[1]); $i<$m; ++$i) {
+        $content = str_replace($matches[1][$i], mw_basic_nobot_slice($matches[1][$i]), $content);
+    }
+
+    return $content;
+}
+
+// 이메일의 자동수집을 막기위해 자바스크립트로 한글자씩 잘라 출력함.
+// 한글등의 2 byte 이상의 문자는 작동 안함.
+function mw_basic_nobot_slice($str) {
+    $ret = "<script>";
+    $ret.= "document.write(";
+    for ($i=0; $i<strlen($str); $i++) {
+	$ret .= "\"".substr($str, $i, 1)."\" + ";	
+    }
+    $ret.= "\"\")</script>";
+    return $ret;
 }
 
 function mw_width_ratio($width, $height, $target)
@@ -1444,19 +1469,6 @@ function bc_code($str, $is_content=1, $only_admin=0) {
                 return $content;'
             );
             $str = preg_replace_callback("/include\(\"([^\"]+)\"\)/i", $callback, $str);
-
-            /*$str = preg_replace_callback("/include\(\"([^\"]+)\"\)/i",
-            function ($arg) {
-                global $g4;
-                $content = $arg[0];
-                if (is_mw_file($arg[1])) {
-                    ob_start();
-                    include($arg[1]);
-                    $content = ob_get_contents();
-                    ob_end_clean();
-                }
-                return $content;
-            }, $str);*/
         }
     }
     if ($only_admin) {
@@ -1481,6 +1493,14 @@ function bc_code($str, $is_content=1, $only_admin=0) {
 
     $str = preg_replace("/\[today\]/iU", date('Y년 m월 d일', $g4['server_time']), $str);
     $str = preg_replace("/\[day of the week\]/iU", get_yoil($g4['time_ymdhis']), $str);
+
+    $call_emoticon = create_function ('$arg', '
+        global $board_skin_path;
+        if (!preg_match("/^[0-9a-z-_\/]+$/i", $arg[1])) return $arg[0];
+        $img = glob("{$board_skin_path}/mw.emoticon/{$arg[1]}.{gif,jpg,jpeg,png}", GLOB_BRACE);
+        return sprintf("<img src=\"%s\" align=\"absmiddle\"/>", $img[0]);
+    ');
+    $str = preg_replace_callback("/\[e:([^\]]+)\]/i", $call_emoticon, $str);
 
     preg_match_all("/\[counting (.*)\]/iU", $str, $matches);
     for ($i=0, $m=count($matches[1]); $i<$m; $i++) {
@@ -1594,6 +1614,7 @@ function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되
     if (is_mw_file($lib_file_path)) include($lib_file_path);
 
     if (trim($mw_basic['cf_trash']) && $mw_basic['cf_trash'] != $board['bo_table'] && !$write['wr_is_comment']) {
+        mw_row_delete_point($board, $write);
         mw_move($board, $write['wr_id'], $mw_basic['cf_trash'], 'move');
         if (is_g5())
             delete_cache_latest($board['bo_table']);
@@ -1881,13 +1902,12 @@ function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되
     }
 
     // 공지사항 삭제
-    $notice_array = explode("\n", trim($board[bo_notice]));
-    $bo_notice = "";
-    for ($k=0; $k<count($notice_array); $k++)
-        if ((int)$write[wr_id] != (int)$notice_array[$k])
-            $bo_notice .= $notice_array[$k] . "\n";
-    $bo_notice = trim($bo_notice);
-    sql_query(" update $g4[board_table] set bo_notice = '$bo_notice' where bo_table = '$board[bo_table]' ");
+    global $notice_div;
+
+    $bo_notice = @explode($notice_div, trim($board['bo_notice']));
+    $bo_notice = @implode($notice_div, @array_diff($bo_notice, $write['wr_id']));
+
+    sql_query(" update {$g4['board_table']} set bo_notice = '{$bo_notice}' where bo_table = '{$board['bo_table']}' ");
 
     if (is_g5())
         delete_cache_latest($board['bo_table']);
@@ -1964,18 +1984,19 @@ function mw_basic_age($value, $type='alert')
 function mw_basic_move_cate($bo_table, $wr_id)
 {
     global $g4, $mw_basic, $mw, $board, $write_table;
+    global $notice_div;
 
     $sql = " select * from $mw[move_table] where bo_table = '$bo_table' and wr_id = '$wr_id' and mv_datetime <= '$g4[time_ymdhis]' ";
     $row = sql_fetch($sql);
 
     if (!$row) return;
 
-    $notice_array = explode("\n", trim($board[bo_notice]));
+    $notice_array = explode($notice_div, trim($board[bo_notice]));
     if ($row[mv_notice] == "u") {
         
         if (!in_array((int)$wr_id, $notice_array))
         {
-            $bo_notice = $wr_id . '\n' . $board[bo_notice];
+            $bo_notice = $wr_id . $notice_div . $board[bo_notice];
             sql_query(" update $g4[board_table] set bo_notice = '$bo_notice' where bo_table = '$bo_table' ");
         }
     }
@@ -1983,7 +2004,7 @@ function mw_basic_move_cate($bo_table, $wr_id)
         $bo_notice = '';
         for ($i=0; $i<count($notice_array); $i++)
             if ((int)$wr_id != (int)$notice_array[$i])
-                $bo_notice .= $notice_array[$i] . '\n';
+                $bo_notice .= $notice_array[$i] . $notice_div;
         $bo_notice = trim($bo_notice);
         sql_query(" update $g4[board_table] set bo_notice = '$bo_notice' where bo_table = '$bo_table' ");
 
@@ -2529,17 +2550,18 @@ function mw_move($board, $wr_id_list, $chk_bo_table, $sw)
     }
 
     // 공지사항에는 등록되어 있지만 실제 존재하지 않는 글 아이디는 삭제합니다.
+    global $notice_div;
     $bo_notice = "";
     $lf = "";
     if ($board[bo_notice]) {
-        $tmp_array = explode("\n", $board[bo_notice]);
+        $tmp_array = explode($notice_div, $board[bo_notice]);
         for ($i=0; $i<count($tmp_array); $i++) {
             $tmp_wr_id = trim($tmp_array[$i]);
             $row = sql_fetch(" select count(*) as cnt from $g4[write_prefix]$bo_table where wr_id = '$tmp_wr_id' ");
             if ($row[cnt]) 
             {
                 $bo_notice .= $lf . $tmp_wr_id;
-                $lf = "\n";
+                $lf = $notice_div;
             }
         }
     }
@@ -3929,7 +3951,9 @@ function mw_is_mobile_builder()
 
     $is_mobile = false;
 
-    if (strstr($_SERVER['SCRIPT_NAME'], "/".$mw['mobile_dir']))
+    if (defined("G5_IS_MOBILE") and G5_IS_MOBILE)
+        $is_mobile = true;
+    else if (strstr($_SERVER['SCRIPT_NAME'], "/".$mw['mobile_dir']))
         $is_mobile = true;
     else if (strstr($_SERVER['SCRIPT_NAME'], "/m/b/"))
         $is_mobile = true;
@@ -4321,4 +4345,27 @@ function sql_num_rows($result)
     else
         return mysql_num_rows($result);
 }}
+
+function mw_row_delete_point($board, $write)
+{
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '코멘트');
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '댓글');
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '쓰기');
+
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '@qna');
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '@qna-hold');
+    delete_point($write[mb_id], $board[bo_table], $write[wr_id], '@qna-choose');
+
+    $sql = " select * from $g4[point_table] ";
+    $sql.= "  where po_rel_table = '$board[bo_table]' ";
+    $sql.= "    and po_rel_id = '$write[wr_id]' ";
+    $sql.= "    and (po_rel_action like '%@good%' or po_rel_action like '%@nogood%') ";
+    $qry = sql_query($sql);
+    while ($row = sql_fetch_array($qry)) {
+        delete_point($write[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@good');
+        delete_point($row[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@good_re');
+        delete_point($write[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@nogood');
+        delete_point($row[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@nogood_re');
+    }
+}
 

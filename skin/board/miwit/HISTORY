@@ -1,3 +1,40 @@
+ver 3.0.0 (16.01.18)
+    : 스킨설정 선택적용시 빈값 기본
+    : 모바일 가로 사이즈 동영상 크기 자동 조정 (테크니션님 제안)
+    : 모바일 가로 사이즈 사진 크기 자동 조정 (테크니션님 제안)
+    : 이메일의 자동수집을 막기위해 자바스크립트로 한글자씩 잘라 출력함
+    : 권한없어도 관리 버튼 보이는 문제 해결 (태양이님 제안)
+    : 스마트 에디터 사진 첨부시 확대기능 (테크니션님 제안)
+    : 구글지도 동해표기 방법 적용 (정적인손님님 제안)
+    : 모바일 분류탭 갯수 조정 (신비님 제안)
+    : 선택삭제시 공지 풀리는 문제 해결 (세뇨르님 제안)
+    : 삭제글 이동시 적립 포인트 삭제
+    : 크롬 돋움폰트 강제적용 제거
+    : 댓글 로그, 신고 버튼 글자 출력 반응형 수정
+    : 구글+ 버튼 변경
+    : 별점표시 document.ready 안하고 바로 출력
+    : 날짜별 글작성 제한 관리자 제외
+    : 하큐어 이모티콘 적용 (태양이님 제안)
+    : 이모티콘 기능 개선
+    : 이전글 다음글 의미 바꾸기 옵션
+
+    miwit/HISTORY
+    miwit/mw.adm/mw.config.php
+    miwit/mw.adm/mw.config.update.php
+    miwit/mw.adm/mw.upgrade.php
+    miwit/mw.lib/mw.function.lib.php
+    miwit/mw.lib/mw.skin.basic.lib.php
+    miwit/mw.proc/mw.file.viewer.php
+    miwit/mw.proc/mw.seo.php
+    miwit/mw.js/mw.emoticon.js
+    miwit/mw.emoticon/hacure/*
+    miwit/view.skin.php
+    miwit/list.skin.php
+    miwit/view.skin.php
+    miwit/view_head.skin.php
+    miwit/view_comment.skin.php
+    miwit/write.skin.php
+ 
 ver 2.9.9 (15.11.18)
     : 외부이미지 썸네일 생성 오류 수정 (금광님 제안)
     : 회신문자 하이픈과 관계없이 전송가능하게 (Lacooon님 제안)

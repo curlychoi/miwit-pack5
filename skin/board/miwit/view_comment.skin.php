@@ -434,15 +434,17 @@ for ($i=0; $i<$to_record; $i++) {
     <td><? for ($k=0; $k<strlen($list[$i][wr_comment_reply]); $k++) echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?></td>
 
     <td valign="top" style="text-align:left;">
-        <img src="<?=$comment_image?>" class="comment_image"
+        <div class="comment_image <?php echo $comment_class?>">
+        <img src="<?php echo $comment_image?>"
             <?php
             if ($is_comment_image) { echo "onclick='mw_image_window(this, {$tmpsize[0]}, {$tmpsize[1]});'"; }
             else if (($is_member && $list[$i][mb_id] == $member[mb_id] && !$list[$i][wr_anonymous]) || $is_admin) { echo "onclick='mw_member_photo(\"{$list[$i]['mb_id']}\");'"; }?>>
 
         <? if (($is_member && $list[$i][mb_id] == $member[mb_id] && !$list[$i][wr_anonymous]) || $is_admin) { ?>
-        <div style="margin:0 0 0 10px;"><a href="javascript:mw_member_photo('<?=$list[$i][mb_id]?>')"
+        <div><a href="javascript:mw_member_photo('<?=$list[$i][mb_id]?>')"
             style="font:normal 11px; color:#888; text-decoration:none;"><? echo $is_comment_image ? "사진변경" : "사진등록"; ?></a></div>
-        <? } ?>
+        <?php } ?>
+        </div>
 
         <script>
         function mw_member_photo(mb_id) {
@@ -477,7 +479,7 @@ for ($i=0; $i<$to_record; $i++) {
     <td><div style="width:10px;"></div></td>
 
     <td width="100%" valign="top">
-        <table width=100% height="28" cellpadding=0 cellspacing=0 style="background:url(<?=$board_skin_path?>/img/co_title_bg.gif);">
+        <table width=100% height="28" cellpadding=0 cellspacing=0>
         <tr>
             <!-- 이름, 아이피 -->
             <td>
@@ -489,8 +491,8 @@ for ($i=0; $i<$to_record; $i++) {
                 <span class="mw_basic_comment_datetime media-date-sns"><i class="fa fa-clock-o"></i> <?php echo $row['datetime_sns']?></span>
 
                 <div class="mw_basic_comment_func" style="float:right;">
-                <? if ($list[$i][is_edit]) { echo "<a href=\"javascript:comment_box('{$comment_id}', 'cu');\" title='수정'><i class='fa fa-eraser fa-square-o'></i></a> "; } ?>
-                <? if ($list[$i][is_del])  { echo "<a href=\"javascript:comment_delete('{$list[$i][del_link]}');\" title='삭제'><i class='fa fa-cut'></i></a> "; } ?>
+                <? if ($list[$i][is_edit]) { echo "<a href=\"javascript:comment_box('{$comment_id}', 'cu');\" title='수정'><i class='fa fa-cut fa-square-o'></i></a> "; } ?>
+                <? if ($list[$i][is_del])  { echo "<a href=\"javascript:comment_delete('{$list[$i][del_link]}');\" title='삭제'><i class='fa fa-remove'></i></a> "; } ?>
                 </div><!--mw_basic_comment_func-->
 
             </td>
@@ -542,11 +544,21 @@ for ($i=0; $i<$to_record; $i++) {
         <?php if ($list[$i]['mb_id'] != '@lucky-writing') { ?>
         <div class="comment_buttons">
             <?php if ($history_href) {?>
-            <span class="button"><a href="<?php echo $history_href?>" title="변경기록"><i class='fa fa-history'></i> 로그</a></span>
+            <span class="button">
+                <a href="<?php echo $history_href?>" title="변경기록">
+                    <i class='fa fa-history'></i>
+                    <span class='media-comment-button'>로그</span>
+                </a>
+            </span>
             <?php } ?>
 
             <?php if ($is_member and $list[$i]['singo_href']) { ?>
-            <span class="button"><a href="<?=$list[$i][singo_href]?>"><i class="fa fa-warning"></i> 신고</a></span>
+            <span class="button">
+                <a href="<?=$list[$i][singo_href]?>">
+                    <i class="fa fa-warning"></i>
+                    <span class='media-comment-button'>신고</span>
+                </a>
+            </span>
             <?php } ?>
 
             <span class="mw_basic_comment_url button" value="<?=$list[$i][wr_id]?>">
@@ -588,7 +600,7 @@ for ($i=0; $i<$to_record; $i++) {
                 <span class="mw_basic_comment_reply button">
                     <a href="javascript:comment_box('<?php echo $comment_id?>', 'c', '<?php echo $list[$i]['wr_name']?>');">
                     <i class='fa fa-reply fa-rotate-180'></i>
-                    <span class='media-comment-button'>답글</span>
+                    답글
                     </a>
                 </span>
             <?php } ?>
@@ -602,7 +614,7 @@ for ($i=0; $i<$to_record; $i++) {
         <input type="hidden" id='html_<?=$comment_id?>'
             value="<?=strstr($list[$i][wr_option], 'html2')?'1':'';?>"><!-- html -->
         <textarea id="save_comment_<?php echo $comment_id?>"
-            style="display:none;"><?=get_text($list[$i][content1], 0)?></textarea>
+            style="display:none;"><?php if ($is_admin or $list[$i]['mb_id'] == $member['mb_id']) echo get_text($list[$i][content1], 0)?></textarea>
         <?php } ?>
     </td>
 </tr>
@@ -952,39 +964,22 @@ $(document).ready(function () {
 
     <div class="comment_function">
     <?php if ($mw_basic[cf_comment_emoticon] && !$is_comment_editor && !$write_error) {?>
-    <button type="button" class="fa-button" onclick="window.open('<?=$board_skin_path?>/mw.proc/mw.emoticon.skin.php?bo_table=<?=$bo_table?>','emo','width=600,height=400,scrollbars=yes')" style="*margin-right:10px;"><i class="fa fa-smile-o"></i> <span class="media-comment-button">이모티콘</span></button>
+    <button type="button" class="fa-button" name="btn_emoticon" style="*margin-right:10px;"><i class="fa fa-smile-o"></i> <span class="media-comment-button">이모티콘</span></button>
+    <script>
+    board_skin_path = '<?php echo $board_skin_path?>';
+    bo_table = '<?php echo $bo_table?>';
+    </script>
+    <script src="<?php echo $board_skin_path?>/mw.js/mw.emoticon.js"></script>
+
     <?php } //comment_emoticon ?>
 
-    <?php if ($mw_basic[cf_comment_specialchars]) {?>
-    <button type="button" class="fa-button" onclick="specialchars()"><i class="fa fa-magic"></i> <span class="media-comment-button">특수문자</span></button>
-    <style>
-    #mw_basic_special_characters {
-        display:none;
-        border:1px solid #ddd;
-        background-color:#fff;
-        padding:10px;
-        position:absolute;
-        margin:0 0 0 100px;
-        z-index:99999999;
-    }
-    #mw_basic_special_characters table td {
-        padding:3px;
-        cursor:pointer;
-    }
-    </style>
-    <div id="mw_basic_special_characters">hi</div>
+    <?php if ($mw_basic['cf_comment_specialchars']) {?>
+    <button type="button" class="fa-button" name="btn_special"><i class="fa fa-magic"></i>
+        <span class="media-comment-button">특수문자</span></button>
     <script>
-    function specialchars() {
-        $.get("<?=$board_skin_path?>/mw.proc/mw.special.characters.php", function (str) {
-            $("#mw_basic_special_characters").html(str);
-            $("#mw_basic_special_characters table td").click(function () {
-                $("#wr_content").val($("#wr_content").val()+$(this).text());
-                $("#mw_basic_special_characters").toggle();
-            });
-        });
-        $("#mw_basic_special_characters").toggle();
-    }
+    board_skin_path = '<?php echo $board_skin_path?>';
     </script>
+    <script src="<?php echo $board_skin_path?>/mw.js/mw.specialchars.js"></script>
     <?php }//comment_specialchars ?>
 
     <?php if ($mw_basic[cf_comment_file] && $mw_basic[cf_comment_file] <= $member['mb_level'] && !$write_error) { ?>
@@ -1384,48 +1379,23 @@ $(document).ready(function () {
                 "bo_table" : "<?=$bo_table?>",
                 "wr_id" : comment_id
             }, function (dat) {
-                $("#comment_url").html(dat);
+                //$("#comment_url").html(dat);
+                $("#comment_url").val(dat);
+                $("#comment_url").attr('size', $("#comment_url").val().length+5);
+                $("#comment_url").on('focus', function () { $(this).select(); } );
                 $("#comment_url_popup").css("display", "block");
                 $("#comment_url_popup").css("position", "absolute");
                 $("#comment_url_popup").css("top", top);
                 $("#comment_url_popup").css("left", left - $("#comment_url_popup").width()+50);
+                $("#comment_url_popup").css("width", $("#comment_url").outerWidth());
                 old_comment_id = comment_id;
 
                 $("#comment_url_loading").remove();
                 $("#comment_url_copy").css("cursor", "pointer");
 
-                var clipBoardComment = new ZeroClipboard.Client();
-                ZeroClipboard.setMoviePath("<?=$board_skin_path?>/mw.js/ZeroClipboard.swf");
-                clipBoardComment.setHandCursor(true);
-                clipBoardComment.addEventListener('mouseOver', function (client) {
-                    clipBoardComment.setText($("#comment_url_result").text());
-                });
-                clipBoardComment.addEventListener('complete', function (client) {
-                    alert("클립보드에 복사되었습니다. \'Ctrl+V\'를 눌러 붙여넣기 해주세요.");
-                    $("#comment_url").html("");
-                    $("#comment_url_popup").css("display", "none");
-                });  
-                clipBoardComment.glue("comment_url_copy");
-/*
-                var clip_comment = new ZeroClipboard(document.getElementById("comment_url_copy"), {
-                    moviePath: "<?=$board_skin_path?>/mw.js/ZeroClipboard.swf"
-                });
-
-                clip_comment.on( "load", function(client) {
-                    // alert( "movie is loaded" );
-                    clip_comment.setText($("#comment_url_result").text());
-
-                    client.on( "complete", function(client, args) {
-                    // `this` is the element that was clicked
-                        clip_comment.setText($("#comment_url_result").text());
-                        alert("클립보드에 복사되었습니다. \'Ctrl+V\'를 눌러 붙여넣기 해주세요.");
-                        $("#comment_url").html("");
-                        $("#comment_url_popup").css("display", "none");
-                    });
-                });
-*/
             });
-        } else {
+        }
+        else {
             $("#comment_url").html("");
             $("#comment_url_popup").css("display", "none");
         }
@@ -1433,16 +1403,8 @@ $(document).ready(function () {
 });
 </script>
 <div id="comment_url_popup" style="display:none;">
-<table border="0" cellpadding="0" cellspacing="0" height="53" background="<?=$board_skin_path?>/img/pg.png">
-<tr>
-    <td width="5"valign="top"><img src="<?=$board_skin_path?>/img/pl.png"></td>
-    <td valign="top" align="left">
-        <div style="height:13px; margin:0 20px 0 0; text-align:right;"><img src="<?=$board_skin_path?>/img/ps.png" height="13"></div>
-        <div id="comment_url"></div>
-    </td>
-    <td width="5" valign="top"><img src="<?=$board_skin_path?>/img/pr.png"></td>
-</tr>
-</table>
+    <input type="text" id="comment_url" value="" readonly/>
+</div>
 </div>
 
 <? if ($cwin) { ?>

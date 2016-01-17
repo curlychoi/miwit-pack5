@@ -20,6 +20,7 @@
  */
 
 include_once("_common.php");
+include_once("../mw.lib/mw.function.lib.php");
 
 header("Content-Type: text/html; charset=$g4[charset]");
 $gmnow = gmdate("D, d M Y H:i:s") . " GMT";
@@ -32,6 +33,11 @@ header("Pragma: no-cache"); // HTTP/1.0
 function mw_spc_table($spc)
 {
     global $g4;
+
+    $cols = 20;
+    if (mw_is_mobile_builder())
+        $cols = 8;
+
     $cnt = 1;
     $html = "<table border=1><tr>\n";
     if (preg_match("/^utf/i", $g4['charset'])) $split = "/\s/u"; else $split = "/\s/";
@@ -39,7 +45,7 @@ function mw_spc_table($spc)
         $char = trim($char);
         if (!$char) continue;
         $html .= "<td>$char</td>\n";
-        if ($cnt++%20 == 0) $html .= "</tr><tr>\n";
+        if ($cnt++%$cols == 0) $html .= "</tr><tr>\n";
     }
     $html .= "</tr></table>\n";
 

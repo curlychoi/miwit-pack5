@@ -40,6 +40,8 @@ if ($mw_basic[cf_good_graph])
     $good_box_width = $_GET['width'];
     if (!$good_box_width)
         $good_box_width = 270;
+    if (mw_is_mobile_builder() or G5_IS_MOBILE)
+        $good_box_width = 170;
     $wgg = @(($good_box_width-20)/($write[wr_good]+$write[wr_nogood]))*$write[wr_good]+10;
     $wgn = @(($good_box_width-20)/($write[wr_good]+$write[wr_nogood]))*$write[wr_nogood]+10;
     if ($wgg == 10 && $wgn == 10) {
@@ -49,7 +51,7 @@ if ($mw_basic[cf_good_graph])
 
 ?>
     <style type="text/css">
-    .good-box { text-align:center; font-size:11px; font-weight:bold; color:#fff; margin:50px 0 20px 0; }
+    .good-box { text-align:center; font-size:11px; font-weight:bold; color:#fff; margin:0px 0 20px 0; }
     .good-box .in { text-align:center; width:<?=$good_box_width+130?>px; height:30px; margin:0 auto; }
     .good-box .bg { float:left; }
     .good-box .bn { float:right; }
@@ -83,24 +85,28 @@ else {
     .good-box .in { text-align:center; height:30px; margin:0 auto 0 auto; }
     .good-box span { float:left; margin:5px 0 0 27px; font-size:12px; font-weight:bold; color:#fff; }
     .good-box .gg { width:100px; height:30px; display:inline-block; cursor:pointer; background:url(<?=$img_path?>/btn_good.gif); }
-    .good-box button { margin-right:7px; font-size:12px; }
-    .good-box button div { padding:5px; }
-    .good-box button i { font-size:15px; margin-right:10px;}
+    .good-box button { font-size:13px; background-color:#efefef; border:0; width:60px; height:30px; color:#aaa; display:inline-block; outline:none; }
+    .good-box button:first-child { margin-right:5px; }
+    .good-box button div { }
+    .good-box button i { font-size:15px; }
+    /*.good-box button { -webkit-border-radius:50em; -moz-border-radius:50em; border-radius:50em; }*/
+    .good-box button:first-child:hover { color:#00abf1; }
+    .good-box button:last-child:hover { color:#d0422a; }
     .good-box .gn { width:100px; height:30px; display:inline-block; cursor:pointer; background:url(<?=$img_path?>/btn_nogood.gif); margin:0 0 0 10px; }
     </style>
     <div class="good-box"><div class="in">
         <?php if ($board[bo_use_good]) { ?>
             <?php if (!$_GET['width']) { ?>
-            <button class="fa-button" onclick="mw_good_act('good')">
-                <div><i class="fa fa-thumbs-up"></i> 추천하기 : <?=number_format($write[wr_good])?></div></button>
+            <button onclick="mw_good_act('good')">
+                <div><i class="fa fa-thumbs-up"></i> <?=number_format($write[wr_good])?></div></button>
             <?php } else { ?>
             <div class="gg" onclick="mw_good_act('good')"><span>추천 : <?=number_format($write[wr_good])?></span></div>
             <?php } ?>
         <?php } ?>
         <?php if ($board[bo_use_nogood]) { ?>
             <?php if (!$_GET['width']) { ?>
-            <button class="fa-button" onclick="mw_good_act('nogood')">
-                <div><i class="fa fa-thumbs-down"></i> 다른의견 : <?=number_format($write[wr_nogood])?></div></button>
+            <button onclick="mw_good_act('nogood')">
+                <div><i class="fa fa-thumbs-down"></i> <?=number_format($write[wr_nogood])?></div></button>
             <?php } else { ?>
             <div class="gn" onclick="mw_good_act('nogood')"><span>비추 : <?=number_format($write[wr_nogood])?></span></div>
             <?php } ?>

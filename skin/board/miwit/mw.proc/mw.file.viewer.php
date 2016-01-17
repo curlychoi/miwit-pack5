@@ -31,6 +31,11 @@ else if ($mw_basic[cf_talent_market]) {
 else {
     $file_start = 0;
 }
+if (is_g5()) {
+    include_once(G5_LIB_PATH.'/thumbnail.lib.php');
+    $view['content'] = get_view_thumbnail($view['content']);
+    echo '<script src="'.G5_JS_URL.'/viewimageresize.js"></script>'.PHP_EOL;
+}
 
 $jwplayer = false;
 $jwplayer_count = 0;
@@ -273,7 +278,7 @@ $google_map_is_view = false;
 if ($mw_basic[cf_google_map] && trim($write[wr_google_map])) {
     ob_start();
     ?>
-    <script src="http://maps.google.com/maps/api/js?sensor=true&language=ko"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true&language=ko&region=kr"></script>
     <script src="<?=$board_skin_path?>/mw.js/mw.google.js"></script>
     <script>
     $(document).ready(function () {

@@ -537,14 +537,16 @@ if (is_g5()) {
 $cf_css = $mw_basic['cf_css'];
 $chrome_css = "div,table,td,span,li,a,h1,h2,h3,h4,h5,input,button {font-family:돋움;}";
 if (strstr($_SERVER['HTTP_USER_AGENT'], "Chrome")) {
-    $cf_css .= "\n".$chrome_css.PHP_EOL;
+    //$cf_css .= "\n".$chrome_css.PHP_EOL;
 }
 
 if ($mw_basic['cf_thumb_round']) {
-    $cf_css .= "
+    $cf_css .= '
 #mw_basic .mw_basic_list_thumb a img { -webkit-border-radius:1em; -moz-border-radius:1em; border-radius:1em; }
 #mw_basic .box { -webkit-border-radius:1em; -moz-border-radius:1em; border-radius:1em; }
 #mw_basic .gall_list div.gall_image img.thumb { -webkit-border-radius:1em; -moz-border-radius:1em; border-radius:1em; }
-".PHP_EOL;
+';
 }
-$mw_basic[cf_umz] = 0;
+$mw_basic['cf_umz'] = 0;
+
+
