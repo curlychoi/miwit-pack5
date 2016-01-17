@@ -411,7 +411,7 @@ var char_max = parseInt(<?=$write_max?>); // 최대
 
 <?php
 include_once("$board_skin_path/mw.proc/mw.notice.top.php");
-include_once("$board_skin_path/mw.proc/mw.search.top.php");
+//include_once("$board_skin_path/mw.proc/mw.search.top.php");
 include_once("$board_skin_path/mw.proc/mw.cash.membership.skin.php");
 ?>
 

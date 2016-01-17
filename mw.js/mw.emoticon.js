@@ -1,17 +1,7 @@
 
 $("button[name=btn_emoticon]").click(function () {
-    event.stopPropagation();
     win_emoticon();
 });
-
-$('html').click(function() {
-    emoticon_close();
-});
-
-$(document).keyup(function(e) {
-    if (e.keyCode == 27) emoticon_close();
-});
-
 
 function win_emoticon(dir) {
     var url = '';
@@ -30,11 +20,28 @@ function win_emoticon(dir) {
             var sel = $(this).val();
             win_emoticon(sel);
         });
-    });
-    $("#win_emoticon").click(function(event){
-        event.stopPropagation();
+        emoticon_close_event();
+
+        $("#win_emoticon").mouseenter(emoticon_close_unbind);
+        $("#win_emoticon").mouseleave(emoticon_close_event);
     });
 }
+
+function emoticon_close_unbind()
+{
+    $('html').off('click');
+}
+
+function emoticon_close_event()
+{
+    $('html').one('click', function() {
+        emoticon_close();
+    });
+    $(document).one('keyup', function(e) {
+        if (e.keyCode == 27) emoticon_close();
+    });
+}
+
 function emoticon_close() {
     $('#win_emoticon').remove();
 }
@@ -43,3 +50,4 @@ function emoticon_add(img) {
     $("#wr_content").val($("#wr_content").val() + '\n[e:' + img + ']\n');
     $("#win_emoticon").remove();
 }
+
