@@ -710,22 +710,12 @@ if ($mw_basic['cf_include_write_main'] && is_mw_file($mw_basic['cf_include_write
                 <script src="<?php echo $board_skin_path?>/mw.js/mw.emoticon.js"></script>
             <? } ?>
             <? if ($mw_basic[cf_post_specialchars]) {?>
-            <button type="button" class="fa-button" onclick="specialchars()"><i class="fa fa-magic"></i>
-            <span class="media-comment-button">특수문자</span></button>
-
-            <div id="mw_basic_special_characters">hi</div>
+            <button type="button" class="fa-button" name="btn_special"><i class="fa fa-magic"></i>
+                <span class="media-comment-button">특수문자</span></button>
             <script>
-            function specialchars() {
-                $.get("<?=$board_skin_path?>/mw.proc/mw.special.characters.php", function (str) {
-                    $("#mw_basic_special_characters").html(str);
-                    $("#mw_basic_special_characters table td").click(function () {
-                        $("#wr_content").val($("#wr_content").val()+$(this).text());
-                        $("#mw_basic_special_characters").toggle();
-                    });
-                });
-                $("#mw_basic_special_characters").toggle();
-            }
+            board_skin_path = '<?php echo $board_skin_path?>';
             </script>
+            <script src="<?php echo $board_skin_path?>/mw.js/mw.specialchars.js"></script>
             <? } ?>
         </td>
         <td align=right><? if ($write_min || $write_max) { ?><span id=char_count></span>글자<?}?></td>

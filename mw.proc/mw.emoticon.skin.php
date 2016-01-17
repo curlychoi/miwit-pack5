@@ -9,12 +9,12 @@ foreach (glob(dirname(__FILE__).'/../mw.emoticon/*') as $row) {
     }
 }
 
-echo '<select name="dir">';
-echo '<option value="default">기본</option>';
+echo '<ul class="menu">';
+echo '<li><a href="#;" onclick="win_emoticon(\'default\')">default</a></li>';
 foreach ((array)$dirs as $dir) {
-    printf('<option value="%s">%s</option>', $dir, $dir);
+    printf('<li><a href="#;" onclick="win_emoticon(\'%s\')">%s</a></li>', $dir, $dir);
 }
-echo '</select>';
+echo '</ul>';
 
 unset($dir);
 
@@ -25,8 +25,8 @@ if (preg_match('/^[0-9a-z-_]+$/i', $_REQUEST['dir'])) {
 else if ($_REQUEST['dir'] == 'default') {
     $dir = '';
 }
-echo '<script>$("#win_emoticon > select[name=dir]").val("'.$dir.'");</script>';
 ?>
+<div class="clear"></div>
 <ul class="emo">
 <?php
 $path = '../mw.emoticon';
