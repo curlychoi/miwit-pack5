@@ -23,7 +23,7 @@ if ($mw['config']['cf_seo_url']) {
 </div>
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="<?php echo G5_PATH?>/asset/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="<?php echo G5_URL?>/asset/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
 <?php
 include_once(G5_THEME_PATH.'/mobile/side.php');

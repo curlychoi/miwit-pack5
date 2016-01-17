@@ -1,0 +1,12 @@
+label { -moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none; cursor:pointer; }
+input[type=checkbox] { cursor:pointer; outline:none; }
+button { cursor:pointer; outline:none; }
+textarea { padding:10px; }
+.favicon-preview { line-height:30px; }
+.favicon-preview .i { line-height:20px; font-size:11px; color:#777; }
+.sns-image-preview { padding:10px 0 10px 0 }
+.sns-image-preview img { max-height:150px; width:auto; border:1px solid #ccc; }
+.phone-icon-preview { padding:10px 0 10px 0 }
+.phone-icon-preview img { max-height:150px; width:auto; border:1px solid #ccc; }
+.sidebar-use { list-style:none; margin:0; padding:0; }
+.sidebar-use li { list-style:none; margin:0; padding:0; line-height:25px; border-bottom:1px solid #efefef; }

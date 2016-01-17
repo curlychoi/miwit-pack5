@@ -68,3 +68,5 @@ $theme_config = array(
 
 $theme_path = '/'.G5_THEME_DIR.'/'.$config['cf_theme'];
 
+include(dirname(__FILE__).'/default_html.php');
+

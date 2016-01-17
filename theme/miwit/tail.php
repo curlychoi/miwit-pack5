@@ -9,6 +9,7 @@ if (G5_IS_MOBILE) {
 mw_script($theme_path.'/js/mw.scroll.top.js');
 
 ?>
+        <?php if (!$mw['config']['cf_no_content_tail']) echo mw_eval($mw['config']['cf_content_tail_html']); ?>
     </div><!--main-->
 
     <?php include(G5_THEME_PATH.'/sidebar.php') ?>
@@ -18,27 +19,25 @@ mw_script($theme_path.'/js/mw.scroll.top.js');
 </div><!--wrapper-->
 </div><!--container-->
 
+<?php if (!$mw['config']['cf_no_tail']) echo mw_eval($mw['config']['cf_tail_html']); ?>
+
 <div class="footer">
+    <?php if (!$mw['config']['cf_no_tail_link']) { ?>
     <div class="tail_link">
     <div class="wrapper">
     <ul class="menu">
-        <li><a href="<?php echo G5_BBS_URL; ?>/content.php?co_id=company">회사소개</a></li>
-        <li><a href="<?php echo G5_BBS_URL; ?>/content.php?co_id=privacy">개인정보취급방침</a></li>
-        <li><a href="<?php echo G5_BBS_URL; ?>/content.php?co_id=provision">서비스이용약관</a></li>
-        <li><a href="<?php echo G5_URL; ?>/plugin/point-rank/point_policy.php">포인트정책</a></li>
-        <li><a href="<?php echo G5_URL; ?>/plugin/point-rank/point_month_ranking.php">포인트 월별랭킹</a></li>
-        <li><a href="<?php echo G5_URL; ?>/plugin/point-rank/point_sum_ranking.php">포인트 전체랭킹</a></li>
-        <li><a href="<?php echo G5_URL; ?>/plugin/secede/">회원탈퇴</a></li>
-        <li><a href="#top" id="ft_totop">상단으로</a></li>
+        <?php mw_eval($mw['config']['cf_tail_link_html']) ?>
     </ul>
     </div><!--wrapper-->
     </div><!--tail_link-->
+    <?php } ?>
 
     <div class="wrapper">
+    <?php if (!$mw['config']['cf_no_info']) { ?>
     <div style="margin:10px 0 0 0;">
-        사이트명:<?php echo $config['cf_title']?>,
-        연락처:<?php echo mw_nobot_slice($config['cf_admin_email'])?>
+        <?php mw_eval($mw['config']['cf_info_html']) ?>
     </div>
+    <?php } ?>
     <div class="copyright">
         Copyright ⓒ <a href="<?php echo G5_URL?>" class="site"><?php echo G5_URL?></a>.  All rights reserved.
     </div>

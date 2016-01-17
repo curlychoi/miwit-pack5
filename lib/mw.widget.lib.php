@@ -1,6 +1,58 @@
 <?php
 if (!defined("_GNUBOARD_")) exit;
 
+function mw_connect()
+{
+    global $g4;
+    global $config;
+
+    $tmp = array();
+    $list = array();
+
+    $sql_admin = '';
+    $sql_admin = ' and mb_id <> '.$config['cf_admin'];
+
+    $sql = "select * from {$g4['login_table']} where mb_id <> '' {$sql_admin} ";
+    $qry = sql_query($sql);
+    for ($i=0; $row=sql_fetch_array($qry); $i++)
+    {
+        if (in_array($row['mb_id'], $tmp)) continue;
+        $tmp[] = $row['mb_id'];
+
+        $mb = get_member($row['mb_id'], "mb_id, mb_nick, mb_homepage, mb_email");
+        $mb['mb_nick'] = cut_str($mb['mb_nick'], 10, '');
+        $name = get_sideview($mb['mb_id'], $mb['mb_nick'], $mb['mb_email'], $mb['mb_homepage']);
+
+        $img = $g4['path']."/data/mw.basic.comment.image/".$row['mb_id'];
+        if (is_file($img)) {
+            $list[$i] = sprintf('<div class="profile"><img src="%s"></div>', $img);
+        }
+        else {
+            $list[$i] = "<div class='profile noimage'></div>";
+        }
+    
+        $list[$i].= sprintf('<div class="name">%s</div>', $name);
+    }
+    $current_connect = $i;
+
+    shuffle($list);
+
+    ob_start();
+    ?>
+    <div class="connect_side">
+        <h2><a href="<?php echo G5_BBS_URL?>/current_connect.php">현재접속회원</a></h2>
+        <div class="clear"></div>
+        <?php
+        foreach ((array)$list as $item) {
+            printf('<div class="item">%s</div>', $item);
+        }
+        ?>
+        <div class="clear"></div>
+    </div>
+    <?
+    return ob_get_clean();
+}
+
 function mw_latest_write($limit=5)
 {
     global $g5;

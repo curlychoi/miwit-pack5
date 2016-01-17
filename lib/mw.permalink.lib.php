@@ -220,3 +220,71 @@ function mw_seo_query()
     return $ret;
 }
 
+function mw_url_style($url, $type='seo', $cf_www='', $cf_seo_except='')
+{
+    //$cf_www = filter_var($cf_www, FILTER_VALIDATE_BOOLEAN);
+    if ($cf_www == 'true')
+        $cf_www = true;
+    else
+        $cf_www = false;
+
+    $parse_url = parse_url($url.'&');
+
+    $bbs = G5_BBS_DIR;
+
+    if (G5_COOKIE_DOMAIN)
+        $cookie_domain = G5_COOKIE_DOMAIN;
+
+    if (!$cookie_domain)
+        $cookie_domain = get_top_domain();
+
+    $cookie_domain = preg_replace("/^\./", "", $cookie_domain);
+
+    parse_str($parse_url['query'], $param);
+    $except = array_filter(array_map('trim', explode(",", $cf_seo_except)), 'strlen');
+
+    if (in_array($param['bo_table'], $except) and $type == 'seo') return $url;
+
+    if ($cf_www) {
+        if ($parse_url['host'] == $cookie_domain) {
+            $parse_url['host'] =  'www.'.$parse_url['host'];
+        }
+    }
+    else {
+        $parse_url['host'] = preg_replace("/^www\./iUs", "", $parse_url['host']);
+    }
+
+    if ($type == 'seo') {
+        $parse_url['path'] = preg_replace("/{$bbs}\/board\.php/iUs", "b/", $parse_url['path']);
+        $parse_url['path'] = preg_replace("/{$bbs}\/group\.php/iUs", "g/", $parse_url['path']);
+        $parse_url['path'] = preg_replace("/{$bbs}\/content\.php/iUs", "c/", $parse_url['path']);
+
+        $c = 0;
+        $parse_url['query'] = preg_replace("/bo_table=([0-9a-zA-Z-_]+)&wr_id=([0-9]+)&/iUs", "$1-$2?", $parse_url['query'], 1, $a); $c += $a;
+        $parse_url['query'] = preg_replace("/bo_table=([0-9a-zA-Z-_]+)&/iUs", "$1?", $parse_url['query'], 1, $a); $c += $a;
+        $parse_url['query'] = preg_replace("/gr_id=([0-9a-zA-Z-_]+)&/iUs", "$1?", $parse_url['query'], 1, $a); $c += $a;
+        $parse_url['query'] = preg_replace("/co_id=([0-9a-zA-Z-_]+)&/iUs", "$1?", $parse_url['query'], 1, $a); $c += $a;
+
+        if (!$c)
+            $parse_url['query'] = '?'.$parse_url['query'];
+    }
+    else if ($type == 'parameter') {
+        $c = 0;
+        $parse_url['path'].= '&';
+        $parse_url['path'] = preg_replace("/b\/([0-9a-zA-Z-_]+)-([0-9]+)&/iUs", "{$bbs}/board.php?bo_table=$1&wr_id=$2&", $parse_url['path'], 1, $a); $c += $a;
+        $parse_url['path'] = preg_replace("/b\/([0-9a-zA-Z-_]+)&/iUs", "{$bbs}/board.php?bo_table=$1&", $parse_url['path'], 1, $a); $c += $a;
+        $parse_url['path'] = preg_replace("/g\/([0-9a-zA-Z-_]+)&/iUs", "{$bbs}/group.php?gr_id=$1&", $parse_url['path'], 1, $a); $c += $a;
+        $parse_url['path'] = preg_replace("/c\/([0-9a-zA-Z-_]+)&/iUs", "{$bbs}/content.php?co_id=$1&", $parse_url['path'], 1, $a); $c += $a;
+        if (!$c)
+            $parse_url['path'] = preg_replace("/\&$/", "?", $parse_url['path']);
+    }
+
+    $res = trim("//".$parse_url['host'].$parse_url['path'].$parse_url['query']);
+    $res = preg_replace("/\?$/", "", $res);
+    $res = preg_replace("/\&$/", "", $res);
+    $res = preg_replace("/\?$/", "", $res);
+    $res = preg_replace("/\&$/", "", $res);
+
+    return $res;
+}
+

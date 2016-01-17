@@ -12,6 +12,7 @@ extract($a);
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="<?php echo G5_URL?>/asset/bootstrap-3.3.5/css/bootstrap.min.css">
+<style> #new_sch legend { display:none; } </style>
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="<?php echo G5_URL?>/asset/font-awesome-4.4.0/css/font-awesome.min.css">
@@ -47,5 +48,4 @@ extract($a);
 </div>
 
 <div id="mw_mobile">
-
 

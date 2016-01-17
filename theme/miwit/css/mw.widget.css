@@ -1,3 +1,112 @@
+/*---------------------------
+    connect_side
+----------------------------*/
+
+.connect_side { padding:0px; }
+
+.connect_side h2 {
+    font-size:1.2em;
+    line-height:30px;
+    height:30px;
+    border-bottom:2px solid #aaa;
+    margin:0 0 10px 0;
+    padding:0;
+
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.connect_side h2 a {
+    position:absolute;
+    line-height:30px;
+    height:30px;
+    border-bottom:2px solid #e74c3c;
+    min-width:120px;
+    padding:0;
+    padding-left:5px;
+    text-decoration:none;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.connect_side h2 a:before {
+    font-family:FontAwesome;
+    content:"\f0c0";
+    margin-right:10px;
+    font-weight:normal;
+}
+
+.connect_side .item {
+    float:left; 
+    margin:7px 0px 0px 10px;
+    width:50px;
+    height:70px;
+    text-align:center;
+}
+
+.connect_side .item img {
+    width:15px;
+    height:15px;
+}
+
+.connect_side .item .profile {
+    width:40px;
+    text-align:center;
+    margin:0 auto 0 auto;
+    width:40px;
+    height:40px;
+}
+
+.connect_side .item .profile.noimage:before {
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+    display:block;
+    content:"\f007";
+    text-align:center;
+    font-size:20px;
+    line-height:40px;
+    color:#aaa;
+    position:absolute;
+    width:40px;
+    height:40px;
+    text-align:center;
+    -webkit-border-radius: 50em;
+    -moz-border-radius: 50em;
+    border-radius: 50em;
+    background-color:#efefef;
+}
+
+.connect_side .item .profile img {
+    width:40px;
+    height:40px;
+    text-align:center;
+
+    -webkit-border-radius: 50em;
+    -moz-border-radius: 50em;
+    border-radius: 50em;
+}
+
+.connect_side .item .name {
+    height:20px;
+    line-height:20px;
+    font-weight:normal;
+    font-size:11px;
+    letter-spacing:-1px;
+}
+
+.connect_side .item .name a {
+}
+
+.connect_side .item .sv {
+    text-align:left;
+    line-height:15px;
+    white-space: normal;
+}
 
 /*---------------------------
     latest_write
@@ -39,6 +148,7 @@
     font-family:FontAwesome;
     content:"\f0f6";
     margin-right:10px;
+    font-weight:normal;
 }
 
 .latest_write ul {
@@ -137,6 +247,7 @@
     font-family:FontAwesome;
     content:"\f0e6";
     margin-right:10px;
+    font-weight:normal;
 }
 
 .latest_comment ul {

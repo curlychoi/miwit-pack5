@@ -48,41 +48,9 @@ for ($i=0, $c=0, $m=count($list); $i<$m; ++$i)
     $c++;
 }
 
-mw_script($theme_path."/js/mw.slider.js");
-
-$img = array();
-$img[] = G5_THEME_URL."/img/01.jpeg";
-$img[] = G5_THEME_URL."/img/02.jpeg";
-$img[] = G5_THEME_URL."/img/03.jpeg";
-$img[] = G5_THEME_URL."/img/04.jpeg";
-$img[] = G5_THEME_URL."/img/05.jpeg";
-$img[] = G5_THEME_URL."/img/06.jpeg";
-$img[] = G5_THEME_URL."/img/07.jpeg";
-
-shuffle($img);
+if (!$mw['config']['cf_no_index_image'])
+    mw_eval($mw['config']['cf_index_image_html']);
 ?>
-<style>
-.banner { width:728px; height:360px; position:relative; overflow:hidden; margin:0 0 10px 0; }
-.banner ul { position:absolute; margin:0; padding:0; list-style:none; font-size:0; }
-.banner ul li { margin:0; padding:0; list-style:none; }
-</style>
-
-<div class="banner">
-<ul>
-    <?php foreach ($img as $item) { ?>
-    <li><a href="http://www.miwit.com" target="_blank"><img src="<?php echo $item?>"></a></li>
-    <?php } ?>
-</ul>
-</div>
-
-<script>
-$(document).ready(function() {
-    $('.banner').mw_slider({
-        way:'left',
-        delay:3000,
-    });
-});
-</script>
 
 <div class="latest">
 <?php

@@ -51,7 +51,7 @@ var mw_scroll_top =
     },
     run: function() {
         $(window).ready(function () {
-            top_button = $('<div id="'+mw_scroll_top.top_button+'"><i class="fa fa-arrow-circle-up"></i></div>')
+            top_button = $('<div id="'+mw_scroll_top.top_button+'"><i class="fa fa-chevron-up"></i></div>')
                             .css('position','absolute')
                             .css('cursor', 'pointer')
                             .css('display', 'none')

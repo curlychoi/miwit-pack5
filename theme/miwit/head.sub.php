@@ -13,39 +13,6 @@ else {
     $g5_head_title .= " | ".$config['cf_title'];
 }
 
-$meta_keywords = $g5['title'];
-$meta_keywords = preg_replace("/\n/", " ", $meta_keywords);
-$meta_keywords = preg_replace("/\"/", "", $meta_keywords);
-$meta_keywords = preg_replace("/'/", "", $meta_keywords);
-$meta_keywords = preg_replace("/,/", "", $meta_keywords);
-$meta_keywords = preg_replace("/http:\/\/[^\s]+/", "", $meta_keywords);
-$meta_keywords = cut_str($meta_keywords, 150);
-$meta_keywords = trim($meta_keywords);
-
-$meta_description = $write['wr_content'];
-
-$meta_description = strip_tags($meta_description);
-$meta_description = explode("\n", $meta_description);
-for ($i=0, $m=count($meta_description); $i<$m; $i++) {
-    $meta_description[$i] = trim($meta_description[$i]);
-}
-$meta_description = implode(" ", $meta_description);
-$meta_description = preg_replace("/\n/", " ", $meta_description);
-$meta_description = preg_replace("/\"/", "", $meta_description);
-$meta_description = preg_replace("/'/", "", $meta_description);
-$meta_description = preg_replace("/,/", "", $meta_description);
-$meta_description = preg_replace("/http:\/\/[^\s]+/", "", $meta_description);
-$meta_description = cut_str($meta_description, 150);
-$meta_description = trim($meta_description);
-
-$image_src = null;
-if ($bo_table && $wr_id) {
-    $image_src = G5_DATA_URL."/file/{$bo_table}/thumbnail/{$wr_id}.jpg";
-}
-
-if (!$image_src or !is_file($g4['path']."/data/file/{$bo_table}/thumbnail/{$wr_id}.jpg"))
-    $image_src = G5_IMG_URL."/image_src.png";
-
 // 현재 접속자
 // 게시판 제목에 ' 포함되면 오류 발생
 $g5['lo_location'] = addslashes($g5['title']);
@@ -81,97 +48,7 @@ if (G5_IS_MOBILE) {
 
 if($config['cf_add_meta'])
     echo $config['cf_add_meta'].PHP_EOL;
-
-if ($bo_table && $wr_id)
-{
-    $fb_file = sql_fetch("select bf_file from {$g4['board_file_table']}
-                           where bo_table = '{$bo_table}'
-                             and wr_id = '{$wr_id}'
-                             and bf_width > 0
-                           order by bf_no
-                           limit 1");
-
-    if ($fb_file) {
-        $ogp_thumb = $g4['url']."/data/file/".$bo_table."/".$fb_file['bf_file'];
-    }
-    else {
-        preg_match_all("/<img.*src=\\\"(.*)\\\"/iUs", stripslashes($write['wr_content']), $matchs);
-
-        $mat = '';
-        for ($i=0, $m=count($matchs[1]); $i<$m; ++$i)
-        {
-            $mat = $matchs[1][$i];
-
-            // 이모티콘 제외
-            if (strstr($mat, "mw.basic.comment.image")) $mat = '';
-            if (strstr($mat, "mw.emoticon")) $mat = '';
-            if (preg_match("/cheditor[0-9]\/icon/i", $mat)) $mat = '';
-
-            if ($mat) {
-                $ogp_thumb = $mat;
-                break;
-            }
-        }
-
-        if (!$mat) {
-            $ogp_thumb = $g4['path']."/data/file/".$bo_table."/thumbnail/".$wr_id.".jpg";
-
-            if (!@is_file($ogp_thumb))
-                $ogp_thumb = $g4['path']."/data/file/".$bo_table."/thumbnail/".$wr_id;
-
-            if (!@is_file($ogp_thumb))
-                $ogp_thumb = $g4['path']."/data/file/".$bo_table."/thumb/".$wr_id;
-
-            if (!@is_file($ogp_thumb))
-                $ogp_thumb = '';
-            else
-                $ogp_thumb = str_replace($g4['path'], $g4['url'], $ogp_thumb);
-        }
-    }
-
-    if (!$ogp_thumb or !is_file(str_replace($g4['url'], $g4['path'], $ogp_thumb)))
-        $ogp_thumb = $g4['url']."/img/image_src.png";
-
-    $ogp_title = trim(cut_str(strip_tags($write['wr_subject']), 255));
-    $ogp_site_name = trim(cut_str(strip_tags($config['cf_title']), 255));
-
-    $ogp_url = $g4['url']."/".$g4['bbs']."/board.php?bo_table=".$bo_table."&wr_id=".$wr_id;
-    if (function_exists("mw_seo_url"))
-        $ogp_url = mw_seo_url($bo_table, $wr_id);
-
-    $ogp_description = $write['wr_content'];
-    $ogp_description = trim(preg_replace("/{이미지:[0-9]+}/iUs", "", $ogp_description));
-    $ogp_description = strip_tags($ogp_description);
-    $ogp_description = explode("\n", $ogp_description);
-    for ($i=0, $m=count($ogp_description); $i<$m; $i++) {
-        $ogp_description[$i] = trim($ogp_description[$i]);
-    }
-    $ogp_description = implode(" ", $ogp_description);
-    $ogp_description = preg_replace("/\n/", " ", $ogp_description);
-    $ogp_description = preg_replace("/\"/", "", $ogp_description);
-    $ogp_description = preg_replace("/'/", "", $ogp_description);
-    $ogp_description = preg_replace("/,/", "", $ogp_description);
-    $ogp_description = preg_replace("/http:\/\/[^\s]+/", "", $ogp_description);
-    $ogp_description = cut_str($ogp_description, 150);
-    $ogp_description = trim($ogp_description);
-
-    $ogp = "<meta property=\"og:image\" content=\"{$ogp_thumb}\"/>\n";
-    $ogp.= "<meta property=\"og:title\" content=\"{$ogp_title}\"/>\n";
-    $ogp.= "<meta property=\"og:site_name\" content=\"{$ogp_site_name}\"/>\n";
-    $ogp.= "<meta property=\"og:url\" content=\"{$ogp_url}\"/>\n";
-    $ogp.= "<meta property=\"og:description\" content=\"{$ogp_description}\"/>\n";
-    echo $ogp;
-}
 ?>
-<?php if ($bo_table) { ?>
-<link rel="canonical" href="<?php echo mw_seo_url($bo_table, $wr_id)?>" />
-<link rel="alternate" type="application/rss+xml" title="<?=$config[cf_title]?>, <?=$board[bo_subject]?>" href="<?="$g4[url]/$g4[bbs]/rss.php?bo_table=$bo_table"?>" />
-<link rel="alternate" type="text/xml" title="RSS .92" href="<?="$g4[url]/$g4[bbs]/rss.php?bo_table=$bo_table"?>" />
-<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="<?="$g4[url]/$g4[bbs]/rss.php?bo_table=$bo_table"?>" />
-<?php } ?>
-<?php if ($bo_table && $wr_id && strstr($write['wr_option'], 'secret')) echo '<meta name="robots" content="noindex">'.PHP_EOL; ?>
-<link rel="image_src" href="<?php echo $image_src?>" />
-<link rel="shortcut icon" href="<?php echo G5_IMG_URL?>/shortcut.ico">
 <title><?php echo $g5_head_title; ?></title>
 <link rel="stylesheet" href="<?php echo G5_THEME_CSS_URL; ?>/<?php echo G5_IS_MOBILE ? 'mobile' : 'default'; ?>.css">
 <!--[if lte IE 8]>
@@ -194,7 +71,7 @@ var g4_is_member = "<?php echo isset($is_member)?$is_member:''; ?>";
 if ($is_admin) {
     echo 'var g5_admin_url = "'.G5_ADMIN_URL.'";'.PHP_EOL;
 }
-mw_script('/'.G5_JS_DIR.'/jquery-1.8.3.min.js');
+mw_script('/asset/jquery-1.12.0/jquery.min.js');
 mw_script('/'.G5_JS_DIR.'/common.js');
 mw_script('/'.G5_JS_DIR.'/wrest.js');
 ?>
@@ -205,6 +82,8 @@ if(G5_IS_MOBILE) {
 }
 if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];
+
+echo include 'seo.php';
 ?>
 </head>
 <body>
@@ -218,4 +97,3 @@ if ($is_member) { // 회원이라면 로그인 중이라는 메세지를 출력�
     echo '<div id="hd_login_msg">'.$sr_admin_msg.get_text($member['mb_nick']).'님 로그인 중 ';
     echo '<a href="'.G5_BBS_URL.'/logout.php">로그아웃</a></div>';
 }
-?>

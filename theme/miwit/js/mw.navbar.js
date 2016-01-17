@@ -90,11 +90,9 @@ var head_fixed =
     }
 }
 
-$(window).on('load scroll resize mousewheel', function () {
-    head_fixed.run();
-});
+//$(window).on('load scroll resize mousewheel', function () { head_fixed.run(); });
 
-$(document).ready(function () {
+$(window).ready(function () {
     $(".navbar .item, .navbar .select").mouseenter(function () {
         $(".navbar .item, .navbar .select").removeClass("underline");
         $(this).addClass("underline");

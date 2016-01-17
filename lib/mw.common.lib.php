@@ -5,7 +5,7 @@ if (is_null($html_process)) {
     $html_process = new html_process();
 }
 
-function mw_script($src)
+function mw_script($src, $opt='')
 {
     global $html_process;
 
@@ -14,7 +14,7 @@ function mw_script($src)
     $mtime = filemtime(G5_PATH.$src);
     $src = G5_URL.$src."?".$mtime;
 
-    add_javascript("<script src=\"{$src}\"></script>");
+    add_javascript("<script src=\"{$src}\" {$opt}></script>");
 }
 
 function mw_css($href)
@@ -236,13 +236,16 @@ function mw_get_menu()
 
     $mw5_menu = array();
 
+    $sql_use = " me_use = '1' ";
+    if (G5_IS_MOBILE)
+        $sql_use = " me_mobile_use = '1' ";
+
     $sql = " select *
                from {$g5['menu_table']}
-              where me_use = '1'
+              where {$sql_use}
                 and length(me_code) = '2'
               order by me_order, me_id ";
     $qry = sql_query($sql);
-    //for ($i=0; $row=sql_fetch_array($qry); $i++) {
     $i = 0;
     while ($row=sql_fetch_array($qry)) {
         $extend = sql_fetch("select * from {$mw5['menu_table']} where me_code = '{$row['me_code']}' ", false);
@@ -262,10 +265,6 @@ function mw_get_menu()
         $g_count = 0;
         $g_table = '';
 
-        /* preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
-        if (!$match[1])
-            preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match); */
-
         $get = mw_get_board($row['me_link']);
 
         if ($get) {
@@ -283,12 +282,11 @@ function mw_get_menu()
         $j = 0;
         $sql2 = " select *
                    from {$g5['menu_table']}
-                  where me_use = '1'
+                  where {$sql_use}
                     and length(me_code) = '4'
                     and substring(me_code, 1, 2) = '{$row['me_code']}'
                   order by me_order, me_id ";
         $qry2 = sql_query($sql2);
-        //for ($j=0; $row2=sql_fetch_array($qry2); $j++) {
         while ($row2=sql_fetch_array($qry2)) {
             $extend = sql_fetch("select * from {$mw5['menu_table']} where me_code = '{$row2['me_code']}' ", false);
             if ($extend) {
@@ -299,10 +297,6 @@ function mw_get_menu()
                     $row2['me_name'] = "<i class='fa fa-{$extend['me_icon']}'></i> ".$row2['me_name'];
                 }
             }
-
-            /* preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);
-            if (!$match[1])
-                preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);*/
 
             $get = mw_get_board($row2['me_link']);
 
@@ -364,5 +358,18 @@ function mw_get_list($list)
     }
 
     return $list;
+}
+
+function mw_eval($code)
+{
+    global $member;
+    global $config;
+    global $g5;
+    global $g4;
+    global $mw;
+
+    $code = ' ?'.'>'.$code.'<'.'?php ';
+
+    eval($code);
 }
 

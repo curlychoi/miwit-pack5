@@ -1,6 +1,7 @@
 <?php
-$sub_menu = "110300";
+$sub_menu = "110400";
 include_once('./_common.php');
+include_once('./_upgrade.php');
 
 if ($is_admin != 'super')
     alert('최고관리자만 접근 가능합니다.');
@@ -27,7 +28,8 @@ $colspan = 7;
 </style>
 
 <div class="local_desc01 local_desc">
-    <p><strong>주의!</strong> 메뉴설정 작업 후 반드시 <strong>확인</strong>을 누르셔야 저장됩니다.</p>
+    <p><button class="btn_frmline" onclick="window.open('http://www.miwit.com/b/mw_tip-4401')">메뉴순서 설정팁</button>
+    <strong>주의!</strong> 메뉴설정 작업 후 반드시 <strong>확인</strong>을 누르셔야 저장됩니다.</p>
 </div>
 
 <form name="fmenulist" id="fmenulist" method="post" action="./menu_list_update.php" onsubmit="return fmenulist_submit(this);">
@@ -40,6 +42,7 @@ $colspan = 7;
     <tr>
         <th scope="col">메뉴순서</th>
         <th scope="col">출력권한</th>
+        <th scope="col">접근권한</th>
         <th scope="col"><input type="checkbox" id="all_check" name="all_check">&nbsp; <label for="all_check">사이드뷰</label></th>
         <th scope="col">아이콘 선택</th>
         <th scope="col">아이콘</th>
@@ -66,6 +69,7 @@ $colspan = 7;
     <tr class="<?php echo $bg; ?> menu_list menu_group_<?php echo substr($row['me_code'], 0, 2); ?>">
         <td class="td_category"><?php echo $row['me_order']?></td>
         <td class="td_category"><?php echo get_member_level_select('me_level[]', 1, 10, $row2['me_level'])?></td>
+        <td class="td_category"><?php echo get_member_level_select('me_perm[]', 1, 10, $row2['me_perm'])?></td>
         <td class="td_category">
             <input type="checkbox" class="me_no_side" name="me_no_side[<?php echo $row['me_code']?>]" id="me_no_side_<?php echo $row['me_code']?>" value="1"<?php echo $row2['me_no_side']?' checked':''?>>
             <label for="me_no_side_<?php echo $row['me_code']?>">사용안함</label>

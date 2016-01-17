@@ -31,7 +31,8 @@
         var run_scroll = function ($ul) {
             if (index == 0 && $ul.find("li").size() > max) {
                 for (i=0; i<max; ++i) {
-                    $ul.find("li").get(0).remove();
+                    a = $ul.find("li").get(0);
+                    a.parentNode.removeChild(a);
                 }
 
                 if (options.way == 'left') {

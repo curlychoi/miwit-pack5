@@ -2,20 +2,22 @@
 if (!defined("_GNUBOARD_")) exit;
 
 if (!$is_sidebar) {
-    echo "<style>";
+    /*echo "<style>";
     echo "#mw5 .main { width:{$mw['config']['cf_width']}px; }";
     echo "#mw5 .menu_title { width:{$mw['config']['cf_width']}px; }";
-    echo "</style>";
+    echo "</style>";*/
     return;
 }
 ?>
 <?php $side = array(); ?>
 <div class="sidebar">
 
-    <?php echo outlogin("theme/mw5")?>
+    <?php if (!$mw['config']['cf_no_sidebar_head']) echo mw_eval($mw['config']['cf_sidebar_head_html']); ?>
+
+    <?php if ($mw['config']['cf_sidebar_outlogin']) echo outlogin("theme/mw5"); ?>
 
     <?php
-    if (!$is_member) {
+    if (!$is_member and $mw['config']['cf_sidebar_social']) {
         include_once($g4['path']."/plugin/social-login/include.php");
         $is_social_login = false;
         ob_start();
@@ -48,9 +50,8 @@ if (!$is_sidebar) {
     }
     ?>
 
-
     <?php ob_start(); ?>
-    <?php if ($is_member and $mw_cash['cf_cash_name'] and function_exists("mw_cash_grade")) {?>
+    <?php if ($is_member and $mw_cash['cf_cash_name'] and function_exists("mw_cash_grade") and $mw['config']['cf_sidebar_cash']) {?>
     <div class="block my_cash" onclick="location.href='<?php echo $mw_cash['path']?>/'">
     <div>
         <label>나의 <?php echo $mw_cash['cf_cash_name']?></label> :
@@ -100,16 +101,20 @@ if (!$is_sidebar) {
 
     <?php
     ob_start();
-    $tmp = sql_fetch("select * from {$g5['board_table']} where bo_table = 'notice' ");
-    if ($tmp) { 
-        echo "<div class='block'>".latest("theme/mw5", "notice", 5)."</div>";
-    }
-    else {
-        echo "<div class='block'>공지사항은 notice 게시판 생성시 자동으로 출력됩니다.</div>";
+    if ($mw['config']['cf_sidebar_notice']) {
+        $tmp = sql_fetch("select * from {$g5['board_table']} where bo_table = 'notice' ");
+        if ($tmp) { 
+            echo "<div class='block'>".latest("theme/mw5", "notice", 5)."</div>";
+        }
+        else {
+            echo "<div class='block'>공지사항은 notice 게시판 생성시 자동으로 출력됩니다.</div>";
+        }
     }
     $side[] = ob_get_clean();
     ?>
 
+    <?php if ($mw['config']['cf_sidebar_menu']) { ?>
+    <?php ob_start(); ?>
     <div class="sidebar-nav">
     <ul>
     <?php
@@ -128,7 +133,7 @@ if (!$is_sidebar) {
             $bo_new = '';
 
             if ($row2['bo_new'])
-                $bo_new = "<span class=\"new\">{$row2['bo_new']}</span>";
+                $bo_new = "<span class=\"{$cf_new_class}\">{$row2['bo_new']}</span>";
             if ($row2['bo_count'])
                 $bo_count = "<span class=\"count\">{$row2['bo_count']}</span>";
 
@@ -141,25 +146,49 @@ if (!$is_sidebar) {
     ?>
     </ul>
     </div>
-
-    <?php ob_start(); ?>
-    <div class="block"><?php echo mw_latest_write(5)?></div>
     <?php $side[] = ob_get_clean(); ?>
+    <?php } ?>
 
-    <?php ob_start(); ?>
-    <div class="block"><?php echo mw_latest_comment(5)?></div>
-    <?php $side[] = ob_get_clean(); ?>
+    <?php
+    ob_start();
+    if ($mw['config']['cf_sidebar_latest_write']) {
+        echo '<div class="block">'. mw_latest_write(5).'</div>';
+    }
+    $side[] = ob_get_clean();
+    ?>
+
+    <?php
+    ob_start(); 
+    if ($mw['config']['cf_sidebar_latest_comment']) { 
+        echo '<div class="block">'.mw_latest_comment(5).'</div>';
+    }
+    $side[] = ob_get_clean();
+    ?>
+
+    <?php
+    ob_start(); 
+    if ($mw['config']['cf_sidebar_visit']) { 
+        echo '<div class="block">'.mw_connect().'</div>';
+    }
+    $side[] = ob_get_clean();
+    ?>
+
+    <?php
+    ob_start();
+    if ($mw['config']['cf_sidebar_latest_write']) { 
+        $poll = poll("theme/mw5");
+        if ($poll)
+            echo "<div class=\"block\">{$poll}</div>";
+    }
+    $side[] = ob_get_clean();
+    ?>
 
     <?php
     //shuffle($side);
     foreach ($side as $row) echo $row;
     ?>
 
-    <?php
-    $poll = poll("theme/mw5");
-    if ($poll)
-        echo "<div class=\"block\">{$poll}</div>";
-    ?>
+    <?php if (!$mw['config']['cf_no_sidebar_tail']) echo mw_eval($mw['config']['cf_sidebar_tail_html']); ?>
 
 </div><!--sidebar-->
 
