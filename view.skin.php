@@ -146,7 +146,24 @@ include_once("$board_skin_path/mw.proc/mw.cash.membership.skin.php");
 ?>
 
 <!-- 링크 버튼 -->
-<?php ob_start(); ?>
+<?php
+ob_start();
+
+if ($mw_basic['cf_prev_next'])
+{
+    $tmp_href = $prev_href;
+    $tmp_wr_subject = $prev_wr_subject;
+
+    $prev_href = $next_href;
+    $prev_wr_subject = $next_wr_subject;
+
+    $next_href = $tmp_href;
+    $next_wr_subject = $tmp_wr_subject;
+
+    unset($tmp_href);
+    unset($tmp_wr_subject);
+}
+?>
 <table width=100%>
 <tr height=35>
     <td>

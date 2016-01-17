@@ -362,6 +362,14 @@ input.ed { height:20px; border:1px solid #9A9A9A; border-right:1px solid #D8D8D8
 textarea { border:1px solid #9A9A9A; border-right:1px solid #D8D8D8; border-bottom:1px solid #D8D8D8; padding:0 0 0 3px; }
 input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px; font-family:dotum; }
 
+label {
+    outline:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    cursor:pointer;
+}
 </style>
 
 <div id="preloader"><img src="<?=$board_skin_path?>/img/preloader.gif"></div>
@@ -1004,6 +1012,14 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
 	</div>
     </div>
 
+    <div class="cf_item">
+	<div class="cf_title"> <input type=checkbox name=chk[cf_prev_next] value=1>&nbsp; 이전글,다음글 변경 </div>
+	<div class="cf_content">
+	    <label><input type="checkbox" name="cf_prev_next" value=1> 의미변경</label>
+	    <span class="cf_info">(이전글, 다음글 의미를 서로 변경합니다.)</span>
+	    <script> document.cf_form.cf_prev_next.checked = "<?php echo $mw_basic[cf_prev_next]?>"; </script>
+	</div>
+    </div>
 
     <div class="block"></div>
 

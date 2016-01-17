@@ -1,4 +1,4 @@
-ver 3.0.0 (16.01.17)
+ver 3.0.0 (16.01.18)
     : 스킨설정 선택적용시 빈값 기본
     : 모바일 가로 사이즈 동영상 크기 자동 조정 (테크니션님 제안)
     : 모바일 가로 사이즈 사진 크기 자동 조정 (테크니션님 제안)
@@ -16,13 +16,16 @@ ver 3.0.0 (16.01.17)
     : 날짜별 글작성 제한 관리자 제외
     : 하큐어 이모티콘 적용 (태양이님 제안)
     : 이모티콘 기능 개선
+    : 이전글 다음글 의미 바꾸기 옵션
 
     miwit/HISTORY
     miwit/mw.adm/mw.config.php
     miwit/mw.adm/mw.config.update.php
     miwit/mw.adm/mw.upgrade.php
     miwit/mw.lib/mw.function.lib.php
+    miwit/mw.lib/mw.skin.basic.lib.php
     miwit/mw.proc/mw.file.viewer.php
+    miwit/mw.proc/mw.seo.php
     miwit/mw.js/mw.emoticon.js
     miwit/mw.emoticon/hacure/*
     miwit/view.skin.php

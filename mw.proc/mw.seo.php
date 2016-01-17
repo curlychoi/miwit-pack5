@@ -1,6 +1,14 @@
 <?php
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
+if (isset($prev['wr_id']) && $prev['wr_id']) {
+    $prev_href = mw_seo_url($bo_table, $prev['wr_id'], $qstr);
+}
+
+if (isset($next['wr_id']) && $next['wr_id']) {
+    $next_href = mw_seo_url($bo_table, $next['wr_id'], $qstr);
+}
+
 if ($list_href) $list_href = mw_bbs_path($list_href);
 if ($search_href) $search_href = mw_bbs_path($search_href);
 if ($write_href) $write_href = mw_bbs_path($write_href);

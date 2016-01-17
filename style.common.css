@@ -59,6 +59,15 @@ img {
     /*padding:0;*/
 }
 
+#mw_basic label {
+    outline:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    cursor:pointer;
+}
+
 /* input type=text */
 .mw_basic_text {
     border-top:1px solid #9a9a9a;
