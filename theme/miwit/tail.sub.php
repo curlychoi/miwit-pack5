@@ -41,6 +41,8 @@ $(function() {
 if ($config['cf_analytics']) {
     echo $config['cf_analytics'];
 }
+echo $mw['config']['cf_google_analytics'].PHP_EOL;
+echo $mw['config']['cf_naver_analytics'].PHP_EOL;
 ?>
 </body>
 </html>

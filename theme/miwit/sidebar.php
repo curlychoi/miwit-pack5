@@ -102,7 +102,7 @@ if (!$is_sidebar) {
     <?php
     ob_start();
     if ($mw['config']['cf_sidebar_notice']) {
-        $tmp = sql_fetch("select * from {$g5['board_table']} where bo_table = 'notice' ");
+        $tmp = sql_fetch("select * from {$g5['board_table']} where bo_table = '{$mw['config']['cf_sidebar_notice_table']}' ");
         if ($tmp) { 
             echo "<div class='block'>".latest("theme/mw5", "notice", 5)."</div>";
         }
@@ -152,7 +152,7 @@ if (!$is_sidebar) {
     <?php
     ob_start();
     if ($mw['config']['cf_sidebar_latest_write']) {
-        echo '<div class="block">'. mw_latest_write(5).'</div>';
+        echo '<div class="block">'. mw_latest_write($mw['config']['cf_sidebar_latest_write_limit']).'</div>';
     }
     $side[] = ob_get_clean();
     ?>
@@ -160,7 +160,7 @@ if (!$is_sidebar) {
     <?php
     ob_start(); 
     if ($mw['config']['cf_sidebar_latest_comment']) { 
-        echo '<div class="block">'.mw_latest_comment(5).'</div>';
+        echo '<div class="block">'.mw_latest_comment($mw['config']['cf_sidebar_latest_write_limit']).'</div>';
     }
     $side[] = ob_get_clean();
     ?>

@@ -294,14 +294,14 @@ $("button[name=url-parameter]").click(function () {
             <th scope="row"><label for="cf_twitter">트위터ID</label></th>
             <td colspan="3">
                 <?php echo help("검색엔진에 알려줄 사이트와 연관된 트위터 계정 아이디를 입력해주세요.")?>
-                <input type="text" size="10" class="frm_input" name="cf_twitter" value="<?php echo $mw['config']['cf_twitter']?>">
+                <input type="text" size="20" class="frm_input" name="cf_twitter" value="<?php echo $mw['config']['cf_twitter']?>">
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="cf_facebook_appid">페이스북 앱ID</label></th>
             <td colspan="3">
                 <?php echo help("검색엔진에 알려줄 페이스북 앱ID를 입력해주세요.")?>
-                <input type="text" size="10" class="frm_input" name="cf_facebook_appid" value="<?php echo $mw['config']['cf_facebook_appid']?>">
+                <input type="text" size="20" class="frm_input" name="cf_facebook_appid" value="<?php echo $mw['config']['cf_facebook_appid']?>">
                 <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4579" target="_blank">앱ID 입력하는 이유, 만드는 방법 보기</a>
             </td>
         </tr>

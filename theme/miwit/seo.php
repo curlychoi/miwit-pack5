@@ -148,7 +148,7 @@ ob_start();
 <link rel="image_src" href="<?php echo $seo_image?>" />
 
 <!-- facebook-->
-<meta property="fb:app_id" content="" />
+<meta property="fb:app_id" content="<?php echo $mw['config']['cf_facebook_appid']?>" />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="<?php echo $seo_site_name?>" />
@@ -178,8 +178,8 @@ ob_start();
 
 <!-- twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="" />
-<meta name="twitter:creator" content="" />
+<meta name="twitter:site" content="<?php echo $mw['config']['cf_twitter']?>" />
+<meta name="twitter:creator" content="<?php echo $mw['config']['cf_twitter']?>" />
 <meta name="twitter:url" content="<?php echo $seo_url?>" />
 <meta name="twitter:image" content="<?php echo $seo_image?>" />
 <meta name="twitter:title" content="<?php echo $seo_title?>" />

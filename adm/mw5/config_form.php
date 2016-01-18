@@ -346,9 +346,20 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <li><label><input type="checkbox" name="cf_sidebar_social" value="1"> 소셜 로그인</label></li>
                 <li><label><input type="checkbox" name="cf_sidebar_menu" value="1"> 메뉴</label></li>
                 <li><label><input type="checkbox" name="cf_sidebar_cash" value="1"> 나의 cash (컨텐츠샵)</label></li>
-                <li><label><input type="checkbox" name="cf_sidebar_notice" value="1"> 공지사항</label></li>
-                <li><label><input type="checkbox" name="cf_sidebar_latest_write" value="1"> 최신글</label></li>
-                <li><label><input type="checkbox" name="cf_sidebar_latest_comment" value="1"> 최신댓글</label></li>
+                <li>
+                    <label><input type="checkbox" name="cf_sidebar_notice" value="1"> 공지사항</label>,
+                    TABLE
+                    <input type="text" size="10" class="frm_input" name="cf_sidebar_notice_table" value="<?php echo $mw['config']['cf_sidebar_notice_table']?>">
+                </li>
+                <li>
+                    <label><input type="checkbox" name="cf_sidebar_latest_write" value="1"> 최신글</label>,
+                    <input type="text" size="3" class="frm_input" name="cf_sidebar_latest_write_limit" value="<?php echo $mw['config']['cf_sidebar_latest_write_limit']?>">
+                    개
+                </li>
+                <li>
+                    <label><input type="checkbox" name="cf_sidebar_latest_comment" value="1"> 최신댓글</label>,
+                    <input type="text" size="3" class="frm_input" name="cf_sidebar_latest_comment_limit" value="<?php echo $mw['config']['cf_sidebar_latest_comment_limit']?>"> 개
+                </li>
                 <li><label><input type="checkbox" name="cf_sidebar_visit" value="1"> 현재접속회원</label></li>
                 <li><label><input type="checkbox" name="cf_sidebar_poll" value="1"> 설문</label></li>
                 </ul>

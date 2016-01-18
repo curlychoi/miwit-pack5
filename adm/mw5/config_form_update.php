@@ -57,6 +57,10 @@ $sql_common = "
     ,cf_sidebar_latest_write = '{$_POST['cf_sidebar_latest_write']}'
     ,cf_sidebar_latest_comment = '{$_POST['cf_sidebar_latest_comment']}'
 
+    ,cf_sidebar_notice_table = '{$_POST['cf_sidebar_notice_table']}'
+    ,cf_sidebar_latest_write_limit = '{$_POST['cf_sidebar_latest_write_limit']}'
+    ,cf_sidebar_latest_comment_limit = '{$_POST['cf_sidebar_latest_comment_limit']}'
+
     ,cf_tail_html = '{$_POST['cf_tail_html']}'
     ,cf_no_tail = '{$_POST['cf_no_tail']}'
 
@@ -64,7 +68,6 @@ $sql_common = "
     ,cf_no_tail_link = '{$_POST['cf_no_tail_link']}'
     ,cf_info_html = '{$_POST['cf_info_html']}'
     ,cf_no_info = '{$_POST['cf_no_info']}'
-
 ";
 
 $row = sql_fetch("select * from {$mw5['config_table']}", false);

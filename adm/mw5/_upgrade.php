@@ -90,3 +90,6 @@ sql_query("alter table {$mw5['config_table']} add cf_no_info varchar(1) not null
 sql_query("alter table {$mw5['config_table']} add cf_css text not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_no_css varchar(1) not null default '' ", false);
 
+sql_query("alter table {$mw5['config_table']} add cf_sidebar_notice_table varchar(50) not null default 'notice' ", false);
+sql_query("alter table {$mw5['config_table']} add cf_sidebar_latest_write_limit tinyint not null default '5' ", false);
+sql_query("alter table {$mw5['config_table']} add cf_sidebar_latest_comment_limit tinyint not null default '5' ", false);

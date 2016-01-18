@@ -48,6 +48,10 @@ if (G5_IS_MOBILE) {
 
 if($config['cf_add_meta'])
     echo $config['cf_add_meta'].PHP_EOL;
+
+echo $mw['config']['cf_google_webmaster'].PHP_EOL;
+echo $mw['config']['cf_naver_webmaster'].PHP_EOL;
+echo $mw['config']['cf_bing_webmaster'].PHP_EOL;
 ?>
 <title><?php echo $g5_head_title; ?></title>
 <link rel="stylesheet" href="<?php echo G5_THEME_CSS_URL; ?>/<?php echo G5_IS_MOBILE ? 'mobile' : 'default'; ?>.css">
