@@ -137,7 +137,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
 <script>
 function fconfigform_submit(f)
 {
-    f.action = "./config_form_update.php";
+    f.action = "./social_form_update.php";
     return true;
 }
 </script>

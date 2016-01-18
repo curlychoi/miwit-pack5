@@ -239,18 +239,20 @@ if ($i == 0) {
             if ($menu_child) {
                 $menu_parent = $menu;
                 $menu = $menu_child;
-                $buffer.= $menu_parent['me_name']." <i class='fa fa-chevron-right'></i> ";
+                $buffer.= '<a href="'.$menu_parent['me_link'].'">';
+                $buffer.= $menu_parent['me_name']."</a> <i class='fa fa-chevron-right'></i> ";
             }
         }
         else if (strlen($menu['me_code']) > 2) {
             $parent_code = substr($menu['me_code'], 0, 2);
             $menu_parent = sql_fetch("select * from {$g5['menu_table']} where me_code = '{$parent_code}'");
-            $buffer.= $menu_parent['me_name']." <i class='fa fa-chevron-right'></i> ";
+            $buffer.= '<a href="'.$menu_parent['me_link'].'">';
+            $buffer.= $menu_parent['me_name']."</a> <i class='fa fa-chevron-right'></i> ";
         }
         if (!$menu['me_name'] && $board['bo_subject'])
-            $menu_title = $board['bo_subject'];
+            $menu_title = '<a href="'.G5_BBS_URL.'/board.php?bo_table='.$board['bo_table'].'">'.$board['bo_subject'].'</a>';
         else
-            $menu_title = $menu['me_name'];
+            $menu_title = '<a href="'.$menu['me_link'].'">'.$menu['me_name'].'</a>';
 
         if (!strstr($buffer, "fa-") and !strstr($menu_title, "fa-"))
             $menu_title = "<i class='fa fa-arrow-circle-right'></i> ".$menu_title;

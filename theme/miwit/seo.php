@@ -107,7 +107,7 @@ if ($bo_table and $wr_id and $write)
 }
 
 if (!$seo_title)
-    $seo_title = $config['cf_title'];
+    $seo_title = $mw['config']['cf_title'];
 
 if (!$seo_image or !@is_file(str_replace($g5['url'], $g5['path'], $seo_image)))
     $seo_image = G5_DATA_URL."/seo/sns_image.png";
@@ -120,7 +120,10 @@ if (!$seo_url)
     $seo_url  = set_http($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
 if (!$seo_desc)
-    $seo_desc  = "";
+    $seo_desc = addslashes($mw['config']['cf_desc']);
+
+if (!$seo_author)
+    $seo_author = addslashes($mw['config']['cf_author']);
 
 if (!$seo_author) {
     $tmp = get_member($config['cf_admin'], "mb_nick");
@@ -144,7 +147,8 @@ ob_start();
 <meta name="description" content="<?php echo $seo_desc?>" />
 <link rel="canonical" href="<?php echo $seo_url?>" />
 <link rel="alternate" href="<?php echo $seo_url?>" />
-<link rel="shortcut icon" href="<?php echo $seo_favicon?>" type="image/x-ico" />
+<link rel="shortcut icon" href="<?php echo $seo_favicon?>" />
+<link rel="apple-touch-icon" href="<?php echo $seo_phone_icon?>" />
 <link rel="image_src" href="<?php echo $seo_image?>" />
 
 <!-- facebook-->
@@ -198,8 +202,6 @@ ob_start();
 <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="<?php echo G5_BBS_URL."/rss.php?bo_table=".$bo_table?>" />
 <?php endif; ?>
 
-<link href="<?php echo $seo_phone_icon?>" rel="apple-touch-icon" />
-<link href="<?php echo $seo_phone_icon?>" rel="icon" />
 
 <script type="application/ld+json">
 {

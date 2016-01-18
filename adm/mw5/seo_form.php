@@ -65,7 +65,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <?php echo help("구글 웹마스터에서 제공한 인증용 메타태그를 입력해주세요.")?>
                 <input type="text" class="frm_input" name="cf_google_webmaster" id="cf_google_webmaster" style="width:90%" value="<?php echo htmlspecialchars($mw['config']['cf_google_webmaster'])?>">
-                <button class="btn_frmline" onclick="window.open('http://www.miwit.com/b/mw_tip-4594')">설정방법보기</button>
+                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4594" target="_blank">설정방법보기</a>
             </td>
         </tr>
         <tr>
@@ -73,7 +73,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <?php echo help("네이버 웹마스터에서 제공한 인증용 메타태그를 입력해주세요.")?>
                 <input type="text" class="frm_input" name="cf_naver_webmaster" id="cf_naver_webmaster" style="width:90%" value="<?php echo htmlspecialchars($mw['config']['cf_naver_webmaster'])?>">
-                <button class="btn_frmline" onclick="window.open('http://www.miwit.com/b/mw_tip-4597')">설정방법보기</button>
+                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4597" target="_blank">설정방법보기</a>
             </td>
         </tr>
         <tr>
@@ -81,7 +81,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <?php echo help("빙 웹마스터에서 제공한 인증용 메타태그를 입력해주세요.")?>
                 <input type="text" class="frm_input" name="cf_bing_webmaster" id="cf_bing_webmaster" style="width:90%" value="<?php echo htmlspecialchars($mw['config']['cf_bing_webmaster'])?>">
-                <button class="btn_frmline" onclick="window.open('http://www.miwit.com/b/mw_tip-4598')">설정방법보기</button>
+                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4598" target="_blank">설정방법보기</a>
             </td>
         </tr>
         <tr>
@@ -89,7 +89,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <?php echo help("각 웹마스터 도구에서 사이트맵주소에 아래 경로를 입력해주세요.")?>
                 <input type="text" class="frm_input" name="cf_sitemap" id="cf_sitemap" style="width:90%" value="<?php echo G5_URL.'/sitemap.php'?>" readonly>
-                <button class="btn_frmline" onclick="window.open('http://www.miwit.com/b/mw_tip-4598')">설정방법보기</button>
+                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4618" target="_blank">설정방법보기</a>
                 <script>
                 $("#cf_sitemap").css("cursor", "pointer");
                 $("#cf_sitemap").click(function () {
@@ -124,7 +124,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <?php echo help("구글 애널리틱스 추적코드를 입력해주세요.")?>
                 <textarea name="cf_google_analytics" id="cf_google_analytics"><?php echo $mw['config']['cf_google_analytics'] ?></textarea>
-                <div><button class="btn_frmline" onclick="window.open('http://www.miwit.com/b/mw_tip-4595')">설정방법보기</button></div>
+                <div><a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4595" target="_blank">설정방법보기</a></div>
             </td>
         </tr>
         <tr>
@@ -132,7 +132,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <?php echo help("네이버 애널리틱스 추적코드를 입력해주세요.")?>
                 <textarea name="cf_naver_analytics" id="cf_naver_analytics"><?php echo $mw['config']['cf_naver_analytics'] ?></textarea>
-                <div><button class="btn_frmline" onclick="window.open('http://www.miwit.com/b/mw_tip-4596')">설정방법보기</button></div>
+                <div><a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4596" target="_blank">설정방법보기</a></div>
             </td>
         </tr>
         </tbody>
@@ -210,7 +210,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <input type="checkbox" name="cf_seo_url" value="1" id="cf_seo_url" <?php echo $mw['config']['cf_seo_url']?'checked':''; ?>>
                 <label for="cf_seo_url">사용</label>
-                <button class="btn_frmline" onclick="window.open('http://www.miwit.com/b/mw_tip-4593')">설정방법보기</button>
+                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4593" target="_blank">설정방법보기</a>
                 <button class="btn_frmline" name="rewrite">나에게 맞는 Rewrite Rule 확인</button>
                 <script>
                 $("button[name=rewrite]").click(function () {
@@ -302,7 +302,7 @@ $("button[name=url-parameter]").click(function () {
             <td colspan="3">
                 <?php echo help("검색엔진에 알려줄 페이스북 앱ID를 입력해주세요.")?>
                 <input type="text" size="20" class="frm_input" name="cf_facebook_appid" value="<?php echo $mw['config']['cf_facebook_appid']?>">
-                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4579" target="_blank">앱ID 입력하는 이유, 만드는 방법 보기</a>
+                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4579" target="_blank">만드는 방법 보기</a>
             </td>
         </tr>
         </tbody>

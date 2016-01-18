@@ -193,7 +193,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <?php echo help("검색창 하단의 퀵링크 코드를 직접 편집해주세요.")?>
                 <textarea name="cf_quick_link_html" id="cf_quick_link_html"><?php echo $mw['config']['cf_quick_link_html'] ?></textarea>
                 <div>
-                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4599" target="_blank">설정방법보기</a>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4609" target="_blank">설정방법보기</a>
                     <label><input type="checkbox" name="cf_no_quick_link" value="1"> 사용안함</label> 
                     <script>$("input[name=cf_no_quick_link]").prop("checked", "<?php echo $mw['config']['cf_no_quick_link']?>");</script>
                 </div>
@@ -205,7 +205,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <?php echo help("상단메뉴와 컨텐츠 사이")?>
                 <textarea name="cf_head_html" id="cf_head_html"><?php echo $mw['config']['cf_head_html'] ?></textarea>
                 <div>
-                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4599" target="_blank">설정방법보기</a>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4610" target="_blank">설정방법보기</a>
                     <label><input type="checkbox" name="cf_no_head" value="1"> 사용안함</label> 
                     <script>$("input[name=cf_no_head]").prop("checked", "<?php echo $mw['config']['cf_no_head']?>");</script>
                 </div>
@@ -217,7 +217,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <?php echo help("컨텐츠 상단")?>
                 <textarea name="cf_content_head_html" id="cf_content_head_html"><?php echo $mw['config']['cf_content_head_html'] ?></textarea>
                 <div>
-                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4599" target="_blank">설정방법보기</a>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4611" target="_blank">설정방법보기</a>
                     <label><input type="checkbox" name="cf_no_content_head" value="1"> 사용안함</label> 
                     <script>$("input[name=cf_no_content_head]").prop("checked", "<?php echo $mw['config']['cf_no_content_head']?>");</script>
                 </div>
@@ -262,7 +262,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <?php echo help("컨텐츠와 하단 사이")?>
                 <textarea name="cf_tail_html" id="cf_tail_html"><?php echo $mw['config']['cf_tail_html'] ?></textarea>
                 <div>
-                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4601" target="_blank">설정방법보기</a>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4613" target="_blank">설정방법보기</a>
                     <label><input type="checkbox" name="cf_no_tail" value="1"> 사용안함</label> 
                     <script>$("input[name=cf_no_tail]").prop("checked", "<?php echo $mw['config']['cf_no_tail']?>");</script>
                 </div>
@@ -274,7 +274,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <?php echo help("사이트 하단부 TAIL 링크 코드를 직접 편집해주세요.")?>
                 <textarea name="cf_tail_link_html" id="cf_tail_link_html"><?php echo $mw['config']['cf_tail_link_html'] ?></textarea>
                 <div>
-                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4601" target="_blank">설정방법보기</a>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4614" target="_blank">설정방법보기</a>
                     <label><input type="checkbox" name="cf_no_tail_link" value="1"> 사용안함</label> 
                     <script>$("input[name=cf_no_tail_link]").prop("checked", "<?php echo $mw['config']['cf_no_tail_link']?>");</script>
                 </div>
@@ -286,7 +286,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <?php echo help("사이트 하단부 사이트정보 코드를 직접 편집해주세요.")?>
                 <textarea name="cf_info_html" id="cf_info_html"><?php echo $mw['config']['cf_info_html'] ?></textarea>
                 <div>
-                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4601" target="_blank">설정방법보기</a>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4615" target="_blank">설정방법보기</a>
                     <label><input type="checkbox" name="cf_no_info" value="1"> 사용안함</label> 
                     <script>$("input[name=cf_no_info]").prop("checked", "<?php echo $mw['config']['cf_no_info']?>");</script>
                 </div>
@@ -319,7 +319,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <?php echo help("사이드바 상단에 추가할 코드를 직접 편집해주세요.")?>
                 <textarea name="cf_sidebar_head_html" id="cf_sidebar_head_html"><?php echo $mw['config']['cf_sidebar_head_html'] ?></textarea>
                 <div>
-                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4602" target="_blank">설정방법보기</a>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4616" target="_blank">설정방법보기</a>
                     <label><input type="checkbox" name="cf_no_sidebar_head" value="1"> 사용안함</label> 
                     <script>$("input[name=cf_no_sidebar_head]").prop("checked", "<?php echo $mw['config']['cf_no_sidebar_head']?>");</script>
                 </div>
@@ -331,7 +331,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <?php echo help("사이드바 하단에 추가할 코드를 직접 편집해주세요.")?>
                 <textarea name="cf_sidebar_tail_html" id="cf_sidebar_tail_html"><?php echo $mw['config']['cf_sidebar_tail_html'] ?></textarea>
                 <div>
-                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4602" target="_blank">설정방법보기</a>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4617" target="_blank">설정방법보기</a>
                     <label><input type="checkbox" name="cf_no_sidebar_tail" value="1"> 사용안함</label> 
                     <script>$("input[name=cf_no_sidebar_tail]").prop("checked", "<?php echo $mw['config']['cf_no_sidebar_tail']?>");</script>
                 </div>
