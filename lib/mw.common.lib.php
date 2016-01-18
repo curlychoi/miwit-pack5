@@ -365,9 +365,9 @@ function mw_get_list($list, $board, $skin_path, $subject_len=40)
     $list['wr_subject'] = str_replace("{별명}", $nick, $list['wr_subject']);
 
     if ($subject_len)
-        $list['subject'] = conv_subject($list['subject'], $subject_len, "…");
+        $list['subject'] = conv_subject($list['wr_subject'], $subject_len, "…");
     else
-        $list['subject'] = conv_subject($list['subject'], $board['bo_subject_len'], "…");
+        $list['subject'] = conv_subject($list['wr_subject'], $board['bo_subject_len'], "…");
 
     return $list;
 }

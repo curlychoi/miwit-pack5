@@ -104,7 +104,7 @@ if (!$is_sidebar) {
     if ($mw['config']['cf_sidebar_notice']) {
         $tmp = sql_fetch("select * from {$g5['board_table']} where bo_table = '{$mw['config']['cf_sidebar_notice_table']}' ");
         if ($tmp) { 
-            echo "<div class='block'>".latest("theme/mw5", "notice", 5)."</div>";
+            echo "<div class='block'>".latest("theme/mw5", $mw['config']['cf_sidebar_notice_table'], 5)."</div>";
         }
         else {
             echo "<div class='block'>공지사항은 notice 게시판 생성시 자동으로 출력됩니다.</div>";
