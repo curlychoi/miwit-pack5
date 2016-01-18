@@ -333,7 +333,7 @@ function mw_get_menu()
     return $mw5_menu;
 }
 
-function mw_get_list($list)
+function mw_get_list($list, $board, $skin_path, $subject_len=40)
 {
     global $g4;
     global $g5;
@@ -342,6 +342,7 @@ function mw_get_list($list)
     global $page;
     global $mw;
     global $is_admin;
+    global $member;
 
     $mw_basic = mw_skin_config($board['bo_table']);
 
@@ -356,6 +357,17 @@ function mw_get_list($list)
         $list['wr_subject'] = "보기가 차단된 게시물입니다.";
         $list['wr_content'] = "보기가 차단된 게시물입니다.";
     }
+
+    $nick = $member['mb_nick'];
+    if (!$member['mb_id']) $nick = '회원';
+
+    $list['wr_subject'] = str_replace("{닉네임}", $nick, $list['wr_subject']);
+    $list['wr_subject'] = str_replace("{별명}", $nick, $list['wr_subject']);
+
+    if ($subject_len)
+        $list['subject'] = conv_subject($list['subject'], $subject_len, "…");
+    else
+        $list['subject'] = conv_subject($list['subject'], $board['bo_subject_len'], "…");
 
     return $list;
 }

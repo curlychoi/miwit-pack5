@@ -18,13 +18,16 @@ $mw['social'] = sql_fetch ("select * from {$mw5['social_table']}", false);
 
 include_once(G5_LIB_PATH.'/mw.mw5.lib.php');
 
-// 사이트 전체 크기
-if (!$mw['config']['cf_width'])
-    $mw['config']['cf_width'] = 1078;
+// 사이트 컨텐츠 부분 크기
+if (!$mw['config']['cf_content_width'])
+    $mw['config']['cf_content_width'] = 728;
 
 // 사이드바 크기
 if (!$mw['config']['cf_side_width'])
     $mw['config']['cf_side_width'] = 300;
+ 
+// 사이트 전체크기
+$mw['config']['cf_width'] = $mw['config']['cf_content_width']+40 + $mw['config']['cf_side_width']+10;
 
 // 사이드바 위치 : left, right
 if (!$mw['config']['cf_side_position'])

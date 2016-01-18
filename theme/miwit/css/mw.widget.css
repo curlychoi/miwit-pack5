@@ -99,7 +99,21 @@
     letter-spacing:-1px;
 }
 
-.connect_side .item .name a {
+.connect_side .item .name img:first-child {
+    display:none;
+}
+
+.connect_side .item .name .sv_member {
+    display:block;
+    width:50px;
+    height:20px;
+    line-height:20px;
+    font-weight:normal;
+    font-size:11px;
+    letter-spacing:-1px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
 }
 
 .connect_side .item .sv {

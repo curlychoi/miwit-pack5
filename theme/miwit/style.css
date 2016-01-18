@@ -355,7 +355,7 @@ body {
     line-height:1.4em;
 }
 
-#mw5 .navbar ul:first-child li .new-check:after {
+#mw5 .navbar ul:first-child li span.new-check:after {
     font-family:FontAwesome;
     font-weight:normal;
     font-style:normal;
@@ -365,10 +365,11 @@ body {
     font-size:10px;
 }
 
-#mw5 .navbar ul:first-child li .new-check {
+#mw5 .navbar ul:first-child li span.new-check {
+    font-size:0;
 }
 
-#mw5 .navbar ul:first-child li .new-no {
+#mw5 .navbar ul:first-child li span.new-no {
     display:none;
 }
 
@@ -474,6 +475,10 @@ body {
     margin-left:5px;
     margin-right:5px;
     font-size:10px;
+}
+
+#mw5 .navbar ul.dropdown li .new-check {
+    font-size:0;
 }
 
 #mw5 .navbar ul.dropdown li .new-no {
@@ -609,6 +614,7 @@ body {
 }
 
 #mw5 .sidebar-nav ul li .new-check {
+    font-size:0;
 }
 
 #mw5 .sidebar-nav ul li .new-no {

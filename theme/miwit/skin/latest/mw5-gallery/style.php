@@ -4,7 +4,7 @@ header("content-type:text/css; charset:utf-8");
 $css = "gallery-{$_GET['bo_table']}-{$_GET['rows']}-{$_GET['subject_len']}";
 
 $w = 170; // 가로
-$h = 100; // 세로
+$h = 170; // 세로
 ?>
 .<?php echo $css?> {
     border:0;
@@ -66,6 +66,14 @@ $h = 100; // 세로
 .<?php echo $css?> ul li:last-child {
     margin-right:0;
 }
+.<?php echo $css?> ul li div.thumb {
+    width:<?php echo $w?>px;
+    height:<?php echo $h?>px;
+    margin:0 auto 0 auto;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
 
 .<?php echo $css?> ul li img {
     width:<?php echo $w?>px;
@@ -118,15 +126,16 @@ $h = 100; // 세로
     color:#fff;
     width:<?php echo $w?>px;
     height:30px;
-    margin:0 auto 0 auto;
+    margin-top:-30px;
     display:block;
     line-height:30px;
     font-size:13px;
-    background-color:#aaa;
+    background-color:#777;
     box-sizing:border-box;
     -moz-box-sizing:border-box;
     -webkit-box-sizing:border-box;
-    position:relative;
+    position:absolute;
+    opacity:0.8;
 }
 
 .<?php echo $css?> .comment {

@@ -17,25 +17,15 @@ else
     <h2><a href="<?php echo $bo_url?>"><?php echo $bo_subject?></a></h2>
     <?php
     echo "<ul>";
-
     for ($i=0; $i<$rows; $i++) {
 
         $thumb = mw_get_thumb_path($bo_table, $list[$i]['wr_id']);
         $img = '<img src="'.$thumb.'">';
 
-        $list[$i] = mw_get_list($list[$i]);
+        $list[$i] = mw_get_list($list[$i], $board, $latest_skin_path, $subject_len);
 
         if (!$thumb)
             $img = '<div class="noimage"></div>';
-
-        if ($member['mb_id']) {
-            $list[$i]['subject'] = str_replace("{닉네임}", $member['mb_nick'], $list[$i]['subject']);
-            $list[$i]['subject'] = str_replace("{별명}", $member['mb_nick'], $list[$i]['subject']);
-        }
-        else {
-            $list[$i]['subject'] = str_replace("{닉네임}", "회원", $list[$i]['subject']);
-            $list[$i]['subject'] = str_replace("{별명}", "회원", $list[$i]['subject']);
-        }
 
         $class = '';
         if ($list[$i]['icon_secret'] or $list[$i]['wr_singo_lock'] or $list[$i]['wr_view_lock']) {
@@ -54,10 +44,11 @@ else
 
         echo "<li class=\"{$class}\">";
         echo "<a href=\"{$href}\">";
-        echo '<div class="thumb">'.$img.'</div>';
+        echo '<div class="thumb">'.$img;
         echo '<div class="title">'.$list[$i]['subject']."";
             echo "<span class=\"comment\">{$list[$i]['comment_cnt']}</span>";
             echo '</div>';
+        echo '</div>';
         echo "</a>";
         echo "</li>\n";
     }

@@ -23,29 +23,34 @@ for ($i=0; $row=$mw5_menu[$i]; ++$i) {
 }
 
 $latest = array();
-for ($i=0, $c=0, $m=count($list); $i<$m; ++$i)
+$loop_max = count($list);
+$real_max = $loop_max;
+for ($i=0, $loop_index=1; $i<$loop_max; ++$i)
 {
     $mw_skin_config = mw_skin_config($list[$i]);
 
     // 1:1 게시판 출력 안함
-    if ($mw_skin_config['cf_attribute'] == '1:1') continue;
+    if ($mw_skin_config['cf_attribute'] == '1:1') {
+        $real_max--;
+        continue;
+    }
 
-    $latest[$c]['bo_table'] = $list[$i];
-    $latest[$c]['skin'] = 'theme/mw5';
-    $latest[$c]['count'] = 5;
-    $latest[$c]['length'] = 50;
+    $latest[$loop_index]['bo_table'] = $list[$i];
+    $latest[$loop_index]['skin'] = 'theme/mw5';
+    $latest[$loop_index]['count'] = 6;
+    $latest[$loop_index]['length'] = 50;
 
     if ($mw_skin_config['cf_type'] == 'gall') {
-        $latest[$c]['skin'] = 'theme/mw5-gallery';
-        $latest[$c]['count'] = 2;
-        $latest[$c]['length'] = 10;
+        $latest[$loop_index]['skin'] = 'theme/mw5-gallery';
+        $latest[$loop_index]['count'] = 2;
+        $latest[$loop_index]['length'] = 10;
 
-        if ($i==($m-1) and $m%2!=0) {
-            $latest[$c]['count'] = 4;
+        if ($loop_index==$real_max and $loop_index%2!=0) {
+            $latest[$loop_index]['count'] = 4;
         }
     }
 
-    $c++;
+    $loop_index++;
 }
 
 if (!$mw['config']['cf_no_index_image'])
