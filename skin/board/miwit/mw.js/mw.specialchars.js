@@ -8,6 +8,8 @@ function win_special(dir) {
     url = board_skin_path + '/mw.proc/mw.special.characters.php';
 
     special_close();
+    special_close_unbind();
+
     if (typeof special_close == 'function') { 
         special_close();
     }
