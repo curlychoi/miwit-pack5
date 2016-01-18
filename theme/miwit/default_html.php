@@ -42,16 +42,16 @@ if (!$mw['config']['cf_index_image_html']) {
 <?php
 mw_script($theme_path."/js/mw.slider.js");
 
-$img = array();
-$img[] = G5_THEME_URL."/img/01.jpeg";
-$img[] = G5_THEME_URL."/img/02.jpeg";
-$img[] = G5_THEME_URL."/img/03.jpeg";
-$img[] = G5_THEME_URL."/img/04.jpeg";
-$img[] = G5_THEME_URL."/img/05.jpeg";
-$img[] = G5_THEME_URL."/img/06.jpeg";
-$img[] = G5_THEME_URL."/img/07.jpeg";
+$slide = array();
+$slide[] = array("url"=>"http://www.miwit.com", "target"=>"_blank", "img"=>G5_THEME_URL."/img/01.jpeg");
+$slide[] = array("url"=>"http://www.miwit.com", "target"=>"_blank", "img"=>G5_THEME_URL."/img/02.jpeg");
+$slide[] = array("url"=>"http://www.miwit.com", "target"=>"_blank", "img"=>G5_THEME_URL."/img/03.jpeg");
+$slide[] = array("url"=>"http://www.miwit.com", "target"=>"_blank", "img"=>G5_THEME_URL."/img/04.jpeg");
+$slide[] = array("url"=>"http://www.miwit.com", "target"=>"_blank", "img"=>G5_THEME_URL."/img/05.jpeg");
+$slide[] = array("url"=>"http://www.miwit.com", "target"=>"_blank", "img"=>G5_THEME_URL."/img/06.jpeg");
+$slide[] = array("url"=>"http://www.miwit.com", "target"=>"_blank", "img"=>G5_THEME_URL."/img/07.jpeg");
 
-shuffle($img);
+shuffle($slide);
 ?>
 <style>
 .banner { width:728px; height:360px; position:relative; overflow:hidden; margin:0 0 10px 0; }
@@ -61,9 +61,11 @@ shuffle($img);
 
 <div class="banner">
 <ul>
-    <?php foreach ($img as $item) { ?>
-    <li><a href="http://www.miwit.com" target="_blank"><img src="<?php echo $item?>"></a></li>
-    <?php } ?>
+    <?php
+    foreach ($slide as $item) {
+        printf(\'<li><a href="%s" target="%s"><img src="%s"></a></li>\'.PHP_EOL, $item[\'url\'], $item[\'target\'], $item[\'img\']);
+    } 
+    ?>
 </ul>
 </div>
 
