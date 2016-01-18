@@ -11,6 +11,8 @@ function win_emoticon(dir) {
     }
 
     emoticon_close();
+    emoticon_close_unbind();
+
     if (typeof special_close == 'function') { 
         special_close();
     }
