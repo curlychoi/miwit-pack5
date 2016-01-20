@@ -22,7 +22,7 @@ if ($sub) {
 
 if (!preg_match("/nginx/i", $_SERVER["SERVER_SOFTWARE"])) {
     //apache
-    if (!in_array('mod_rewrite', apache_get_modules())) {
+    if (function_exists("apache_get_modules") and !in_array('mod_rewrite', apache_get_modules())) {
         echo '서버에 mod_rewrite 모듈이 설치되어 있지 않습니다. 서버관리자에게 문의해주세요.';
         exit;
     }
