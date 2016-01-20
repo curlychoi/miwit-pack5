@@ -35,7 +35,14 @@ sql_query("alter table {$mw5['config_table']} add cf_new varchar(5) not null def
 sql_query("alter table {$mw5['config_table']} add cf_title varchar(255) not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_author varchar(255) not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_desc varchar(255) not null default '' ", false);
+
+sql_query("alter table {$mw5['config_table']} add cf_facebook varchar(255) not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_twitter varchar(255) not null default '' ", false);
+sql_query("alter table {$mw5['config_table']} add cf_google varchar(255) not null default '' ", false);
+sql_query("alter table {$mw5['config_table']} add cf_instagram varchar(255) not null default '' ", false);
+sql_query("alter table {$mw5['config_table']} add cf_youtube varchar(255) not null default '' ", false);
+
+sql_query("alter table {$mw5['config_table']} add cf_follow varchar(1) not null default '' ", false);
 
 sql_query("alter table {$mw5['config_table']} add cf_naver_webmaster varchar(255) not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_google_webmaster varchar(255) not null default '' ", false);

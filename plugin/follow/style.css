@@ -1,0 +1,45 @@
+
+#sns-follow {
+    position:fixed;
+    left:0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#sns-follow .facebook {
+    background-color:#3c579e;
+}
+
+#sns-follow .twitter {
+    background-color:#55acee;
+}
+
+#sns-follow .instagram {
+    background-color:#125688;
+}
+
+#sns-follow .google {
+    background-color:#d95032;
+}
+
+#sns-follow .youtube {
+    background-color:#cc191e;
+}
+
+#sns-follow div {
+    left:0;
+    width:48px;
+    height:48px;
+    display:block;
+    position:relative;
+
+}
+#sns-follow img {
+    width:48px;
+    display:block;
+    position:absolute;
+}
+
+#sns-follow img:hover {
+}
+

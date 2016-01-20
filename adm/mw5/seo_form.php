@@ -293,10 +293,13 @@ $("button[name=url-parameter]").click(function () {
         </colgroup>
         <tbody>
         <tr>
-            <th scope="row"><label for="cf_twitter">트위터ID</label></th>
+            <th scope="row"><label for="cf_follow">팔로우 링크</label></th>
             <td colspan="3">
-                <?php echo help("검색엔진에 알려줄 사이트와 연관된 트위터 계정 아이디를 입력해주세요.")?>
-                <input type="text" size="20" class="frm_input" name="cf_twitter" value="<?php echo $mw['config']['cf_twitter']?>">
+                <?php echo help("팔로우 링크 사용여부를 선택해주세요.")?>
+                <label>
+                <input type="checkbox" class="frm_input" name="cf_follow" value="1" <?php echo $mw['config']['cf_follow']?'checked':'';?>>
+                사용</label>
+                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4623" target="_blank">팔로우 링크란?</a>
             </td>
         </tr>
         <tr>
@@ -305,6 +308,41 @@ $("button[name=url-parameter]").click(function () {
                 <?php echo help("검색엔진에 알려줄 페이스북 앱ID를 입력해주세요.")?>
                 <input type="text" size="20" class="frm_input" name="cf_facebook_appid" value="<?php echo $mw['config']['cf_facebook_appid']?>">
                 <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4579" target="_blank">만드는 방법 보기</a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="cf_facebook">페이스북 주소ID</label></th>
+            <td colspan="3">
+                <?php echo help("페이스북 주소 아이디를 입력해주세요. https://www.facebook.com/[이부분]")?>
+                <input type="text" size="20" class="frm_input" name="cf_facebook" value="<?php echo $mw['config']['cf_facebook']?>">
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="cf_twitter">트위터ID</label></th>
+            <td colspan="3">
+                <?php echo help("트위터 계정 아이디를 입력해주세요. https://twitter.com/[이부분]")?>
+                <input type="text" size="20" class="frm_input" name="cf_twitter" value="<?php echo $mw['config']['cf_twitter']?>">
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="cf_google">구글 플러스</label></th>
+            <td colspan="3">
+                <?php echo help("구글플러스 계정 아이디를 입력해주세요. https://plus.google.com/+[이부분]")?>
+                <input type="text" size="20" class="frm_input" name="cf_google" value="<?php echo $mw['config']['cf_google']?>">
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="cf_instagram">인스타그램</label></th>
+            <td colspan="3">
+                <?php echo help("인스타그램 계정 아이디를 입력해주세요. https://www.instagram.com/[이부분]")?>
+                <input type="text" size="20" class="frm_input" name="cf_instagram" value="<?php echo $mw['config']['cf_instagram']?>">
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="cf_youtube">유튜브</label></th>
+            <td colspan="3">
+                <?php echo help("인스타그램 계정 아이디를 입력해주세요. https://www.youtube.com/user/[이부분]")?>
+                <input type="text" size="20" class="frm_input" name="cf_youtube" value="<?php echo $mw['config']['cf_youtube']?>">
             </td>
         </tr>
         </tbody>

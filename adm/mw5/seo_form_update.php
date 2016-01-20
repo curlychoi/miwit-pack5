@@ -75,8 +75,13 @@ $sql_common = "
     ,cf_www             = '{$_POST['cf_www']}' 
     ,cf_seo_url         = '{$_POST['cf_seo_url']}' 
     ,cf_seo_except      = '{$_POST['cf_seo_except']}' 
-    ,cf_twitter         = '{$_POST['cf_twitter']}' 
     ,cf_facebook_appid  = '{$_POST['cf_facebook_appid']}' 
+    ,cf_follow          = '{$_POST['cf_follow']}' 
+    ,cf_facebook        = '{$_POST['cf_facebook']}' 
+    ,cf_twitter         = '{$_POST['cf_twitter']}' 
+    ,cf_instagram       = '{$_POST['cf_instagram']}' 
+    ,cf_google          = '{$_POST['cf_google']}' 
+    ,cf_youtube         = '{$_POST['cf_youtube']}' 
 ";
 
 $row = sql_fetch("select * from {$mw5['config_table']}", false);

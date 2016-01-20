@@ -101,5 +101,7 @@ $(function() {
 });
 </script>
 
+<?php include_once(G5_PLUGIN_PATH.'/follow/include.php')?>
+
 <?php
 include_once(G5_THEME_PATH."/tail.sub.php");
