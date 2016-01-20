@@ -1081,6 +1081,42 @@ img {
     font-family:inherit;
 }
 
+#mw_basic #view_content h1 { 
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#mw_basic #view_content h2 {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#mw_basic #view_content h3 { 
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#mw_basic #view_content h4 { 
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#mw_basic #view_content h5 { 
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#mw_basic #view_content h6 { 
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+}
+
 /* 본문 table */
 #mw_basic .mw_basic_view_content table {
     border-collapse:separate;
