@@ -203,6 +203,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <input type="checkbox" name="cf_www" value="1" id="cf_www" <?php echo $mw['config']['cf_www']?'checked':''; ?>>
                 <label for="cf_www">사용</label>
+                <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4622" target="_blank">주의!</a>
             </td>
         </tr>
         <tr>
