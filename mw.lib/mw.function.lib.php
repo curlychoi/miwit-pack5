@@ -3951,9 +3951,7 @@ function mw_is_mobile_builder()
 
     $is_mobile = false;
 
-    if (defined("G5_IS_MOBILE") and G5_IS_MOBILE)
-        $is_mobile = true;
-    else if (strstr($_SERVER['SCRIPT_NAME'], "/".$mw['mobile_dir']))
+    if (strstr($_SERVER['SCRIPT_NAME'], "/".$mw['mobile_dir']))
         $is_mobile = true;
     else if (strstr($_SERVER['SCRIPT_NAME'], "/m/b/"))
         $is_mobile = true;
