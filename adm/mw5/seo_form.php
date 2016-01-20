@@ -7,6 +7,7 @@ auth_check($auth[$sub_menu], 'r');
 
 add_javascript('<script src="'.G5_URL.'/asset/jquery-ui-1.11.4/jquery-ui.js"></script>');
 add_stylesheet('<link rel="stylesheet" href="'.G5_URL.'/asset/jquery-ui-1.11.4/jquery-ui.css"/>');
+add_stylesheet('<link rel="stylesheet" href="'.$mw5['admin_url'].'/style.css'.'"/>');
 
 $token = get_token();
 

@@ -1,8 +1,6 @@
 <?php
 if (!defined("_GNUBOARD_")) exit;
 
-add_stylesheet('<link rel="stylesheet" href="'.$mw5['admin_url'].'/style.css'.'"/>');
-
 $sql = "create table if not exists {$mw5['config_table']} ( 
 cf_theme varchar(255) not null default 'mw5'
 ,cf_theme_color varchar(255) not null default ''

@@ -8,6 +8,7 @@ if ($is_admin != 'super')
 
 $token = get_token();
 
+add_stylesheet('<link rel="stylesheet" href="'.$mw5['admin_url'].'/style.css'.'"/>');
 mw_css("/asset/font-awesome-4.3.0/css/font-awesome.min.css");
 
 $sql = " select * ";

@@ -9,6 +9,8 @@ $token = get_token();
 if ($is_admin != 'super')
     alert('최고관리자만 접근 가능합니다.');
 
+add_stylesheet('<link rel="stylesheet" href="'.$mw5['admin_url'].'/style.css'.'"/>');
+
 $g5['title'] = '소셜로그인 설정';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 

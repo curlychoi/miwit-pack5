@@ -14,7 +14,13 @@ $mw5['menu_table'] = G5_TABLE_PREFIX.'mw5_menu';
 $mw = array();
 
 $mw['config'] = sql_fetch ("select * from {$mw5['config_table']}", false);
-$mw['social'] = sql_fetch ("select * from {$mw5['social_table']}", false);
+if (!$mw['config']) {
+    include(G5_ADMIN_PATH.'/'.$mw5['admin'].'/_upgrade.php');
+    sql_query("insert into {$mw5['config_table']} set cf_theme_color = 'PeterRiver'", true);
+    $mw['config'] = sql_fetch ("select * from {$mw5['config_table']}", false);
+}
+
+//$mw['social'] = sql_fetch ("select * from {$mw5['social_table']}", false);
 
 include_once(G5_LIB_PATH.'/mw.mw5.lib.php');
 
