@@ -45,7 +45,7 @@ foreach ((array)$emo as $item) :
     preg_match("/^([0-9a-z-_]+)\./i", basename($item), $match);
     $add = $emo_dir ? $emo_dir.'/'.$match[1] : $match[1];
 
-    $path = str_replace('..', $board_skin_path, $item);
+    $path = str_replace('..', $board_skin_url, $item);
 
     printf('<li><img src="%s" onclick="emoticon_add(\'%s\')"></li>', $path, $add);
 endforeach;
