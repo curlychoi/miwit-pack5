@@ -17,7 +17,7 @@ $sub = trim(basename($tmp));
 $root = G5_PATH;
 if ($sub) {
     $root = preg_replace("/\/{$sub}$/i", "", $root);
-    $sub = '/'.$sub;
+    $root.= '/'.$sub;
 }
 
 if (!preg_match("/nginx/i", $_SERVER["SERVER_SOFTWARE"])) {
