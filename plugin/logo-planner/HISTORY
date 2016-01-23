@@ -1,3 +1,9 @@
+v.1.0.5 (16.01.23)
+    : jquery 버전문제 (태양이님 제안)
+
+    plugin/logo-planner/HISTORY.php
+    plugin/logo-planner/write.php
+
 v.1.0.4 (15.11.18)
     : mysqli 지원
 

@@ -42,16 +42,16 @@ if ($w == "u" && $ls_id)
 // 아래 css 는 date picker 의 화면을 맞추는 코드입니다.
 ?>
 
-<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/base/jquery-ui.css" rel="stylesheet" />
-<style type="text/css">
-<!--
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.4/themes/base/jquery-ui.css" />
+<style>
 .ui-datepicker { font:12px dotum; }
 .ui-datepicker select.ui-datepicker-month, 
 .ui-datepicker select.ui-datepicker-year { width: 70px;}
 .ui-datepicker-trigger { margin:0 0 -5px 2px; }
--->
 </style>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
+
+<script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="//code.jquery.com/ui/1.8.4/jquery-ui.js"></script>
 <script type="text/javascript">
 /* Korean initialisation for the jQuery calendar extension. */
 /* Written by DaeKwon Kang (ncrash.dk@gmail.com). */
@@ -211,8 +211,8 @@ $(document).ready(function () {
         </select>
         <div id="ls_date" style="display:none;">
             <span class="tt">날짜</span>
-            <input type="text" id="ls_sdate" name="ls_sdate" class="ed" size="10" value="<?=$row[ls_sdate]?>" itemname="시작날짜" readonly> ~
-            <input type="text" id="ls_edate" name="ls_edate" class="ed" size="10" value="<?=$row[ls_edate]?>" itemname="종료날짜" readonly>
+            <input type="text" id="ls_sdate" name="ls_sdate" class="ed" size="12" value="<?=$row[ls_sdate]?>" itemname="시작날짜" readonly> ~
+            <input type="text" id="ls_edate" name="ls_edate" class="ed" size="12" value="<?=$row[ls_edate]?>" itemname="종료날짜" readonly>
             <input type="checkbox" name="ls_lunar" value="1"> 음력
         </div>
         <div id="ls_week" style="display:none;">
