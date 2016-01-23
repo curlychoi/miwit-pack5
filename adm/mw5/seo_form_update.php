@@ -39,7 +39,7 @@ function mw_upload_seo_image($type, $upload)
     {
         case 'favicon':
             $dest_file = $image_path.'/favicon.ico';
-            if (!preg_match("/\.ico$/i",  $file_name) or $upload['type'] != "image/vnd.microsoft.icon")
+            if (!preg_match("/\.ico$/i",  $file_name) or $size['mime'] != "image/vnd.microsoft.icon")
                 alert("Favicon 은 .ico 형식의 파일만 업로드 가능합니다.");
             break;
 
