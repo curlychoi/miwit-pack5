@@ -60,6 +60,11 @@ server {
 </div>
 '.PHP_EOL;
 
+    if ($sub) {
+        $sub = preg_replace("/\/{$sub}$/i", "", $sub);
+        $sub = '/'.$sub;
+    }
+
     echo '
     <div style="white-space:pre; color:red;">
     rewrite ^'.$sub.'/b/([a-zA-Z0-9_]+)$ '.$sub.'/bbs/board.php?bo_table=$1;

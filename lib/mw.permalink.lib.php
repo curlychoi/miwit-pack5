@@ -38,7 +38,7 @@ function mw_builder_seo_url($bo_table, $wr_id=0, $qstr='', $mobile=1)
     global $mw_mobile;
     global $is_admin;
 
-    $url = $g4['url'];
+    $url = G5_URL;
 
     if (!$mobile && $mw_mobile['m_subdomain'])
         $url = preg_replace("/^http:\/\/m\./", "http://", $url);
@@ -50,7 +50,7 @@ function mw_builder_seo_url($bo_table, $wr_id=0, $qstr='', $mobile=1)
         $seo_path = '/plugin/mobile';
     }
     else
-        $seo_path = '/'.$g4['bbs'];
+        $seo_path = '/'.G5_BBS_DIR;
 
     if ($bo_table)
         $url .= $seo_path.'/board.php?bo_table='.$bo_table;
@@ -69,7 +69,7 @@ function mw_builder_seo_url($bo_table, $wr_id=0, $qstr='', $mobile=1)
         if (mw_seo_except($bo_table))
             return $url;
 
-        $url = $g4['url'];
+        $url = G5_URL;
 
         if (!$mobile && $mw_mobile['m_subdomain'])
             $url = preg_replace("/^http:\/\/m\./", "http://", $url);
@@ -253,6 +253,7 @@ function mw_url_style($url, $type='seo', $cf_www='', $cf_seo_except='')
     else {
         $parse_url['host'] = preg_replace("/^www\./iUs", "", $parse_url['host']);
     }
+    $parse_url['host'] = preg_replace("/\/\//iUs", "", $parse_url['host']);
 
     if ($type == 'seo') {
         $parse_url['path'] = preg_replace("/{$bbs}\/board\.php/iUs", "b/", $parse_url['path']);
