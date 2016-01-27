@@ -51,7 +51,15 @@ if (strlen($_SERVER["REQUEST_URI"]) > 1)
         $tmp = parse_url($me_link);
         parse_str($tmp['query'], $me_param);
 
-        if (strstr($my_url, $row['me_link']) or ($my_param['bo_table'] and $my_param['bo_table'] == $me_param['bo_table'])) {
+        if ($my_param['gr_id'] and $my_param['gr_id'] == $me_param['gr_id']) {
+            $menu = $row;
+            break;
+        }
+        if ($my_param['bo_table'] and $my_param['bo_table'] == $me_param['bo_table']) {
+            $menu = $row;
+            break;
+        }
+        if (strstr($my_url, $row['me_link'])) {
             $menu = $row;
         }
     }
