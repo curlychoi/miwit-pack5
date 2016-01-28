@@ -82,6 +82,7 @@ $sql_common = "
     ,cf_instagram       = '{$_POST['cf_instagram']}' 
     ,cf_google          = '{$_POST['cf_google']}' 
     ,cf_youtube         = '{$_POST['cf_youtube']}' 
+    ,cf_github          = '{$_POST['cf_github']}' 
 ";
 
 $row = sql_fetch("select * from {$mw5['config_table']}", false);

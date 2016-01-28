@@ -13,6 +13,7 @@ $cf_facebook = $mw['config']['cf_facebook'];
 $cf_instagram = $mw['config']['cf_instagram'];
 $cf_google = $mw['config']['cf_google'];
 $cf_youtube = $mw['config']['cf_youtube'];
+$cf_github = $mw['config']['cf_github'];
 
 echo '<div id="sns-follow">'.PHP_EOL;
 
@@ -30,6 +31,9 @@ if ($cf_google)
 
 if ($cf_youtube)
     printf('<div class="youtube"><a href="https://www.youtube.com/user/%s" target="_blank"><img src="%s/svg/follow_youtube.svg"></div>', $cf_youtube, $plugin_url);
+
+if ($cf_github)
+    printf('<div class="github"><a href="https://www.github.com/%s" target="_blank"><img src="%s/svg/follow_github.svg"></div>', $cf_github, $plugin_url);
 
 echo '</div>';
 

@@ -341,8 +341,15 @@ $("button[name=url-parameter]").click(function () {
         <tr>
             <th scope="row"><label for="cf_youtube">유튜브</label></th>
             <td colspan="3">
-                <?php echo help("인스타그램 계정 아이디를 입력해주세요. https://www.youtube.com/user/[이부분]")?>
+                <?php echo help("유튜브 계정 아이디를 입력해주세요. https://www.youtube.com/user/[이부분]")?>
                 <input type="text" size="20" class="frm_input" name="cf_youtube" value="<?php echo $mw['config']['cf_youtube']?>">
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="cf_github">깃허브</label></th>
+            <td colspan="3">
+                <?php echo help("깃허브 계정 아이디를 입력해주세요. https://www.github.com/[이부분]")?>
+                <input type="text" size="20" class="frm_input" name="cf_github" value="<?php echo $mw['config']['cf_github']?>">
             </td>
         </tr>
         </tbody>

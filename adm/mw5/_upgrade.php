@@ -41,6 +41,7 @@ sql_query("alter table {$mw5['config_table']} add cf_twitter varchar(255) not nu
 sql_query("alter table {$mw5['config_table']} add cf_google varchar(255) not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_instagram varchar(255) not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_youtube varchar(255) not null default '' ", false);
+sql_query("alter table {$mw5['config_table']} add cf_github varchar(255) not null default '' ", false);
 
 sql_query("alter table {$mw5['config_table']} add cf_follow varchar(1) not null default '' ", false);
 
