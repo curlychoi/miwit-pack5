@@ -2580,11 +2580,11 @@ i.fa-warning { color:#f36a2e; }
         padding:5px 5px 5px 20px;
     }
     #mw_basic .write_table input[type="text"] { 
-        width:300px;
+        width:250px;
     }
 
     #mw_basic #wr_subject { 
-       width:300px; 
+       width:250px; 
     }
 
     #mw_basic .mw_basic_list_subject {
@@ -2592,7 +2592,7 @@ i.fa-warning { color:#f36a2e; }
     }
 
     #mw_basic #wr_content { 
-        width:300px;
+        width:250px;
     }
 
     #mw_basic .mw_basic_list_gall {
@@ -2698,7 +2698,7 @@ i.fa-warning { color:#f36a2e; }
     }
 
     #mw_basic #search_top .search_top_box {
-        width:300px;
+        width:250px;
     }
 
     #mw_basic #search_top .search_top_stx {
