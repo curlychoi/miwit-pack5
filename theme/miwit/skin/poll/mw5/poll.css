@@ -36,7 +36,7 @@
 .poll h2 .point {
     font-size:.8em;
     font-weight:normal;
-    position:absolute;
+    float:right;
     right:15px;
     margin-top:5px;
 }
