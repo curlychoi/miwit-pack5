@@ -21,7 +21,7 @@
 
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
-if (!$is_admin and !($mw_basic['cf_jump_level'] && $mw_basic['cf_jump_level'] <= $member['mb_level'])) {
+if (!($mw_basic['cf_jump_level'] && $mw_basic['cf_jump_level'] <= $member['mb_level'])) {
     return;
 }
 
