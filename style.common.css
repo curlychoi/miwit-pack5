@@ -2752,6 +2752,10 @@ i.fa-warning { color:#f36a2e; }
     #mw_basic .mw_basic_comment_url {
         display:none;
     }
+
+    #mw_basic .comment_write td {
+        display:block;
+    }
 }
 
 nav.pg_wrap {

@@ -775,7 +775,7 @@ if (!$is_member) {
 }
 ?>
 
-<table border="0" cellpadding="0" cellspacing="0" style="margin-left:10px;">
+<table border="0" cellpadding="0" cellspacing="0" style="margin-left:10px;" class="comment_write">
 <?php if ($is_guest && !$write_error) { ?>
 <tr>
     <td width="80"> 이름 </td>
