@@ -1084,7 +1084,7 @@ else if ($mw_basic[cf_type] == "gall")
         });
         </script>
 
-        <button class="mw_manage_list_title"><i class="fa fa-gear"></i> 관리</button>
+        <button class="mw_manage_list_title fa-button"><i class="fa fa-gear"></i> 관리</button>
         <div class="mw_manage_list">
             <div class="item" onclick="select_delete()"><i class="fa fa-remove"></i> 선택 삭제</div>
             <div class="item" onclick="select_copy('copy')"><i class="fa fa-copy"></i> 선택 복사</div>
@@ -1122,6 +1122,9 @@ else if ($mw_basic[cf_type] == "gall")
         </select>
         <button type="submit" class="fa-button"><i class="fa fa-search"></i> 검색</button>
         </span>
+        <span class="media-on-text">
+            <button type="button" class="fa-button" data-toggle="modal" name="search-modal-button" data-target="#search-modal"><i class="fa fa-search"></i> 검색</button>
+        </span>
         <? } ?>
         </form>
 
@@ -1140,7 +1143,39 @@ else if ($mw_basic[cf_type] == "gall")
 </tr>
 </table>
 
+<div id="search-modal">
+    <form name="fsearch" method="get">
+        <input type=hidden name=bo_table value="<?=$bo_table?>">
+        <input type=hidden name=sca value="<?=$sca?>">
 
+        <select name=sfl>
+            <option value='wr_subject'>제목</option>
+            <option value='wr_content'>내용</option>
+            <option value='wr_subject||wr_content'>제목+내용</option>
+            <? if ($mw_basic[cf_attribute] != "anonymous" && !$mw_basic[cf_anonymous] && $mw_basic['cf_search_name'] <= $member['mb_level']) { ?>
+            <option value='mb_id,1'>회원아이디</option>
+            <option value='mb_id,0'>회원아이디(코)</option>
+            <option value='wr_name,1'>이름</option>
+            <option value='wr_name,0'>이름(코)</option>
+            <? } ?>
+        </select>
+
+        <select name=sop>
+            <option value=and>and</option>
+            <option value=or>or</option>
+        </select>
+
+        <input name=stx maxlength=15 size=10 itemname="검색어" required value='<?=stripslashes($stx)?>'>
+
+        <button type="submit" class="fa-button"><i class="fa fa-search"></i> 검색</button>
+    </form>
+</div><!-- /.modal -->
+
+<script>
+$("button[name=search-modal-button]").click(function () {
+    $("#search-modal").slideToggle('');
+});
+</script>
 
 <!-- 페이지 -->
 <div class=mw_basic_page>
