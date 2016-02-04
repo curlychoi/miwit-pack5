@@ -147,7 +147,9 @@ ob_start();
 <meta name="description" content="<?php echo $seo_desc?>" />
 <link rel="canonical" href="<?php echo $seo_url?>" />
 <link rel="alternate" href="<?php echo $seo_url?>" />
+<?php if ($seo_favicon) { ?>
 <link rel="shortcut icon" href="<?php echo $seo_favicon?>" />
+<?php } ?>
 <link rel="apple-touch-icon" href="<?php echo $seo_phone_icon?>" />
 <link rel="image_src" href="<?php echo $seo_image?>" />
 
