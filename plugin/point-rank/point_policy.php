@@ -6,44 +6,50 @@ $g4[title] = "포인트 정책";
 include_once("_head.php");
 
 $list = array();
+for ($i=0; $row=$mw5_menu[$i]; ++$i) {
+    $latest_table = mw_get_board($row['me_link']);
+    if ($latest_table and !in_array($latest_table, $list))
+        $list[] = $latest_table;
 
-$sql = " select *
-           from {$g5['menu_table']}
-          where me_use = '1'
-            and length(me_code) = '2'
-          order by me_order, me_id ";
-$qry = sql_query($sql);
-for ($i=0; $row=sql_fetch_array($qry); $i++) {
-    $list[$i] = $row;
-    $list[$i]['sub'] = array();
-
-    preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
-    if (!$match[1])
-        preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row['me_link'].'&', $match);
-
-    $c = 0;
-    $sql2 = " select *
-               from {$g5['menu_table']}
-              where me_use = '1'
-                and length(me_code) = '4'
-                and substring(me_code, 1, 2) = '{$row['me_code']}'
-              order by me_order, me_id ";
-    $qry2 = sql_query($sql2);
-    for ($j=0; $row2=sql_fetch_array($qry2); $j++) {
-        preg_match("/bo_table=([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);
-        if (!$match[1])
-            preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $row2['me_link'].'&', $match);
-
-        if ($match[1])
-            $row2['bo_table'] = $match[1];
-       else
-            continue;
-
-        $list[$i]['sub'][$j] = $row2;
+    for ($j=0; $row2=$mw5_menu[$i]['sub'][$j]; $j++) {
+        $latest_table = mw_get_board($row2['me_link']);
+        if ($latest_table and !in_array($latest_table, $list))
+            $list[] = $latest_table;
     }
-    if (!$j)
-        $list[$i]['sub'][0] = $row;
 }
+
+$latest = array();
+$loop_max = count($list);
+$real_max = $loop_max;
+for ($i=0; $i<$loop_max; ++$i)
+{
+    $mw_skin_config = mw_skin_config($list[$i]);
+
+    // 1:1 게시판 출력 안함
+    if ($mw_skin_config['cf_attribute'] == '1:1') {
+        $real_max--;
+        continue;
+    }
+
+    $latest[$loop_index]['bo_table'] = $list[$i];
+    $latest[$loop_index]['skin'] = 'theme/mw5';
+    $latest[$loop_index]['count'] = 6;
+    $latest[$loop_index]['length'] = 50;
+
+    if ($mw_skin_config['cf_type'] == 'gall') {
+        $latest[$loop_index]['skin'] = 'theme/mw5-gallery';
+        $latest[$loop_index]['count'] = 2;
+        $latest[$loop_index]['length'] = 10;
+
+        if ($loop_index==$real_max and $loop_index%2!=0) {
+            $latest[$loop_index]['count'] = 4;
+        }
+    }
+
+    $loop_index++;
+}
+
+
 ?>
 <style>
 .info-box { padding:10px; background-color:#efefef; margin-bottom:10px; border:1px solid #ddd; text-align:left; }
@@ -67,44 +73,32 @@ for ($i=0; $row=sql_fetch_array($qry); $i++) {
 if ($config[cf_register_point]) echo "<div class='info'>· 회원가입 포인트 : <strong>".number_format($config[cf_register_point])."</strong> 점</div>";
 if ($config[cf_login_point]) echo "<div class='info'>· 로그인 포인트 : <strong>".number_format($config[cf_login_point])."</strong> 점</div>";
 ?>
-
 <table border=0 cellpadding=0 cellspacing=1 width=100% class="point-policy">
-<colgroup width="100"/>
 <colgroup width=""/>
-<colgroup width="80"/>
-<colgroup width="80"/>
-<colgroup width="80"/>
-<colgroup width="80"/>
+<colgroup width="100"/>
+<colgroup width="100"/>
+<colgroup width="100"/>
+<colgroup width="100"/>
 <tr>
-    <td class="thead"> 서비스 </td>
-    <td class="thead"> 메뉴 </td>
+    <td class="thead"> 게시판 </td>
     <td class="thead"> 글읽기 </td>
     <td class="thead"> 글쓰기 </td>
-    <td class="thead"> 코멘트 쓰기 </td>
+    <td class="thead"> 코멘트 </td>
     <td class="thead"> 다운로드 </td>
 </tr>
 <?php
-for ($i=0; $row=$list[$i]; $i++) { 
-    $rowspan = count($list[$i]['sub']);
+foreach ((array)$list as $row) { 
+    $table = sql_fetch("select * from {$g5['board_table']} where bo_table = '{$row}' ");
+    $url = mw_seo_url($row);
     echo "<tr>".PHP_EOL;
-    echo "<td class='tbody' rowspan='{$rowspan}'>{$row['me_name']}</td>".PHP_EOL;
-    //for ($j=0; $row2=$list[$i]['sub'][$j]; $j++) {
-    $j = 0;
-    foreach ($list[$i]['sub'] as $key => $row2) {
-        if ($j++>0) echo "<tr>".PHP_EOL;
-
-        $table = sql_fetch("select * from {$g5['board_table']} where bo_table = '{$row2['bo_table']}' ");
-
-        echo "<td class='tbody left'><a href='{$row2['me_link']}'>{$row2['me_name']}</a></td>".PHP_EOL;
-        echo "<td class='tbody right'>{$table['bo_read_point']}점</td>".PHP_EOL;
-        echo "<td class='tbody right'>{$table['bo_write_point']}점</td>".PHP_EOL;
-        echo "<td class='tbody right'>{$table['bo_comment_point']}점</td>".PHP_EOL;
-        echo "<td class='tbody right'>".number_format($table['bo_download_point'])."점</td>".PHP_EOL;
-        echo "</tr>".PHP_EOL;
-    }
+    echo "<td class='tbody left'><a href='{$url}'>{$table['bo_subject']}</a></td>".PHP_EOL;
+    echo "<td class='tbody right'>{$table['bo_read_point']}점</td>".PHP_EOL;
+    echo "<td class='tbody right'>{$table['bo_write_point']}점</td>".PHP_EOL;
+    echo "<td class='tbody right'>{$table['bo_comment_point']}점</td>".PHP_EOL;
+    echo "<td class='tbody right'>".number_format($table['bo_download_point'])."점</td>".PHP_EOL;
+    echo "</tr>".PHP_EOL;
 }
 ?>
 </table>
-
 <?
 include_once("_tail.php");
