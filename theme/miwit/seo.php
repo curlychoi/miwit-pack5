@@ -40,7 +40,7 @@ if ($bo_table and $wr_id and $write)
     $fb_file = sql_fetch($sql);
 
     if ($fb_file) {
-        $seo_image = $g5['url']."/data/file/".$bo_table."/".$fb_file['bf_file'];
+        $seo_image = G5_URL."/data/file/".$bo_table."/".$fb_file['bf_file'];
     }
     else {
         preg_match_all("/<img.*src=\\\"(.*)\\\"/iUs", stripslashes($write['wr_content']), $matchs);
@@ -62,18 +62,18 @@ if ($bo_table and $wr_id and $write)
         }
 
         if (!$mat) {
-            $seo_image = $g5['path']."/data/file/".$bo_table."/thumbnail/".$wr_id.".jpg";
+            $seo_image = G5_PATH."/data/file/".$bo_table."/thumbnail/".$wr_id.".jpg";
 
             if (!@is_file($seo_image))
-                $seo_image = $g5['path']."/data/file/".$bo_table."/thumbnail/".$wr_id;
+                $seo_image = G5_PATH."/data/file/".$bo_table."/thumbnail/".$wr_id;
 
             if (!@is_file($seo_image))
-                $seo_image = $g5['path']."/data/file/".$bo_table."/thumb/".$wr_id;
+                $seo_image = G5_PATH."/data/file/".$bo_table."/thumb/".$wr_id;
 
             if (!@is_file($seo_image))
                 $seo_image = '';
             else
-                $seo_image = str_replace($g5['path'], $g5['url'], $seo_image);
+                $seo_image = str_replace(G5_PATH, G5_URL, $seo_image);
         }
     }
 
@@ -109,10 +109,10 @@ if ($bo_table and $wr_id and $write)
 if (!$seo_title)
     $seo_title = $mw['config']['cf_title'];
 
-if (!$seo_image or !@is_file(str_replace($g5['url'], $g5['path'], $seo_image)))
+if (!$seo_image or !@is_file(str_replace(G5_URL, G5_PATH, $seo_image)))
     $seo_image = G5_DATA_URL."/seo/sns_image.png";
 
-$seo_image_size = @getimagesize($seo_image);
+$seo_image_size = @getimagesize(str_replace(G5_URL, G5_PATH, $seo_image));
 $seo_image_x = $seo_image_size[0];
 $seo_image_y = $seo_image_size[1];
 
