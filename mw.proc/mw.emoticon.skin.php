@@ -37,7 +37,7 @@ if (preg_match("/[0-9a-z-_]+/i", $dir) and is_dir($path.'/'.$dir)) {
 }
 
 $emo = glob($path."/*.{gif,jpg,jpeg,png}", GLOB_BRACE);
-sort($emo);
+natsort($emo);
 
 foreach ((array)$emo as $item) :
     if (!preg_match("/^[0-9a-z-_]+\.(png|jpe?g|gif)$/i", basename($item))) continue;
