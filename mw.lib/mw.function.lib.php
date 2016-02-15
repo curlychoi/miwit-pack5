@@ -2972,6 +2972,9 @@ function mw_youtube($url, $q=0)
     if ($l)
         $src .= "&list=".$l;
 
+    $tmp = parse_url($url);
+    $param = $tmp['query'];
+
     if (!$mw_basic['cf_youtube_size'])
         $mw_basic['cf_youtube_size'] = 360;
 
@@ -3002,7 +3005,7 @@ function mw_youtube($url, $q=0)
         $width = $board['bo_image_width'];
     }
 
-    $you = "<div class='videoWrapper'><iframe width='{$width}' height='{$height}' src='{$src}&wmode=transparent' frameborder='0' ";
+    $you = "<div class='videoWrapper'><iframe width='{$width}' height='{$height}' src='{$src}&wmode=transparent&{$param}' frameborder='0' ";
     $you.= "webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>";
 
     return $you;
