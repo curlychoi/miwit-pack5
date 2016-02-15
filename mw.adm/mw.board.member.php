@@ -106,10 +106,15 @@ var g4_is_ie     = navigator.userAgent.toLowerCase().indexOf("msie") != -1;
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link href="//code.jquery.com/ui/1.11.2/themes/humanity/jquery-ui.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?=$g4['path']?>/style.css" type="text/css">
+<link rel="stylesheet" href="<?=$g4['path']?>/css/default.css" type="text/css">
+<link rel="stylesheet" href="../style.common.css" type="text/css">
+<link rel="stylesheet" href="../sideview.css" type="text/css">
 <?php if (is_file($g4['path']."/js/sideview.js")) { ?>
 <script src="<?php echo $g4['path']?>/js/sideview.js"></script>
 <?php } ?>
+<script src="<?php echo $g4['path']?>/js/common.js"></script>
 <script>
 /* Korean initialisation for the jQuery calendar extension. */
 /* Written by DaeKwon Kang (ncrash.dk@gmail.com). */
@@ -198,7 +203,7 @@ input.bt { background-color:#efefef; height:20px; cursor:pointer; font-size:11px
     <td> <?=$row[name]?> </td>
     <td> <?=$row[bm_datetime]?> </td>
     <td> <?=$row[bm_limit]?> </td>
-    <td> <a href="javascript:mw_del('<?=$row[mb_id]?>');"><img src="<?=$g4[admin_path]?>/img/icon_delete.gif" align=absmiddle></a> </td>
+    <td> <a href="javascript:mw_del('<?=$row[mb_id]?>');"><i class="fa fa-cut"></i></a> </td>
 </tr>
 <? } ?>
 <? if (!$total_count) { ?>
