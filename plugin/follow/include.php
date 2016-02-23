@@ -18,22 +18,22 @@ $cf_github = $mw['config']['cf_github'];
 echo '<div id="sns-follow">'.PHP_EOL;
 
 if ($cf_facebook)
-    printf('<div class="facebook"><a href="https://www.facebook.com/%s" target="_blank"><img src="%s/svg/follow_facebook.svg"></div>', $cf_facebook, $plugin_url);
+    printf('<div class="facebook"><a href="https://www.facebook.com/%s" target="_blank"><img src="%s/svg/follow_facebook.svg"></a></div>', $cf_facebook, $plugin_url);
 
 if ($cf_twitter)
-    printf('<div class="twitter"><a href="https://twitter.com/%s" target="_blank"><img src="%s/svg/follow_twitter.svg"></div>', $cf_twitter, $plugin_url);
+    printf('<div class="twitter"><a href="https://twitter.com/%s" target="_blank"><img src="%s/svg/follow_twitter.svg"></a></div>', $cf_twitter, $plugin_url);
 
 if ($cf_instagram)
-    printf('<div class="instagram"><a href="https://www.instagram.com/%s/" target="_blank"><img src="%s/svg/follow_instagram.svg"></div>', $cf_instagram, $plugin_url);
+    printf('<div class="instagram"><a href="https://www.instagram.com/%s/" target="_blank"><img src="%s/svg/follow_instagram.svg"></a></div>', $cf_instagram, $plugin_url);
 
 if ($cf_google)
-    printf('<div class="google"><a href="https://plus.google.com/+%s" target="_blank"><img src="%s/svg/follow_google.svg"></div>', $cf_google, $plugin_url);
+    printf('<div class="google"><a href="https://plus.google.com/+%s" target="_blank"><img src="%s/svg/follow_google.svg"></a></div>', $cf_google, $plugin_url);
 
 if ($cf_youtube)
-    printf('<div class="youtube"><a href="https://www.youtube.com/user/%s" target="_blank"><img src="%s/svg/follow_youtube.svg"></div>', $cf_youtube, $plugin_url);
+    printf('<div class="youtube"><a href="https://www.youtube.com/user/%s" target="_blank"><img src="%s/svg/follow_youtube.svg"></a></div>', $cf_youtube, $plugin_url);
 
 if ($cf_github)
-    printf('<div class="github"><a href="https://www.github.com/%s" target="_blank"><img src="%s/svg/follow_github.svg"></div>', $cf_github, $plugin_url);
+    printf('<div class="github"><a href="https://www.github.com/%s" target="_blank"><img src="%s/svg/follow_github.svg"></a></div>', $cf_github, $plugin_url);
 
 echo '</div>';
 
