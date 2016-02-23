@@ -3,7 +3,7 @@ include_once("_common.php");
 include_once("../../head.sub.php");
 
 mw_script("/js/jquery-1.11.2.min.js");
-mw_css("/asset/font-awesome-4.3.0/css/font-awesome.min.css");
+mw_css("/asset/font-awesome-4.4.0/css/font-awesome.min.css");
 ?>
 <style>
 section {
