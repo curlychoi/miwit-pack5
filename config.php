@@ -5,7 +5,7 @@
 ********************/
 
 define('G5_VERSION', '그누보드5');
-define('G5_GNUBOARD_VER', '5.1.12');
+define('G5_GNUBOARD_VER', '5.1.13');
 
 // 이 상수가 정의되지 않으면 각각의 개별 페이지는 별도로 실행될 수 없음
 define('_GNUBOARD_', true);
@@ -30,7 +30,7 @@ define('G5_DOMAIN', '');
 define('G5_HTTPS_DOMAIN', '');
 
 /*
-www.sir.co.kr 과 sir.co.kr 도메인은 서로 다른 도메인으로 인식합니다. 쿠키를 공유하려면 .sir.co.kr 과 같이 입력하세요.
+www.sir.kr 과 sir.kr 도메인은 서로 다른 도메인으로 인식합니다. 쿠키를 공유하려면 .sir.kr 과 같이 입력하세요.
 이곳에 입력이 없다면 www 붙은 도메인과 그렇지 않은 도메인은 쿠키를 공유하지 않으므로 로그인이 풀릴 수 있습니다.
 */
 define('G5_COOKIE_DOMAIN',  '');
