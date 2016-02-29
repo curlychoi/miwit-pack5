@@ -2089,7 +2089,7 @@ label {
             <br>
             카카오톡 앱 키 :
             <input type="text" size="20" class="ed" name="cf_kakao_key" value="<?php echo $mw_basic['cf_kakao_key']?>">
-            (<a href="http://www.miwit.com/b/mw_tip-4225" target="_blank">등록방법</a>, 썸네일은 가로,세로 70px이상만 전송됩니다.)
+            (<a href="http://www.miwit.com/b/mw_tip-4225" target="_blank">등록방법</a>, 썸네일은 가로,세로 80px이상만 전송됩니다.)
 	    <script>
             document.cf_form.cf_sns_twitter.checked = '<? echo strstr($mw_basic[cf_sns], '/twitter/')?'1':''; ?>';
             //document.cf_form.cf_sns_me2day.checked = '<? echo strstr($mw_basic[cf_sns], '/me2day/')?'1':''; ?>';
