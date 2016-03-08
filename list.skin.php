@@ -1123,7 +1123,7 @@ else if ($mw_basic[cf_type] == "gall")
         <button type="submit" class="fa-button"><i class="fa fa-search"></i> 검색</button>
         </span>
         <span class="media-on-text">
-            <button type="button" class="fa-button" data-toggle="modal" name="search-modal-button" data-target="#search-modal"><i class="fa fa-search"></i> 검색</button>
+            <button type="button" class="fa-button" name="search-modal-button" data-target="#search-modal"><i class="fa fa-search"></i> 검색</button>
         </span>
         <? } ?>
         </form>
