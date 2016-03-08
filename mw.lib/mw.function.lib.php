@@ -3006,7 +3006,7 @@ function mw_youtube($url, $q=0)
     }
 
     $you = "<iframe width='{$width}' height='{$height}' src='{$src}&wmode=transparent&{$param}' frameborder='0' ";
-    $you.= "webkitallowfullscreen mozallowfullscreen allowfullscreen></div>";
+    $you.= "webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>";
 
     return $you;
 }
