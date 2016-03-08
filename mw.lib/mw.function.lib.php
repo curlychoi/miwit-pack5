@@ -3005,8 +3005,8 @@ function mw_youtube($url, $q=0)
         $width = $board['bo_image_width'];
     }
 
-    $you = "<div class='videoWrapper'><iframe width='{$width}' height='{$height}' src='{$src}&wmode=transparent&{$param}' frameborder='0' ";
-    $you.= "webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>";
+    $you = "<iframe width='{$width}' height='{$height}' src='{$src}&wmode=transparent&{$param}' frameborder='0' ";
+    $you.= "webkitallowfullscreen mozallowfullscreen allowfullscreen></div>";
 
     return $you;
 }
@@ -3039,7 +3039,12 @@ function mw_youtube_content($content, $q='')
     if ($pt)
         $content = preg_replace($pt, "mw_vimeo('\\1', '$q')", $content);
 
-    return $content;
+    return mw_video_wrapper($content);
+}
+
+function mw_video_wrapper($content)
+{
+    return preg_replace('/(<iframe[^>]+><\/iframe>)/i', "<div class='videoWrapper'>\\1</div>", $content);
 }
 
 function mw_youtube_pattern($content)

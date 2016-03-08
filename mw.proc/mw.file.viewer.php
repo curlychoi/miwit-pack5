@@ -172,7 +172,7 @@ for ($i=1; $i<=$g4['link_count']; $i++) {
         $view['link'][$i] = '';
     }
 }
-$view[content] = $link_file_viewer . $view[content]; 
+$view[content] = mw_video_wrapper($link_file_viewer) . $view[content]; 
 
 // 웹에디터 첨부 이미지 워터마크 처리
 if ($mw_basic[cf_watermark_use] && is_mw_file($mw_basic[cf_watermark_path]))
