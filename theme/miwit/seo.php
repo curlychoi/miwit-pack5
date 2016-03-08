@@ -104,6 +104,8 @@ if ($bo_table and $wr_id and $write)
 
     if (strstr($write['wr_option'], 'secret'))
         $seo_robots = "noindex";
+
+    $seo_url = mw_seo_url($bo_table, $wr_id);
 }
 
 if (!$seo_title)
