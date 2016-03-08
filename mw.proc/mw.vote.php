@@ -38,7 +38,7 @@ if (!$width) {
     if ($board['bo_table_width'] > 100)
         $width = @intval($board['bo_table_width']*.5);
     else
-        $width = 350;
+        $width = 200;
 }
 
 if ($mw_basic[cf_vote]) {
@@ -141,9 +141,11 @@ if ($mw_basic[cf_vote] && $vote && sizeof($vote_list)) {
             <? for ($i=0, $m=sizeof($vote_list); $i<$m; $i++) { ?>
             <div>
                 <span class="item"><?=$vote_list[$i][vt_item]?> </span>
+                <span class="graph">
                 <img src="<?=$img_path?>/vote_<?=$gr[abs($i%9)]?>.gif"
                      width="<?=$vote_list[$i][vt_width]?>" height="5" align="absmiddle"/>
                 <span class="rate"> <nobr><?=$vote_list[$i][vt_rate]?></nobr> </span>
+                </span>
             </div>
             <? } ?>
             </div>

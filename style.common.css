@@ -1310,6 +1310,9 @@ img {
     /*border:1px solid #ddd;   */
     border-top:1px solid #6B95BD;   
     background-color:#f6f6f6;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
 }
 
 /* 설문 */
@@ -2786,6 +2789,15 @@ i.fa-warning { color:#f36a2e; }
 
     #mw_basic .comment_write td {
         display:block;
+    }
+
+    #mw_basic .mw_basic_view_vote .mw_vote_result .item,
+    #mw_basic .mw_basic_view_vote .mw_vote_result .graph {
+        display:block;
+        clear:both;
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
     }
 }
 
