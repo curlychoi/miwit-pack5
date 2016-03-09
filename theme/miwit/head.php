@@ -9,6 +9,7 @@ if (G5_IS_MOBILE) {
 include_once(G5_THEME_PATH.'/head.sub.php');
 
 mw_script($theme_path.'/js/mw.navbar.js', 'async defer');
+mw_script($theme_path."/js/mw.slider.js");
 mw_css('/asset/font-awesome-4.4.0/css/font-awesome.min.css');
 mw_css($theme_path.'/style.css');
 mw_css($theme_path.'/color/'.$mw['config']['cf_theme_color'].'/style.css');

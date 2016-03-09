@@ -40,7 +40,6 @@ if (!$mw['config']['cf_content_head_html']) {
 if (!$mw['config']['cf_index_image_html']) {
     $mw['config']['cf_index_image_html'] = '
 <?php
-mw_script($theme_path."/js/mw.slider.js");
 
 $slide = array();
 $slide[] = array("url"=>"http://www.miwit.com", "target"=>"_blank", "img"=>G5_THEME_URL."/img/01.jpeg");
