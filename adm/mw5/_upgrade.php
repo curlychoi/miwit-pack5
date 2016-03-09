@@ -65,6 +65,9 @@ sql_query("alter table {$mw5['config_table']} add cf_no_tail_link varchar(1) not
 sql_query("alter table {$mw5['config_table']} add cf_index_image_html text not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_no_index_image varchar(1) not null default '' ", false);
 
+sql_query("alter table {$mw5['config_table']} add cf_index_latest_html text not null default '' ", false);
+sql_query("alter table {$mw5['config_table']} add cf_no_index_latest varchar(1) not null default '1' ", false);
+
 sql_query("alter table {$mw5['config_table']} add cf_head_html text not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_no_head varchar(1) not null default '' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_tail_html text not null default '' ", false);

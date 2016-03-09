@@ -55,20 +55,8 @@ for ($i=0, $loop_index=1; $i<$loop_max; ++$i)
 
 if (!$mw['config']['cf_no_index_image'])
     mw_eval($mw['config']['cf_index_image_html']);
-?>
 
-<div class="latest">
-<?php
-$i = 1;
-foreach ((array)$latest as $row)
-{
-    echo '<div class="item">'.latest($row['skin'], $row['bo_table'], $row['count'], $row['length'], 0).'</div>';
-
-    if (($i++)%2==0) echo '</div><div class="latest">';
-}
-?>
-</div>
-
-<?php
+if (!$mw['config']['cf_no_index_latest'])
+    mw_eval($mw['config']['cf_index_latest_html']);
 
 include_once(G5_THEME_PATH.'/tail.php');

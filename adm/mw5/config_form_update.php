@@ -39,6 +39,8 @@ $sql_common = "
     ,cf_no_content_head = '{$_POST['cf_no_content_head']}'
     ,cf_index_image_html = '{$_POST['cf_index_image_html']}'
     ,cf_no_index_image = '{$_POST['cf_no_index_image']}'
+    ,cf_index_latest_html = '{$_POST['cf_index_latest_html']}'
+    ,cf_no_index_latest = '{$_POST['cf_no_index_latest']}'
     ,cf_content_tail_html = '{$_POST['cf_content_tail_html']}'
     ,cf_no_content_tail = '{$_POST['cf_no_content_tail']}'
 

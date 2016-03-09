@@ -121,3 +121,18 @@ if (!$mw['config']['cf_info_html']) {
 ';
 }
 
+if (!$mw['config']['cf_index_latest_html']) {
+    $mw['config']['cf_index_latest_html'] = '
+<div class="latest">
+<?php
+$i = 1;
+foreach ((array)$latest as $row)
+{
+    echo \'<div class="item">\'.latest($row[\'skin\'], $row[\'bo_table\'], $row[\'count\'], $row[\'length\'], 0).\'</div>\';
+
+    if (($i++)%2==0) echo \'</div><div class="latest">\';
+}
+?>
+</div>
+';
+}

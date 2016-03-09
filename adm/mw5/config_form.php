@@ -156,6 +156,17 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 </div>
             </td>
         </tr>
+        <tr>
+            <th scope="row"><label for="cf_index_latest_html">INDEX 최신글 편집</label></th>
+            <td colspan="3">
+                <textarea name="cf_index_latest_html" id="cf_index_latest_html"><?php echo $mw['config']['cf_index_latest_html'] ?></textarea>
+                <div>
+                    <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4655" target="_blank">설정방법보기</a>
+                    <label><input type="checkbox" name="cf_no_index_latest" value="1"> 사용안함</label>
+                    <script>$('input[name=cf_no_index_latest]').prop('checked', '<?php echo $mw['config']['cf_no_index_latest']?>');</script>
+                </div>
+            </td>
+        </tr>
         </tbody>
         </table>
     </div>
