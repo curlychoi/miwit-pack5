@@ -344,7 +344,21 @@ function mw_get_list($list, $board, $skin_path, $subject_len=40)
     global $is_admin;
     global $member;
 
+    static $lib;
+
     $mw_basic = mw_skin_config($board['bo_table']);
+
+    if (G5_IS_MOBILE)
+        $board_skin_path = get_skin_path('board', $board['bo_mobile_skin']);
+    else
+        $board_skin_path = get_skin_path('board', $board['bo_skin']);
+     
+    $skin_lib_path = $board_skin_path.'/mw.lib/mw.function.lib.php';
+
+    if (!$lib and is_file($skin_lib_path)) {
+        include_once $skin_lib_path;
+        $lib = true;
+    }
 
     $list['wr_singo_lock'] = false;
     if ($list['wr_singo'] && $list['wr_singo'] >= $mw_basic['cf_singo_number']) {
@@ -358,11 +372,8 @@ function mw_get_list($list, $board, $skin_path, $subject_len=40)
         $list['wr_content'] = "보기가 차단된 게시물입니다.";
     }
 
-    $nick = $member['mb_nick'];
-    if (!$member['mb_id']) $nick = '회원';
-
-    $list['wr_subject'] = str_replace("{닉네임}", $nick, $list['wr_subject']);
-    $list['wr_subject'] = str_replace("{별명}", $nick, $list['wr_subject']);
+    $list['wr_subject'] = mw_reg_str($list['wr_subject']);
+    $list['wr_subject'] = bc_code($list['wr_subject']);
 
     if ($subject_len)
         $list['subject'] = conv_subject($list['wr_subject'], $subject_len, "…");

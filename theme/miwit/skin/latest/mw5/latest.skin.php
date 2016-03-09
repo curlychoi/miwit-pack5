@@ -18,10 +18,7 @@ else
     <?php
     echo "<ul>";
     for ($i=0; $i<$rows; ++$i) {
-        $list[$i] = mw_get_list($list[$i], $board, $latest_skin_path, $subject_len);
-
-        if (rand(1,$rows) == 1)
-            $list[$i]['subject'] = "<strong>{$list[$i]['subject']}</strong>";
+        //if (rand(1,$rows) == 1) $list[$i]['subject'] = "<strong>{$list[$i]['subject']}</strong>";
 
         $class = '';
         if ($list[$i]['icon_secret'] or $list[$i]['wr_singo_lock'] or $list[$i]['wr_view_lock']) {

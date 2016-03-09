@@ -1,6 +1,7 @@
 <?php
 if (!defined("_GNUBOARD_")) exit;
 
+include_once(G5_LIB_PATH.'/mw.latest.lib.php');
 include_once(G5_LIB_PATH.'/mw.permalink.lib.php');
 include_once(G5_LIB_PATH.'/mw.common.lib.php');
 include_once(G5_LIB_PATH.'/mw.popular.lib.php');

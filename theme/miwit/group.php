@@ -11,31 +11,51 @@ if(!$is_admin && $group['gr_device'] == 'mobile')
 
 $g5['title'] = $group['gr_subject'];
 include_once(G5_THEME_PATH.'/head.php');
-?>
 
-<!-- 메인화면 최신글 시작 -->
-<div class="latest">
-<?php
-$i = 1;
-$sql = " select * from {$g5['menu_table']} ";
-$sql.= "  where (me_link like '%bo_table%' or me_link like '%/b/%') ";
-$sql.= "    and me_code like '{$menu['me_code']}%' ";
-$sql.= "  order by me_code, me_order ";
+$loop_index = 0;
+$sql = sprintf("select bo_table from %s where gr_id = '%s'", $g5['board_table'], $gr_id);
 $qry = sql_query($sql);
 while ($row = sql_fetch_array($qry)) {
-    $latest_table = mw_get_board($row['me_link']);
-    if (!$latest_table) continue;
 
+    $latest_table = $row['bo_table'];
     $mw_skin_config = mw_skin_config($latest_table);
-    if ($mw_skin_config['cf_attribute'] == "1:1") continue;
 
-    echo "<div class=\"item\">".latest("theme/mw5", $latest_table, 5, 50, 0)."</div>";
+    // 1:1 게시판 출력 안함
+    if ($mw_skin_config['cf_attribute'] == '1:1') {
+        $real_max--;
+        continue;
+    }
 
-    if (($i++)%2==0) echo "</div><div class=\"latest\">";
+    $latest[$loop_index]['bo_table'] = $latest_table;
+    $latest[$loop_index]['skin'] = 'theme/mw5';
+    $latest[$loop_index]['count'] = 6;
+    $latest[$loop_index]['length'] = 50;
+
+    if ($mw_skin_config['cf_type'] == 'gall') {
+        $latest[$loop_index]['skin'] = 'theme/mw5-gallery';
+        $latest[$loop_index]['count'] = 2;
+        $latest[$loop_index]['length'] = 10;
+
+        if ($loop_index==$real_max and $loop_index%2!=0) {
+            $latest[$loop_index]['count'] = 4;
+        }
+    }
+
+    $loop_index++;
+}
+
+?>
+<div class="latest">
+<?php
+global $latest;
+$i = 1;
+foreach ((array)$latest as $row)
+{
+    echo '<div class="item">'.mw_latest($row['skin'], $row['bo_table'], $row['count'], $row['length'], 0).'</div>';
+
+    if (($i++)%2==0) echo '</div><div class="latest">';
 }
 ?>
 </div>
-<!-- 메인화면 최신글 끝 -->
-
 <?php
 include_once(G5_THEME_PATH.'/tail.php');
