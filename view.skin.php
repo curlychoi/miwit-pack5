@@ -141,49 +141,38 @@ if ($mw_basic['cf_prev_next'])
     unset($tmp_href);
     unset($tmp_wr_subject);
 }
+
+print '<div>';
+
+if ($prev_href)
+    printf('<a class="fa-button" href="%s" title="" accesskey="b"><i class="fa fa-chevron-left"></i> <span>이전글</span></a>&nbsp;', $prev_href, $prev_wr_subject);
+
+if ($next_href) 
+    printf('<a class="fa-button" href="%s" title="" accesskey="b"><i class="fa fa-chevron-right"></i> <span>다음글</span></a>&nbsp;', $next_href, $next_wr_subject);
+
+print '</div><div>';
+
+if ($search_href)
+    printf('<a class="fa-button" href="%s"><i class="fa fa-search"></i> <span>검색목록</span></a>&nbsp;', $search_href); 
+
+printf('<a class="fa-button" href="%s"><i class="fa fa-list"></i> <span>목록</span></a>&nbsp;', $list_href);
+
+if ($update_href)
+    printf('<a class="fa-button" href="%s"><i class="fa fa-cut"></i> <span>수정</span></a>&nbsp;', $update_href);
+
+if ($delete_href)
+    printf('<a class="fa-button" href="%s"><i class="fa fa-remove"></i> <span>삭제</span></a>&nbsp;', $delete_href);
+
+if ($reply_href)
+    printf('<a class="fa-button" href="%s"><i class="fa fa-reply"></i> <span>답변</span></a>&nbsp;', $reply_href);
+
+if ($write_href)
+    printf('<a class="fa-button primary" href="%s"><i class="fa fa-pencil"></i> <span>글쓰기</span></a>', $write_href);
+
+print '</div>';
+
+$link_buttons = ob_get_clean();
 ?>
-<table width=100%>
-<tr height=35>
-    <td>
-        <?php
-        if ($prev_href)
-            //echo "<input type=image src=\"$board_skin_path/img/btn_prev.gif\" onclick=\"location.href='$prev_href'\" title=\"$prev_wr_subject\" accesskey='b'>&nbsp;";
-            echo "<a class=\"fa-button\" href=\"$prev_href\" title=\"$prev_wr_subject\" accesskey='b'><i class=\"fa fa-chevron-left\"></i> 이전글</a>&nbsp;";
-
-        if ($next_href) 
-            //echo "<input type=image href=\"$board_skin_path/img/btn_next.gif\" onclick=\"location.href='$next_href'\" title=\"$next_wr_subject\" accesskey='n'>&nbsp;";
-            echo "<a class=\"fa-button\" href=\"$next_href\" title=\"$next_wr_subject\" accesskey='b'><i class=\"fa fa-chevron-right\"></i> 다음글</a>&nbsp;";
-        ?>
-    </td>
-    <td align=right>
-        <?php
-        if ($search_href) {
-            //echo "<a href=\"$search_href\"><img src='$board_skin_path/img/btn_search_list.gif' border='0' align='absmiddle'></a> "; 
-            echo "<a class=\"fa-button\" href=\"$search_href\"><i class=\"fa fa-search\"></i> 검색목록</a> "; 
-        }
-        //echo "<a href=\"$list_href\"><img src='$board_skin_path/img/btn_list.gif' border='0' align='absmiddle'></a> ";
-        echo "<a class=\"fa-button\" href=\"$list_href\"><i class=\"fa fa-list\"></i> 목록</a> ";
-
-        if ($update_href)
-            //echo "<a href=\"$update_href\"><img src='$board_skin_path/img/btn_update.gif' border='0' align='absmiddle'></a> ";
-            echo "<a class=\"fa-button\" href=\"$update_href\"><i class=\"fa fa-cut\"></i> 수정</a> ";
-
-        if ($delete_href)
-            //echo "<a href=\"$delete_href\"><img src='$board_skin_path/img/btn_delete.gif' border='0' align='absmiddle'></a> ";
-            echo "<a class=\"fa-button\" href=\"$delete_href\"><i class=\"fa fa-remove\"></i> 삭제</a> ";
-
-        if ($reply_href)
-            //echo "<a href=\"$reply_href\"><img src='$board_skin_path/img/btn_reply.gif' border='0' align='absmiddle'></a> ";
-            echo "<a class=\"fa-button\" href=\"$reply_href\"><i class=\"fa fa-reply\"></i> 답변</a> ";
-
-        if ($write_href)
-            //echo "<a href=\"$write_href\"><img src='$board_skin_path/img/btn_write.gif' border='0' align='absmiddle'></a> ";
-            echo "<a class=\"fa-button primary\" href=\"$write_href\"><i class=\"fa fa-pencil\"></i> 글쓰기</a> ";
-       ?>
-    </td>
-</tr>
-</table>
-<?php $link_buttons = ob_get_contents(); ob_end_clean(); ?>
 
 <!-- 제목, 글쓴이, 날짜, 조회, 추천, 비추천 -->
 <div class="mw_basic_view_subject">
@@ -948,7 +937,7 @@ if (!$view[wr_comment_hide] && ($mw_basic[cf_comment_level] <= $member[mb_level]
     include_once("./view_comment.php"); // 코멘트 입출력 
 }
 
-echo $link_buttons;
+printf('<div class="view_buttons2">%s</div>', $link_buttons);
 
 if ($mw_basic[cf_include_tail] && is_mw_file($mw_basic[cf_include_tail]) && strstr($mw_basic[cf_include_tail_page], '/v/')) {
     include_once($mw_basic[cf_include_tail]);
