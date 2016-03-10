@@ -213,7 +213,7 @@ function mw_get_board($url)
 {
     preg_match("/bo_table=([0-9a-zA-Z_]+)&/", $url.'&', $match);
     if (!$match[1])
-        preg_match("/\/b\/([0-9a-zA-Z-_]+)&/", $url.'&', $match);
+        preg_match("/\/b\/([0-9a-zA-Z_]+)&/", $url.'&', $match);
 
     return $match[1];
 }
