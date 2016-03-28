@@ -32,7 +32,7 @@ if ($side_float == 'right') {
     echo "#mw5 .menu_title { width:-moz-calc(100% - {$side_margin_width}px); }".PHP_EOL;
     echo "#mw5 .menu_title { width:calc(100% - {$side_margin_width}px); }".PHP_EOL;
 }
-else if ($side_float == 'left' and $is_sidebar) {
+else if ($side_float == 'left') {
     echo "#mw5 .sidebar { margin-right:10px; }".PHP_EOL;
     echo "#mw5 .main { float:right; }".PHP_EOL;
     echo "#mw5 .menu_title { margin-left:{$side_margin_width}px; }".PHP_EOL;

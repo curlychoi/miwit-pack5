@@ -74,7 +74,7 @@ if ($menu) {
         $is_sidebar = false;
         echo "<style>";
         echo "#mw5 .main { width:{$mw['config']['cf_width']}px; }";
-        echo "#mw5 .menu_title { width:{$mw['config']['cf_width']}px; }";
+        echo "#mw5 .menu_title { width:{$mw['config']['cf_width']}px; margin-left:0; }";
         echo "</style>";
     }
 
