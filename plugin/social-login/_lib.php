@@ -126,3 +126,18 @@ function mw_naver_generate_state() {
 if (!function_exists("mwp_is_social")) { 
 function mwp_is_social() { 
 }}
+
+function js_decode($js)
+{
+    $js = preg_replace('/^[^{]+{/i', '{', $js);
+    $js = substr($js, 0, strrpos($js, '}')+1);
+
+    return json_decode($js, true);
+}
+
+function is_json ($js)
+{
+    json_decode($js);
+
+    return (json_last_error() == JSON_ERROR_NONE);
+}

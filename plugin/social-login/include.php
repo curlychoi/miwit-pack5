@@ -15,29 +15,10 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 include_once("$g4[path]/plugin/social-login/_config.php");
 ?>
 
-<div id="fb-root"></div>                                
-<script src="http://connect.facebook.net/ko_KR/all.js"></script>  
 <script>
-window.fbAsyncInit = function () {
-    FB.init({
-        appId  : "<?=$mw_facebook_config[appId]?>",
-        status : true, // check login status
-        cookie : true, // enable cookies to allow the server to access the session
-        xfbml  : true  // parse XFBML
-    });
-}
 function facebook_login(){
-    FB.getLoginStatus(function(response) {
-        if (response.session) {
-            LoginSuccessGo();
-        }else{
-            FB.login(function(response) { facebook_login_success(); }, {perms:'public_profile,email'});
-        }
-    });
-}
-
-function facebook_login_success(){
-    location.href = '<?=$g4[path]?>/plugin/social-login/facebook-login.php';
+    //location.href = '<?=$g4[path]?>/plugin/social-login/facebook-login.php';
+    window.open('<?=$g4[path]?>/plugin/social-login/facebook-login.php','facebooklogin', 'width=600,height=500');
 }
 
 function twitter_login() {
