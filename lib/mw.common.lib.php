@@ -372,8 +372,10 @@ function mw_get_list($list, $board, $skin_path, $subject_len=40)
         $list['wr_content'] = "보기가 차단된 게시물입니다.";
     }
 
-    $list['wr_subject'] = mw_reg_str($list['wr_subject']);
-    $list['wr_subject'] = bc_code($list['wr_subject']);
+    if (function_exists('mw_reg_str')) {
+        $list['wr_subject'] = mw_reg_str($list['wr_subject']);
+        $list['wr_subject'] = bc_code($list['wr_subject']);
+    }
 
     if ($subject_len)
         $list['subject'] = conv_subject($list['wr_subject'], $subject_len, "…");
