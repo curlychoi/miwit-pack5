@@ -112,5 +112,13 @@ $(window).ready(function () {
         $(".dropdown").hide();
         $(".navbar .item, .navbar .select").removeClass("underline");
     });
+
+    if (navigator.userAgent.match(/Android/i)) {
+        $("li.item > a").click(function () {
+            if ($(this).parent().next().find('li').length > 0) {
+                return false;
+            }
+        });
+    }
 });
 
