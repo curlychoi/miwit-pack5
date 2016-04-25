@@ -6,6 +6,10 @@ if (defined("_MW_MOBILE_")) return;
 include_once(G5_PATH.'/lib/mw.mobile.lib.php');
 include_once(G5_THEME_PATH.'/head.sub.php');
 
+if(defined('_INDEX_')) { // index에서만 실행
+    include G5_BBS_PATH.'/newwin.inc.php'; // 팝업레이어
+}
+
 $a = mw_mobile_total_alarm();
 extract($a);
 ?>
