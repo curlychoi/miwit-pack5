@@ -337,6 +337,8 @@ if ($w == '') {
     }
 
     $file = get_file($bo_table, $wr_id);
+    if($file_count < $file['count'])
+        $file_count = $file['count'];
 } else if ($w == 'r') {
     if (strstr($write['wr_option'], 'secret')) {
         $is_secret = true;
