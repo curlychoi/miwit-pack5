@@ -12,7 +12,7 @@ if ($config['cf_use_email_certify'] && strstr($_SERVER['PHP_SELF'], G5_BBS_DIR."
     $re = G5_PLUGIN_URL."/email-re-certify/";
     ?><script>
     $('#login_password_lost').after('&nbsp;<a href="<?php echo $re?>" class="btn01">이메일재인증</a>');
-    </script><?
+    </script><?php
 }
 
 if (G5_IS_MOBILE) {
