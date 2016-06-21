@@ -14,9 +14,14 @@ if (!$is_sidebar) {
 
     <?php if (!$mw['config']['cf_no_sidebar_head']) echo mw_eval($mw['config']['cf_sidebar_head_html']); ?>
 
-    <?php if ($mw['config']['cf_sidebar_outlogin']) echo outlogin("theme/mw5"); ?>
+    <?php
+    ob_start();
+    if ($mw['config']['cf_sidebar_outlogin']) echo outlogin("theme/mw5");
+    $side['outlogin'] = ob_get_clean();
+    ?>
 
     <?php
+    ob_start();
     if (!$is_member and $mw['config']['cf_sidebar_social']) {
         include_once($g4['path']."/plugin/social-login/include.php");
         $is_social_login = false;
@@ -48,10 +53,12 @@ if (!$is_sidebar) {
 
         if ($is_social_login) echo $social_login;
     }
+    $side['social'] = ob_get_clean();
     ?>
 
-    <?php ob_start(); ?>
-    <?php if ($is_member and $mw_cash['cf_cash_name'] and function_exists("mw_cash_grade") and $mw['config']['cf_sidebar_cash']) {?>
+    <?php
+    ob_start(); 
+    if ($is_member and $mw_cash['cf_cash_name'] and function_exists("mw_cash_grade") and $mw['config']['cf_sidebar_cash']) {?>
     <div class="block my_cash" onclick="location.href='<?php echo $mw_cash['path']?>/'">
     <div>
         <label>나의 <?php echo $mw_cash['cf_cash_name']?></label> :
@@ -97,7 +104,7 @@ if (!$is_sidebar) {
     </script>
     </div>
     <?php } // is_member ?>
-    <?php $side[] = ob_get_clean(); ?>
+    <?php $side['cybercash'] = ob_get_clean(); ?>
 
     <?php
     ob_start();
@@ -110,7 +117,7 @@ if (!$is_sidebar) {
             echo "<div class='block'>공지사항은 notice 게시판 생성시 자동으로 출력됩니다.</div>";
         }
     }
-    $side[] = ob_get_clean();
+    $side['notice'] = ob_get_clean();
     ?>
 
     <?php if ($mw['config']['cf_sidebar_menu'] and count($mw5_menu)) { ?>
@@ -146,7 +153,7 @@ if (!$is_sidebar) {
     ?>
     </ul>
     </div>
-    <?php $side[] = ob_get_clean(); ?>
+    <?php $side['menu'] = ob_get_clean(); ?>
     <?php } ?>
 
     <?php
@@ -154,7 +161,7 @@ if (!$is_sidebar) {
     if ($mw['config']['cf_sidebar_latest_write']) {
         echo '<div class="block">'. mw_latest_write($mw['config']['cf_sidebar_latest_write_limit']).'</div>';
     }
-    $side[] = ob_get_clean();
+    $side['latest'] = ob_get_clean();
     ?>
 
     <?php
@@ -162,7 +169,7 @@ if (!$is_sidebar) {
     if ($mw['config']['cf_sidebar_latest_comment']) { 
         echo '<div class="block">'.mw_latest_comment($mw['config']['cf_sidebar_latest_comment_limit']).'</div>';
     }
-    $side[] = ob_get_clean();
+    $side['comment'] = ob_get_clean();
     ?>
 
     <?php
@@ -170,7 +177,7 @@ if (!$is_sidebar) {
     if ($mw['config']['cf_sidebar_visit']) { 
         echo '<div class="block">'.mw_connect().'</div>';
     }
-    $side[] = ob_get_clean();
+    $side['visit'] = ob_get_clean();
     ?>
 
     <?php
@@ -180,12 +187,12 @@ if (!$is_sidebar) {
         if ($poll)
             echo "<div class=\"block\">{$poll}</div>";
     }
-    $side[] = ob_get_clean();
+    $side['poll'] = ob_get_clean();
     ?>
 
     <?php
-    //shuffle($side);
-    foreach ($side as $row) echo $row;
+    $sort = explode(',', $mw['config']['cf_sidebar_sortable']);
+    foreach ($sort as $row) echo $side[$row];
     ?>
 
     <?php if (!$mw['config']['cf_no_sidebar_tail']) echo mw_eval($mw['config']['cf_sidebar_tail_html']); ?>

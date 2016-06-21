@@ -29,9 +29,25 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
 </div>';
 
 ?>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>
+<style>
+#sortable li {
+    cursor:pointer;
+}
+#sortable li:before {
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+    content:'\f0c9';
+    margin-right:10px;
+    display:inline-block;
+}
+</style>
 
 <form name="fconfigform" id="fconfigform" method="post" onsubmit="return fconfigform_submit(this);">
 <input type="hidden" name="token" value="<?php echo $token ?>" id="token">
+<input type="hidden" name="cf_sidebar_sortable" value="">
 
 <section id="anc_cf_theme">
     <h2 class="h2_frm">테마 설정</h2>
@@ -353,30 +369,38 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
         <tr>
             <th scope="row"><label for="cf_sidebar">사이드바</label></th>
             <td colspan="3">
-                <?php echo help("사이드바 기본항목 사용여부를 선택해주세요.")?>
-                <ul class="sidebar-use">
-                <li><label><input type="checkbox" name="cf_sidebar_outlogin" value="1"> 로그인</label></li>
-                <li><label><input type="checkbox" name="cf_sidebar_social" value="1"> 소셜 로그인</label></li>
-                <li><label><input type="checkbox" name="cf_sidebar_menu" value="1"> 메뉴</label></li>
-                <li><label><input type="checkbox" name="cf_sidebar_cash" value="1"> 나의 cash (컨텐츠샵)</label></li>
-                <li>
+                <?php echo help("사이드바 기본항목 사용여부를 선택해주세요. 드래그하면 순서를 바꿀 수 있습니다.")?>
+                <ul class="sidebar-use" id="sortable">
+                <?php 
+                if (!trim($mw['config']['cf_sidebar_sortable'])) {
+                    $mw['config']['cf_sidebar_sortable'] = "outlogin,social,menu,cybercash,notice,latest,comment,visit,poll";
+                }
+                $side = explode(',', $mw['config']['cf_sidebar_sortable']);
+                foreach ($side as $row) :
+                ?>
+                <?php if ($row === 'outlogin') { ?><li id="outlogin"> <label><input type="checkbox" name="cf_sidebar_outlogin" value="1"> 로그인</label></li><?php } ?>
+                <?php if ($row === 'social') { ?><li id="social"> <label><input type="checkbox" name="cf_sidebar_social" value="1"> 소셜 로그인</label></li><?php } ?>
+                <?php if ($row === 'menu') { ?><li id="menu"> <label><input type="checkbox" name="cf_sidebar_menu" value="1"> 메뉴</label></li><?php } ?>
+                <?php if ($row === 'cybercash') { ?><li id="cybercash"> <label><input type="checkbox" name="cf_sidebar_cash" value="1"> 나의 cash (컨텐츠샵)</label></li><?php } ?>
+                <?php if ($row === 'notice') { ?><li id="notice">
                     <label><input type="checkbox" name="cf_sidebar_notice" value="1"> 공지사항</label>,
                     TABLE
                     <input type="text" size="10" class="frm_input" name="cf_sidebar_notice_table" value="<?php echo $mw['config']['cf_sidebar_notice_table']?>">,
                     <input type="text" size="3" class="frm_input" name="cf_sidebar_notice_limit" value="<?php echo $mw['config']['cf_sidebar_notice_limit']?>">
                     개
-                </li>
-                <li>
+                </li><?php } ?>
+                <?php if ($row === 'latest') { ?><li id="latest">
                     <label><input type="checkbox" name="cf_sidebar_latest_write" value="1"> 최신글</label>,
                     <input type="text" size="3" class="frm_input" name="cf_sidebar_latest_write_limit" value="<?php echo $mw['config']['cf_sidebar_latest_write_limit']?>">
                     개
-                </li>
-                <li>
+                </li><?php } ?>
+                <?php if ($row === 'comment') { ?><li id="comment">
                     <label><input type="checkbox" name="cf_sidebar_latest_comment" value="1"> 최신댓글</label>,
                     <input type="text" size="3" class="frm_input" name="cf_sidebar_latest_comment_limit" value="<?php echo $mw['config']['cf_sidebar_latest_comment_limit']?>"> 개
-                </li>
-                <li><label><input type="checkbox" name="cf_sidebar_visit" value="1"> 현재접속회원</label></li>
-                <li><label><input type="checkbox" name="cf_sidebar_poll" value="1"> 설문</label></li>
+                </li><?php } ?>
+                <?php if ($row === 'visit') { ?><li id="visit"> <label><input type="checkbox" name="cf_sidebar_visit" value="1"> 현재접속회원</label></li><?php } ?>
+                <?php if ($row === 'poll') { ?><li id="poll"> <label><input type="checkbox" name="cf_sidebar_poll" value="1"> 설문</label></li><?php } ?>
+                <?php endforeach; ?>
                 </ul>
                 <div>
                     <a class="btn_frmline" href="http://www.miwit.com/b/mw_tip-4602" target="_blank">설정방법보기</a>
@@ -396,17 +420,30 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
         </tr>
         </tbody>
         </table>
+
     </div>
 </section>
 
 <?php echo $frm_submit; ?>
 
-
 </form>
 
 <script>
+$(function() {
+    $( "#sortable" ).sortable({
+        revert: true,
+    });
+    $( "ul, li" ).disableSelection();
+});
+
 function fconfigform_submit(f)
 {
+    var side = new Array();
+    $("#sortable").find('li').each(function () {
+        side.push($(this).attr("id"));
+    });
+
+    f.cf_sidebar_sortable.value = side.join(',');
     f.action = "./config_form_update.php";
     return true;
 }

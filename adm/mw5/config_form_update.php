@@ -64,6 +64,8 @@ $sql_common = "
     ,cf_sidebar_latest_write_limit = '{$_POST['cf_sidebar_latest_write_limit']}'
     ,cf_sidebar_latest_comment_limit = '{$_POST['cf_sidebar_latest_comment_limit']}'
 
+    ,cf_sidebar_sortable = '{$_POST['cf_sidebar_sortable']}'
+
     ,cf_tail_html = '{$_POST['cf_tail_html']}'
     ,cf_no_tail = '{$_POST['cf_no_tail']}'
 

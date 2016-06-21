@@ -103,3 +103,4 @@ sql_query("alter table {$mw5['config_table']} add cf_sidebar_notice_table varcha
 sql_query("alter table {$mw5['config_table']} add cf_sidebar_notice_limit tinyint not null default '5' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_sidebar_latest_write_limit tinyint not null default '5' ", false);
 sql_query("alter table {$mw5['config_table']} add cf_sidebar_latest_comment_limit tinyint not null default '5' ", false);
+sql_query("alter table {$mw5['config_table']} add cf_sidebar_sortable varchar(255) not null default '' ", false);
