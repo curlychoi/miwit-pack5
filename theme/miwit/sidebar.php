@@ -160,7 +160,7 @@ if (!$is_sidebar) {
     <?php
     ob_start(); 
     if ($mw['config']['cf_sidebar_latest_comment']) { 
-        echo '<div class="block">'.mw_latest_comment($mw['config']['cf_sidebar_latest_write_limit']).'</div>';
+        echo '<div class="block">'.mw_latest_comment($mw['config']['cf_sidebar_latest_comment_limit']).'</div>';
     }
     $side[] = ob_get_clean();
     ?>
