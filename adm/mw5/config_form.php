@@ -362,7 +362,9 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <li>
                     <label><input type="checkbox" name="cf_sidebar_notice" value="1"> 공지사항</label>,
                     TABLE
-                    <input type="text" size="10" class="frm_input" name="cf_sidebar_notice_table" value="<?php echo $mw['config']['cf_sidebar_notice_table']?>">
+                    <input type="text" size="10" class="frm_input" name="cf_sidebar_notice_table" value="<?php echo $mw['config']['cf_sidebar_notice_table']?>">,
+                    <input type="text" size="3" class="frm_input" name="cf_sidebar_notice_limit" value="<?php echo $mw['config']['cf_sidebar_notice_limit']?>">
+                    개
                 </li>
                 <li>
                     <label><input type="checkbox" name="cf_sidebar_latest_write" value="1"> 최신글</label>,

@@ -60,6 +60,7 @@ $sql_common = "
     ,cf_sidebar_latest_comment = '{$_POST['cf_sidebar_latest_comment']}'
 
     ,cf_sidebar_notice_table = '{$_POST['cf_sidebar_notice_table']}'
+    ,cf_sidebar_notice_limit = '{$_POST['cf_sidebar_notice_limit']}'
     ,cf_sidebar_latest_write_limit = '{$_POST['cf_sidebar_latest_write_limit']}'
     ,cf_sidebar_latest_comment_limit = '{$_POST['cf_sidebar_latest_comment_limit']}'
 
