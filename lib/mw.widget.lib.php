@@ -57,6 +57,7 @@ function mw_latest_write($limit=5)
 {
     global $g5;
     global $member;
+    global $mw;
 
     ob_start();
 
@@ -65,7 +66,8 @@ function mw_latest_write($limit=5)
     echo "<ul>\n";
 
     $board_list = array();
-    $sql = "select bo_table from {$g5['board_table']} where bo_use_search = '1' and bo_list_level <= {$member['mb_level']} ";
+    $sql = " select bo_table from {$g5['board_table']} where bo_use_search = '1' and bo_list_level <= {$member['mb_level']} ";
+    $sql.= " and bo_table <> '{$mw['config']['cf_sidebar_notice_table']}' ";
     $qry = sql_query($sql);
     while ($row = sql_fetch_array($qry)) {
         $board_list[] = $row['bo_table'];
