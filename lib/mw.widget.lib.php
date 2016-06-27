@@ -84,25 +84,18 @@ function mw_latest_write($limit=5)
         else
             $href = G5_BBS_URL."/board.php?bo_table={$row['bo_table']}&wr_id={$row['wr_id']}";
 
-        $sql = " select wr_option, wr_subject, wr_comment ";
+        $sql = " select * ";
         $sql.= "   from {$g5['write_prefix']}{$row['bo_table']} ";
         $sql.= "  where wr_id = '{$row['wr_id']}' ";
         $ro2 = sql_fetch($sql);
 
         $ro3 = sql_fetch("select bo_subject, bo_new from {$g5['board_table']} where bo_table = '{$row['bo_table']}' ");
 
+        $ro2 = mw_get_list($ro2, $ro3, '', 100);
+
         $subject = $ro2['wr_subject'];
         $subject = strip_tags($subject);
         //$subject = addslashes($subject);
-
-        if ($member['mb_id']) {
-            $subject = str_replace("{닉네임}", $member['mb_nick'], $subject);
-            $subject = str_replace("{별명}", $member['mb_nick'], $subject);
-        }
-        else {
-            $subject = str_replace("{닉네임}", "회원", $subject);
-            $subject = str_replace("{별명}", "회원", $subject);
-        }
 
         $subject = "[{$ro3['bo_subject']}] ".$subject;
 
@@ -174,6 +167,8 @@ function mw_latest_comment($limit=5)
         $ro2 = sql_fetch($sql);
 
         $ro3 = sql_fetch("select bo_subject, bo_new from {$g5['board_table']} where bo_table = '{$row['bo_table']}' ");
+
+        $ro2 = mw_get_list($ro2, $ro3, '', 100);
 
         $content = $ro2['wr_content'];
         $content = htmlspecialchars($content);
