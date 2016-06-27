@@ -13,7 +13,7 @@ $g5['title'] = $group['gr_subject'];
 include_once(G5_THEME_PATH.'/head.php');
 
 $loop_index = 0;
-$sql = sprintf("select bo_table from %s where gr_id = '%s'", $g5['board_table'], $gr_id);
+$sql = sprintf("select bo_table from %s where bo_list_level <= '%d' and bo_device <> 'mobile' and gr_id = '%s'", $g5['board_table'], $member['mb_level'], $gr_id);
 $qry = sql_query($sql);
 while ($row = sql_fetch_array($qry)) {
 
