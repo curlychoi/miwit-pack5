@@ -105,6 +105,23 @@ if ($mw_basic[cf_comment_file]) {
 if ($file_upload_msg)
     alert($file_upload_msg, $g4['bbs_path']."/board.php?bo_table=$bo_table&wr_id=$wr[wr_parent]&page=$page" . $qstr . "&cwin=$cwin#c_{$comment_id}");
 
+// 원본 강제 리사이징 (첨부파일)
+if ($mw_basic[cf_resize_original]) {
+    $sql = " select * from $mw[comment_file_table] ";
+    $sql.= " where bo_table = '$bo_table' and wr_id = '$comment_id' and bf_width > 0  order by bf_no";
+    $qry = sql_query($sql);
+    while ($row = sql_fetch_array($qry)) {
+        $file = "$file_path/$row[bf_file]";
+        $size = getImageSize($file);
+        //if ($size[0] > $mw_basic[cf_resize_original] || $mw_basic[cf_resize_original] < $size[1]) {
+            mw_make_thumbnail($mw_basic[cf_resize_original], $mw_basic[cf_resize_original], $file, $file, true);
+            $size = getImageSize($file);
+        //} 
+        sql_query("update $mw[comment_file_table] set bf_width = '$size[0]', bf_height = '$size[1]',
+            bf_filesize = '".filesize($file)."'
+            where bo_table = '$bo_table' and wr_id = '$comment_id' and bf_no = '$row[bf_no]'");
+    }   
+}
 
 if ($mw_basic['cf_image_outline']) {
     mw_image_outline($dest_file, null, $mw_basic['cf_image_outline_color']);

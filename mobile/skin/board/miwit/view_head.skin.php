@@ -317,8 +317,8 @@ if ($mw_basic[cf_comma]) {
 
 // 컨텐츠샵
 $mw_price = "";
-if ($mw_basic[cf_contents_shop]) {
-    if (!$view[wr_contents_price])
+if ($mw_basic['cf_contents_shop']) {
+    if (!$view['wr_contents_price'])
 	$mw_price = "무료";
     else
 	$mw_price = $mw_cash[cf_cash_name] . " " . number_format($view[wr_contents_price]).$mw_cash[cf_cash_unit];
@@ -827,5 +827,79 @@ if ($is_admin || $history_href || $is_singo_admin)
     </div><!--mw_manage-->
     <?php
     $mw_admin_button = ob_get_clean();
+}
+
+if ($mw_basic[cf_contents_shop] == "1")  // 배추컨텐츠샵-다운로드 결제
+{
+    $is_per = true;
+    $is_buy = false;
+    $is_per_msg = '예외오류';
+
+    if (!$is_member) {
+	//alert("로그인 해주세요.");
+        $is_per = false;
+	$is_per_msg = "로그인 해주세요.";
+    }
+
+/*    if ($mw_basic['cf_contents_shop_category']) { // 분류별 결제
+        $sql = sprintf(" select * from %s where bo_table = '%s' and ca_name = '%s'", $mw['category_table'], $bo_table, $write['ca_name']);
+        $ro2 = sql_fetch($sql);
+
+        if ($ro2['ca_cash'])
+            $write['wr_contents_price'] = $ro2['ca_cash'];
+    }
+*/
+
+    //if (!mw_is_buy_contents($member[mb_id], $bo_table, $wr_id) && $is_admin != "super")
+    $con = mw_is_buy_contents($member[mb_id], $bo_table, $wr_id);
+    if (!$con and $is_per)
+    {
+	//alert("결제 후 다운로드 하실 수 있습니다.");
+        $is_per = false;
+	$is_per_msg = "결제 후 다운로드 하실 수 있습니다.";
+
+        if (!$ca_cash_use)
+            $is_per_msg = '현재는 판매하고 있지 않습니다.';
+    }
+    else if (!$write[wr_contents_price]) ;
+    else
+    {
+        if ($mw_basic[cf_contents_shop_download_count] and $is_per) {
+            $sql1 = "select count(*) as cnt from $mw_cash[cash_list_table] where rel_table = '$bo_table' and rel_id = '$wr_id' and cl_cash < 0";
+            $row1 = sql_fetch($sql1);
+            $sql2 = "select count(*) as cnt from $mw[download_log_table] where bo_table = '$bo_table' and wr_id = '$wr_id' and dl_datetime > '$con[cl_datetime]'";
+            $row2 = sql_fetch($sql2);
+            if ($row2[cnt] >= ($mw_basic[cf_contents_shop_download_count])) {
+                //alert("다운로드 횟수 ($mw_basic[cf_contents_shop_download_count]회) 를 넘었습니다.\\n\\n재결제 후 다운로드 할 수 있습니다.");
+                $is_per = false;
+                $is_per_msg = "다운로드 횟수 ($mw_basic[cf_contents_shop_download_count]회) 를 넘었습니다.\\n\\n재결제 후 다운로드 할 수 있습니다.";
+            }
+        }
+
+        if ($mw_basic[cf_contents_shop_download_day] and $is_per) {
+            $gap = floor(($g4[server_time] - strtotime($con[cl_datetime])) / (60*60*24));
+            if ($gap >= $mw_basic[cf_contents_shop_download_day]) {
+                //alert("다운로드 기간 ($mw_basic[cf_contents_shop_download_day]일) 이 지났습니다.\\n\\n재결제 후 다운로드 할 수 있습니다.");
+                $is_per = false;
+                $is_per_msg = "다운로드 기간 ($mw_basic[cf_contents_shop_download_day]일) 이 지났습니다.\\n\\n재결제 후 다운로드 할 수 있습니다.";
+            }
+        }
+    }
+    if ($is_per) $is_buy = true;
+
+    if (function_exists("mw_cash_is_membership") and !$is_buy)
+    {
+        $is_membership = @mw_cash_is_membership($member[mb_id], $bo_table, "mp_down");
+
+        if ($is_membership == "no") // 멤버쉽 게시판이 아님
+            ;
+        else if ($is_membership == 'ok') {
+            $is_per = true;
+        }
+        else {
+            $is_per = false;
+            //mw_cash_alert_membership($is_membership);
+        }
+    }
 }
 

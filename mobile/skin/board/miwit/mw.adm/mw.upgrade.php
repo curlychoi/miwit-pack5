@@ -1230,6 +1230,7 @@ if (is_null($mw_basic[cf_talent_market])) {
 
     sql_query("alter table $mw[basic_config_table] add cf_hp_reply varchar(20) not null after cf_hp", false);
     sql_query("alter table $mw[basic_config_table] add cf_jwplayer_version varchar(15) not null default 'jwplayer6'", false);
+    sql_query("alter table $mw[basic_config_table] add cf_jwplayer_autostart varchar(1) not null default ''", false);
 
     sql_query("alter table $mw[basic_config_table] add cf_ban_subject varchar(1) not null", false);
 
@@ -1325,8 +1326,14 @@ if (is_null($mw_basic[cf_talent_market])) {
         ca_level_view tinyint not null,
         ca_level_write tinyint not null,
         ca_color varchar(6) not null,
+        ca_cash int unsigned not null,
+        ca_cash_use varchar(1) not null,
         primary key (ca_id)) ".$default_charset;
     sql_query($sql, false);
+
+    sql_query("alter table {$mw['category_table']} add ca_cash int unsigned not null", false);
+    sql_query("alter table {$mw['category_table']} add ca_cash_use varchar(1) not null", false);
+    sql_query("alter table {$mw['basic_config_table']} add cf_contents_shop_category varchar(1) not null", false);
 
     sql_query("alter table {$mw['basic_config_table']} add cf_seo_url varchar(1) not null", false);
 
@@ -1421,4 +1428,5 @@ if (is_null($mw_basic[cf_talent_market])) {
     sql_query("alter table {$mw['basic_config_table']} add cf_emoticon varchar(50) not null", false);
 
     sql_query("alter table {$mw['basic_config_table']} add cf_prev_next varchar(1) not null", false);
+    sql_query("alter table {$mw['basic_config_table']} add cf_comment_image_no varchar(1) not null", false);
 

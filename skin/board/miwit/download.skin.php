@@ -59,6 +59,14 @@ if ($mw_basic[cf_contents_shop]) { // 배추컨텐츠샵
 	$is_per_msg = "로그인 해주세요.";
     }
 
+    if ($mw_basic['cf_contents_shop_category']) { // 분류별 결제
+        $sql = sprintf(" select * from %s where bo_table = '%s' and ca_name = '%s'", $mw['category_table'], $bo_table, $write['ca_name']);
+        $ro2 = sql_fetch($sql);
+
+        if ($ro2['ca_cash'])
+            $write['wr_contents_price'] = $ro2['ca_cash'];
+    }
+
     //if (!mw_is_buy_contents($member[mb_id], $bo_table, $wr_id) && $is_admin != "super")
     $con = mw_is_buy_contents($member[mb_id], $bo_table, $wr_id);
     if (!$con and $is_per)
@@ -66,6 +74,9 @@ if ($mw_basic[cf_contents_shop]) { // 배추컨텐츠샵
 	//alert("결제 후 다운로드 하실 수 있습니다.");
         $is_per = false;
 	$is_per_msg = "결제 후 다운로드 하실 수 있습니다.";
+
+        if (!$ca_cash_use)
+            $is_per_msg = '현재는 판매하고 있지 않습니다.';
     }
     else if (!$write[wr_contents_price]) ;
     else if ($mw_basic[cf_contents_shop] == '1')

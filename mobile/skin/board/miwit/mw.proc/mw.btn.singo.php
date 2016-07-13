@@ -41,11 +41,11 @@ if ($row && !$is_admin)
 
 set_session("ss_singo_token", $token = uniqid(time()));
 
-$viewport = "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0\">";
+$meta = "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0\">";
 ob_start();
 include_once("$g4[path]/head.sub.php");
 $head = ob_get_clean();
-$head = str_replace("<head>", "<head>\n{$viewport}", $head);
+$head = str_replace("<head>", "<head>\n{$meta}", $head);
 echo $head;
 ?>
 

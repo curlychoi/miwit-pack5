@@ -39,7 +39,7 @@ if ($delete_href && !strstr($delete_href, "javascript")) $delete_href = "#;\" on
 if (is_reaction_test())
 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
 ?>
-
+<style> <?php echo $cf_css?> </style>
 <?php include_once($board_skin_path."/mw.proc/mw.asset.php")?>
 
 <script> document.title = "<?=strip_tags(addslashes($view[wr_subject]))?>"; </script>
@@ -308,7 +308,10 @@ $cnt = 0;
 for ($i=1; $i<=$g4[link_count]; $i++) {
     if ($view[link][$i]) {
         $cnt++;
-        $link = cut_str($view[link][$i], 70);
+        if (mw_is_mobile_builder() or G5_IS_MOBILE)
+            $link = cut_str($view[link][$i], 40);
+        else
+            $link = cut_str($view[link][$i], 70);
 ?>
 <div class="mw_basic_view_link">
     <?php if ($is_admin && (strstr($link, "youtu") or strstr($link, "vimeo"))) { ?>
@@ -348,6 +351,12 @@ for ($i=1; $i<=$g4[link_count]; $i++) {
     }
 }
 ?>
+
+<?php ob_start(); if ($mw_basic['cf_contents_shop'] == "1" and !$is_buy) {  // 배추컨텐츠샵-다운로드 결제 ?>
+<div class="mw_basic_contents_shop_pay_button">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i> 구매하기
+</div>
+<?php } $buy_button = ob_get_contents(); ob_end_flush(); ?>
 
 <script>
 $(document).ready(function () {
@@ -636,6 +645,8 @@ if ($bomb) {
     </script>
 <?php } ?>
 
+<?php echo $buy_button; ?>
+
 <?php
 //if ($is_signature && $signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymous") // 서명출력
 if ($is_signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymous") // 서명출력
@@ -701,6 +712,7 @@ if ($is_signature && !$view[wr_anonymous] && $mw_basic[cf_attribute] != "anonymo
     </table>
 </div><!--mw_basic_view_signature-->
 <?php } ?>
+
 
 <?php if ($mw_basic[cf_quiz] && is_file($quiz_path."/view.php")) { // 퀴즈 ?>
 <div class="mw_basic_view_quiz">
@@ -1152,54 +1164,6 @@ function btn_comment_hide() {
 </script>
 <? } ?>
 
-<?php
-if ($mw_basic[cf_contents_shop] == "1")  // 배추컨텐츠샵-다운로드 결제
-{
-    $is_per = true;
-    $is_buy = false;
-    $is_per_msg = '예외오류';
-
-    if (!$is_member) {
-	//alert("로그인 해주세요.");
-        $is_per = false;
-	$is_per_msg = "로그인 해주세요.";
-    }
-
-    //if (!mw_is_buy_contents($member[mb_id], $bo_table, $wr_id) && $is_admin != "super")
-    $con = mw_is_buy_contents($member[mb_id], $bo_table, $wr_id);
-    if (!$con and $is_per)
-    {
-	//alert("결제 후 다운로드 하실 수 있습니다.");
-        $is_per = false;
-	$is_per_msg = "결제 후 다운로드 하실 수 있습니다.";
-    }
-    else if (!$write[wr_contents_price]) ;
-    else
-    {
-        if ($mw_basic[cf_contents_shop_download_count] and $is_per) {
-            $sql1 = "select count(*) as cnt from $mw_cash[cash_list_table] where rel_table = '$bo_table' and rel_id = '$wr_id' and cl_cash < 0";
-            $row1 = sql_fetch($sql1);
-            $sql2 = "select count(*) as cnt from $mw[download_log_table] where bo_table = '$bo_table' and wr_id = '$wr_id' and dl_datetime > '$con[cl_datetime]'";
-            $row2 = sql_fetch($sql2);
-            if ($row2[cnt] >= ($mw_basic[cf_contents_shop_download_count])) {
-                //alert("다운로드 횟수 ($mw_basic[cf_contents_shop_download_count]회) 를 넘었습니다.\\n\\n재결제 후 다운로드 할 수 있습니다.");
-                $is_per = false;
-                $is_per_msg = "다운로드 횟수 ($mw_basic[cf_contents_shop_download_count]회) 를 넘었습니다.\\n\\n재결제 후 다운로드 할 수 있습니다.";
-            }
-        }
-
-        if ($mw_basic[cf_contents_shop_download_day] and $is_per) {
-            $gap = floor(($g4[server_time] - strtotime($con[cl_datetime])) / (60*60*24));
-            if ($gap >= $mw_basic[cf_contents_shop_download_day]) {
-                //alert("다운로드 기간 ($mw_basic[cf_contents_shop_download_day]일) 이 지났습니다.\\n\\n재결제 후 다운로드 할 수 있습니다.");
-                $is_per = false;
-                $is_per_msg = "다운로드 기간 ($mw_basic[cf_contents_shop_download_day]일) 이 지났습니다.\\n\\n재결제 후 다운로드 할 수 있습니다.";
-            }
-        }
-    }
-}
-?>
-
 <?php if ($mw_basic[cf_contents_shop]) { // 배추컨텐츠샵 ?>
 <script src="<?=$mw_cash[path]?>/cybercash.js"></script>
 <script>
@@ -1226,10 +1190,13 @@ function file_download(link, no) {
 
     <? if ($board[bo_download_point] < 0) { ?>if (confirm("파일을 다운로드 하시면 포인트가 차감(<?=number_format($board[bo_download_point])?>점)됩니다.\n\n포인트는 게시물당 한번만 차감되며 다음에 다시 다운로드 하셔도 중복하여 차감하지 않습니다.\n\n그래도 다운로드 하시겠습니까?"))<?}?>
 
-    <? if ($mw_basic[cf_contents_shop] == "1" and !$is_per) { // 배추컨텐츠샵 다운로드 결제 ?>
-    alert("<?=$is_per_msg?>");
-    buy_contents('<?=$bo_table?>', '<?=$wr_id?>', no);
-    return;
+    <?php if ($mw_basic[cf_contents_shop] == "1" and !$is_per) { // 배추컨텐츠샵 다운로드 결제 ?>
+        alert("<?=$is_per_msg?>");
+        <?php if (!$ca_cash_use) { ?>
+            return;
+        <?php } ?>
+        buy_contents('<?=$bo_table?>', '<?=$wr_id?>', no);
+        return;
     <? } ?>
 
     if (<?=$mw_basic[cf_download_popup]?>)
@@ -1391,6 +1358,12 @@ function mw_move_cate_one() {
     });
 </script>
 <?php } ?>
+<script>
+$(".mw_basic_contents_shop_pay_button").click(function () {
+    <?php if (!$ca_cash_use) printf('alert("%s"); return;', $is_per_msg); ?>
+    buy_contents('<?php echo $bo_table?>', '<?php echo $wr_id?>');
+});
+</script>
 
 <style>
 /* 본문 img */

@@ -267,6 +267,7 @@ if ($mw_basic[cf_comment_best]) {
 <div class="mw_basic_comment_best">
 <table width=100% cellpadding=0 cellspacing=0>
 <tr>
+<?php if (!$mw_basic['cf_comment_image_no']) { ?>
 <td valign="top" style="text-align:left;">
     <img src="<?=$comment_image?>" class="comment_image" 
         style="width:58px; height:58px; border:3px solid #f2f2f2; margin:0 10px 5px 0;">
@@ -285,6 +286,7 @@ if ($mw_basic[cf_comment_best]) {
     }
     ?>
 </td>
+<?php } ?>
 <td width="2" bgcolor="#dedede"><div style="width:2px;"></div></td>
 <td><div style="width:10px;"></div></td>
 
@@ -433,6 +435,7 @@ for ($i=0; $i<$to_record; $i++) {
 <tr>
     <td><? for ($k=0; $k<strlen($list[$i][wr_comment_reply]); $k++) echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?></td>
 
+<?php if (!$mw_basic['cf_comment_image_no']) { ?>
     <td valign="top" style="text-align:left;">
         <div class="comment_image <?php echo $comment_class?>">
         <img src="<?php echo $comment_image?>"
@@ -475,6 +478,7 @@ for ($i=0; $i<$to_record; $i++) {
         <?php } ?>
 
     </td>
+<?php } ?>
     <td width="2" bgcolor="#dedede"><div style="width:2px;"></div></td>
     <td><div style="width:10px;"></div></td>
 
@@ -1240,6 +1244,8 @@ function comment_box(comment_id, work, mb_nick)
 
         $("#comment_id").val(comment_id);
         $("#w").val(work);
+
+        $("#wr_content").autogrow();
 
         save_before = el_id;
 

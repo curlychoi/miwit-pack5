@@ -216,7 +216,7 @@ $list_run_time = mw_time_log($list_run_time, "[list] new_count");
 if (is_reaction_test())
 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
 ?>
-
+<style> <?php echo $cf_css?> </style>
 <?php if (!defined("_MW5_")) { ?>
 <link href="<?php echo $board_skin_path?>/mw.css/font-awesome-4.3.0/css/font-awesome.css" rel="stylesheet">
 <?php } ?>
@@ -506,6 +506,15 @@ if ($mw_basic[cf_reward]) {
 // 컨텐츠샵
 $mw_price = "";
 if ($mw_basic[cf_contents_shop]) {
+    if ($mw_basic['cf_contents_shop_category']) { // 분류별 결제
+        $sql = sprintf(" select * from %s where bo_table = '%s' and ca_name = '%s'", $mw['category_table'], $bo_table, $list[$i]['ca_name']);
+        $ro2 = sql_fetch($sql);
+
+        if ($ro2['ca_cash']) {
+            $list[$i]['wr_contents_price'] = $ro2['ca_cash'];
+        }
+    }
+
     if ($list[$i][is_notice])
         $mw_price = '&nbsp;';
     elseif (!$list[$i][wr_contents_price])
@@ -1203,8 +1212,8 @@ if ($mw_basic[cf_include_tail] && is_mw_file($mw_basic[cf_include_tail]) && strs
 if ('<?=$sca?>') document.fcategory.sca.value = '<?=urlencode($sca)?>';
 <? } ?>
 if ('<?=$stx?>') {
-    document.fsearch.sfl.value = '<?=$sfl?>';
-    document.fsearch.sop.value = '<?=$sop?>';
+    $("form[name=fsearch]").find("select[name=sfl]").val("<?php echo $sfl?>");
+    $("form[name=fsearch]").find("select[name=sop]").val("<?php echo $sop?>");
 }
 </script>
 

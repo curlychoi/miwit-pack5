@@ -54,6 +54,11 @@ if ($wr_id) return;
         'kakao_collect', 'width=800,height=600,scrollbars=1')"><i class="fa fa-wifi"></i> 카카오</button>
     <?php } ?>
 
+    <?php if ($is_admin && $mw_basic[cf_collect] == 'instagram' && file_exists("$g4[path]/plugin/instagram-collect/_lib.php")) {?>
+    <button class="fa-button" onclick="window.open('<?=$g4[path]?>/plugin/instagram-collect/config.php?bo_table=<?=$bo_table?>',
+        'instagram_collect', 'width=800,height=600,scrollbars=1')"><i class="fa fa-instagram"></i> 인스타그램</button>
+    <?php } ?>
+
     <?php if ($mw_basic[cf_social_commerce] && $rss_href && file_exists("$social_commerce_path/img/xml.png")) { ?>
     <button onclick="location.href='<?=$social_commerce_path?>/xml.php?bo_table=<?=$bo_table?>'" class="fa-button">
     <i class="fa fa-rss"></i> XML</button>

@@ -1470,16 +1470,14 @@ function bc_code($str, $is_content=1, $only_admin=0) {
             );
             $str = preg_replace_callback("/include\(\"([^\"]+)\"\)/i", $callback, $str);
         }
+
+        $str = preg_replace('/\[soundcloud url="([^"]+)".*params="([^"]+)".*\]/ie', "mw_soundcloud('\\1', '\\2')", $str);
+        $str = preg_replace('/\[soundcloud url=.*<A HREF="([^"]+)".*<\/A>.*params=&#034;([^;]+); [^\]]+\]/ie', "mw_soundcloud('\\1', '\\2')", $str);
     }
     if ($only_admin) {
         $callback = create_function('$arg', 'return mw_pay_banner($arg[1], $arg[2]);');
         $str = preg_replace_callback("/\<\?=mw_pay_banner\([\"\']?([^\"\']+)[\"\']?,[\s]*[\"\']?([^\"\']+)[\"\']?\)\?\>/i",
             $callback, $str);
-
-        /*$str = preg_replace_callback("/\<\?=mw_pay_banner\([\"\']?([^\"\']+)[\"\']?,[\s]*[\"\']?([^\"\']+)[\"\']?\)\?\>/i",
-        function ($arg) {
-            return mw_pay_banner($arg[1], $arg[2]);
-        }, $str);*/
     }
 
     $str = preg_replace("/\[line\]/iU", "<hr/>", $str);
@@ -1613,12 +1611,23 @@ function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되
     $lib_file_path = "$board_skin_path/mw.lib/mw.skin.basic.lib.php";
     if (is_mw_file($lib_file_path)) include($lib_file_path);
 
+    $delete_log = false;
+    if (($write['wr_is_comment'] && $mw_basic['cf_comment_delete_log'])
+        or (!$write['wr_is_comment'] && $mw_basic['cf_delete_log'])) {
+        $delete_log = true;
+    }
+
     if (trim($mw_basic['cf_trash']) && $mw_basic['cf_trash'] != $board['bo_table'] && !$write['wr_is_comment']) {
         mw_row_delete_point($board, $write);
-        mw_move($board, $write['wr_id'], $mw_basic['cf_trash'], 'move');
-        if (is_g5())
-            delete_cache_latest($board['bo_table']);
-        return;
+        if ($delete_log or $save_log) {
+            mw_move($board, $write['wr_id'], $mw_basic['cf_trash'], 'copy');
+        }
+        else {
+            mw_move($board, $write['wr_id'], $mw_basic['cf_trash'], 'move');
+            if (is_g5())
+                delete_cache_latest($board['bo_table']);
+            return;
+        }
     }
 
     $count_write = 0;
@@ -1778,12 +1787,6 @@ function mw_delete_row($board, $write, $save_log=false, $save_message='삭제되
                 $count_comment++;
             }
         }
-    }
-
-    $delete_log = false;
-    if (($write['wr_is_comment'] && $mw_basic['cf_comment_delete_log'])
-        or (!$write['wr_is_comment'] && $mw_basic['cf_delete_log'])) {
-        $delete_log = true;
     }
 
     // 게시글 삭제
@@ -2744,6 +2747,9 @@ function mw_jwplayer($url, $opt="")
         $opt .= ", width:'{$size[0]}', height:'{$size[1]}' ";
     }
 
+    if ($mw_basic['cf_jwplayer_autostart']) {
+        $opt = ', autostart:true ' . $opt;
+    }
     $buffer .= " file:'{$url}' {$opt} }); </script>";
 
     $jwplayer_count++;
@@ -2809,11 +2815,15 @@ function mw_get_youtube_thumb($wr_id, $url, $datetime='')
     $file = mw_thumb_jpg("$thumb_path/{$wr_id}");
     //if (is_mw_file($file)) return;
 
+    $p = parse_url($url);
+
     if (preg_match("/^https?:\/\/youtu.be\/(.*)$/i", $url, $mat)) {
-        $v = $mat[1];
+        //$v = $mat[1];
+        $v = basename($p['path']);
     }
     elseif (preg_match("/\/\/.*youtube\.com\/.*v[=\/]([a-zA-Z0-9-_]+)?/i", $url, $mat)) {
-        $v = $mat[1];
+        parse_str($p['query']);
+        //$v = $mat[1];
     }
     elseif (preg_match('/player.vimeo.com\/video\/(\d+)$/', $url, $mat)) {
         mw_get_vimeo_thumb($wr_id, $url, $datetime);
@@ -3013,24 +3023,6 @@ function mw_youtube($url, $q=0)
 
 function mw_youtube_content($content, $q='')
 {
-/*
-    $pt1 = "/\[<a href=\"(https?:\/\/youtu\.be\/[^\"]+)\"[^>]+>[^<]+<\/a>\]/ie";
-    $pt2 = "/\[<a href=\"(https?:\/\/www\.youtube\.com\/[^\"]+)\"[^>]+>[^<]+<\/a>\]/ie";
-    $pt3 = "/\[(https?:\/\/youtu\.be\/[^\]]+)\]/ie";
-    $pt4 = "/\[(https?:\/\/www\.youtube\.com\/[^\]]+)\]/ie";
-
-    $pt5 = "/\[(https?:\/\/vimeo\.com\/[^]]+)\]/ie"; 
-    $pt6 = "/\[<a href=\"(https?:\/\/vimeo\.com\/[^\"]+)\"[^>]+>[^<]+<\/a>\]/ie"; 
-
-    $content = preg_replace($pt1, "mw_youtube('\\1', '$q')", $content);
-    $content = preg_replace($pt2, "mw_youtube('\\1', '$q')", $content);
-    $content = preg_replace($pt3, "mw_youtube('\\1', '$q')", $content);
-    $content = preg_replace($pt4, "mw_youtube('\\1', '$q')", $content);
-
-    $content = preg_replace($pt5, "mw_vimeo('\\1', '$q')", $content); 
-    $content = preg_replace($pt6, "mw_vimeo('\\1', '$q')", $content); 
-*/
-
     $pt = mw_youtube_pattern($content);
     if ($pt)
         $content = preg_replace($pt, "mw_youtube('\\1', '$q')", $content);
@@ -3042,6 +3034,18 @@ function mw_youtube_content($content, $q='')
     return mw_video_wrapper($content);
 }
 
+function mw_soundcloud($src, $param)
+{
+    $src = str_replace('&#034;', '', $src);
+    $src = str_replace('&#034', '', $src);
+    $param = str_replace('&#034;', '', $param);
+    $param = str_replace('&#034', '', $param);
+
+    $s = sprintf('<iframe width="100%%" height="162" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=%s&%s"></iframe>', urlencode($src), urlencode($param));
+
+    return $s;
+}
+
 function mw_video_wrapper($content)
 {
     return preg_replace('/(<iframe[^>]+><\/iframe>)/i', "<div class='videoWrapper'>\\1</div>", $content);
@@ -3049,9 +3053,10 @@ function mw_video_wrapper($content)
 
 function mw_youtube_pattern($content)
 {
+    $content = stripslashes($content);
     $pt = array();
-    $pt[] = "/\[<a href=\"(https?:\/\/youtu\.be\/[^\"]+)\"[^>]+>[^<]+<\/a>\]/ie";
-    $pt[] = "/\[<a href=\"(https?:\/\/www\.youtube\.com\/[^\"]+)\"[^>]+>[^<]+<\/a>\]/ie";
+    $pt[] = "/\[<a href=\"(https?:\/\/youtu\.be\/[^\"]+)\"[^>]*>[^<]+<\/a>\]/ie";
+    $pt[] = "/\[<a href=\"(https?:\/\/www\.youtube\.com\/[^\"]+)\"[^>]*>[^<]+<\/a>\]/ie";
     $pt[] = "/\[(https?:\/\/youtu\.be\/[^\]]+)\]/ie";
     $pt[] = "/\[(https?:\/\/www\.youtube\.com\/[^\]]+)\]/ie";
 

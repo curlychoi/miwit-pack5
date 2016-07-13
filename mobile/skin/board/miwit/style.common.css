@@ -746,7 +746,6 @@ img {
     word-break:break-all;
     white-space:nowrap;
     overflow:hidden;
-    max-width:0;
     text-overflow:ellipsis;
     color:#000;
     position:static;
@@ -2370,7 +2369,7 @@ img {
 #mw_basic .gall_list div { margin:0 0 5px 0; }
 #mw_basic .gall_list div.gall_image img.thumb { border:1px solid #ddd; }
 #mw_basic .gall_list div.gall_subject { margin:5px 0 12px 0; line-height:15px; height:20px; overflow:hidden; text-align:center; }
-#mw_basic .gall_list div.gall_subject a { font:bold 15px 'malgun gothic'; }
+#mw_basic .gall_list div.gall_subject a { font:bold 15px 'malgun gothic'; text-decoration:none; }
 #mw_basic .gall_list div.gall_hot { position:absolute; width:40px; height:40px; margin:-10px 0 0 -10px; }
 #mw_basic .gall_list div.gall_hot { text-align:center; }
 #mw_basic .gall_list div.gall_hot div { margin:11px 0 0 0; font:bold 12px 'Malgun Gothic'; color:#000; letter-spacing:-1px; }
@@ -2960,4 +2959,26 @@ nav.pg_wrap {
 
 }
 
+#mw_basic .mw_basic_contents_shop_pay_button {
+    text-align:center;
+    height:30px;
+    line-height:30px;
+    background-color:#2c3e50;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+   -moz-user-select: -moz-none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
 
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}

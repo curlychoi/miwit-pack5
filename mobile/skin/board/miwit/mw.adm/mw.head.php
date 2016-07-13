@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Bechu-Basic Skin for Gnuboard4
  *
@@ -45,7 +45,7 @@ include_once("$g4[path]/head.sub.php");
 <div id=mw_basic>
 
 <div class=cf_head>
-    <a href="http://g4.miwit.com" target=_blank><img src="<?=$board_skin_path?>/img/logo_curlychoi.gif" align=absmiddle></a>
+    <a href="http://miwit.kr" target=_blank><img src="<?=$board_skin_path?>/img/logo_curlychoi.gif" align=absmiddle></a>
     &nbsp;&nbsp;
     <strong>배추 BASIC 스킨 설정</strong> : <?=$board[bo_subject]?> (<?=$bo_table?>)
 </div>

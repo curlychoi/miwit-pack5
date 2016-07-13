@@ -282,6 +282,7 @@ if (!$is_member) {
     if (!$homepage) $homepage = get_cookie("mw_cookie_homepage");
 }
 ?>
+<style> <?php echo $cf_css?> </style>
 <?php include_once($board_skin_path."/mw.proc/mw.asset.php")?>
 <?php
 //==============================================================================
@@ -1600,8 +1601,15 @@ if ($mw_basic[cf_include_tail] && is_mw_file($mw_basic[cf_include_tail]) && strs
 
 <script>
 $(document).ready(function () {
+    <?php if ($sca) { ?>
     if (typeof(document.fwrite.ca_name) != 'undefined') {
         fwrite.ca_name.value = "<?=$sca?>";
+    }
+    <?php } ?>
+
+    var cate = document.fwrite.ca_name;
+    if (cate != undefined && cate.length == undefined) {
+        cate.checked = true;
     }
 
     <? /*if (!$is_member) { ?>$(imageClick);<? }*/ ?>
@@ -1710,8 +1718,15 @@ function fwrite_check(f) {
 
     <? if ($is_category && $mw_basic[cf_category_radio]) { ?>
     is_cate = false;
-    for (i=0; i<f.ca_name.length; i++) {
-        if (f.ca_name[i].checked == true) {
+    if (f.ca_name.length != undefined) {
+        for (i=0; i<f.ca_name.length; i++) {
+            if (f.ca_name[i].checked == true) {
+                is_cate = true;
+            }
+        }
+    }
+    else {
+        if (f.ca_name.checked == true) {
             is_cate = true;
         }
     }

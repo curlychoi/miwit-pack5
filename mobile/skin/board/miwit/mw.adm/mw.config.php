@@ -376,7 +376,7 @@ label {
 
 <div id="load">
 
-<div><a href="http://www.miwit.com" target="_blank"><img src="<?=$board_skin_path?>/img/logo_miwit.gif"></a></div>
+<div><a href="http://miwit.kr" target="_blank"><img src="<?=$board_skin_path?>/img/logo_miwit.gif"></a></div>
 
 <div id="board">
 <input type="button" class="bt" value="설정다시읽기" onclick="reload_config()">
@@ -1021,6 +1021,15 @@ label {
 	</div>
     </div>
 
+    <div class="cf_item">
+	<div class="cf_title"> <input type=checkbox name=chk[cf_comment_image_no] value=1>&nbsp; 댓글 프로필 이미지 </div>
+	<div class="cf_content">
+	    <label><input type="checkbox" name="cf_comment_image_no" value=1> 사용안함</label>
+	    <script> document.cf_form.cf_comment_image_no.checked = "<?php echo $mw_basic[cf_comment_image_no]?>"; </script>
+	</div>
+    </div>
+
+
     <div class="block"></div>
 
 </div> <!-- tabs-1 -->
@@ -1618,7 +1627,11 @@ label {
                 <option value="jwplayer6">jwplayer6</option>
                 <option value="jwplayer5">jwplayer5</option>
 	    </select>
-	    <script> document.cf_form.cf_jwplayer_version.value = "<?=$mw_basic[cf_jwplayer_version]?>"; </script>
+            , 자동재생 <input type="checkbox" name="cf_jwplayer_autostart" id="cf_jwplayer_autostart" value="1">
+	    <script>
+            document.cf_form.cf_jwplayer_version.value = "<?=$mw_basic[cf_jwplayer_version]?>";
+            document.cf_form.cf_jwplayer_autostart.checked = "<?=$mw_basic['cf_jwplayer_autostart']?>";
+            </script>
 	</div>
     </div>
 
@@ -2089,7 +2102,7 @@ label {
             <br>
             카카오톡 앱 키 :
             <input type="text" size="20" class="ed" name="cf_kakao_key" value="<?php echo $mw_basic['cf_kakao_key']?>">
-            (<a href="http://www.miwit.com/b/mw_tip-4225" target="_blank">등록방법</a>, 썸네일은 가로,세로 80px이상만 전송됩니다.)
+            (<a href="http://miwit.kr/b/mw_tip-4225" target="_blank">등록방법</a>, 썸네일은 가로,세로 80px이상만 전송됩니다.)
 	    <script>
             document.cf_form.cf_sns_twitter.checked = '<? echo strstr($mw_basic[cf_sns], '/twitter/')?'1':''; ?>';
             //document.cf_form.cf_sns_me2day.checked = '<? echo strstr($mw_basic[cf_sns], '/me2day/')?'1':''; ?>';
@@ -3295,7 +3308,7 @@ label {
 	<div class="cf_title"> <input type=checkbox name=chk[cf_seo_url] value=1>&nbsp; SEO URL </div>
 	<div class="cf_content">
 	    <input type=checkbox name=cf_seo_url value=1> 사용
-            <span class="cf_info">(퍼머링크, 게시물 고유주소, 추가설정 필요 ⇒  <a href="http://www.miwit.com/b/mw_tip-3870" target="_blank" style="text-decoration:underline;">설정방법 클릭!</a>)</span>  
+            <span class="cf_info">(퍼머링크, 게시물 고유주소, 추가설정 필요 ⇒  <a href="http://miwit.kr/b/mw_tip-3870" target="_blank" style="text-decoration:underline;">설정방법 클릭!</a>)</span>  
 	    <script> document.cf_form.cf_seo_url.checked = <?=$mw_basic[cf_seo_url]?>; </script>
 	</div>
     </div>
@@ -3334,7 +3347,7 @@ label {
     <div class="cf_item">
 	<div class="cf_title"> <input type=checkbox name=chk[cf_shorten] value=1>&nbsp; 짧은링크-자체도메인 </div>
 	<div class="cf_content">
-	    <input type=checkbox name=cf_shorten value=1> 사용 <span class="cf_info">(포워딩 기능, 주소:도메인/게시판/글번호 형식, <a href="http://g4.miwit.com/plugin/product/pr_shorten.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
+	    <input type=checkbox name=cf_shorten value=1> 사용 <span class="cf_info">(포워딩 기능, 주소:도메인/게시판/글번호 형식, <a href="http://miwit.kr/plugin/product/pr_shorten.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
 	    <script> document.cf_form.cf_shorten.checked = <?=$mw_basic[cf_shorten]?>; </script>
 	</div>
     </div>
@@ -3346,7 +3359,7 @@ label {
                 <span class="cf_info">(<!--
                 --><a href="http://click.linkprice.com/click.php?m=linkprice&a=A100226477&l=0000" target="_blank"><u>링크프라이스 가입</u></a>
                 , <a href="http://www.ilikeclick.com" target="_blank"><u>아이라이크클릭 가입</u></a>
-                , <a href="http://g4.miwit.com/plugin/product/pr_reward.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>
+                , <a href="http://miwit.kr/plugin/product/pr_reward.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>
                 )</span>  
 	    <script> document.cf_form.cf_reward.checked = "<?=$mw_basic[cf_reward]?>"; </script>
 	</div>
@@ -3358,7 +3371,7 @@ label {
             <?  $mb = get_member("@lucky-writing", "mb_nick"); ?>
             이름 변경 : <input type="text" class="ed" name="cf_lucky_writing_name" size="20" value="<?=$mb[mb_nick]?>">
             <span class="cf_info">(모든 게시판에 적용됨)</span>
-            <span class="cf_info">(<a href="http://g4.miwit.com/plugin/product/pr_lucky_writing.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span><br/>
+            <span class="cf_info">(<a href="http://miwit.kr/plugin/product/pr_lucky_writing.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span><br/>
 
             <?php
             if (!$mw_basic['cf_lucky_writing_ment']) {
@@ -3402,7 +3415,7 @@ label {
         <div class="cf_title">  <input type=checkbox name=chk[cf_social_commerce] value=1>&nbsp;  소셜커머스 </div>
 	<div class="cf_content">
 	    <input type=checkbox name=cf_social_commerce value=1> 사용
-                <span class="cf_info">(<a href="http://g4.miwit.com/plugin/product/pr_social_commerce.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
+                <span class="cf_info">(<a href="http://miwit.kr/plugin/product/pr_social_commerce.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
 	    <br/><input type=checkbox name=cf_social_commerce_hp value=1> 주문문자 사용
                 <span class="cf_info">(알림탭의 글등록 알림문자 옵션에서 ICODEKOREA 계정정보 입력시 사용가능)</span>
 
@@ -3421,7 +3434,7 @@ label {
 	<div class="cf_content">
 	    <input type=checkbox name=cf_quiz value=1> 사용
             <span class="cf_info">
-                (<a href="http://g4.miwit.com/plugin/product/pr_quiz.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
+                (<a href="http://miwit.kr/plugin/product/pr_quiz.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
             <div> 퀴즈등록 가능레벨 
                 <select name=cf_quiz_level>
                 <? for ($i=2; $i<=10; $i++) {?>
@@ -3455,6 +3468,7 @@ label {
                 <option value="rss">RSS 수집기 <? if (is_file("$rss_collect_path/_lib.php")) echo '(설치됨)'; else echo '(설치안됨)'; ?></option>
                 <option value="youtube">Youtube 수집기 <? if (is_file("$youtube_collect_path/_lib.php")) echo '(설치됨)'; else echo '(설치안됨)'; ?></option>
                 <option value="kakao">카카오스토리 수집기 <? if (is_file("$kakao_collect_path/_lib.php")) echo '(설치됨)'; else echo '(설치안됨)'; ?></option>
+                <option value="instagram">인스타그램 수집기 <? if (is_file("$instagram_collect_path/_lib.php")) echo '(설치됨)'; else echo '(설치안됨)'; ?></option>
             </select>
             <span class="cf_info" id="cf_collect_info"></span>  
             <script>
@@ -3483,7 +3497,7 @@ label {
                 <option value="p"> 포인트 결제</option>
             </select>
             <span class="cf_info">
-                (<a href="http://g4.miwit.com/plugin/product/pr_talent_market.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
+                (<a href="http://miwit.kr/plugin/product/pr_talent_market.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
             <div> 관리자 커미션 : <input type="text" class="ed" size="5" name="cf_talent_market_commission" value="<?=$mw_basic[cf_talent_market_commission]?>">% </div>
             <div>
                 최저금액 : <?=$mw_cash[cf_cash_name]?>
@@ -3526,7 +3540,7 @@ label {
             <? } ?>
             </select>
 
-                <span class="cf_info">(<a href="http://g4.miwit.com/plugin/product/pr_marketdb.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
+                <span class="cf_info">(<a href="http://miwit.kr/plugin/product/pr_marketdb.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
 	    <br/><input type=checkbox name=cf_marketdb_hp value=1> 문자 사용
                 <span class="cf_info">(알림탭의 글등록 알림문자 옵션에서 ICODEKOREA 계정정보 입력시 사용가능)</span>
 	    <script>
@@ -3541,7 +3555,7 @@ label {
 	<div class="cf_content">
 	    <input type=checkbox name=cf_exam value=1> 사용
             <span class="cf_info">
-                (<a href="http://g4.miwit.com/plugin/product/pr_exam.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
+                (<a href="http://miwit.kr/plugin/product/pr_exam.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
             <div> 시험문제등록 가능레벨 
                 <select name=cf_exam_level>
                 <? for ($i=2; $i<=10; $i++) {?>
@@ -3576,7 +3590,7 @@ label {
 	    <input type=checkbox name=cf_bbs_banner value=1> 사용
 
             <input type="button" value="설정" class="bt" onclick="open_bbs_banner()">
-            <span class="cf_info"> (<a href="http://g4.miwit.com/plugin/product/pr_bbs_banner.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
+            <span class="cf_info"> (<a href="http://miwit.kr/plugin/product/pr_bbs_banner.php" target="_blank">플러그인 설치 후 사용가능 ⇒ <u>다운로드 클릭!</u></a>)</span>  
             <div>
                 <input type="checkbox" name="cf_bbs_banner_list" value="1"> 목록
                 <input type="checkbox" name="cf_bbs_banner_view" value="1"> 읽기
@@ -3607,7 +3621,7 @@ label {
         <div style="color:#444;">컨텐츠샵이 설치되어 있는 것으로 추정됩니다. 캐쉬이름은 [<?=$mw_cash[cf_cash_name]?>] 입니다.</div>
         <? } else {?>
         컨텐츠샵이 설치되어 있지 않습니다.<br/><br/> 컨텐츠샵은
-        배추 패밀리 회원만 이용하실 수 있습니다.  ⇒ <a href="http://www.miwit.com/" target="_blank"><u>가입하기</u></a>
+        배추 패밀리 회원만 이용하실 수 있습니다.  ⇒ <a href="http://miwit.kr/" target="_blank"><u>가입하기</u></a>
         <? } ?>
     </div>
 
@@ -3807,6 +3821,42 @@ label {
     </div>
     <?php } ?>
 
+    <div class="cf_item">
+	<div class="cf_title"> <input type=checkbox disabled>&nbsp; 분류별 구매 </div>
+	<div class="cf_content" height=80>
+            <label><input type="checkbox" name="cf_contents_shop_category" value="1">분류별 구매 사용</label>
+            <script>$("input[name=cf_contents_shop_category]").prop("checked", "<?php echo $mw_basic['cf_contents_shop_category']?>");</script>
+            <table border="0" cellpadding="3" cellspacing="1" class="mw_category">
+            <tr>
+                <td width="120">분류명</td>
+                <td><?php echo $mw_cash['cf_cash_name']?></td>
+                <td>사용</td>
+            </tr>
+            <?php
+            $ca_list = array_filter(explode("|", $board['bo_category_list']), "trim");
+            $db_list = implode("','", $ca_list);
+
+            foreach ((array)$ca_list as $ca_name) {
+                $row = mw_category_info($ca_name);
+                ?>
+                <tr>
+                    <td><?php echo $ca_name?></td>
+                    <td>
+                        <input type="text" size="10" maxlength="7" id="ca_cash_<?php echo $row['ca_id']?>" name="ca_cash_<?php echo $row['ca_id']?>" value="<?php echo $row['ca_cash']?>">
+                    </td>
+                    <td>
+                        <input type="checkbox" name="ca_cash_use_<?php echo $row['ca_id']?>" id="ca_cash_use_<?php echo $row['ca_id']?>" value="1">
+                        <script>$("#ca_cash_use_<?php echo $row['ca_id']?>").prop("checked", "<?php echo $row['ca_cash_use']?>");</script>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
+            </table>
+	</div>
+    </div>
+
+
     <div class="block"></div>
 </div> <!-- tabs-8 -->
 
@@ -3817,7 +3867,7 @@ label {
         i-PIN 인증은 신용평가 전문기관인 <a href="http://click.linkprice.com/click.php?m=allcredit&a=A100226477&l=0000"
         target="_blank">KCB</a> 를 통해 이루어집니다.<br/>
         계약 후 이용 가능합니다.
-        [<a href="http://www.miwit.com/b/g4_notice-1024" target="_blank">계약안내</a>]
+        [<a href="http://miwit.kr/b/g4_notice-1024" target="_blank">계약안내</a>]
     </div>
 
     <?
@@ -3829,7 +3879,7 @@ label {
     <div class="cf_item" style="font-weight:bold; background-color:#fff; border:1px solid #ddd;
         padding:20px 0 20px 20px; margin:0 0 10px 0; color:#ff0000; line-height:20px;">
             아래 두 파일의 권한(permission)을 755 로 변경해주세요.
-            <a href="http://www.miwit.com/b/mw_tip-726" target="_blank">[변경방법 자세히보기]</a>
+            <a href="http://miwit.kr/b/mw_tip-726" target="_blank">[변경방법 자세히보기]</a>
             <br/>
             skin/board/<?=$board[bo_skin]?>/mw.okname/okname<br/>
             skin/board/<?=$board[bo_skin]?>/mw.okname/okname64
@@ -3843,7 +3893,7 @@ label {
     <div class="cf_item" style="font-weight:bold; background-color:#fff; border:1px solid #ddd;
         padding:20px 0 20px 20px; margin:0 0 10px 0; color:#ff0000; line-height:20px;">
             아래 디렉토리 권한(permission)을 707 로 변경해주세요.
-            <a href="http://www.miwit.com/b/mw_tip-726" target="_blank">[변경방법 자세히보기]</a>
+            <a href="http://miwit.kr/b/mw_tip-726" target="_blank">[변경방법 자세히보기]</a>
             <br/>
             skin/board/<?=$board[bo_skin]?>/mw.okname/key
     </div>

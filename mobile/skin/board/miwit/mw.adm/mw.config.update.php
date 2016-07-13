@@ -199,6 +199,8 @@ while ($row = sql_fetch_array($qry))
     $ca_level_write = "ca_level_write_".$row['ca_id'];
     $ca_color = "ca_color_".$row['ca_id'];
     $$ca_color = str_replace("#", "", $$ca_color);
+    $ca_cash = "ca_cash_".$row['ca_id'];
+    $ca_cash_use = "ca_cash_use_".$row['ca_id'];
 
     $sql = " update {$mw['category_table']} set ";
     $sql.= "  ca_type = '".$$ca_type."' ";
@@ -206,6 +208,8 @@ while ($row = sql_fetch_array($qry))
     $sql.= " ,ca_level_view = '".$$ca_level_view."' ";
     $sql.= " ,ca_level_write = '".$$ca_level_write."' ";
     $sql.= " ,ca_color = '".$$ca_color."' ";
+    $sql.= " ,ca_cash = '".$$ca_cash."' ";
+    $sql.= " ,ca_cash_use = '".$$ca_cash_use."' ";
     $sql.= "  where ca_id = '{$row['ca_id']}' ";
     sql_query($sql);
 }
@@ -304,6 +308,7 @@ bo_table = '$bo_table'
 ,cf_post_emoticon = '$cf_post_emoticon'
 ,cf_emoticon = '$cf_emoticon'
 ,cf_prev_next = '$cf_prev_next'
+,cf_comment_image_no = '$cf_comment_image_no'
 ,cf_comment_specialchars = '$cf_comment_specialchars'
 ,cf_post_specialchars = '$cf_post_specialchars'
 ,cf_comment_write = '$cf_comment_write'
@@ -469,6 +474,7 @@ bo_table = '$bo_table'
 ,cf_anonymous = '$cf_anonymous'
 ,cf_anonymous_nopoint = '$cf_anonymous_nopoint'
 ,cf_contents_shop = '$cf_contents_shop'
+,cf_contents_shop_category = '$cf_contents_shop_category'
 ,cf_contents_shop_download_count = '$cf_contents_shop_download_count'
 ,cf_contents_shop_download_day = '$cf_contents_shop_download_day'
 ,cf_contents_shop_write = '$cf_contents_shop_write'
@@ -577,6 +583,7 @@ bo_table = '$bo_table'
 ,cf_youtube_size = '$cf_youtube_size'
 ,cf_youtube_only = '$cf_youtube_only'
 ,cf_jwplayer_version = '$cf_jwplayer_version'
+,cf_jwplayer_autostart = '$cf_jwplayer_autostart'
 ,cf_player_size = '$cf_player_size'
 ,cf_watermark_use = '$cf_watermark_use'
 ,cf_watermark_use_thumb = '$cf_watermark_use_thumb'
@@ -730,6 +737,7 @@ if ($chk[cf_comment_emoticon]) $sql .= ", cf_comment_emoticon = '$cf_comment_emo
 if ($chk[cf_post_emoticon]) $sql .= ", cf_post_emoticon = '$cf_post_emoticon' ";
 if ($chk[cf_emoticon]) $sql .= ", cf_emoticon = '$cf_emoticon' ";
 if ($chk[cf_prev_next]) $sql .= ", cf_prev_next = '$cf_prev_next' ";
+if ($chk[cf_comment_image_no]) $sql .= ", cf_comment_image_no = '$cf_comment_image_no' ";
 if ($chk[cf_comment_specialchars]) $sql .= ", cf_comment_specialchars = '$cf_comment_specialchars' ";
 if ($chk[cf_post_specialchars]) $sql .= ", cf_post_specialchars = '$cf_post_specialchars' ";
 if ($chk[cf_comment_write]) $sql .= ", cf_comment_write = '$cf_comment_write' ";
@@ -923,6 +931,7 @@ if ($chk[cf_contents_shop]) {
     $sql .= ", cf_contents_shop_max = '$cf_contents_shop_download_day' ";
     $sql .= ", cf_contents_shop_min = '$cf_contents_shop_min' ";
 }
+//if ($chk[cf_contents_shop_category]) { $sql .= ", cf_contents_shop_category = '$cf_contents_shop_category' "; }
 if ($chk[cf_contents_shop_uploader]) {
     $sql .= ", cf_contents_shop_uploader = '$cf_contents_shop_uploader' ";
     $sql .= ", cf_contents_shop_uploader_cash = '$cf_contents_shop_uploader_cash' ";
