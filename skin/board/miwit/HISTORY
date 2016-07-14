@@ -1,3 +1,59 @@
+ver 3.0.2 (16.07.14)
+    : hr 코드 미출력 문제 (신비님 제안) 
+    : cf_css 상단에도 추가 
+    : 컨텐츠샵 분류별 구매 일부상품 판매안함 기능 
+    : miwit.com 링크 miwit.kr 로 변경 
+    : 컨텐츠샵 분류별 구매 지원 
+    : 하큐어 베트몬 이모티콘 업데이트 
+    : 분류라디오버튼 1개 일때 글작성 오류 수정 
+    : 댓글 이미지 사용안함 옵션 추가 (한글닷컴님 제안)
+    : jwplayer 자동재생 옵션 nae****님 제안 
+    : 원본강제 리사이징 댓글첨부파일도 지원 (한인페이지님 제안) 
+    : 인스타그램 수집기 지원 
+    : 자동폭파시 흔적남기기 오류 수정 (포인트님 제안) 
+    : 갤러리 제목 밑줄 제거 (와일드님 제안) 
+    : 휴지통 기능과 삭제글 남김 기능 동시 사용가능 (은린님 제안) 
+    : 이모티콘 배트몬 17번 업데이트 
+    : 하큐어 이모티콘 추가 (태양이님 제안) 
+    : 검색폼 에러 수정 
+    : 사운드클라우드 embed 적용 (오카리나님 제안) 
+    : 링크주소가 길때 모바일 화면 레이아웃 밀림 증상 (와일드님 제안) 
+    : 코멘트 수정시 수정창 자동길이 조절 (물깊은님 제안) 
+    : 링크 새창 사용시 유튜브 재생 안되는 문제 해결 
+    : 모바일 신고페이지 오류 (태양이님 제안) 
+    : 유튜브 사용자 파라메터 사용시 썸네일 생성오류 수정 (테크니션님 제안)
+
+    download.skin.php
+    list.skin.php
+    mw.adm/mw.config.php
+    mw.adm/mw.config.update.php
+    mw.adm/mw.head.php
+    mw.adm/mw.upgrade.php
+    mw.emoticon/batmon/hcr_batmon_11.png
+    mw.emoticon/batmon/hcr_batmon_12.png
+    mw.emoticon/batmon/hcr_batmon_13.png
+    mw.emoticon/batmon/hcr_batmon_14.png
+    mw.emoticon/batmon/hcr_batmon_15.png
+    mw.emoticon/batmon/hcr_batmon_16.png
+    mw.emoticon/batmon/hcr_batmon_17.png
+    mw.emoticon/batmon/hcr_batmon_18.png
+    mw.emoticon/batmon/hcr_batmon_19.png
+    mw.emoticon/batmon/hcr_batmon_20.png
+    mw.emoticon/batmon/hcr_batmon_21.png
+    mw.emoticon/batmon/hcr_batmon_22.png
+    mw.emoticon/batmon/hcr_batmon_23.png
+    mw.lib/mw.function.lib.php
+    mw.lib/mw.skin.basic.lib.php
+    mw.proc/mw.btn.singo.php
+    mw.proc/mw.top.button.php
+    style.common.css
+    view.skin.php
+    view_comment.skin.php
+    view_head.skin.php
+    write.skin.php
+    write_comment_update.tail.skin.php
+    write_update.skin.php
+
 ver 3.0.1 (16.03.09)
     : 뷰페이지 모바일 버튼 조정
     : </iframe> 누락붙 추가
