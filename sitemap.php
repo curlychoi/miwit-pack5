@@ -8,11 +8,11 @@ if (!$bo_table) { // group
     echo '<'.'?xml version="1.0" encoding="UTF-8"?'.'>'.PHP_EOL;
     echo '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'.PHP_EOL;
 
-    $sql = " select bo_table from {$g5['board_table']} where bo_read_level = '1' ";
+    $sql = " select bo_table from {$g5['board_table']} where bo_read_level = '1' and bo_use_search = '1' ";
     $qry = sql_query($sql);
 
     while ($board = sql_fetch_array($qry))
-{
+    {
         $write_table = $g5['write_prefix'].$board['bo_table'];
         $sql = " select wr_datetime from {$write_table} where wr_is_comment = 0 and !FIND_IN_SET('secret', wr_option) order by wr_num limit 1";
         $write = sql_fetch ($sql);
