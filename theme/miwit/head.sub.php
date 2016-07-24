@@ -33,7 +33,7 @@ header("Pragma: no-cache"); // HTTP/1.0
 <head>
 <meta charset="utf-8">
 <?php
-if (G5_IS_MOBILE) {
+if (G5_IS_MOBILE or $mw_mobile['auto_move']) {
     if ($viewport)
     echo '<meta name="viewport" content="width='.$viewport.', user-scalable=0">'.PHP_EOL;
     else
