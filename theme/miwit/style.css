@@ -845,3 +845,8 @@ body {
     border-radius: 5px;
 }
 
+#mw5 .memo_count {
+    color:red;
+    font-weight:bold;
+}
+

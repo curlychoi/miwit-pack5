@@ -27,6 +27,10 @@ if ($is_member) {
     $memo_not_read = $row['cnt'];
 }
 
+if ($memo_not_read) {
+    $memo_not_read = sprintf('<span class="memo_count">%d</span>', $memo_not_read);
+}
+
 // 스크랩
 $sql = " select count(*) as cnt from {$g5['scrap_table']} where mb_id = '{$member['mb_id']}' ";
 $row = sql_fetch($sql);
