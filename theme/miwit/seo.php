@@ -34,7 +34,7 @@ if ($bo_table and $wr_id and $write)
     $sql.= "  where bo_table = '{$bo_table}' ";
     $sql.= "    and wr_id = '{$wr_id}' ";
     $sql.= "    and bf_width > 0 ";
-    $sql.= "  order by bf_no ";
+    $sql.= "  order by bf_width desc ";
     $sql.= "  limit 1 ";
 
     $fb_file = sql_fetch($sql);
