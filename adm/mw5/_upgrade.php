@@ -25,7 +25,7 @@ cf_theme varchar(255) not null default 'mw5'
 ,cf_naver_client_secret varchar(255) not null default ''
 ,cf_kakao_use_login varchar(1) not null default ''
 ,cf_kakao_client_id varchar(255) not null default ''
-) default charset=utf8 ";
+) ENGINE=MyISAM default charset=utf8 ";
 sql_query($sql, false);
 
 sql_query("alter table {$mw5['config_table']} add cf_content_width int not null default 728 ", false);

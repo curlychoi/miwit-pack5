@@ -16,7 +16,7 @@ $sql = "create table if not exists {$mw5['menu_table']} (
     ,me_perm tinyint not null default 0
     ,me_no_side varchar(1) not null default ''
     ,primary key (me_code)
-) default charset=utf8 ";
+) ENGINE=MyISAM default charset=utf8 ";
 sql_query($sql);
 
 sql_query("alter table {$mw5['menu_table']} add me_perm tinyint not null default 0 ", false);
