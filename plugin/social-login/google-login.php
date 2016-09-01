@@ -115,7 +115,7 @@ if ($client->getAccessToken())
         $sql.= " , google_datetime = '$g4[time_ymdhis]' ";
         sql_query($sql);
 
-        $id = mysql_insert_id();
+        $id = sql_insert_id();
         $mb_id = $member[mb_id]?$member[mb_id]:'@gl-1'.sprintf("%09d", $id);
 
         sql_query("update mw_google_login set mb_id = '$mb_id' where id = '$id'");
