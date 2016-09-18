@@ -32,12 +32,20 @@ function mw_latest($skin_dir='', $bo_table, $rows=10, $subject_len=40, $cache_ti
 
     $list = array();
 
+    $is_rand = false;
+    if (preg_match('/:rand$/i', $bo_table))
+        $is_rand = true;
+
+    $bo_table = str_replace(":rand", "", $bo_table);
+
     $sql = " select * from {$g5['board_table']} where bo_table = '{$bo_table}' ";
     $board = sql_fetch($sql);
     $bo_subject = get_text($board['bo_subject']);
 
     $tmp_write_table = $g5['write_prefix'] . $bo_table; // 게시판 테이블 전체이름
     $sql = " select * from {$tmp_write_table} where wr_is_comment = 0 order by wr_num limit 0, {$rows} ";
+    if ($is_rand)
+        $sql = preg_replace('/order by wr_num/i', 'order by rand()', $sql);
     $result = sql_query($sql);
     for ($i=0; $row = sql_fetch_array($result); $i++) {
         $list[$i] = get_list($row, $board, $latest_skin_url, $subject_len);
