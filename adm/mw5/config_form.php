@@ -98,6 +98,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
             <td colspan="3">
                 <select id="cf_side_position" name="cf_side_position">
                 <option value=""></option>
+                <option value="none">사용안함</option>
                 <option value="left">좌측</option>
                 <option value="right">우측</option>
                 </select>

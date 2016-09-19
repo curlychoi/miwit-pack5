@@ -37,4 +37,8 @@ else if ($side_float == 'left') {
     echo "#mw5 .main { float:right; }".PHP_EOL;
     echo "#mw5 .menu_title { margin-left:{$side_margin_width}px; }".PHP_EOL;
 }
+else if ($side_float == 'none') {
+    echo "#mw5 .main { width:{$mw['config']['cf_width']}px; }";
+    echo "#mw5 .menu_title { width:{$mw['config']['cf_width']}px; margin-left:0; }";
+}
 
