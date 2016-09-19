@@ -37,3 +37,11 @@ if ($cf_github)
 
 echo '</div>';
 
+$max_width = $mw['config']['cf_content_width'] + $mw['config']['cf_side_width'] + 10 + (48*3);
+
+echo "<style>
+@media screen and (max-width:{$max_width}px) {
+    #sns-follow { display:none; }
+ 
+}
+</style>";
