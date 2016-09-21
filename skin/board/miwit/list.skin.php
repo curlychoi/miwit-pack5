@@ -1106,6 +1106,7 @@ else if ($mw_basic[cf_type] == "gall")
             <div class="item" onclick="mw_qna(2)"><i class="fa fa-inbox"></i> 선택 질문 보류</div>
             <div class="item" onclick="select_secret()"><i class="fa fa-inbox"></i> 선택 비밀글</div>
             <div class="item" onclick="select_secret_open()"><i class="fa fa-inbox"></i> 선택 비밀글 해제</div>
+            <div class="item" onclick="select_jump()"><i class="fa fa-paper-plane-o"></i> 선택 점프</div>
         </div><!--mw_manage-->
         <?php } // is_checkbox ?>
 
@@ -1291,6 +1292,22 @@ function select_secret() {
         return;
 
     f.action = "<?php echo $board_skin_path?>/secret_all.php?opt=secret";
+    f.submit();
+}
+
+// 선택한 게시물 점프
+function select_jump() {
+    var f = document.fboardlist;
+
+    $("#admin_action").val('');
+
+    if (!check_confirm("점프"))
+        return;
+
+    if (!confirm("선택한 게시물을 정말 점프 하시겠습니까?"))
+        return;
+
+    f.action = "<?php echo $board_skin_path?>/mw.adm/mw.jump.update.php";
     f.submit();
 }
 

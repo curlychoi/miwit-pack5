@@ -1158,6 +1158,8 @@ function fviewcomment_submit(f)
     }
     <?php } ?>
 
+    <?php if (is_g5()) {?> set_comment_token(f); <?php } ?>
+
     var geditor_status = document.getElementById("geditor_wr_content_geditor_status");
     if (geditor_status != null) {
         if (geditor_status.value == "TEXT") {

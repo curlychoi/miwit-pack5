@@ -67,6 +67,7 @@ if ($mw_basic['cf_jump_point']) {
     insert_point($member['mb_id'], -1*$mw_basic['cf_jump_point'], "새글 점프", $bo_table, $wr_id, $g4['time_ymd'].'-'.$count);
 }
 
+/*
 $wr_num = get_next_num($write_table);
 
 $sql = " update {$write_table} ";
@@ -88,6 +89,8 @@ if ($qry) {
     $sql.= " where bo_table = '{$bo_table}' and wr_id = '{$wr_id}' ";
     sql_query($sql);
 }
+*/
+mw_jump($bo_table, $wr_id);
 
 echo "ok";
 

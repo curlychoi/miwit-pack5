@@ -2582,6 +2582,12 @@ i.fa-warning { color:#f36a2e; }
         height: 100%;
     }
 
+    .jwplayer *, .jwplayer *:before, .jwplayer *:after {
+        -webkit-box-sizing: content-box!important;
+        -moz-box-sizing: content-box!important;
+        box-sizing: content-box!important;
+    }
+
     #mw_basic .mw_basic_view_content img {
         max-width: 100% !important;
         max-height: 100%;

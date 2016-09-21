@@ -1438,6 +1438,14 @@ function bc_code($str, $is_content=1, $only_admin=0) {
     global $g4, $bo_table, $wr_id, $board_skin_path;
 
     if ($is_content) {
+        $html_call = create_function('$arg', '
+            $s = $arg[1];
+            $s = str_replace("[", "&#91;", $s);
+            $s = str_replace("]", "&#93;", $s);
+            return $s;
+        ');
+        $str = preg_replace_callback("/\[bccode\((.*)\)\]/iUs", $html_call, $str);
+
         $str = preg_replace("/\[url:\/\/(.*)\](.*)\[\/url\]/iU", "<a href='http://$1' target='_blank'>$2</a>", $str);
         $str = preg_replace("/\[s\](.*)\[\/s\]/iU", "<s>$1</s>", $str);
         $str = preg_replace("/\[b\](.*)\[\/b\]/iU", "<b>$1</b>", $str);
@@ -2739,14 +2747,21 @@ function mw_jwplayer($url, $opt="")
         $url = str_replace("../..", $g4[url], $url);
         $url = str_replace("..", $g4[url], $url);
     }
-    if (mw_is_mobile_builder()) {
+    if (mw_is_mobile_builder() or G5_IS_MOBILE) {
         $opt .= ", width:'100%' ";
     }
     elseif ($mw_basic['cf_player_size']) {
         $size = explode("x", $mw_basic['cf_player_size']);
         $opt .= ", width:'{$size[0]}', height:'{$size[1]}' ";
     }
-
+    if (preg_match('/\.(mp3|asf|wma)$/i', basename($url))) {
+        if (preg_match('/height/i', $opt)) {
+            $opt = preg_replace("/height:'[0-9]+'/", "height:'30'", $opt);
+        }
+        else {
+            $opt .= ", height:'30'";
+        }
+    }
     if ($mw_basic['cf_jwplayer_autostart']) {
         $opt = ', autostart:true ' . $opt;
     }
@@ -4377,6 +4392,37 @@ function mw_row_delete_point($board, $write)
         delete_point($row[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@good_re');
         delete_point($write[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@nogood');
         delete_point($row[mb_id], $board[bo_table], $write[wr_id], $row[mb_id].'@nogood_re');
+    }
+}
+
+function mw_jump($bo_table, $wr_id)
+{
+    global $g4;
+    global $mw;
+    global $member;
+
+    $write_table = $g4['write_prefix'].$bo_table;
+    
+    $wr_num = get_next_num($write_table);
+
+    $sql = " update {$write_table} ";
+    $sql.= "    set wr_num = '{$wr_num}' ";
+    $sql.= "      , wr_datetime = '{$g4['time_ymdhis']}' ";
+    $sql.= "  where wr_id = '{$wr_id}' ";
+
+    $qry = sql_query($sql);
+
+    if ($qry) {
+        $sql = " insert into {$mw['jump_log_table']} set ";
+        $sql.= " bo_table = '{$bo_table}' ";
+        $sql.= " , wr_id = '{$wr_id}' ";
+        $sql.= " , mb_id = '{$member['mb_id']}' ";
+        $sql.= " , jp_datetime = '{$g4['time_ymdhis']}' ";
+        sql_query($sql);
+
+        $sql = " update {$g4['board_new_table']} set bn_datetime = '{$g4['time_ymdhis']}' ";
+        $sql.= " where bo_table = '{$bo_table}' and wr_id = '{$wr_id}' ";
+        sql_query($sql);
     }
 }
 

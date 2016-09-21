@@ -1,3 +1,18 @@
+ver 3.0.3 (16.09.21)
+    : 그누보드 5.2.1 댓글 토큰지원 (랭크하이님 제안)
+    : 목록에서 점프기능 관리자 전용 (l2zeo님 제안)
+    : jwplayer audio only 모드 모바일에서도 작동하도록 수정 (테크니션님 제안)
+    : 음악파일 첨부시 플레이어 사이즈 audio 전용출력 (뵤리님 제안)
+    : jwplayer mobile width 100% on miwit theme (테크니션님 제안)
+    : bccode 표시
+
+    list.skin.php
+    mw.adm/mw.jump.update.php
+    mw.lib/mw.function.lib.php
+    mw.proc/mw.jump.update.php
+    style.common.css
+    view_comment.skin.php
+
 ver 3.0.2 (16.07.14)
     : hr 코드 미출력 문제 (신비님 제안) 
     : cf_css 상단에도 추가 
