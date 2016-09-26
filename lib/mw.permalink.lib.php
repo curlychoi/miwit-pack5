@@ -186,7 +186,9 @@ function mw_seo_bbs_path($path)
         $path = str_replace('&wr_id='.$wr_id, '', $path);
     }
 
-    $path = preg_replace("/&page=[01]?[&$]?/i", '', $path);
+    $path = preg_replace("/&page=&/i", '', $path);
+    $path = preg_replace("/&page=$/i", '', $path);
+    $path = preg_replace("/&page=[0-1][&$]?/i", '', $path);
 
     if (mw_is_mobile_builder()) {
         $path = str_replace('../../plugin/mobile/board.php?bo_table='.$bo_table, mw_seo_url($bo_table, $wr_id).'?', $path);
